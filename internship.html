@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja" class="lenis">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>実践型プロジェクト | 学生団体 BeMe</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- GSAP & Lenis -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+    <div class="bg-depth bg-base gs-bg-move"></div>
+    <div class="bg-depth bg-marble gs-bg-move"></div>
+
+    <header class="master-header mix-blend">
+        <div class="header-container">
+            <a href="index.html" class="brand-logo magnetic">← BeMe Top</a>
+        </div>
+    </header>
+
+    <main id="scroll-container">
+        <section class="section-spacing text-shadow" style="padding-top: 20vh;">
+            <div class="container container-tight text-center" style="text-align: center;">
+                <span class="section-num gs-fade-up">Service 04</span>
+                <h1 class="hero-main-title gs-fade-up" data-delay="0.1" style="margin-bottom: 24px;">実践型プロジェクト</h1>
+                <p class="hero-subtext gs-fade-up" data-delay="0.2">生きたビジネス戦闘力を培う戦場</p>
+            </div>
+
+            <div class="container mt-xl gs-fade-up" data-delay="0.3" style="margin-top: 80px;">
+                <div class="hero-img-glass glass-panel pop-out-shadow"
+                    style="height: 60vh; overflow: hidden; padding: 12px; background: #FFF; width: 100%;">
+                    <img src="assets/images/services_practical_internship_1772216728085.png" alt="Practical Projects"
+                        style="width: 100%; height: 120%; object-fit: cover;" class="parallax-img-subtle">
+                </div>
+            </div>
+        </section>
+
+        <section class="section-spacing alt-bg glassmorphism-layer">
+            <div class="container container-tight">
+                <div class="glass-panel pop-out-shadow gs-fade-up">
+                    <h2 class="section-title">机上の空論を終わらせる実務経験</h2>
+                    <p class="mb-xl">
+                        自己分析や面接対策だけでは、社会で通用する力は身につきません。BeMeの実践型プロジェクトでは、学生団体内での新規事業立案や、連携企業からのリアルな事業課題の解決にダイレクトにアサインされ、本物の「実務」を経験します。
+                    </p>
+
+                    <div class="highlight-box gs-fade-up mb-xl"
+                        style="margin-bottom: 40px; background: rgba(255,255,255,0.5);">
+                        <ul>
+                            <li><strong>不確実性の中での推進力：</strong> 答えのない状況下で、自ら仮説を構築し、ステークホルダーを巻き込んで実行する力を養う。</li>
+                            <li><strong>失敗からの高速PDCA：</strong> 致命傷にならない環境で数多くの失敗を経験し、それを学習材料として軌道修正するレジリエンスを獲得。</li>
+                        </ul>
+                    </div>
+
+                    <p>このプログラムを経たあなたは、もはや「学生気分」の就活生ではありません。即戦力として、あるいは起業家として自走できる強靭なビジネス戦闘力を持つ存在へと生まれ変わります。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-spacing" style="text-align: center;">
+            <div class="container container-tight gs-fade-up text-shadow">
+                <h3 class="vision-catchphrase mb-xl" style="font-size: 2rem;">最前線で戦い、<br>圧倒的な成長を手にしませんか？</h3>
+                <a href="index.html#contact" class="submit-btn magnetic"
+                    style="display:inline-block; font-family: 'Inter', sans-serif;">お問い合わせへ進む</a>
+            </div>
+        </section>
+
+        <footer class="master-footer dark-mode glass-panel">
+            <div class="container footer-grid gs-fade-up">
+                <div class="footer-brand">
+                    <div class="logo large">学生団体BB</div>
+                    <p class="footer-contact-info">Email: info@beme-project.example.com<br>Location: 東京都心エリア</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 学生団体BB. All rights reserved.</p>
+            </div>
+        </footer>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

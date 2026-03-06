@@ -514,7 +514,7 @@ p {
 }
 
 .phil-content {
-    flex: 0 0 55%;
+    flex: 1;
     font-size: 1.15rem;
     line-height: 2.2;
     color: var(--color-text-secondary);
@@ -522,7 +522,8 @@ p {
 }
 
 .phil-header {
-    flex: 0 0 35%;
+    flex: 0 0 30%;
+    min-width: 250px;
 }
 
 @media (max-width: 900px) {
@@ -638,7 +639,7 @@ p {
 }
 
 .row-img-wrapper {
-    flex: 0 0 50%;
+    flex: 0 0 45%;
     height: 500px;
     overflow: hidden;
     background: #EEE;

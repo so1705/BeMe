@@ -4,90 +4,389 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>実践型プロジェクト | BeMe</title>
+    <title>長期インターンの事業 | BeMe</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
-    <!-- GSAP & Lenis -->
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <!-- Dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        .lp-hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: #111;
+            color: #FFF;
+            padding: 0 6vw;
+            text-align: center;
+        }
+
+        .lp-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.3;
+            filter: grayscale(100%);
+        }
+
+        .lp-content-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .lp-title {
+            font-size: clamp(3rem, 7vw, 6rem);
+            margin-bottom: var(--space-md);
+            color: #FFF;
+            line-height: 1.1;
+        }
+
+        .lp-subtitle {
+            font-size: 1rem;
+            color: #AAA;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.2em;
+            margin-bottom: var(--space-sm);
+        }
+
+        .timeline-container {
+            position: relative;
+            margin-top: var(--space-xxxl);
+            padding-left: 20px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1px;
+            height: 100%;
+            background: var(--color-border-light);
+            z-index: 1;
+        }
+
+        .timeline-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 0;
+            /* GSAP driven */
+            background: #111;
+            z-index: 2;
+        }
+
+        .milestone {
+            position: relative;
+            z-index: 3;
+            margin-bottom: var(--space-xxl);
+            padding-left: var(--space-xl);
+            opacity: 0.3;
+            transform: translateX(30px);
+            transition: all 1s var(--ease-golden);
+        }
+
+        .milestone.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .ms-phase {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            color: var(--color-text-tertiary);
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .ms-title {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 16px;
+            color: #111;
+        }
+
+        .ms-desc {
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+            line-height: 2.2;
+        }
+
+        .btn-solid {
+            display: inline-block;
+            background: #111;
+            color: #FFF;
+            padding: 20px 60px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            transition: opacity 0.4s;
+        }
+
+        .btn-solid:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .milestone {
+                padding-left: var(--space-md);
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div class="bg-depth bg-base gs-bg-move"></div>
-    <div class="bg-depth bg-marble gs-bg-move"></div>
-
-    <header class="master-header mix-blend">
+    <!-- Navigation Header -->
+    <header class="master-header">
         <div class="header-container">
-            <a href="index.html" class="brand-logo magnetic">← BeMe Top</a>
+            <a href="index.html" class="brand-logo magnetic" style="color: #FFF;">BeMe</a>
+            <a href="javascript:history.back()" class="btn-minimal" style="color: #FFF;">← 戻る</a>
         </div>
     </header>
 
     <main id="scroll-container">
-        <section class="section-spacing text-shadow" style="padding-top: 20vh;">
-            <div class="container container-tight text-center" style="text-align: center;">
-                <span class="section-num gs-fade-up">Service 04</span>
-                <h1 class="hero-main-title gs-fade-up" data-delay="0.1" style="margin-bottom: 24px;">実践型プロジェクト</h1>
-                <p class="hero-subtext gs-fade-up" data-delay="0.2">生きたビジネス戦闘力を培う戦場</p>
-            </div>
-
-            <div class="container mt-xl gs-fade-up" data-delay="0.3" style="margin-top: 80px;">
-                <div class="hero-img-glass glass-panel pop-out-shadow"
-                    style="height: 60vh; overflow: hidden; padding: 12px; background: #FFF; width: 100%;">
-                    <img src="assets/images/services_practical_internship_1772216728085.png" alt="Practical Projects"
-                        style="width: 100%; height: 120%; object-fit: cover;" class="parallax-img-subtle">
-                </div>
+        <!-- Hero Section -->
+        <section class="lp-hero">
+            <img src="../../brain/6900568d-9846-4393-81e3-80495a6a1a3f/internship_hero_bg_1772819338633.png"
+                class="lp-hero-bg gs-parallax" data-speed="0.2" alt="Internship Background">
+            <div class="lp-content-wrapper gs-fade-up">
+                <p class="lp-subtitle">PRACTICAL EXECUTION</p>
+                <h1 class="lp-title">長期インターンの事業</h1>
+                <p style="font-size: 1.2rem; color: #BBB; max-width: 700px; margin: 0 auto; line-height: 1.8;">
+                    「学生だから」という甘えを許さない。圧倒的な基準でリアルな事業課題に向き合う、ビジネス戦闘力育成プログラム。
+                </p>
             </div>
         </section>
 
-        <section class="section-spacing alt-bg glassmorphism-layer">
-            <div class="container container-tight">
-                <div class="glass-panel pop-out-shadow gs-fade-up">
-                    <h2 class="section-title">机上の空論を終わらせる実務経験</h2>
-                    <p class="mb-xl">
-                        自己分析や面接対策だけでは、社会で通用する力は身につきません。BeMeの実践型プロジェクトでは、組織内での新規事業立案や、連携企業からのリアルな事業課題の解決にダイレクトにアサインされ、本物の「実務」を経験します。
-                    </p>
+        <!-- Details Section -->
+        <section class="section-spacing container" style="max-width: 900px; padding-top: var(--space-xxl);">
+            <div class="gs-fade-up">
+                <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: var(--space-md);">机上の空論を終わらせる実務経験</h2>
+                <p style="color:var(--color-text-secondary); line-height:2.2; font-size: 1.1rem;">
+                    自己分析や面接対策だけでは、社会で通用する本物の力は身につきません。BeMeの実践型プロジェクトでは、組織内での新規事業立案や、連携企業から与えられるリアルな事業課題の解決にダイレクトにアサインされます。
+                </p>
+            </div>
 
-                    <div class="highlight-box gs-fade-up mb-xl"
-                        style="margin-bottom: 40px; background: rgba(255,255,255,0.5);">
-                        <ul>
-                            <li><strong>不確実性の中での推進力：</strong> 答えのない状況下で、自ら仮説を構築し、ステークホルダーを巻き込んで実行する力を養う。</li>
-                            <li><strong>失敗からの高速PDCA：</strong> 致命傷にならない環境で数多くの失敗を経験し、それを学習材料として軌道修正するレジリエンスを獲得。</li>
-                        </ul>
+            <!-- Program Timeline -->
+            <div class="timeline-container gs-fade-up">
+                <div class="timeline-line"></div>
+                <div class="timeline-progress"></div>
+
+                <div class="milestone">
+                    <div class="ms-phase">01 ⁄ STRATEGY</div>
+                    <h3 class="ms-title">戦略と仮説構築</h3>
+                    <p class="ms-desc">市場データと顧客インサイトから仮説を立て、ロジカルな戦略を構築。表層的なアイデア出しではなく、ROI（投資対効果）を伴う戦略的思考を徹底的に鍛え上げます。</p>
+                </div>
+
+                <div class="milestone">
+                    <div class="ms-phase">02 ⁄ EXECUTION</div>
+                    <h3 class="ms-title">事業推進と泥臭い実行</h3>
+                    <p class="ms-desc">美しい戦略だけでは社会は変わりません。自らの足で稼ぐ営業、ユーザーヒアリング、コンテンツ制作など、泥臭い実行を通じて事業を前に進める力を実地で学びます。</p>
+                </div>
+
+                <div class="milestone">
+                    <div class="ms-phase">03 ⁄ LEADERSHIP</div>
+                    <h3 class="ms-title">マネジメントと組織貢献</h3>
+                    <p class="ms-desc">
+                        プレイヤーとしての実績を積んだ後は、後進の育成やプロジェクトチームのマネジメントを経験。他者を動かし、組織全体でレバレッジをかけて成果を出すリーダーシップを身につけます。</p>
+                </div>
+            </div>
+
+            <!-- Intensive Details Expansion -->
+            <div class="gs-fade-up mt-xxl">
+                <h3
+                    style="font-size: 2rem; margin-bottom: 24px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 12px;">
+                    泥臭い実行フェーズが生む「究極の実学」</h3>
+                <p
+                    style="color:var(--color-text-secondary); line-height:2.2; font-size: 1.1rem; margin-bottom: var(--space-xl);">
+                    ビジネスモデルのケーススタディや、綺麗なプレゼンスライドを作成することだけがインターンではありません。BeMeが提供する実践型プロジェクトは、文字通り「泥臭い実行フェーズ」までを学生に委ねます。<br>
+                    実際の予算を預かり、マーケティングのCPA改善から、泥臭い営業架電、時にはプロダクトのUI改善提案まで。リアルな痛みを伴う事業課題に向き合うことでしか得られない、圧倒的な「当事者意識（オーナシップ）」と「事業推進力」を習得させます。
+                </p>
+
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-xxl);">
+                    <!-- Graph Placeholder 1 -->
+                    <div style="background: var(--color-bg-secondary); padding: var(--space-lg); border-radius: 4px;">
+                        <h4 style="font-size: 1.2rem; margin-bottom: 16px;">習得スキルポートフォリオ</h4>
+                        <div style="position: relative; width: 200px; height: 200px; margin: 0 auto;">
+                            <!-- CSS pure radar-like hexagon representation -->
+                            <div
+                                style="position:absolute; top:10%; left:10%; right:10%; bottom:10%; background:rgba(0,0,0,0.05); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
+                            </div>
+                            <div
+                                style="position:absolute; top:30%; left:20%; right:10%; bottom:20%; background:rgba(197, 168, 128, 0.7); clip-path: polygon(50% 10%, 100% 30%, 80% 80%, 50% 100%, 10% 75%, 20% 25%); transition: all 1s;">
+                            </div>
+                            <span
+                                style="position:absolute; top:-10px; left:50%; transform:translateX(-50%); font-size:0.7rem;">戦略立案</span>
+                            <span style="position:absolute; top:20px; right:0; font-size:0.7rem;">マーケ</span>
+                            <span style="position:absolute; bottom:20px; right:0; font-size:0.7rem;">営業</span>
+                            <span
+                                style="position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); font-size:0.7rem;">財務</span>
+                            <span style="position:absolute; bottom:20px; left:0; font-size:0.7rem;">組織マネジメント</span>
+                            <span style="position:absolute; top:20px; left:0; font-size:0.7rem;">論理的思考</span>
+                        </div>
+                        <p
+                            style="font-size: 0.9rem; color: var(--color-text-tertiary); margin-top: 24px; text-align:center;">
+                            偏った能力ではなく、事業全体を俯瞰し推進できるフルスタックなビジネス戦闘力を養成。</p>
                     </div>
 
-                    <p>このプログラムを経たあなたは、もはや「学生気分」の就活生ではありません。即戦力として、あるいは起業家として自走できる強靭なビジネス戦闘力を持つ存在へと生まれ変わります。</p>
+                    <!-- Curriculum Timeline -->
+                    <div style="background: var(--color-bg-secondary); padding: var(--space-lg); border-radius: 4px;">
+                        <h4 style="font-size: 1.2rem; margin-bottom: 16px;">実践カリキュラム</h4>
+                        <div style="border-left: 2px solid var(--color-accent); padding-left: 16px; position:relative;">
+                            <div class="gs-fade-up" data-delay="0.2" style="margin-bottom: 24px; position:relative;">
+                                <div
+                                    style="position:absolute; left:-25px; top:4px; width:16px; height:16px; background:var(--color-accent); border-radius:50%;">
+                                </div>
+                                <strong>Month 1-2: 基礎オンボーディング</strong>
+                                <p style="font-size:0.9rem; color:var(--color-text-secondary); margin-top:4px;">
+                                    ロジカルシンキング、データ構造化、基本的なビジネスフレームワークの叩き込み。</p>
+                            </div>
+                            <div class="gs-fade-up" data-delay="0.4" style="margin-bottom: 24px; position:relative;">
+                                <div
+                                    style="position:absolute; left:-25px; top:4px; width:16px; height:16px; background:var(--color-accent); border-radius:50%;">
+                                </div>
+                                <strong>Month 3-5: プロジェクトアサイン</strong>
+                                <p style="font-size:0.9rem; color:var(--color-text-secondary); margin-top:4px;">
+                                    実際の事業チームに配属。KPIの所有と、週次の厳しい進捗レビューによる実地訓練。</p>
+                            </div>
+                            <div class="gs-fade-up" data-delay="0.6" style="position:relative;">
+                                <div
+                                    style="position:absolute; left:-25px; top:4px; width:16px; height:16px; background:var(--color-accent); border-radius:50%;">
+                                </div>
+                                <strong>Month 6+: プロジェクトマネジメント</strong>
+                                <p style="font-size:0.9rem; color:var(--color-text-secondary); margin-top:4px;">
+                                    チームを統括するPMへ昇格。メンバーのマネジメントとP/L（損益）責任を持つ。</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <img src="assets/images/services_practical_internship_1772216728085.png"
+                    style="width: 100%; height: 400px; object-fit: cover; margin-bottom: var(--space-xl); filter: grayscale(100%); mix-blend-mode: multiply;"
+                    alt="Internship Project">
+
+            </div>
+
+            <div class="text-center mt-xl gs-fade-up" style="padding-top: var(--space-xl);">
+                <a href="index.html#contact" class="btn-solid magnetic">エントリー詳細を見る</a>
             </div>
         </section>
 
-        <section class="section-spacing" style="text-align: center;">
-            <div class="container container-tight gs-fade-up text-shadow">
-                <h3 class="vision-catchphrase mb-xl" style="font-size: 2rem;">最前線で戦い、<br>圧倒的な成長を手にしませんか？</h3>
-                <a href="index.html#contact" class="submit-btn magnetic"
-                    style="display:inline-block; font-family: 'Inter', sans-serif;">お問い合わせへ進む</a>
-            </div>
-        </section>
-
-        <footer class="master-footer dark-mode glass-panel">
-            <div class="container footer-grid gs-fade-up">
-                <div class="footer-brand">
-                    <div class="logo large">BeMe</div>
-                    <p class="footer-contact-info">Email: info@beme-project.example.com<br>Location: 東京都心エリア</p>
+        <!-- New Multi-Column Footer -->
+        <footer class="master-footer container mt-xl"
+            style="border-top: 1px solid var(--color-border-light); padding-top: var(--space-xl); padding-bottom: var(--space-lg);">
+            <div class="footer-grid-new gs-fade-up"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); text-align: left; align-items: start;">
+                <div>
+                    <div class="logo large" style="color: #111; margin-bottom: 24px;">BeMe</div>
+                    <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 2;">
+                        所在地<br>
+                        東京都渋谷区神宮前X-X-X<br>
+                        BeMeビルディング 5F
+                    </p>
+                    <p
+                        style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.8; margin-top: 24px;">
+                        圧倒的な基準で社会を動かす、<br>本質的なキャリア支援機関。
+                    </p>
+                </div>
+                <div>
+                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
+                        SITEMAP</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;"><a href="index.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">TOP</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#concept"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">PHILOSOPHY / 理念</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#services"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">SERVICES / 事業内容</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#team"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">MEMBERS / 役員紹介</a></li>
+                        <li style="margin-bottom: 12px;"><a href="events.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">EVENTS / シークレットイベント</a>
+                        </li>
+                        <li style="margin-bottom: 12px;"><a href="media.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">MEDIA / SNS運用</a></li>
+                        <li style="margin-bottom: 12px;"><a href="internship.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">INTERNSHIP /
+                                実践型インターン</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
+                        CONTACT</h4>
+                    <p
+                        style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 24px; line-height: 2;">
+                        事業・採用に関するお問い合わせは<br>下記フォームまたはメールより<br>お願いいたします。
+                    </p>
+                    <a href="mailto:info@b2-career.inc" class="btn-minimal" style="font-size: 1rem;">お問い合わせ窓口へ</a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 BeMe. All rights reserved.</p>
+            <div class="text-center gs-fade-up"
+                style="margin-top: var(--space-xxl); border-top: 1px solid var(--color-border-light); padding-top: var(--space-md);">
+                <div style="font-size:0.85rem; color:var(--color-text-tertiary);">&copy; 2026 BeMe. All rights reserved.
+                </div>
             </div>
         </footer>
     </main>
+
+    <!-- App Script -->
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const milestones = document.querySelectorAll('.milestone');
+            const progressLine = document.querySelector('.timeline-progress');
+
+            // Animate progress line natively
+            ScrollTrigger.create({
+                trigger: '.timeline-container',
+                start: "top 60%",
+                end: "bottom 60%",
+                animation: gsap.to(progressLine, { height: "100%", ease: "none" }),
+                scrub: 1
+            });
+
+            // Activate milestones seamlessly
+            milestones.forEach((ms) => {
+                ScrollTrigger.create({
+                    trigger: ms,
+                    start: "top 60%",
+                    onEnter: () => ms.classList.add('active'),
+                    onLeaveBack: () => ms.classList.remove('active')
+                });
+            });
+
+            // Header scroll logic override for dark LP
+            const header = document.querySelector('.master-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                    header.querySelector('.brand-logo').style.color = '#111';
+                    header.querySelector('.btn-minimal').style.color = '#111';
+                } else {
+                    header.classList.remove('scrolled');
+                    header.querySelector('.brand-logo').style.color = '#FFF';
+                    header.querySelector('.btn-minimal').style.color = '#FFF';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

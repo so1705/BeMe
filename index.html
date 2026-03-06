@@ -1,341 +1,307 @@
 <!DOCTYPE html>
-<html lang="ja" class="lenis">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeMe | 自分の人生を、自分で決める。</title>
-    <!-- Google Fonts -->
+    <title>BeMe | 本質を突くキャリア</title>
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Klee+One:wght@600&family=Inter:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700;800&family=Yuji+Boku&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
-    <!-- GSAP & Lenis for Ultimate Smooth Scrolling -->
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <!-- Dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
 </head>
 
 <body>
-    <!-- Infinite Depth Backgrounds with new Marble -->
-    <div class="bg-depth bg-base gs-bg-move"></div>
-    <div class="bg-depth bg-marble gs-bg-move"></div>
-
-    <!-- Navigation Header -->
-    <header class="master-header mix-blend">
-        <div class="header-container">
-            <a href="#hero" class="brand-logo magnetic">BeMe</a>
-            <button class="nav-toggle magnetic" aria-label="Toggle Menu">
-                <span class="line line-1"></span>
-                <span class="line line-2"></span>
-                <span class="line line-3"></span>
-            </button>
+    <!-- Advanced Loading Screen -->
+    <div id="global-loader">
+        <div class="loader-bg-left"></div>
+        <div class="loader-bg-right"></div>
+        <div class="loader-content">
+            <div class="loader-text brushed">BeMe</div>
         </div>
-    </header>
+    </div>
 
-    <!-- Overlay Navigation -->
+    <!-- Full-screen Overlay Navigation -->
     <nav class="nav-overlay">
         <div class="nav-overlay-bg"></div>
         <div class="nav-content">
             <ul class="nav-links">
-                <li class="nav-item reveal-nav"><a href="#vision" class="magnetic" data-text="01. 理念">01. 理念</a></li>
-                <li class="nav-item reveal-nav"><a href="#services" class="magnetic" data-text="02. 事業内容">02. 事業内容</a>
-                </li>
-                <li class="nav-item reveal-nav"><a href="#social" class="magnetic" data-text="03. SNS実績">03. SNS実績</a>
-                </li>
-                <li class="nav-item reveal-nav"><a href="#message" class="magnetic" data-text="04. 代表挨拶">04. 代表挨拶</a>
-                </li>
-                <li class="nav-item reveal-nav"><a href="#contact" class="magnetic" data-text="05. お問い合わせ">05.
-                        お問い合わせ</a></li>
+                <li class="nav-item"><a href="index.html#concept">PHILOSOPHY</a></li>
+                <li class="nav-item"><a href="index.html#services">SERVICES</a></li>
+                <li class="nav-item"><a href="index.html#team">MEMBERS</a></li>
+                <li class="nav-item"><a href="index.html#social">IMPACT</a></li>
+                <li class="nav-item"><a href="mailto:info@b2-career.inc"
+                        style="font-size: 1.2rem; margin-top: 40px;">Contact Us</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- Navigation Header -->
+    <header class="master-header">
+        <div class="header-container">
+            <a href="index.html" class="brand-logo magnetic">BeMe</a>
+            <div class="menu-btn magnetic">
+                <div class="menu-icon">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <main id="scroll-container">
+        <!-- Hero Section -->
+        <section class="hero-section" id="hero">
+            <!-- Background Elements -->
+            <div class="hero-bg-wrapper">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
+                    alt="Corporate background" class="hero-bg gs-parallax" data-speed="0.2">
+                <div class="hero-overlay"></div>
+            </div>
 
-        <!-- ================= HERO ================= -->
-        <section id="hero" class="hero-section text-shadow">
+            <!-- Content -->
             <div class="hero-content">
-                <h1 class="hero-main-title gs-brush-mask">
-                    <span class="brush-en">BeMe </span><span class="brush-ja">キャリア</span>
-                </h1>
+                <div class="text-mask">
+                    <h1 class="hero-main-title">
+                        <span class="hero-text-animate beme-hero-logo">BeMe</span>
+                        <span class="hero-text-animate brush-ja" style="display: block;">本質を突くキャリア</span>
+                    </h1>
+                </div>
+                <p class="hero-subtitle hero-text-animate" style="transition-delay: 0.2s;">
+                    社会の表面的な期待を捨て去り、自らの本質（Be）と主観（Me）に圧倒的な解像度で向き合う。<br>
+                    我々は、予定調和な就活市場を破壊し、事業を力強く推進する本物のビジネスパーソンを輩出します。
+                </p>
+            </div>
+        </section>
 
-                <p class="hero-subtext gs-fade-up" data-delay="0.6">
-                    「Be」ー なりたい姿。<br>
-                    「Me」ー ありのままの自分。<br>
-                    誰かの正解を生きるのではなく、自分の意思で掴み取るキャリア。<br>
-                    私たちが、あなたの人生のオーナーシップを取り戻す伴走者となります。
+        <!-- Concept Matrix - 100% Redesign -->
+        <section id="concept" class="section-spacing container" style="position:relative; overflow:hidden;">
+            <!-- Watermark text -->
+            <div class="watermark-bg" data-speed="0.2">ASYMMETRY</div>
+
+            <div class="philosophy-block gs-fade-up">
+                <div class="phil-header">
+                    <h2 class="phil-title">情報非対称性の<br>破壊。</h2>
+                    <p class="phil-en">THE DESTRUCTION OF ASYMMETRY</p>
+                </div>
+                <div class="phil-content text-shadow-subtle">
+                    「正しい就活」という錯覚。企業と学生の間には、依然として埋めがたい「情報の非対称性」が存在します。我々は、デジタルナレッジの拡散力と、クローズドなオフラインでの泥臭い直接対話を融合させることで、この壁を打ち破ります。<br><br>
+                    表面的な企業理解ではなく、事業の真の課題と個人の本質的なキャリア観をマッチさせる。それが私たちの使命です。
+                </div>
+            </div>
+
+            <div class="philosophy-block reverse gs-fade-up mt-xxl">
+                <!-- Second Watermark -->
+                <div class="watermark-bg" data-speed="0.15" style="top: 40%; left: auto; right: -10%;">PHILOSOPHY</div>
+
+                <div class="phil-header">
+                    <h2 class="phil-title">本質からの<br>逆算。</h2>
+                    <p class="phil-en">RADICAL ESSENTIALISM</p>
+                </div>
+                <div class="phil-content text-shadow-subtle">
+                    社会の表面的な期待を捨て去り、自らの本質に圧倒的な解像度で向き合う。小手先の面接テクニックや自己分析フレームワークに頼るのではなく、ビジネスパーソンとしての純粋な戦闘力と人間的魅力を極限まで高めます。<br><br>
+                    自己認識の深化からビジネススキルの社会実装までを、高いデザイン性と独自のコミュニティ力でシームレスに伴走し、予定調和な就活市場を破壊します。
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section (Expanded Volume) -->
+        <section id="services" class="section-spacing container">
+            <div class="gs-fade-up text-center mb-xl">
+                <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-family: var(--font-en-serif);">BUSINESS DOMAINS</h2>
+                <p style="color:var(--color-text-tertiary); letter-spacing:0.1em; font-family:'Inter', sans-serif;">事業内容
                 </p>
             </div>
 
-            <div class="hero-bg-wrapper gs-parallax" data-speed="0.5">
-                <img src="assets/images/hero_vision_transparent_1772216649355.png" alt="Concept Abstract"
-                    class="hero-img">
-                <div class="hero-gradient-overlay"></div>
-            </div>
-        </section>
-
-        <!-- ================= VISION ================= -->
-        <section id="vision" class="section-spacing">
-            <div class="container architecture-grid">
-                <div class="vision-text-col">
-                    <div class="section-header left-align">
-                        <div class="section-num gs-fade-up">01.</div>
-                        <h2 class="section-title gs-fade-up">理念</h2>
+            <div class="services-list mt-xl">
+                <!-- Service 1 -->
+                <a href="events.html" class="service-row gs-fade-up">
+                    <div class="row-img-wrapper">
+                        <img src="assets/images/services_closed_events_1772216713610.png" alt="就活イベントの運営"
+                            class="parallax-img">
                     </div>
-
-                    <div class="vision-story">
-                        <h3 class="vision-catchphrase gs-reveal-stagger">
-                            <span class="line-wrap"><span class="reveal-text">「正解」を手放し、</span></span><br>
-                            <span class="line-wrap"><span class="reveal-text">自立したオーナーシップへ。</span></span>
-                        </h3>
-                        <div class="vision-body gs-fade-up" data-delay="0.2">
-                            <p>激動の時代において、他者が定義した「成功モデル」は既に形骸化しています。BeMeは、表層的な就活スキルを提供する団体ではありません。</p>
-                            <p>私たちは、若年層が抱える「何者かにならなければいけない」という深層的な強迫観念を純粋な論理で解体します。自身の内面と向き合い、社会に提供する絶対的な価値を再定義し、真のキャリアオーナーシップを確立するための拠点です。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="vision-img-col gs-fade-up" data-delay="0.3">
-                    <div class="vision-img-glass pop-out-shadow">
-                        <img src="assets/images/vision_abstract_1772219266983.png" alt="Vision Glass Abstract"
-                            class="parallax-img-subtle">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= SERVICES ================= -->
-        <section id="services" class="section-spacing alt-bg glassmorphism-layer">
-            <div class="container container-tight pt-lg pb-lg">
-                <div class="section-header center-align mb-xl text-shadow">
-                    <div class="section-num gs-fade-up">02.</div>
-                    <h2 class="section-title gs-fade-up">事業内容</h2>
-                    <p class="section-subtitle gs-fade-up">
-                        自己認識の深化からビジネススキルの社会実装までをシームレスに伴走します。<br><span>※カードをクリックして詳細な内容を確認できます</span></p>
-                </div>
-
-                <div class="services-masonry">
-                    <a href="media.html" class="service-card magnetic-container gs-fade-up pop-out-hover hover-morph">
-                        <div class="card-img-wrapper">
-                            <img src="assets/images/services_strategic_media_1772216675381.png" alt="メディア運営"
-                                class="parallax-img">
-                            <div class="card-overlay-gradient"></div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-heading">メディア運営</h3>
-                            <p class="card-desc">自己探求と市場理解のナレッジハブ。</p>
-                            <span class="learn-more-link">詳細を見る →</span>
-                        </div>
-                    </a>
-
-                    <a href="mentoring.html"
-                        class="service-card magnetic-container gs-fade-up pop-out-hover hover-morph" data-delay="0.1">
-                        <div class="card-img-wrapper">
-                            <img src="assets/images/services_executive_mentoring_1772216688903.png" alt="メンタリング"
-                                class="parallax-img">
-                            <div class="card-overlay-gradient"></div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-heading">メンタリング</h3>
-                            <p class="card-desc">無意識のバイアスを排除する1on1セッション。</p>
-                            <span class="learn-more-link">詳細を見る →</span>
-                        </div>
-                    </a>
-
-                    <a href="events.html" class="service-card magnetic-container gs-fade-up pop-out-hover hover-morph"
-                        data-delay="0.2">
-                        <div class="card-img-wrapper">
-                            <img src="assets/images/services_closed_events_1772216713610.png" alt="クローズドイベント"
-                                class="parallax-img">
-                            <div class="card-overlay-gradient"></div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-heading">交流イベント</h3>
-                            <p class="card-desc">第一線と交差する高密度なシークレット空間。</p>
-                            <span class="learn-more-link">詳細を見る →</span>
-                        </div>
-                    </a>
-
-                    <a href="internship.html"
-                        class="service-card magnetic-container gs-fade-up pop-out-hover hover-morph" data-delay="0.3">
-                        <div class="card-img-wrapper">
-                            <img src="assets/images/services_practical_internship_1772216728085.png" alt="実践型プロジェクト"
-                                class="parallax-img">
-                            <div class="card-overlay-gradient"></div>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="card-heading">実践型プロジェクト</h3>
-                            <p class="card-desc">ビジネス戦闘力を培う実践的プログラム。</p>
-                            <span class="learn-more-link">詳細を見る →</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= SOCIAL IMPACT (REPLACED VOICES) ================= -->
-        <section id="social" class="section-spacing">
-            <div class="container process-master-grid">
-                <div class="process-text-col">
-                    <div class="section-header left-align gs-fade-up text-shadow">
-                        <div class="section-num">03.</div>
-                        <h2 class="section-title">SNSの圧倒的権威性</h2>
-                        <p class="section-subtitle">全国の学生から支持される、BeMeの発信力と影響力。</p>
-                    </div>
-
-                    <div class="social-stats-list">
-                        <div class="stat-item gs-fade-up glass-panel morph-hover pop-out-shadow">
-                            <h4 class="stat-title">Instagram</h4>
-                            <div class="stat-value">10,000+ <span>Followers</span></div>
-                            <p class="stat-desc">就活・キャリアのリアルを発信し、多くの学生から圧倒的な共感を獲得。</p>
-                        </div>
-                        <div class="stat-item gs-fade-up glass-panel morph-hover pop-out-shadow" data-delay="0.1">
-                            <h4 class="stat-title">TikTok</h4>
-                            <div class="stat-value">1.5M+ <span>Views</span></div>
-                            <p class="stat-desc">「正解のない時代」の歩き方を伝えるショート動画が累計150万回再生を突破。</p>
-                        </div>
-                        <div class="stat-item gs-fade-up glass-panel morph-hover pop-out-shadow" data-delay="0.2">
-                            <h4 class="stat-title">Official LINE</h4>
-                            <div class="stat-value">2,000+ <span>Members</span></div>
-                            <p class="stat-desc">クローズドな選考情報や特別イベントの案内を受け取る本気の学生コミュニティ。</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="process-img-col gs-fade-up" data-delay="0.4">
-                    <div class="process-img-glass pop-out-shadow">
-                        <img src="assets/images/process_abstract_1772219282377.png" alt="Social Network Impact Concept"
-                            class="parallax-img-subtle">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= REP MESSAGE ================= -->
-        <section id="message" class="section-spacing alt-bg glassmorphism-layer">
-            <div class="container container-tight text-shadow">
-                <div class="section-header left-align gs-fade-up">
-                    <div class="section-num">04.</div>
-                    <h2 class="section-title">代表挨拶</h2>
-                </div>
-
-                <div class="rep-message-container gs-fade-up pop-out-hover glass-panel">
-                    <div class="rep-image-wrapper">
-                        <img src="assets/images/media__1772218066517.jpg" alt="代表画像" class="rep-bg-img">
-                    </div>
-                    <div class="rep-text-content">
-                        <h3>「不確実な時代を生き抜くための"羅針盤"を共に創ろう」</h3>
-                        <p class="rep-lead">就職活動という枠組みを超え、人生のオーナーシップを取り戻すために。</p>
-                        <div class="rep-body-text">
-                            <p>このメッセージを読んでいるあなたは、少なからず現状のキャリアに対して違和感を抱えているのではないでしょうか。私たちは「正解がない不安」に苛まれ、多くの若者が思考を停止し、誰かが用意した「成功モデル」に飛びついてしまいます。
-                            </p>
-                            <p>しかし、本質的な価値はそこにはありません。自らの原体験を徹底的に深堀りし、純粋な欲求を見出すことこそが圧倒的な強さになります。馴れ合いではなく、高い熱量を持った仲間と共に、本気で自己の未来を設計する場を提供します。
-                            </p>
-                            <p>「BeMe キャリア」を通じて、皆さんが「自分の人生を、自分で決める」覚悟を持てるよう、全身全霊で向き合います。</p>
-                        </div>
-                        <div class="rep-signature"><span>共同代表 森平心</span></div>
-                    </div>
-                </div>
-
-                <div class="team-grid">
-                    <div class="team-member gs-reveal-stagger">
-                        <div class="member-photo-frame pop-out-shadow">
-                            <img src="assets/images/media__1772218073887.jpg" alt="新谷壮太郎"
-                                style="width:100%; height:100%; object-fit:cover;">
-                        </div>
-                        <h4 class="member-name reveal-text">新谷壮太郎</h4>
-                        <div class="member-role reveal-text">共同代表 / Strategic Officer</div>
-                        <p class="member-desc gs-fade-up">
-                            数々の事業立ち上げを牽引してきた起業家気質のストラテジスト。論理的かつ本質的な経営視点から、学生が抱える無意識の固定概念や限界を打ち破ります。机上の空論ではなく、現実の社会で通用する実践的なビジネススキームの構築をサポートし、あなたのキャリアに圧倒的な優位性をもたらすための戦略を共に描き出します。
+                    <div class="row-content">
+                        <div class="row-num">DOMAIN 01</div>
+                        <h3 class="row-heading">就活イベントの運営<br><span
+                                style="font-size:1rem; color:var(--color-text-tertiary); font-family: var(--font-en-serif);">HIGH-END
+                                NETWORKING</span></h3>
+                        <p class="row-desc">
+                            業界の最前線と交差する、圧倒的高密度なシークレット空間を提供。不特定多数に向けられた一方的なプレゼンではなく、第一線で活躍するビジネスパーソンと直接対話を生み出します。
                         </p>
+                        <ul class="service-features">
+                            <li><span class="check"></span>完全審査制によるクオリティコントロール</li>
+                            <li><span class="check"></span>CxOクラス登壇の極秘セッション</li>
+                            <li><span class="check"></span>本質的なケーススタディと即時フィードバック</li>
+                        </ul>
+                        <span class="btn-minimal">詳細を見る</span>
                     </div>
+                </a>
 
-                    <div class="team-member gs-reveal-stagger" data-delay="0.2">
-                        <div class="member-photo-frame pop-out-shadow">
-                            <img src="../../brain/6a0d001b-462a-4e2b-a26a-025215c7a48e/media__1772218079267.jpg"
-                                alt="山本和葉" style="width:100%; height:100%; object-fit:cover;">
-                        </div>
-                        <h4 class="member-name reveal-text">山本和葉</h4>
-                        <div class="member-role reveal-text">Community Manager</div>
-                        <p class="member-desc gs-fade-up">
-                            組織内の緻密なコミュニケーションと高い心理的安全性を提供するコミュニティのハブ的存在。徹底的な自己分析の壁打ち相手として、表面化していない各メンバーの「無意識の欲求」や「本当にやりたいこと」を引き出すプロフェッショナルです。一人ひとりに寄り添いながらも妥協のないフィードバックを行い、絶対的な自己理解へと導きます。
+                <!-- Service 2 -->
+                <a href="media.html" class="service-row gs-fade-up" style="flex-direction: row-reverse;">
+                    <div class="row-img-wrapper">
+                        <img src="assets/images/services_strategic_media_1772216675381.png" alt="就活SNSの運用"
+                            class="parallax-img">
+                    </div>
+                    <div class="row-content" style="padding-left:0; padding-right:var(--space-xl);">
+                        <div class="row-num">DOMAIN 02</div>
+                        <h3 class="row-heading">就活SNSの運用<br><span
+                                style="font-size:1rem; color:var(--color-text-tertiary); font-family: var(--font-en-serif);">DIGITAL
+                                INFLUENCE</span></h3>
+                        <p class="row-desc">
+                            累計150万再生を超える、就活市場のリアルを切り撮る影響力。TikTokの直感的なショート動画から、Instagramの論理的な図解解説まで、アルゴリズムをハックして学生の行動変容を促します。
                         </p>
+                        <ul class="service-features">
+                            <li><span class="check"></span>Z世代特化のアルゴリズム最適化運用</li>
+                            <li><span class="check"></span>インサイト分析に基づくロジカルコンテンツ設計</li>
+                            <li><span class="check"></span>潜在層から顕在層への精緻なファネル構築</li>
+                        </ul>
+                        <span class="btn-minimal">詳細を見る</span>
+                    </div>
+                </a>
+
+                <!-- Service 3 -->
+                <a href="internship.html" class="service-row gs-fade-up">
+                    <div class="row-img-wrapper">
+                        <img src="assets/images/services_practical_internship_1772216728085.png" alt="長期インターンの事業"
+                            class="parallax-img">
+                    </div>
+                    <div class="row-content">
+                        <div class="row-num">DOMAIN 03</div>
+                        <h3 class="row-heading">長期インターンの事業<br><span
+                                style="font-size:1rem; color:var(--color-text-tertiary); font-family: var(--font-en-serif);">PRACTICAL
+                                EXECUTION</span></h3>
+                        <p class="row-desc">
+                            自己分析で終わらせない、実務を通じた本物のビジネス戦闘力育成。新規事業立案や連携企業からのリアルな事業課題解決にアサインされ、戦略構築から泥臭い実行フェーズまで一貫して経験します。
+                        </p>
+                        <ul class="service-features">
+                            <li><span class="check"></span>トップティア企業水準のPJマネジメント</li>
+                            <li><span class="check"></span>徹底的なROI追求と泥臭い実行フェーズ</li>
+                            <li><span class="check"></span>現役プロフェッショナルによる直接メンタリング</li>
+                        </ul>
+                        <span class="btn-minimal">詳細を見る</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Member Section (Images Fixed & B2 Text) -->
+        <section id="team" class="section-spacing alt-bg">
+            <div class="container">
+                <div class="gs-fade-up text-center mb-xl">
+                    <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-family: var(--font-en-serif);">EXECUTIVE BOARD
+                    </h2>
+                    <p style="color:var(--color-text-tertiary); letter-spacing:0.1em; font-family:'Inter', sans-serif;">
+                        代表挨拶・役員</p>
+                </div>
+
+                <div class="member-list mt-xl">
+                    <!-- Founder (Oversized) -->
+                    <div class="member-block founder-block gs-fade-up">
+                        <div class="member-photo-frame">
+                            <img src="assets/images/media__1772218066517.jpg" alt="Founder Portrait">
+                        </div>
+                        <div class="founder-content">
+                            <div class="member-role">FOUNDER & CEO</div>
+                            <h3 class="member-name" style="font-size: 2.2rem; margin-bottom: 24px;">代表・大石</h3>
+                            <p class="member-bio" style="font-size: 1.15rem; line-height: 2.2;">
+                                「挑戦を持続可能な形にする」というビジョンを掲げ、表面的な就活市場のあり方に一石を投じるためBeMeを創設。<br><br>
+                                企業が本当に直面している事業課題と、個人が心の底から求めている「熱狂」を直結させるプラットフォームが必要だと強く実感したのが始まりです。小手先の面接テクニックやテンプレート化された自己分析ではなく、真の意味での「ビジネス戦闘力」と「人間的魅力」を育む環境を提供します。<br><br>
+                                私たちが目指すのは、ただの就職支援ではありません。圧倒的な基準で社会をアップデートし続ける、次世代のビジネスリーダーの輩出機関です。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Member 2 -->
+                    <div class="member-block gs-fade-up" data-delay="0.1">
+                        <div class="member-photo-frame">
+                            <img src="assets/images/media__1772218073887.jpg" alt="COO Portrait">
+                        </div>
+                        <div class="member-role">CO-FOUNDER & COO</div>
+                        <h3 class="member-name">副代表・清水</h3>
+                        <p class="member-bio">
+                            大局的なビジョンを具体的なプロセスとKPIへと落とし込む実行責任者。無数の選択肢から最適解を導き出し、チーム全員が迷いなく走れるオペレーションを構築する。</p>
+                    </div>
+
+                    <!-- Member 3 -->
+                    <div class="member-block gs-fade-up" data-delay="0.2">
+                        <div class="member-photo-frame">
+                            <img src="assets/images/media__1772218079267.jpg" alt="CMO Portrait">
+                        </div>
+                        <div class="member-role">CMO / HEAD OF MEDIA</div>
+                        <h3 class="member-name">田中（メディア統括）</h3>
+                        <p class="member-bio">
+                            BeMeの誇るSNS・メディア事業の全体設計を担う。アルゴリズムの深掘りからユーザー心理の分析まで徹底し、「伝わる」から「動かす」コンテンツを生み出し続ける。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ================= CONTACT & FOOTER ================= -->
-        <section id="contact" class="section-spacing">
-            <div class="container container-tight">
-                <div class="section-header center-align gs-fade-up text-shadow">
-                    <div class="section-num">05.</div>
-                    <h2 class="section-title">お問い合わせ</h2>
+        <!-- New Multi-Column Footer -->
+        <footer class="master-footer container mt-xl"
+            style="border-top: 1px solid var(--color-border-light); padding-top: var(--space-xl); padding-bottom: var(--space-lg);">
+            <div class="footer-grid-new gs-fade-up"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); text-align: left; align-items: start;">
+                <div>
+                    <div class="logo large" style="color: #111; margin-bottom: 24px;">BeMe</div>
+                    <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 2;">
+                        所在地<br>
+                        東京都渋谷区神宮前X-X-X<br>
+                        BeMeビルディング 5F
+                    </p>
+                    <p
+                        style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.8; margin-top: 24px;">
+                        圧倒的な基準で社会を動かす、<br>本質的なキャリア支援機関。
+                    </p>
                 </div>
-
-                <div class="contact-form-wrapper glass-panel pop-out-hover gs-fade-up">
-                    <form action="#" method="POST" class="contact-form">
-                        <div class="form-group row-group">
-                            <div class="input-wrap">
-                                <label for="name">お名前 <span class="required">*</span></label>
-                                <input type="text" id="name" name="name" required placeholder="山田 太郎">
-                            </div>
-                            <div class="input-wrap">
-                                <label for="email">メールアドレス <span class="required">*</span></label>
-                                <input type="email" id="email" name="email" required placeholder="example@beme.jp">
-                            </div>
-                        </div>
-                        <div class="form-group row-group">
-                            <div class="input-wrap">
-                                <label for="university">大学名 / 所属</label>
-                                <input type="text" id="university" name="university" placeholder="◯◯大学">
-                            </div>
-                            <div class="input-wrap">
-                                <label for="category">お問い合わせ種別 <span class="required">*</span></label>
-                                <select id="category" name="category" required>
-                                    <option value="" disabled selected>選択してください</option>
-                                    <option value="join">入団希望</option>
-                                    <option value="business">企業様のご相談</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="message_text">お問い合わせ内容 <span class="required">*</span></label>
-                            <textarea id="message_text" name="message_text" rows="5" required
-                                placeholder="具体的な内容をご記入ください。"></textarea>
-                        </div>
-                        <div class="form-submit">
-                            <button type="submit" class="submit-btn magnetic">送信する</button>
-                        </div>
-                    </form>
+                <div>
+                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
+                        SITEMAP</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;"><a href="index.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">TOP</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#concept"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">PHILOSOPHY / 理念</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#services"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">SERVICES / 事業内容</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#team"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">MEMBERS / 役員紹介</a></li>
+                        <li style="margin-bottom: 12px;"><a href="events.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">EVENTS / シークレットイベント</a>
+                        </li>
+                        <li style="margin-bottom: 12px;"><a href="media.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">MEDIA / SNS運用</a></li>
+                        <li style="margin-bottom: 12px;"><a href="internship.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">INTERNSHIP /
+                                実践型インターン</a></li>
+                    </ul>
                 </div>
-            </div>
-        </section>
-
-        <footer class="master-footer dark-mode glass-panel">
-            <div class="container footer-grid gs-fade-up">
-                <div class="footer-brand">
-                    <div class="logo large">BeMe</div>
-                    <p class="footer-contact-info">Email: info@beme-project.example.com<br>Location: 東京都心エリア</p>
+                <div>
+                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
+                        CONTACT</h4>
+                    <p
+                        style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 24px; line-height: 2;">
+                        事業・採用に関するお問い合わせは<br>下記フォームまたはメールより<br>お願いいたします。
+                    </p>
+                    <a href="mailto:info@b2-career.inc" class="btn-minimal" style="font-size: 1rem;">お問い合わせ窓口へ</a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <div class="compliance-links"><a href="#">プライバシーポリシー</a></div>
-                <p>&copy; 2026 BeMe. All rights reserved.</p>
+            <div class="text-center gs-fade-up"
+                style="margin-top: var(--space-xxl); border-top: 1px solid var(--color-border-light); padding-top: var(--space-md);">
+                <div style="font-size:0.85rem; color:var(--color-text-tertiary);">&copy; 2026 BeMe. All rights reserved.
+                </div>
             </div>
         </footer>
-
     </main>
 
-
-
+    <!-- App Script -->
     <script src="script.js"></script>
 </body>
 

@@ -1,169 +1,154 @@
 // =======================================
 // INITIALIZATION
 // =======================================
-gsap.registerPlugin(ScrollTrigger, TextPlugin);
+document.addEventListener('DOMContentLoaded', () => {
+    initLoaderSequence();
+    initLightweightInteractions();
+});
 
-let lenis;
+// =======================================
+// LOADER & SOUND EFFECTS
+// =======================================
+function playBrushSound() {
+    try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
 
-function initLenis() {
-    lenis = new Lenis({
-        duration: 2.0, // High-end slow silky scroll
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        smoothTouch: false,
-        touchMultiplier: 2
-    });
+        // Create noise buffer
+        const bufferSize = ctx.sampleRate * 2; // 2 seconds
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            // Pseudo-pink noise for brush character
+            data[i] = (Math.random() * 2 - 1) * 0.8;
+        }
 
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-    gsap.ticker.lagSmoothing(0);
+        const noiseSource = ctx.createBufferSource();
+        noiseSource.buffer = buffer;
+
+        // Low-pass filter to make it sound like paper/brush friction
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(800, ctx.currentTime);
+        filter.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 1.2);
+
+        // Envelope for swish dynamics
+        const gainNode = ctx.createGain();
+        gainNode.gain.setValueAtTime(0, ctx.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 0.1);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.2);
+
+        noiseSource.connect(filter);
+        filter.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        noiseSource.start();
+        noiseSource.stop(ctx.currentTime + 1.5);
+    } catch (e) {
+        // Silently fail if audio context blocked
+        console.warn('Audio Context blocked or unsupported', e);
+    }
 }
 
-// =======================================
-// MASTER ANIMATION CONTROLLER
-// =======================================
-function initAnimations() {
+function initLoaderSequence() {
+    // Avoid re-running loader if already loaded in this session
+    if (sessionStorage.getItem('beme_loaded')) {
+        const loader = document.getElementById('global-loader');
+        if (loader) loader.style.display = 'none';
 
-    // 1. Text Stagger Reveal
-    gsap.utils.toArray('.gs-reveal-stagger').forEach(elem => {
-        const texts = elem.querySelectorAll('.reveal-text');
-        gsap.fromTo(texts,
-            { y: "110%", rotate: "2deg" },
-            {
-                y: "0%",
-                rotate: "0deg",
-                duration: 1.2,
-                stagger: 0.15,
-                ease: "power4.out",
-                scrollTrigger: {
-                    trigger: elem,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
-                }
-            }
-        );
-    });
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+        document.body.style.position = 'static';
 
-    // 2. Fade Up & Complex Entry Logic (with Data Delay)
-    gsap.utils.toArray('.gs-fade-up').forEach(elem => {
-        const delay = elem.getAttribute('data-delay') || 0;
-        gsap.fromTo(elem,
-            { y: 60, opacity: 0, scale: 0.98 },
-            {
+        // Assuming gsap is defined elsewhere for this early return path
+        if (typeof gsap !== 'undefined') {
+            gsap.to('.hero-text-animate', {
                 y: 0,
                 opacity: 1,
-                scale: 1,
-                duration: 1.5,
-                delay: Number(delay),
-                ease: "power4.out",
-                scrollTrigger: {
-                    trigger: elem,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
-                }
-            }
-        );
-    });
-
-    // 3. Image Parallax Check
-    gsap.utils.toArray('.gs-parallax').forEach(elem => {
-        const speed = elem.getAttribute('data-speed') || 0.5;
-        const img = elem.querySelector('.hero-img');
-        if (img) {
-            gsap.to(img, {
-                y: () => `${gsap.getProperty(elem, "height") * speed}px`,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: elem,
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: true
-                }
+                duration: 0.1,
+                stagger: 0.1
             });
+        } else {
+            document.querySelectorAll('.hero-text-animate').forEach(el => el.classList.add('visible'));
         }
-    });
 
-    // Image Parallax Subtle (for Process/Vision glass boxes)
-    gsap.utils.toArray('.parallax-img-subtle').forEach(img => {
-        gsap.to(img, {
-            y: "-15%",
-            ease: "none",
-            scrollTrigger: {
-                trigger: img.parentElement,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-            }
-        });
-    });
-
-    // =======================================
-    // CONTINUOUS BACKGROUND MOVEMENT
-    // =======================================
-    gsap.to(".bg-marble", {
-        y: "-5vh",
-        ease: "none",
-        scrollTrigger: {
-            trigger: "body",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: true
+        // Assuming initScrollInteractions is defined elsewhere
+        if (typeof initScrollInteractions === 'function') {
+            initScrollInteractions();
         }
-    });
+        initLightweightInteractions();
+        return;
+    }
+
+    const loader = document.getElementById('global-loader');
+    const text = document.querySelector('.loader-text');
+
+    if (loader && text) {
+        setTimeout(() => {
+            playBrushSound();
+            text.classList.add('brushed');
+
+            // After text reveals, wait a bit, then pull up curtain
+            setTimeout(() => {
+                loader.classList.add('curtain-up');
+
+                // Allow scrolling again
+                document.body.style.overflow = '';
+
+                // Trigger hero text float up elegantly with delay
+                setTimeout(() => {
+                    document.querySelectorAll('.hero-text-animate').forEach(el => {
+                        el.classList.add('visible');
+                    });
+                    sessionStorage.setItem('beme_loaded', 'true'); // Set session storage on completion
+                }, 600); // 幕が開いてから文字が浮き上がる
+            }, 1800);
+
+        }, 500);
+    } else {
+        document.body.style.overflow = '';
+        document.querySelectorAll('.hero-text-animate').forEach(el => el.classList.add('visible'));
+        sessionStorage.setItem('beme_loaded', 'true'); // Set session storage even if loader elements are missing
+    }
 }
 
 // =======================================
-// INTERACTIVE ELEMENTS
+// LIGHTWEIGHT ANIMATION & INTERACTION
 // =======================================
-function initInteractions() {
+function initLightweightInteractions() {
 
-    // 1. Magnetic Hover Effects
-    const magneticElements = document.querySelectorAll('.magnetic, .magnetic-container');
-    magneticElements.forEach(elem => {
-        elem.addEventListener('mousemove', (e) => {
-            const rect = elem.getBoundingClientRect();
-            // Calculate center
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-
-            // Adjust pulling strength based on size
-            const strength = elem.classList.contains('magnetic-container') ? 15 : 30;
-
-            gsap.to(elem, {
-                x: x / rect.width * strength,
-                y: y / rect.height * strength,
-                duration: 1,
-                ease: "power3.out"
+    // Simple Parallax for Watermarks (Native JS)
+    const watermarks = document.querySelectorAll('.watermark-bg');
+    if (watermarks.length > 0) {
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            watermarks.forEach(wm => {
+                const speed = wm.getAttribute('data-speed') || 0.3;
+                wm.style.transform = `translateY(${scrollY * speed}px)`;
             });
         });
-
-        elem.addEventListener('mouseleave', () => {
-            gsap.to(elem, { x: 0, y: 0, duration: 1, ease: "elastic.out(1, 0.3)" });
-        });
-    });
-
-    // 2. Hero Brush Stroke Mask Animation
-    const brushMask = document.querySelector('.gs-brush-mask');
-    if (brushMask) {
-        let brushTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: brushMask,
-                start: "top 85%",
-                once: true
-            }
-        });
-
-        brushTl.set(brushMask, { opacity: 1 })
-            .to(brushMask, {
-                clipPath: "polygon(0 0, 110% 0, 110% 100%, -10% 100%)",
-                duration: 2.2, // Silk smooth ink reveal
-                ease: "power2.inOut"
-            });
     }
 
-    // 3. Navigation Toggle & Overlay
+    // 1. Intersection Observer for high-performance fade-ups & staggered bars
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const delay = entry.target.getAttribute('data-delay') || 0;
+                if (delay > 0) {
+                    setTimeout(() => entry.target.classList.add('visible'), delay * 1000);
+                } else {
+                    entry.target.classList.add('visible');
+                }
+                fadeObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    });
+
+    document.querySelectorAll('.gs-fade-up, .gs-staggered-bar').forEach(elem => {
+        fadeObserver.observe(elem);
+    });
+    // 2. Navigation Toggle & Overlay (Native JS, no GSAP or Lenis dependencies)
     const navToggle = document.querySelector('.nav-toggle');
     const navOverlay = document.querySelector('.nav-overlay');
     const navLinks = document.querySelectorAll('.nav-item a');
@@ -175,107 +160,44 @@ function initInteractions() {
             navOverlay.classList.toggle('active');
 
             if (!isOpen) {
-                lenis.stop(); // Disable scroll
+                document.body.style.overflow = 'hidden'; // Stop native scrolling
             } else {
-                lenis.start(); // Enable scroll
+                document.body.style.overflow = '';
             }
         });
 
         navLinks.forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
                 navToggle.classList.remove('open');
                 navOverlay.classList.remove('active');
-                lenis.start();
+                document.body.style.overflow = '';
 
-                // Smooth scroll to target using Lenis
+                // Handle smooth scroll natively if on same page
                 const targetId = link.getAttribute('href');
-                if (targetId.startsWith('#')) {
-                    setTimeout(() => {
-                        lenis.scrollTo(targetId, { offset: -100, duration: 1.5, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-                    }, 500);
+                if (targetId.startsWith('#') || targetId.startsWith('index.html#')) {
+                    const id = targetId.includes('#') ? targetId.split('#')[1] : null;
+                    if (id) {
+                        const targetElem = document.getElementById(id);
+                        if (targetElem) {
+                            e.preventDefault();
+                            targetElem.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
                 }
             });
         });
     }
 
-    // Header Blur on Scroll
+    // 3. Simple Header Scrolling Check
     const header = document.querySelector('.master-header');
-    if (header) {
+    if (header && !window.location.pathname.includes('index.html')) {
+        // Sub-pages handled inline dynamically if needed, but safe fallback
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
-                header.classList.remove('mix-blend');
             } else {
                 header.classList.remove('scrolled');
-                header.classList.add('mix-blend');
-            }
-        }, { passive: true });
-    }
-
-    // 4. Elite Parallax & Blur for Hero
-    const heroContent = document.querySelector('.hero-content');
-    const heroBgWrapper = document.querySelector('.hero-bg-wrapper');
-    if (heroContent && heroBgWrapper) {
-        gsap.to(heroContent, {
-            y: "20vh",
-            opacity: 0,
-            scale: 0.95,
-            filter: "blur(10px)",
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".hero-section",
-                start: "top top",
-                end: "bottom top",
-                scrub: true
-            }
-        });
-        gsap.to(heroBgWrapper, {
-            clipPath: "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)",
-            opacity: 0.1,
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".hero-section",
-                start: "top top",
-                end: "bottom top",
-                scrub: true
             }
         });
     }
-
-    // 5. Team Grid Stagger Reveal
-    gsap.fromTo(".team-member",
-        { autoAlpha: 0, y: 50 },
-        {
-            autoAlpha: 1,
-            y: 0,
-            duration: 1.4,
-            stagger: 0.2,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: ".team-grid",
-                start: "top 85%",
-                toggleActions: "play none none reverse"
-            }
-        }
-    );
 }
-
-// =======================================
-// DOM READY BOOTSTRAP
-// =======================================
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Init Scroll
-    initLenis();
-
-    // 2. Init GSAP Animations
-    // Small delay to ensure render tree is ready
-    setTimeout(() => {
-        initAnimations();
-    }, 100);
-
-    // 3. Init UI Interactions
-    initInteractions();
-
-    // Smooth scroll to top on reload
-    window.scrollTo(0, 0);
-});

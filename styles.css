@@ -623,8 +623,8 @@ p {
 .service-row {
     display: flex;
     align-items: center;
-    gap: var(--space-xl);
-    padding: var(--space-lg) 0;
+    gap: var(--space-xxl);
+    padding: var(--space-xl) 0;
     border-top: 1px solid var(--color-border-light);
     color: inherit;
     transition: opacity 0.6s;
@@ -639,12 +639,13 @@ p {
 }
 
 .row-img-wrapper {
-    flex: 0 0 45%;
+    flex: 0 0 40%;
     height: 500px;
     overflow: hidden;
     background: #EEE;
     /* placeholder */
     position: relative;
+    border-radius: 4px;
 }
 
 .parallax-img {

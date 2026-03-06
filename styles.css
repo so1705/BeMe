@@ -519,11 +519,12 @@ p {
     line-height: 2.2;
     color: var(--color-text-secondary);
     text-align: justify;
+    max-width: 800px;
 }
 
 .phil-header {
-    flex: 0 0 30%;
-    min-width: 250px;
+    flex: 0 0 40%;
+    min-width: 300px;
 }
 
 @media (max-width: 900px) {

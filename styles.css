@@ -628,7 +628,7 @@ p {
     padding: var(--space-xl) 0;
     border-top: 1px solid var(--color-border-light);
     color: inherit;
-    transition: opacity 0.6s;
+    transition: all 0.6s var(--ease-golden);
 }
 
 .service-row:last-child {
@@ -636,7 +636,9 @@ p {
 }
 
 .service-row:hover {
-    opacity: 0.8;
+    padding-left: 32px;
+    padding-right: 32px;
+    border-top-color: var(--color-accent);
 }
 
 .row-img-wrapper {
@@ -644,7 +646,6 @@ p {
     height: 500px;
     overflow: hidden;
     background: #EEE;
-    /* placeholder */
     position: relative;
     border-radius: 4px;
 }
@@ -657,7 +658,39 @@ p {
 }
 
 .service-row:hover .parallax-img {
-    transform: scale(1.05);
+    transform: scale(1.06);
+}
+
+/* Elegant Button Treatment */
+.btn-minimal {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+    margin-top: var(--space-sm);
+    transition: color 0.4s;
+    text-transform: uppercase;
+}
+
+.btn-minimal::after {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--color-text-secondary);
+    margin-left: 12px;
+    transition: width 0.6s var(--ease-golden), background 0.4s;
+}
+
+.service-row:hover .btn-minimal {
+    color: var(--color-accent);
+}
+
+.service-row:hover .btn-minimal::after {
+    width: 50px;
+    background: var(--color-accent);
 }
 
 .row-content {

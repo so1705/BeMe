@@ -791,6 +791,211 @@ p {
     width: 100%;
 }
 
+/* =======================================
+   SUBPAGE RICH COMPONENTS (100-Point UI)
+   ======================================= */
+/* Feature Cards */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-xl);
+    margin: var(--space-xxl) 0;
+}
+
+.info-card {
+    background: #FAFAFA;
+    padding: var(--space-lg);
+    border-radius: 8px;
+    border: 1px solid var(--color-border-light);
+    transition: transform 0.4s var(--ease-golden), box-shadow 0.4s var(--ease-golden);
+    position: relative;
+    overflow: hidden;
+}
+
+.info-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s var(--ease-golden);
+}
+
+.info-card:hover::before {
+    transform: scaleX(1);
+}
+
+.card-icon {
+    font-size: 2rem;
+    color: var(--color-accent);
+    margin-bottom: var(--space-sm);
+}
+
+.card-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.card-text {
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+/* Vertical Timeline */
+.timeline-vertical {
+    border-left: 2px solid var(--color-border-light);
+    padding-left: var(--space-lg);
+    margin: var(--space-xxl) 0;
+    position: relative;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: var(--space-xl);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--space-lg) * -1 - 9px);
+    top: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    border: 4px solid #FFF;
+    box-shadow: 0 0 0 1px var(--color-border-light);
+}
+
+.timeline-meta {
+    font-family: var(--font-en-serif);
+    font-size: 0.85rem;
+    color: var(--color-accent);
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Comparison Block */
+.benefit-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    margin: var(--space-xl) 0;
+}
+
+.compare-col {
+    padding: var(--space-lg);
+    border-radius: 8px;
+}
+
+.compare-col.negative {
+    background: #F5F5F5;
+    color: var(--color-text-secondary);
+}
+
+.compare-col.positive {
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-accent);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.compare-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.compare-col.negative .compare-title i {
+    color: #999;
+}
+
+.compare-col.positive .compare-title i {
+    color: var(--color-accent);
+}
+
+.compare-list li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.compare-col.negative .compare-list li::before {
+    content: '×';
+    position: absolute;
+    left: 0;
+    color: #999;
+    font-weight: bold;
+}
+
+.compare-col.positive .compare-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: bold;
+}
+
+/* Data / Stat Grid enclosed */
+.data-highlight-grid {
+    display: flex;
+    gap: var(--space-lg);
+    background: #111;
+    color: #FFF;
+    padding: var(--space-xl);
+    border-radius: 8px;
+    margin: var(--space-xxl) 0;
+    flex-wrap: wrap;
+}
+
+.data-box {
+    flex: 1;
+    min-width: 200px;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: var(--space-md);
+}
+
+.data-box:first-child {
+    border-left: none;
+    padding-left: 0;
+}
+
+.data-box-num {
+    font-family: var(--font-en-serif);
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 8px;
+    background: linear-gradient(to right, #FFF, #A8B5CA);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.data-box-label {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: #BBB;
+}
+
 @media (max-width: 991px) {
     .service-row {
         flex-direction: column !important;

@@ -352,7 +352,7 @@ p {
 }
 
 .nav-item {
-    margin: 16px 0;
+    margin: 24px 0;
     overflow: hidden;
 }
 
@@ -360,8 +360,8 @@ p {
     display: inline-block;
     font-family: var(--font-en-serif);
     color: #FFF;
-    font-size: clamp(2rem, 5vw, 4rem);
-    letter-spacing: 0.1em;
+    font-size: clamp(1.5rem, 3.5vw, 3rem);
+    letter-spacing: 0.2em;
     transform: translateY(100%);
     opacity: 0;
     transition: transform 1.2s var(--ease-golden), opacity 1.2s;

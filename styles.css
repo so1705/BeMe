@@ -613,6 +613,44 @@ p {
 }
 
 /* =======================================
+   SERVICES EDITORIAL STATS
+   ======================================= */
+.service-stats {
+    display: flex;
+    gap: var(--space-xl);
+    margin: var(--space-md) 0 var(--space-lg);
+    border-left: 2px solid var(--color-accent);
+    padding-left: var(--space-md);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-num {
+    font-family: var(--font-en-serif);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1;
+}
+
+.stat-num span {
+    font-size: 1rem;
+    color: var(--color-text-tertiary);
+    margin-left: 4px;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.1em;
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+/* =======================================
    SERVICES EDITORIAL LIST
    ======================================= */
 .services-list {

@@ -189,106 +189,139 @@
         </section>
 
         <!-- Premium Lead -->
-        <section class="section-spacing container premium-bg"
-            style="max-width: 1000px; padding-top: var(--space-xxl); padding-left: var(--space-xl); padding-right: var(--space-xl); border-radius: 16px;">
-            <div class="premium-content-wrapper">
-                <div class="gs-fade-up text-center mb-xl">
-                    <h2
-                        style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: var(--space-md); font-family: var(--font-heading); font-weight: 600;">
-                        共感で終わらせない、<br>行動変容のアルゴリズム。</h2>
-                    <p
-                        style="color:var(--color-text-secondary); line-height:2.2; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
-                        SNSは単なるバズを狙うおもちゃではありません。私たちは圧倒的なクオリティと泥臭いリサーチに裏付けられたコンテンツを通じて、就活市場における「情報の非対称性」を破壊します。プラットフォームごとに最適化されたアルゴリズムハックと、行動経済学・認知心理学を用いたUI/UX設計で、画面の向こう側にいる学生のリアルな行動変容を強力に促します。
+        <!-- Logical Redesign -->
+        <section class="logical-section">
+            <div class="logical-header gs-fade-up">
+                <h2>共感で終わらせない、<br>行動変容のアルゴリズム。</h2>
+                <p>
+                    SNSは単なるバズを狙うおもちゃではありません。私たちは圧倒的なクオリティと泥臭いリサーチに裏付けられたコンテンツを通じて、就活市場における「情報の非対称性」を破壊します。プラットフォームごとに最適化されたアルゴリズムハックと行動心理学に基づき、潜在層の認知から実際の行動までを一直線に繋ぎます。
+                </p>
+            </div>
+
+            <!-- Split Layout: Strategy vs Self-taught -->
+            <div class="split-layout gs-fade-up mt-xxl">
+                <div class="split-content">
+                    <h3 style="font-size: 1.5rem; color: var(--color-text-secondary); margin-bottom: 8px;">THE STRATEGY
+                    </h3>
+                    <h3 style="font-size: 2rem; margin-bottom: 24px;">データが証明する行動変容</h3>
+                    <p>
+                        単なる再生回数やフォロワー数を追うメディア運用は過去のものです。A/Bテストと視聴維持率データに裏打ちされたロジックに基づくコンテンツ設計を行います。
                     </p>
+                    <ul>
+                        <li><strong>認知:</strong> アルゴリズムハックによるトラフィック創出</li>
+                        <li><strong>理解:</strong> 図解解説によるエンゲージメント醸成</li>
+                        <li><strong>行動:</strong> LTVを高めるパーソナライズシナリオ配信</li>
+                    </ul>
                 </div>
+                <div class="svg-illustration">
+                    <!-- Funnel Diagram SVG -->
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="funnelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:var(--color-accent);stop-opacity:0.9" />
+                                <stop offset="50%" style="stop-color:var(--color-accent);stop-opacity:0.6" />
+                                <stop offset="100%" style="stop-color:var(--color-accent);stop-opacity:0.3" />
+                            </linearGradient>
+                        </defs>
+                        <!-- TikTok / Reels -->
+                        <polygon points="50,50 350,50 300,120 100,120" fill="url(#funnelGrad)" stroke="#111"
+                            stroke-width="2" />
+                        <text x="200" y="85" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold"
+                            text-anchor="middle">TikTok / Reels (Awareness)</text>
 
-                <!-- Data Highlight Component -->
-                <div class="data-highlight-grid gs-fade-up gs-staggered-bar">
-                    <div class="data-box">
-                        <div class="data-box-num">1.5<span style="font-size: 1.5rem;">M+</span></div>
-                        <div class="data-box-label">SNS媒体 月間累計再生数</div>
-                    </div>
-                    <div class="data-box">
-                        <div class="data-box-num">500<span style="font-size: 1.5rem;">%</span></div>
-                        <div class="data-box-label">クライアント集客率 最速改善</div>
-                    </div>
-                    <div class="data-box">
-                        <div class="data-box-num">0.1<span style="font-size: 1.5rem;">sec</span></div>
-                        <div class="data-box-label">離脱を防ぐ秒単位の編集</div>
-                    </div>
+                        <!-- IG / X -->
+                        <polygon points="110,130 290,130 240,200 160,200" fill="url(#funnelGrad)" stroke="#111"
+                            stroke-width="2" />
+                        <text x="200" y="165" fill="#fff" font-family="sans-serif" font-size="14" font-weight="bold"
+                            text-anchor="middle">Instagram / X (Interest)</text>
+
+                        <!-- LINE -->
+                        <polygon points="170,210 230,210 215,270 185,270" fill="url(#funnelGrad)" stroke="#111"
+                            stroke-width="2" />
+                        <text x="200" y="240" fill="#111" font-family="sans-serif" font-size="12" font-weight="bold"
+                            text-anchor="middle">LINE</text>
+                        <text x="200" y="255" fill="#111" font-family="sans-serif" font-size="10" font-weight="bold"
+                            text-anchor="middle">(Action)</text>
+
+                        <!-- Arrows -->
+                        <path d="M200 120 L200 130 M200 200 L200 210 M200 270 L200 285" stroke="#111" stroke-width="2"
+                            stroke-dasharray="4,4" />
+                        <polygon points="195,280 205,280 200,290" fill="#111" />
+                    </svg>
                 </div>
+            </div>
 
-                <!-- Comparison Component -->
-                <div class="gs-fade-up mt-xxl">
-                    <h3
-                        style="font-size: 2rem; margin-bottom: 24px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 12px; font-weight: 600;">
-                        データが証明する「行動変容」の連続</h3>
-                    <p
-                        style="color:var(--color-text-secondary); line-height:2.2; font-size: 1.1rem; margin-bottom: var(--space-xl);">
-                        単なる再生回数やフォロワー数を追うメディア運用は過去のものです。BeMeが提供するSNS戦略は、アルゴリズムの徹底的なハックと認知心理学に基づいたコンテンツ設計により、ユーザーを潜在層から顕在層へ、そして実際の行動（エントリーやイベント参加）へとシームレスに誘導します。
+            <!-- Split Layout: Data Highlights Reversed -->
+            <div class="split-layout reversed gs-fade-up">
+                <div class="split-content">
+                    <h3 style="font-size: 1.5rem; color: var(--color-text-secondary); margin-bottom: 8px;">THE IMPACT
+                    </h3>
+                    <h3 style="font-size: 2rem; margin-bottom: 24px;">圧倒的なトラフィックと投資対効果</h3>
+                    <p>
+                        感覚ではなく、データに基づいたPDCAを秒単位で回す。その結果が、採用市場における圧倒的な優位性をもたらします。
                     </p>
-                    <div class="benefit-compare">
-                        <div class="compare-col negative">
-                            <div class="compare-title">オールドメディア・自己流SNS</div>
-                            <ul class="compare-list">
-                                <li>インサイト分析なき、思いつきの主観的コンテンツ</li>
-                                <li>「バズる」ことだけを目的にした、質の低いエンゲージメント</li>
-                                <li>媒体をまたいだファネルが構築されておらず、単発で終わる</li>
-                            </ul>
+                    <div
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); margin-top: var(--space-lg);">
+                        <div
+                            style="padding: var(--space-md); background: #FAFAFA; border: 1px solid var(--color-border-light); border-radius: 8px;">
+                            <div
+                                style="font-family: var(--font-en-serif); font-size: 2.5rem; color: var(--color-accent); line-height: 1;">
+                                1.5M+</div>
+                            <div style="font-size: 0.85rem; color: var(--color-text-secondary); margin-top: 8px;">
+                                月間累計再生数</div>
                         </div>
-                        <div class="compare-col positive">
-                            <div class="compare-title">BeMe Strategy</div>
-                            <ul class="compare-list">
-                                <li>A/Bテストと視聴維持率データに裏打ちされたロジック</li>
-                                <li>ターゲット層の熱狂と信頼を刈り取る、専門性の知見投下</li>
-                                <li>TikTok（認知）→IG（理解）→LINE（行動）のクロスチャネル設計</li>
-                            </ul>
+                        <div
+                            style="padding: var(--space-md); background: #FAFAFA; border: 1px solid var(--color-border-light); border-radius: 8px;">
+                            <div
+                                style="font-family: var(--font-en-serif); font-size: 2.5rem; color: var(--color-accent); line-height: 1;">
+                                500%</div>
+                            <div style="font-size: 0.85rem; color: var(--color-text-secondary); margin-top: 8px;">
+                                集客率の最速改善</div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Framework Component / Cards -->
-                <div class="gs-fade-up mt-xxl">
-                    <h3
-                        style="font-size: 2rem; margin-bottom: 24px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 12px; font-weight: 600;">
-                        ファネル構築フレームワーク</h3>
-                    <p
-                        style="color:var(--color-text-secondary); line-height:2.2; font-size: 1.1rem; margin-bottom: var(--space-xl);">
-                        各プラットフォームのアルゴリズム特性を分析し、それに最適化させたフォーマットでコンテンツを供給。学生のカスタマージャーニーに寄り添ったシームレスな体験を作り出します。
-                    </p>
-
-                    <div class="card-grid">
-                        <div class="info-card">
-                            <div class="card-icon">TikTok / Reels</div>
-                            <h4 class="card-title">Awareness / 認知</h4>
-                            <p class="card-text">ショート動画のレコメンドアルゴリズムをハックし、潜在層に対して視覚的インパクトと直感的な気づきを与え、大量のトラフィックを創出。</p>
-                        </div>
-                        <div class="info-card">
-                            <div class="card-icon">Instagram / X</div>
-                            <h4 class="card-title">Interest / 興味・理解</h4>
-                            <p class="card-text">データとロジックに基づいた体系的な図解解説・長文ポストにより、企業の魅力やビジネスの本質に対する深い理解と納得感（エンゲージメント）を醸成。
-                            </p>
-                        </div>
-                        <div class="info-card">
-                            <div class="card-icon">Official LINE</div>
-                            <h4 class="card-title">Action / 行動</h4>
-                            <p class="card-text">
-                                LTVを高めるクローズドなコミュニケーション。限定情報の配信とパーソナライズされたシナリオにより、イベント参加や本選考へのコンバージョンを最大化。
-                            </p>
+                        <div
+                            style="padding: var(--space-md); background: #FAFAFA; border: 1px solid var(--color-border-light); border-radius: 8px; grid-column: 1 / -1;">
+                            <div
+                                style="font-family: var(--font-en-serif); font-size: 2.5rem; color: var(--color-accent); line-height: 1;">
+                                0.1sec</div>
+                            <div style="font-size: 0.85rem; color: var(--color-text-secondary); margin-top: 8px;">
+                                離脱を防ぐ秒単位の編集基準</div>
                         </div>
                     </div>
                 </div>
+                <div class="svg-illustration">
+                    <!-- Growth Bar Chart SVG -->
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="50" y1="250" x2="350" y2="250" stroke="#ccc" stroke-width="2" />
+                        <line x1="50" y1="50" x2="50" y2="250" stroke="#ccc" stroke-width="2" />
 
-                <div class="premium-image-wrapper gs-fade-up">
-                    <img src="assets/images/services_strategic_media_1772216675381.png" class="premium-image"
-                        alt="Digital Media Strategy">
-                </div>
+                        <!-- Bars -->
+                        <rect x="80" y="200" width="40" height="50" fill="#e0e0e0" />
+                        <text x="100" y="190" fill="#888" font-size="12" text-anchor="middle">Before</text>
 
-                <div class="text-center mt-xl gs-fade-up"
-                    style="padding-top: var(--space-xl); padding-bottom: var(--space-xl);">
-                    <a href="index.html#social" class="btn-solid magnetic">公式アカウントをチェック</a>
+                        <rect x="150" y="150" width="40" height="100" fill="var(--color-accent)" opacity="0.4" />
+                        <text x="170" y="140" fill="#111" font-size="12" text-anchor="middle">Mo.1</text>
+
+                        <rect x="220" y="100" width="40" height="150" fill="var(--color-accent)" opacity="0.7" />
+                        <text x="240" y="90" fill="#111" font-size="12" text-anchor="middle">Mo.3</text>
+
+                        <rect x="290" y="40" width="40" height="210" fill="var(--color-accent)" />
+                        <text x="310" y="30" fill="var(--color-accent)" font-weight="bold" font-size="14"
+                            text-anchor="middle">Mo.6</text>
+
+                        <!-- Trend Line -->
+                        <path d="M100 200 L170 150 L240 100 L310 40" fill="none" stroke="#111" stroke-width="3" />
+                        <circle cx="100" cy="200" r="4" fill="#111" />
+                        <circle cx="170" cy="150" r="4" fill="#111" />
+                        <circle cx="240" cy="100" r="4" fill="#111" />
+                        <circle cx="310" cy="40" r="6" fill="#111" />
+                    </svg>
                 </div>
-            </div> <!-- End premium content wrapper -->
+            </div>
+
+            <div class="text-center mt-xl gs-fade-up"
+                style="padding-top: var(--space-xl); padding-bottom: var(--space-xl);">
+                <a href="index.html#social" class="btn-solid magnetic">公式アカウントをチェック</a>
+            </div>
         </section>
 
         <!-- New Multi-Column Footer -->

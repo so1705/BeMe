@@ -183,126 +183,116 @@
         </section>
 
         <!-- Premium Lead -->
-        <section class="section-spacing container premium-bg"
-            style="max-width: 1000px; padding-top: var(--space-xxl); padding-left: var(--space-xl); padding-right: var(--space-xl); border-radius: 16px;">
-            <div class="premium-content-wrapper">
-                <div class="gs-fade-up text-center mb-xl">
-                    <h2
-                        style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: var(--space-md); font-family: var(--font-heading); font-weight: 600;">
-                        予定調和を破壊する、<br>本物のキャリアマッチング。</h2>
-                    <p
-                        style="color:var(--color-text-secondary); line-height:2.2; max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
-                        私たちが提供するのは、不特定多数に向けられた一方的なプレゼンテーションの場ではありません。参加枠を厳選したクローズドな空間で、第一線で活躍するビジネスパーソンと直接の対話を生み出すシークレットイベントを定期開催しています。事業の最前線にあるリアルな課題や、未公開の戦略論に触れることで、学生の視座を圧倒的なスピードで引き上げます。
+        <!-- Logical Redesign -->
+        <section class="logical-section">
+            <div class="logical-header gs-fade-up">
+                <h2>予定調和を破壊する、<br>本物のキャリアマッチング。</h2>
+                <p>
+                    不特定多数に向けられた一方的なプレゼンテーションではありません。参加枠を厳選したクローズドな空間で、第一線で活躍するビジネスパーソンと直接の対話を生み出すシークレットイベントです。事業の最前線にあるリアルな課題や、未公開の戦略論に触れることで、学生の視座を圧倒的なスピードで引き上げます。
+                </p>
+            </div>
+
+            <!-- Split Layout: Problem vs Solution -->
+            <div class="split-layout gs-fade-up mt-xxl">
+                <div class="split-content">
+                    <h3 style="font-size: 1.5rem; color: var(--color-text-secondary); margin-bottom: 8px;">THE PROBLEM
+                    </h3>
+                    <h3 style="font-size: 2rem; margin-bottom: 24px;">なぜ、一般的な合説ではダメなのか？</h3>
+                    <p>
+                        従来の採用イベントは、建前で飾られた表面的な事業紹介になりがちです。人事担当者による画一的な質問対応では、学生・企業双方にとって事業を前進させるような解像度の高い接点は生まれません。
                     </p>
+                    <ul>
+                        <li>不特定多数に向けた一方的な企業説明</li>
+                        <li>「学生扱い」の表面的なインターンワーク</li>
+                        <li>評価軸が不明確なグループディスカッション</li>
+                    </ul>
                 </div>
+                <div class="svg-illustration">
+                    <!-- SVG Diagram showing a broken or blocked funnel vs a direct connection -->
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#f0f0f0;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:var(--color-accent);stop-opacity:0.2" />
+                                <stop offset="100%" style="stop-color:var(--color-accent);stop-opacity:0.8" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Traditional -->
+                        <text x="50" y="30" font-family="sans-serif" font-size="12" fill="#888"
+                            font-weight="bold">一般的なイベント</text>
+                        <rect x="50" y="50" width="100" height="40" rx="4" fill="url(#grad1)" />
+                        <rect x="50" y="110" width="100" height="40" rx="4" fill="url(#grad1)" />
+                        <rect x="50" y="170" width="100" height="40" rx="4" fill="url(#grad1)" />
+                        <path d="M100 90 L100 110 M100 150 L100 170" stroke="#ccc" stroke-width="2"
+                            stroke-dasharray="4,4" />
+                        <text x="100" y="75" font-family="sans-serif" font-size="12" fill="#555"
+                            text-anchor="middle">建前</text>
+                        <text x="100" y="135" font-family="sans-serif" font-size="12" fill="#555"
+                            text-anchor="middle">不特定多数</text>
+                        <text x="100" y="195" font-family="sans-serif" font-size="12" fill="#555"
+                            text-anchor="middle">表面的な理解</text>
 
-                <!-- Data Highlight Component -->
-                <div class="data-highlight-grid gs-fade-up gs-staggered-bar">
-                    <div class="data-box">
-                        <div class="data-box-num">10,000+</div>
-                        <div class="data-box-label">年間累計動員数</div>
-                    </div>
-                    <div class="data-box">
-                        <div class="data-box-num">45</div>
-                        <div class="data-box-label">トップティア協賛企業数</div>
-                    </div>
-                    <div class="data-box">
-                        <div class="data-box-num">95%</div>
-                        <div class="data-box-label">参加者満足度</div>
-                    </div>
+                        <!-- BeMe -->
+                        <text x="250" y="30" font-family="sans-serif" font-size="12" fill="var(--color-accent)"
+                            font-weight="bold">BeMe Secret Session</text>
+                        <rect x="250" y="50" width="100" height="160" rx="8" fill="url(#grad2)" />
+                        <circle cx="300" cy="90" r="20" fill="#fff" />
+                        <circle cx="300" cy="170" r="20" fill="#fff" />
+                        <path d="M300 110 L300 150" stroke="#fff" stroke-width="3" />
+                        <polygon points="295,145 305,145 300,155" fill="#fff" />
+                        <text x="300" y="95" font-family="sans-serif" font-size="10" fill="var(--color-accent)"
+                            text-anchor="middle" font-weight="bold">CxO</text>
+                        <text x="300" y="175" font-family="sans-serif" font-size="10" fill="var(--color-accent)"
+                            text-anchor="middle" font-weight="bold">学生</text>
+                        <text x="355" y="135" font-family="sans-serif" font-size="12" fill="#fff"
+                            style="writing-mode: tb;">直接・本音の対話</text>
+                    </svg>
                 </div>
+            </div>
 
-                <!-- Comparison Component -->
-                <div class="premium-image-wrapper gs-fade-up">
-                    <img src="assets/images/abstract_events_nodes.png" alt="BeMe Secret Events Abstract Graphic"
-                        class="premium-image">
+            <!-- Split Layout: Features reversed -->
+            <div class="split-layout reversed gs-fade-up">
+                <div class="split-content">
+                    <h3 style="font-size: 1.5rem; color: var(--color-text-secondary); margin-bottom: 8px;">THE SOLUTION
+                    </h3>
+                    <h3 style="font-size: 2rem; margin-bottom: 24px;">本物のインプットと<br>フィルタード・空間</h3>
+                    <p>
+                        BeMeのセッションは、完全審査制で選ばれた上位数％の学生と、トップ企業の第一線で働く社員のみが参加します。
+                    </p>
+                    <ul>
+                        <li><strong>CxO直轄セッション:</strong> 経営水準の視座を直接インストール。</li>
+                        <li><strong>ハードシングス体感:</strong> 企業が現在進行形で抱える「壁」をケース課題化。</li>
+                        <li><strong>即戦力フィードバック:</strong> その場で判断される、リアルな事業推進力測定。</li>
+                    </ul>
                 </div>
+                <div class="svg-illustration">
+                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Connecting Nodes Graphic -->
+                        <circle cx="100" cy="150" r="40" fill="#111" />
+                        <text x="100" y="155" fill="#fff" font-size="14" text-anchor="middle" font-weight="bold">TOP
+                            学生</text>
 
-                <div class="gs-fade-up mt-xxl">
-                    <h3
-                        style="font-size: 2rem; margin-bottom: 24px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 12px; font-weight: 600;">
-                        なぜ、一般的な合説ではダメなのか？</h3>
+                        <circle cx="300" cy="150" r="40" fill="var(--color-accent)" />
+                        <text x="300" y="155" fill="#fff" font-size="14" text-anchor="middle" font-weight="bold">TOP
+                            企業</text>
 
-                    <div class="benefit-compare">
-                        <div class="compare-col negative">
-                            <div class="compare-title">従来の採用イベント</div>
-                            <ul class="compare-list">
-                                <li>不特定多数に向けた一方的な企業説明</li>
-                                <li>建前だけで飾られた表面的な事業紹介</li>
-                                <li>学生・企業双方にとって解像度の上がらない接点</li>
-                                <li>人事担当者による画一的な質問対応</li>
-                            </ul>
-                        </div>
-                        <div class="compare-col positive">
-                            <div class="compare-title">BeMe Secret Session</div>
-                            <ul class="compare-list">
-                                <li>完全審査制による、思考レベルの高い少数精鋭空間</li>
-                                <li>CxO・事業責任者が直接語る、未公開のリアルな戦略</li>
-                                <li>実際の事業課題を用いたケーススタディと直接対話</li>
-                                <li>その場で判断される、即戦力レベルのフィードバック</li>
-                            </ul>
-                        </div>
-                    </div>
+                        <path d="M140 150 L260 150" stroke="#111" stroke-width="4" stroke-dasharray="8,8" />
+                        <circle cx="200" cy="150" r="15" fill="#fff" stroke="#111" stroke-width="3" />
+                        <text x="200" y="100" fill="#111" font-size="14" text-anchor="middle"
+                            font-weight="bold">BeMe</text>
+                        <path d="M200 110 L200 135" stroke="#111" stroke-width="2" />
+                        <polygon points="195,130 205,130 200,135" fill="#111" />
+                    </svg>
                 </div>
+            </div>
 
-                <!-- Feature Cards Component -->
-                <div class="gs-fade-up mt-xxl">
-                    <h3
-                        style="font-size: 2rem; margin-bottom: 24px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 12px; font-weight: 600;">
-                        提供する3つの非日常体験</h3>
-
-                    <div class="card-grid">
-                        <div class="info-card">
-                            <div class="card-icon">01</div>
-                            <h4 class="card-title">CxO直轄セッション</h4>
-                            <p class="card-text">メガベンチャーやトップコンサルの役員クラスが登壇。経営水準の視座と、事業のリアルな生々しさを直接インストールします。</p>
-                        </div>
-                        <div class="info-card">
-                            <div class="card-icon">02</div>
-                            <h4 class="card-title">ハードシングス体感ワーク</h4>
-                            <p class="card-text">綺麗な成功談ではなく、現在進行形で企業が抱えている「壁」をケース課題として提供。実践的な思考体力を測定します。</p>
-                        </div>
-                        <div class="info-card">
-                            <div class="card-icon">03</div>
-                            <h4 class="card-title">完全招待制ネットワーキング</h4>
-                            <p class="card-text">選考を突破した上位数％の学生と、トップ企業の第一線社員のみが交わるクローズドな交流会。建前抜きの対話を実現します。</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Vertical Timeline Component -->
-                <div class="gs-fade-up mt-xxl" style="margin-bottom: var(--space-xxl);">
-                    <h3
-                        style="font-size: 2rem; margin-bottom: 32px; border-bottom: 1px solid var(--color-border-light); padding-bottom: 12px; font-weight: 600;">
-                        参加までのフロー</h3>
-
-                    <div class="timeline-vertical">
-                        <div class="timeline-item">
-                            <span class="timeline-meta">STEP 01 / SCREENING</span>
-                            <h4 style="font-size: 1.2rem; margin-bottom: 12px;">独自審査エントリー</h4>
-                            <p style="color: var(--color-text-secondary); line-height: 1.8;">
-                                BeMe独自のアルゴリズムおよびES審査にて、参加学生のスクリーニングを実施。一定水準をクリアした学生のみにシークレットパスを発行します。</p>
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-meta">STEP 02 / PREPARATION</span>
-                            <h4 style="font-size: 1.2rem; margin-bottom: 12px;">事前インプットセッション</h4>
-                            <p style="color: var(--color-text-secondary); line-height: 1.8;">
-                                当日の議論の質を最大化するため、参加企業に関する深いリサーチと業界構造の事前レクチャーをクローズドで行います。</p>
-                        </div>
-                        <div class="timeline-item">
-                            <span class="timeline-meta">STEP 03 / EXECUTION</span>
-                            <h4 style="font-size: 1.2rem; margin-bottom: 12px;">シークレットイベント当日</h4>
-                            <p style="color: var(--color-text-secondary); line-height: 1.8;">
-                                企業エグゼクティブとの極秘対話、事業立案ケースワークを通して、圧倒的なアウトプット環境に身を置きます。</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="text-center mt-xl gs-fade-up"
-                    style="padding-top: var(--space-xl); padding-bottom: var(--space-xl);">
-                    <a href="index.html#contact" class="btn-solid magnetic">参加条件を問い合わせる</a>
-                </div>
-            </div> <!-- End premium-content-wrapper -->
+            <div class="text-center mt-xl gs-fade-up"
+                style="padding-top: var(--space-xl); padding-bottom: var(--space-xl);">
+                <a href="index.html#contact" class="btn-solid magnetic">参加条件を問い合わせる</a>
+            </div>
         </section>
 
         <!-- New Multi-Column Footer -->

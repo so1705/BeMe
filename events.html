@@ -5,411 +5,1232 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>就活イベントの運営 | BeMe</title>
+    <meta name="description" content="学生と企業が互いのニーズを知り、納得感のある出会いにつながる就活イベントを企画・運営しています。">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
     <!-- Dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
-        .lp-hero {
-            height: 90vh;
-            /* Taller hero */
+        /* ── Page-level overrides ── */
+        :root {
+            --ev-dark: #141414;
+            --ev-accent: #7B93A8;
+            --ev-light: #F7F7F5;
+            --ev-border: rgba(0,0,0,0.09);
+            --ev-radius: 4px;
+        }
+
+        /* ── HERO ── */
+        .ev-hero {
+            min-height: 92vh;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
+            padding-bottom: 10vh;
             position: relative;
             overflow: hidden;
-            background: #111;
-            /* Dark stark contrast */
+            background: var(--ev-dark);
             color: #FFF;
-            padding: 0 12vw;
         }
 
-        .lp-hero-bg {
+        .ev-hero-bg {
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 60%;
-            height: 100%;
-            /* Split screen look */
-            object-fit: cover;
-            z-index: 0;
-            opacity: 0.8;
-            filter: grayscale(80%) contrast(1.2);
-            mask-image: linear-gradient(to right, transparent, black 40%);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 40%);
+            inset: 0;
+            background: url('assets/images/services_closed_events_1772216713610.png') center/cover no-repeat;
+            filter: grayscale(60%) brightness(0.35);
+            transform: scale(1.08);
+            will-change: transform;
+            transition: transform 0.1s linear;
         }
 
-        .lp-content-wrapper {
+        .ev-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(10,10,10,0.85) 0%,
+                rgba(10,10,10,0.3) 60%,
+                transparent 100%
+            );
+        }
+
+        .ev-hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            padding: 0 12vw;
+            max-width: 1800px;
+            width: 100%;
         }
 
-        .lp-title {
-            font-size: clamp(3rem, 7vw, 6rem);
-            margin-bottom: var(--space-md);
-            color: #FFF;
-            line-height: 1.1;
-        }
-
-        .lp-subtitle {
-            font-size: 1rem;
-            color: var(--color-text-tertiary);
+        .ev-hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
             letter-spacing: 0.2em;
-            margin-bottom: var(--space-sm);
+            color: var(--ev-accent);
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            /* hair-line borders */
-            margin-top: var(--space-xl);
-            background: var(--color-border-light);
-            border: 1px solid var(--color-border-light);
+        .ev-hero-tag::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 1px;
+            background: var(--ev-accent);
         }
 
-        .stat-card {
-            background: var(--color-bg-base);
-            padding: var(--space-xl) var(--space-lg);
-            text-align: center;
+        .ev-hero-title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(2.8rem, 7vw, 6.5rem);
+            font-weight: 500;
+            line-height: 1.15;
+            color: #FFFFFF;
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        .stat-number {
-            font-size: 4rem;
+        .ev-hero-lead {
+            font-size: clamp(1rem, 1.4vw, 1.2rem);
+            line-height: 2;
+            color: rgba(255,255,255,0.75);
+            max-width: 540px;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .ev-hero-meta {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .ev-hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .ev-hero-meta-num {
             font-family: 'Inter', sans-serif;
+            font-size: 2rem;
             font-weight: 300;
-            color: var(--color-text-primary);
-            margin-bottom: 8px;
+            color: #FFF;
             line-height: 1;
         }
 
-        .stat-label {
-            color: var(--color-text-tertiary);
+        .ev-hero-meta-label {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.08em;
+        }
+
+        .ev-hero-meta-divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .ev-hero-suppl {
             font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
+            color: rgba(255,255,255,0.55);
+            max-width: 500px;
+            line-height: 1.9;
         }
 
-        .graph-section {
-            margin-top: var(--space-xxl);
-        }
-
-        .bar-wrap {
-            width: 100%;
-            height: 2px;
-            background: rgba(0, 0, 0, 0.1);
-            position: relative;
-            margin-bottom: var(--space-lg);
-        }
-
-        .bar-fill {
-            height: 100%;
-            background: #111;
+        /* ── SCROLL INDICATOR ── */
+        .scroll-indicator {
             position: absolute;
-            left: 0;
-            top: 0;
-            width: 0;
-            /* Animated */
-        }
-
-        .bar-text {
+            bottom: 40px;
+            right: 12vw;
             display: flex;
-            justify-content: space-between;
-            font-weight: 500;
-            color: var(--color-text-primary);
-            margin-bottom: 12px;
-            font-size: 1.1rem;
-        }
-
-        .btn-solid {
-            display: inline-block;
-            background: #111;
-            color: #FFF;
-            padding: 20px 60px;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.4);
             font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            z-index: 3;
+            opacity: 0;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { transform: scaleY(1); opacity: 0.4; }
+            50% { transform: scaleY(0.6); opacity: 0.9; }
+        }
+
+        /* ── SECTION BASE ── */
+        .ev-section {
+            padding: 120px 12vw;
+        }
+
+        .ev-section.alt {
+            background: #F7F7F5;
+        }
+
+        .ev-section.dark {
+            background: var(--ev-dark);
+            color: #FFF;
+        }
+
+        .ev-section-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ── SECTION LABEL ── */
+        .ev-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
             font-weight: 600;
+            letter-spacing: 0.22em;
+            color: var(--ev-accent);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .ev-label::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 1px;
+            background: var(--ev-accent);
+        }
+
+        /* ── HEADINGS ── */
+        .ev-h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            font-weight: 500;
+            color: var(--ev-dark);
+            line-height: 1.4;
+            margin-bottom: 48px;
+        }
+
+        .ev-section.dark .ev-h2 {
+            color: #FFF;
+        }
+
+        /* ── ABOUT TEXT ── */
+        .ev-about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .ev-about-left h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+            font-weight: 500;
+            color: var(--ev-dark);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .ev-about-right p {
+            font-size: 1rem;
+            line-height: 2.1;
+            color: #4A4A4A;
+            margin-bottom: 24px;
+        }
+
+        .ev-about-right p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ── WHAT WE DO CARDS ── */
+        .ev-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            background: var(--ev-border);
+            border: 1px solid var(--ev-border);
+        }
+
+        .ev-card {
+            background: #FAFAFA;
+            padding: 48px 44px;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.5s ease;
+        }
+
+        .ev-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 0;
+            background: var(--ev-accent);
+            transition: height 0.6s cubic-bezier(0.19,1,0.22,1);
+        }
+
+        .ev-card:hover::before {
+            height: 100%;
+        }
+
+        .ev-card:hover {
+            background: #FFFFFF;
+        }
+
+        .ev-card-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--ev-accent);
+            margin-bottom: 20px;
+        }
+
+        .ev-card-icon {
+            margin-bottom: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ev-card-icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: var(--ev-accent);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .ev-card h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--ev-dark);
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .ev-card p {
+            font-size: 0.95rem;
+            line-height: 2;
+            color: #5A5A5A;
+            margin-bottom: 0;
+        }
+
+        /* ── FOUNDATION ── */
+        .ev-foundation-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .ev-foundation-text p {
+            font-size: 1.05rem;
+            line-height: 2.2;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 24px;
+        }
+
+        .ev-foundation-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .ev-foundation-pillars {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .ev-pillar {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            transition: background 0.4s ease, border-color 0.4s ease;
+        }
+
+        .ev-pillar:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(123,147,168,0.4);
+        }
+
+        .ev-pillar-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--ev-accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .ev-pillar-text {
+            font-size: 0.92rem;
+            color: rgba(255,255,255,0.8);
+            letter-spacing: 0.03em;
+        }
+
+        /* ── STATS ── */
+        .ev-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            background: var(--ev-border);
+            border: 1px solid var(--ev-border);
+        }
+
+        .ev-stat {
+            background: #FAFAFA;
+            padding: 52px 36px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.4s;
+        }
+
+        .ev-stat:hover {
+            background: #FFF;
+        }
+
+        .ev-stat-top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .ev-stat-num {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2.4rem, 4vw, 3.5rem);
+            font-weight: 300;
+            color: var(--ev-dark);
+            line-height: 1;
+            margin-bottom: 4px;
+            position: relative;
+        }
+
+        .ev-stat-unit {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--ev-accent);
+            margin-left: 2px;
+        }
+
+        .ev-stat-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--ev-accent);
+            letter-spacing: 0.08em;
+            margin-bottom: 18px;
+        }
+
+        .ev-stat-divider {
+            width: 24px;
+            height: 1px;
+            background: var(--ev-border);
+            margin: 0 auto 18px;
+        }
+
+        .ev-stat-desc {
+            font-size: 0.88rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        /* satisfaction bar */
+        .ev-satisfaction-bar {
+            width: 80%;
+            height: 3px;
+            background: rgba(0,0,0,0.08);
+            border-radius: 2px;
+            margin: 12px auto 0;
+            overflow: hidden;
+        }
+
+        .ev-satisfaction-fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(to right, var(--ev-accent), #5B7B92);
+            border-radius: 2px;
+            transition: width 1.8s cubic-bezier(0.19,1,0.22,1);
+        }
+
+        /* ── VALUES ── */
+        .ev-values-layout {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .ev-values-sticky {
+            position: sticky;
+            top: 120px;
+        }
+
+        .ev-values-sticky h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+            font-weight: 500;
+            color: var(--ev-dark);
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .ev-values-sticky p {
+            font-size: 0.9rem;
+            color: #888;
+            line-height: 1.9;
+        }
+
+        .ev-values-content p {
+            font-size: 1rem;
+            line-height: 2.2;
+            color: #4A4A4A;
+            margin-bottom: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--ev-border);
+        }
+
+        .ev-values-content p:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        /* ── EVENT FLOW ── */
+        .ev-flow-section {
+            background: #F0F2F4;
+        }
+
+        .ev-flow-steps {
+            display: flex;
+            gap: 0;
+            margin-top: 56px;
+            position: relative;
+        }
+
+        .ev-flow-step {
+            flex: 1;
+            padding: 36px 32px;
+            background: #FFF;
+            border: 1px solid var(--ev-border);
+            border-right: none;
+            position: relative;
+            transition: background 0.4s;
+        }
+
+        .ev-flow-step:last-child {
+            border-right: 1px solid var(--ev-border);
+        }
+
+        .ev-flow-step:hover {
+            background: #FAFEFF;
+        }
+
+        .ev-flow-step-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: var(--ev-accent);
+            margin-bottom: 16px;
+        }
+
+        .ev-flow-step h4 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--ev-dark);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .ev-flow-step p {
+            font-size: 0.88rem;
+            line-height: 1.9;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .ev-flow-connector {
+            position: absolute;
+            right: -14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 28px;
+            background: #FFF;
+            border: 1px solid var(--ev-border);
+            border-left: none;
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+            z-index: 2;
+        }
+
+        /* ── ANIMATIONS ── */
+        .ev-reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 1s cubic-bezier(0.19,1,0.22,1), transform 1s cubic-bezier(0.19,1,0.22,1);
+        }
+
+        .ev-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .ev-reveal-left {
+            opacity: 0;
+            transform: translateX(-36px);
+            transition: opacity 1s cubic-bezier(0.19,1,0.22,1), transform 1s cubic-bezier(0.19,1,0.22,1);
+        }
+
+        .ev-reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .ev-reveal-right {
+            opacity: 0;
+            transform: translateX(36px);
+            transition: opacity 1s cubic-bezier(0.19,1,0.22,1), transform 1s cubic-bezier(0.19,1,0.22,1);
+        }
+
+        .ev-reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Stagger children */
+        .ev-stagger > * {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s cubic-bezier(0.19,1,0.22,1), transform 0.9s cubic-bezier(0.19,1,0.22,1);
+        }
+
+        .ev-stagger.visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0s; }
+        .ev-stagger.visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+        .ev-stagger.visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+        .ev-stagger.visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+
+        /* ── CTA STRIP ── */
+        .ev-cta {
+            background: var(--ev-dark);
+            padding: 100px 12vw;
+            text-align: center;
+            color: #FFF;
+        }
+
+        .ev-cta h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+            font-weight: 500;
+            color: #FFF;
+            margin-bottom: 16px;
+        }
+
+        .ev-cta p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 40px;
+        }
+
+        .ev-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #FFF;
+            padding: 18px 48px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: background 0.4s, border-color 0.4s;
+        }
+
+        .ev-btn:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        /* ── BACK NAV ── */
+        .ev-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
             letter-spacing: 0.1em;
-            transition: opacity 0.4s;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            transition: color 0.3s;
         }
 
-        .btn-solid:hover {
-            opacity: 0.8;
+        .ev-back:hover {
+            color: #FFF;
         }
 
-        @media (max-width: 768px) {
-            .feature-grid {
+        .ev-back svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 960px) {
+            .ev-about-grid,
+            .ev-foundation-layout,
+            .ev-values-layout {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .ev-cards-grid {
                 grid-template-columns: 1fr;
             }
 
-            .lp-hero-bg {
-                width: 100%;
-                mask-image: linear-gradient(to top, transparent, black 80%);
-                -webkit-mask-image: linear-gradient(to top, transparent, black 80%);
+            .ev-stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
+
+            .ev-flow-steps {
+                flex-direction: column;
+            }
+
+            .ev-flow-step {
+                border-right: 1px solid var(--ev-border);
+                border-bottom: none;
+            }
+
+            .ev-flow-step:last-child {
+                border-bottom: 1px solid var(--ev-border);
+            }
+
+            .ev-flow-connector {
+                display: none;
+            }
+
+            .ev-values-sticky {
+                position: static;
+            }
+
+            .ev-hero-content {
+                padding: 0 6vw;
+            }
+
+            .ev-section {
+                padding: 80px 6vw;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .ev-stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ev-hero-meta {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* ── SECTION DIVIDER ──  */
+        .ev-divider {
+            width: 48px;
+            height: 1px;
+            background: var(--ev-accent);
+            margin-bottom: 36px;
         }
     </style>
 </head>
 
 <body>
     <!-- Navigation Header -->
-    <header class="master-header">
+    <header class="master-header" id="ev-header">
         <div class="header-container">
-            <a href="index.html" class="brand-logo magnetic" style="color: #FFF;">BeMe</a>
-            <a href="javascript:history.back()" class="btn-minimal" style="color: #FFF;">← 戻る</a>
+            <a href="index.html" class="brand-logo" style="color: #FFF;" id="ev-logo">BeMe</a>
+            <a href="javascript:history.back()" class="ev-back" id="ev-back-btn">
+                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+                戻る
+            </a>
         </div>
     </header>
 
-    <main id="scroll-container">
-        <!-- Hero Section -->
-        <section class="lp-hero">
-            <img src="assets/images/services_closed_events_1772216713610.png" class="lp-hero-bg gs-parallax"
-                data-speed="0.1" alt="Events Background">
-            <div class="lp-content-wrapper gs-fade-up">
-                <p class="lp-subtitle">HIGH-END NETWORKING</p>
-                <h1 class="lp-title">就活イベントの運営</h1>
-                <p style="font-size: 1.2rem; color: #BBB; max-width: 600px;">
-                    業界の最前線と交差する、圧倒的高密度なシークレット空間。<br>予定調和を破壊する本物のインプット。
+    <main>
+        <!-- ─────────────────────────────────── -->
+        <!-- 1. FIRST VIEW / HERO               -->
+        <!-- ─────────────────────────────────── -->
+        <section class="ev-hero" id="ev-hero">
+            <div class="ev-hero-bg" id="ev-hero-bg"></div>
+            <div class="ev-hero-overlay"></div>
+
+            <div class="ev-hero-content">
+                <div class="ev-hero-tag" id="hero-tag">CAREER EVENT MANAGEMENT</div>
+                <h1 class="ev-hero-title" id="hero-title">就活イベントの運営</h1>
+                <p class="ev-hero-lead" id="hero-lead">
+                    学生と企業が互いのニーズを知り、<br>納得感のある出会いにつながる<br>就活イベントを企画・運営しています。
                 </p>
+                <div class="ev-hero-meta" id="hero-meta">
+                    <div class="ev-hero-meta-item">
+                        <span class="ev-hero-meta-num">3</span>
+                        <span class="ev-hero-meta-label">過去開催回数</span>
+                    </div>
+                    <div class="ev-hero-meta-divider"></div>
+                    <div class="ev-hero-meta-item">
+                        <span class="ev-hero-meta-num" id="hero-sat-num">96</span><span class="ev-hero-meta-num" style="font-size:1.4rem; opacity:0.7;">%</span>
+                        <span class="ev-hero-meta-label">参加者満足度</span>
+                    </div>
+                    <div class="ev-hero-meta-divider"></div>
+                    <p class="ev-hero-suppl">
+                        従来の一方通行なイベントでは生まれにくかった相互理解を重視し、学生にとっても企業にとっても意味のある接点づくりを行っています。
+                    </p>
+                </div>
+            </div>
+
+            <div class="scroll-indicator" id="scroll-ind">
+                <div class="scroll-line"></div>
+                <span>scroll</span>
             </div>
         </section>
 
-        <!-- Premium Lead -->
-        <!-- Logical Redesign -->
-        <section class="logical-section">
-            <div class="logical-header gs-fade-up">
-                <h2>予定調和を破壊する、<br>本物のキャリアマッチング。</h2>
-                <p>
-                    不特定多数に向けられた一方的なプレゼンテーションではありません。参加枠を厳選したクローズドな空間で、第一線で活躍するビジネスパーソンと直接の対話を生み出すシークレットイベントです。事業の最前線にあるリアルな課題や、未公開の戦略論に触れることで、学生の視座を圧倒的なスピードで引き上げます。
-                </p>
-            </div>
-
-            <!-- Split Layout: Problem vs Solution -->
-            <div class="split-layout gs-fade-up mt-xxl">
-                <div class="split-content">
-                    <h3 style="font-size: 1.5rem; color: var(--color-text-secondary); margin-bottom: 8px;">THE PROBLEM
-                    </h3>
-                    <h3 style="font-size: 2rem; margin-bottom: 24px;">なぜ、一般的な合説ではダメなのか？</h3>
-                    <p>
-                        従来の採用イベントは、建前で飾られた表面的な事業紹介になりがちです。人事担当者による画一的な質問対応では、学生・企業双方にとって事業を前進させるような解像度の高い接点は生まれません。
-                    </p>
-                    <ul>
-                        <li>不特定多数に向けた一方的な企業説明</li>
-                        <li>「学生扱い」の表面的なインターンワーク</li>
-                        <li>評価軸が不明確なグループディスカッション</li>
-                    </ul>
+        <!-- ─────────────────────────────────── -->
+        <!-- 2. この事業について                 -->
+        <!-- ─────────────────────────────────── -->
+        <section class="ev-section">
+            <div class="ev-section-inner">
+                <div class="ev-about-grid">
+                    <div class="ev-about-left ev-reveal-left">
+                        <div class="ev-label">About This Business</div>
+                        <h2>ミスマッチのない出会いを、<br>設計から届ける。</h2>
+                    </div>
+                    <div class="ev-about-right ev-reveal-right">
+                        <p>
+                            私たちは、学生と企業の双方にとってミスマッチの少ない出会いを生み出すため、就活イベントの企画・運営を行っています。
+                        </p>
+                        <p>
+                            従来の就活イベントでは、企業から学生への一方的な情報発信に偏ってしまい、学生が本当に知りたいことに十分触れられなかったり、企業側も学生の実際の姿を深く知ることが難しかったりする場面が少なくありませんでした。
+                        </p>
+                        <p>
+                            こうした課題に対して、私たちは学生と企業が同じ場で互いのニーズを把握し、理解を深められる設計を大切にしています。学生にとっては、自分の就活に本当に役立つ経験や情報が得られること。企業にとっては、表面的な接点ではなく、自社に合う学生と出会えること。そうした双方にとって納得感のある機会をつくることを、この事業の中心に置いています。
+                        </p>
+                    </div>
                 </div>
-                <div class="svg-illustration">
-                    <!-- SVG Diagram showing a broken or blocked funnel vs a direct connection -->
-                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#f0f0f0;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:1" />
-                            </linearGradient>
-                            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:var(--color-accent);stop-opacity:0.2" />
-                                <stop offset="100%" style="stop-color:var(--color-accent);stop-opacity:0.8" />
-                            </linearGradient>
-                        </defs>
-                        <!-- Traditional -->
-                        <text x="50" y="30" font-family="sans-serif" font-size="12" fill="#888"
-                            font-weight="bold">一般的なイベント</text>
-                        <rect x="50" y="50" width="100" height="40" rx="4" fill="url(#grad1)" />
-                        <rect x="50" y="110" width="100" height="40" rx="4" fill="url(#grad1)" />
-                        <rect x="50" y="170" width="100" height="40" rx="4" fill="url(#grad1)" />
-                        <path d="M100 90 L100 110 M100 150 L100 170" stroke="#ccc" stroke-width="2"
-                            stroke-dasharray="4,4" />
-                        <text x="100" y="75" font-family="sans-serif" font-size="12" fill="#555"
-                            text-anchor="middle">建前</text>
-                        <text x="100" y="135" font-family="sans-serif" font-size="12" fill="#555"
-                            text-anchor="middle">不特定多数</text>
-                        <text x="100" y="195" font-family="sans-serif" font-size="12" fill="#555"
-                            text-anchor="middle">表面的な理解</text>
-
-                        <!-- BeMe -->
-                        <text x="250" y="30" font-family="sans-serif" font-size="12" fill="var(--color-accent)"
-                            font-weight="bold">BeMe Secret Session</text>
-                        <rect x="250" y="50" width="100" height="160" rx="8" fill="url(#grad2)" />
-                        <circle cx="300" cy="90" r="20" fill="#fff" />
-                        <circle cx="300" cy="170" r="20" fill="#fff" />
-                        <path d="M300 110 L300 150" stroke="#fff" stroke-width="3" />
-                        <polygon points="295,145 305,145 300,155" fill="#fff" />
-                        <text x="300" y="95" font-family="sans-serif" font-size="10" fill="var(--color-accent)"
-                            text-anchor="middle" font-weight="bold">CxO</text>
-                        <text x="300" y="175" font-family="sans-serif" font-size="10" fill="var(--color-accent)"
-                            text-anchor="middle" font-weight="bold">学生</text>
-                        <text x="355" y="135" font-family="sans-serif" font-size="12" fill="#fff"
-                            style="writing-mode: tb;">直接・本音の対話</text>
-                    </svg>
-                </div>
-            </div>
-
-            <!-- Split Layout: Features reversed -->
-            <div class="split-layout reversed gs-fade-up">
-                <div class="split-content">
-                    <h3 style="font-size: 1.5rem; color: var(--color-text-secondary); margin-bottom: 8px;">THE SOLUTION
-                    </h3>
-                    <h3 style="font-size: 2rem; margin-bottom: 24px;">本物のインプットと<br>フィルタード・空間</h3>
-                    <p>
-                        BeMeのセッションは、完全審査制で選ばれた上位数％の学生と、トップ企業の第一線で働く社員のみが参加します。
-                    </p>
-                    <ul>
-                        <li><strong>CxO直轄セッション:</strong> 経営水準の視座を直接インストール。</li>
-                        <li><strong>ハードシングス体感:</strong> 企業が現在進行形で抱える「壁」をケース課題化。</li>
-                        <li><strong>即戦力フィードバック:</strong> その場で判断される、リアルな事業推進力測定。</li>
-                    </ul>
-                </div>
-                <div class="svg-illustration">
-                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Connecting Nodes Graphic -->
-                        <circle cx="100" cy="150" r="40" fill="#111" />
-                        <text x="100" y="155" fill="#fff" font-size="14" text-anchor="middle" font-weight="bold">TOP
-                            学生</text>
-
-                        <circle cx="300" cy="150" r="40" fill="var(--color-accent)" />
-                        <text x="300" y="155" fill="#fff" font-size="14" text-anchor="middle" font-weight="bold">TOP
-                            企業</text>
-
-                        <path d="M140 150 L260 150" stroke="#111" stroke-width="4" stroke-dasharray="8,8" />
-                        <circle cx="200" cy="150" r="15" fill="#fff" stroke="#111" stroke-width="3" />
-                        <text x="200" y="100" fill="#111" font-size="14" text-anchor="middle"
-                            font-weight="bold">BeMe</text>
-                        <path d="M200 110 L200 135" stroke="#111" stroke-width="2" />
-                        <polygon points="195,130 205,130 200,135" fill="#111" />
-                    </svg>
-                </div>
-            </div>
-
-            <div class="text-center mt-xl gs-fade-up"
-                style="padding-top: var(--space-xl); padding-bottom: var(--space-xl);">
-                <a href="index.html#contact" class="btn-solid magnetic">参加条件を問い合わせる</a>
             </div>
         </section>
 
-        <!-- New Multi-Column Footer -->
+        <!-- ─────────────────────────────────── -->
+        <!-- 3. 私たちが行っていること            -->
+        <!-- ─────────────────────────────────── -->
+        <section class="ev-section alt">
+            <div class="ev-section-inner">
+                <div class="ev-reveal" style="margin-bottom: 56px;">
+                    <div class="ev-label">What We Do</div>
+                    <h2 class="ev-h2" style="margin-bottom:0;">企画から事後フォローまで、<br>一貫して手がけています。</h2>
+                </div>
+                <div class="ev-cards-grid ev-stagger">
+                    <!-- Card 1 -->
+                    <div class="ev-card">
+                        <div class="ev-card-num">01</div>
+                        <div class="ev-card-icon">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                        </div>
+                        <h3>企画設計</h3>
+                        <p>学生と企業の双方にとって意味のある時間になるよう、イベント全体の構成を設計しています。一方的な説明の場ではなく、相互理解が深まる場になることを重視し、内容や導線を組み立てています。</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="ev-card">
+                        <div class="ev-card-num">02</div>
+                        <div class="ev-card-icon">
+                            <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                        </div>
+                        <h3>学生集客・事前接点</h3>
+                        <p>SNSでの発信に加え、就活面談なども通じて学生との接点をつくり、イベントの趣旨や価値がきちんと伝わる形で集客を行っています。単に人数を集めるのではなく、参加する学生にとっても意義のある場になることを意識しています。</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="ev-card">
+                        <div class="ev-card-num">03</div>
+                        <div class="ev-card-icon">
+                            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h3>企業対応・当日運営</h3>
+                        <p>企業との事前調整から当日の進行管理まで、一貫して対応しています。当日は学生と企業の双方が安心して参加できるよう、進行、交流、接触設計まで丁寧に運営しています。</p>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="ev-card">
+                        <div class="ev-card-num">04</div>
+                        <div class="ev-card-icon">
+                            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        </div>
+                        <h3>イベント後のフォロー</h3>
+                        <p>イベントで終わらせるのではなく、その後の接点づくりやフォローにも取り組んでいます。学生への後追いや企業との連携を通じて、イベント後のつながりが自然に生まれるよう支援しています。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────── -->
+        <!-- 補足: イベントの主な構成             -->
+        <!-- ─────────────────────────────────── -->
+        <section class="ev-section ev-flow-section">
+            <div class="ev-section-inner">
+                <div class="ev-reveal">
+                    <div class="ev-label">Event Structure</div>
+                    <h2 class="ev-h2" style="margin-bottom:0;">イベントの主な構成</h2>
+                </div>
+                <div class="ev-flow-steps ev-stagger">
+                    <div class="ev-flow-step">
+                        <div class="ev-flow-step-num">STEP 01</div>
+                        <h4>グループディスカッション</h4>
+                        <p>学生が実践的に力を試せる場であると同時に、企業が学生の思考力や対人面を見極める機会にもなります。</p>
+                    </div>
+                    <div class="ev-flow-step">
+                        <div class="ev-flow-step-num">STEP 02</div>
+                        <h4>企業説明</h4>
+                        <p>学生の関心をふまえた上で行う企業説明。一方的な紹介ではなく、双方の理解が深まる時間として設計しています。</p>
+                    </div>
+                    <div class="ev-flow-step">
+                        <div class="ev-flow-step-num">STEP 03</div>
+                        <h4>交流会</h4>
+                        <p>表面的ではない、率直な対話が生まれるよう場づくりを工夫しています。企業・学生双方にとって納得感のある接点づくりを目指します。</p>
+                    </div>
+                </div>
+                <div class="ev-reveal" style="margin-top: 48px;">
+                    <p style="font-size:0.95rem; color:#666; line-height:2;">
+                        代表的なイベントでは、グループディスカッション、企業説明、交流会を組み合わせた構成を採用しています。グループディスカッションでは、学生が実践的に力を試せるだけでなく、企業が学生の思考や対人面を把握する機会にもなります。そのうえで企業説明や交流の時間を設けることで、表面的ではない相互理解につながる設計にしています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────── -->
+        <!-- 4. この事業を支える基盤              -->
+        <!-- ─────────────────────────────────── -->
+        <section class="ev-section dark">
+            <div class="ev-section-inner">
+                <div class="ev-foundation-layout">
+                    <div class="ev-foundation-text ev-reveal-left">
+                        <div class="ev-label" style="color: rgba(123,147,168,0.9);">Foundation</div>
+                        <h2 class="ev-h2" style="margin-bottom: 40px;">この事業を支える基盤</h2>
+                        <p>この事業は、単発のイベント運営ではなく、日頃から築いている学生接点の上に成り立っています。</p>
+                        <p>就活SNSの運用、継続的な就活面談、関西の学生ネットワーク、そして自社の長期インターン組織による運営体制を土台にしながら、学生のリアルなニーズを把握し、イベント設計へ反映しています。</p>
+                        <p>また、学生との距離が近いからこそ見える「今、学生が求めていること」と、企業が採用活動の中で本当に知りたいことの両方を踏まえながら、場づくりを行っています。</p>
+                    </div>
+                    <div class="ev-foundation-pillars ev-reveal-right">
+                        <div class="ev-pillar">
+                            <div class="ev-pillar-dot"></div>
+                            <span class="ev-pillar-text">就活SNSの継続的な運用</span>
+                        </div>
+                        <div class="ev-pillar">
+                            <div class="ev-pillar-dot"></div>
+                            <span class="ev-pillar-text">継続的な就活面談の実施</span>
+                        </div>
+                        <div class="ev-pillar">
+                            <div class="ev-pillar-dot"></div>
+                            <span class="ev-pillar-text">関西学生ネットワーク</span>
+                        </div>
+                        <div class="ev-pillar">
+                            <div class="ev-pillar-dot"></div>
+                            <span class="ev-pillar-text">長期インターン生による運営体制</span>
+                        </div>
+                        <div class="ev-pillar">
+                            <div class="ev-pillar-dot"></div>
+                            <span class="ev-pillar-text">学生の生のニーズをイベント設計へ反映</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────── -->
+        <!-- 5. 実績                             -->
+        <!-- ─────────────────────────────────── -->
+        <section class="ev-section">
+            <div class="ev-section-inner">
+                <div class="ev-reveal" style="margin-bottom: 56px;">
+                    <div class="ev-label">Track Record</div>
+                    <h2 class="ev-h2" style="margin-bottom:0;">実績</h2>
+                </div>
+                <div class="ev-stats-grid ev-stagger">
+                    <!-- Stat 1 -->
+                    <div class="ev-stat">
+                        <div class="ev-stat-label">イベント開催実績</div>
+                        <div class="ev-stat-top">
+                            <div class="ev-stat-num">
+                                <span class="ev-counter" data-target="3">0</span><span class="ev-stat-unit">回</span>
+                            </div>
+                        </div>
+                        <div class="ev-stat-divider"></div>
+                        <p class="ev-stat-desc">過去3回の就活イベントを主催・企画・運営</p>
+                    </div>
+                    <!-- Stat 2 -->
+                    <div class="ev-stat">
+                        <div class="ev-stat-label">主な接点大学</div>
+                        <div class="ev-stat-top">
+                            <div class="ev-stat-num" style="font-size:1.6rem; line-height:1.3;">
+                                関西<br>上位層
+                            </div>
+                        </div>
+                        <div class="ev-stat-divider"></div>
+                        <p class="ev-stat-desc">産近甲龍・関関同立・京阪神を中心とした関西上位層大学</p>
+                    </div>
+                    <!-- Stat 3 -->
+                    <div class="ev-stat">
+                        <div class="ev-stat-label">運営体制</div>
+                        <div class="ev-stat-top">
+                            <div class="ev-stat-num" style="font-size: 1.4rem; line-height:1.5;">
+                                一貫<br>対応
+                            </div>
+                        </div>
+                        <div class="ev-stat-divider"></div>
+                        <p class="ev-stat-desc">企画・集客・企業調整・当日運営・事後フォローまで一貫対応</p>
+                    </div>
+                    <!-- Stat 4 -->
+                    <div class="ev-stat">
+                        <div class="ev-stat-label">満足度</div>
+                        <div class="ev-stat-top">
+                            <div class="ev-stat-num">
+                                <span class="ev-counter" data-target="96">0</span><span class="ev-stat-unit">%</span>
+                            </div>
+                        </div>
+                        <div class="ev-satisfaction-bar">
+                            <div class="ev-satisfaction-fill" data-width="96%"></div>
+                        </div>
+                        <div class="ev-stat-divider" style="margin-top:12px;"></div>
+                        <p class="ev-stat-desc">参加者アンケートに基づく満足度（参考値）</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────── -->
+        <!-- 6. 大切にしていること               -->
+        <!-- ─────────────────────────────────── -->
+        <section class="ev-section alt">
+            <div class="ev-section-inner">
+                <div class="ev-values-layout">
+                    <div class="ev-values-sticky ev-reveal-left">
+                        <div class="ev-label">Our Values</div>
+                        <h2>大切にしていること</h2>
+                        <p>就活イベントを、単なる企業説明の場としてではなく、学生と企業が互いをきちんと知るための機会として考えています。</p>
+                    </div>
+                    <div class="ev-values-content ev-reveal-right">
+                        <p>
+                            私たちは、就活イベントを単なる企業説明の場としてではなく、学生と企業が互いをきちんと知るための機会として大切にしています。
+                        </p>
+                        <p>
+                            学生にとっては、練習機会の少ないグループディスカッションを経験しながら、自分の力を試し、企業理解を深められること。企業にとっては、短時間では見えにくい学生の思考やコミュニケーションの姿を知り、自社との相性を見極められること。こうした双方の価値が両立する場をつくることを目指しています。
+                        </p>
+                        <p>
+                            これからも、学生と企業がその場限りではなく、その先の接点につながるような、信頼感のあるイベント運営を続けていきます。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="ev-cta ev-reveal">
+            <h2>お問い合わせはこちら</h2>
+            <p>イベントへの参加・協賛・その他ご相談はお気軽にどうぞ。</p>
+            <a href="index.html#contact" class="ev-btn">お問い合わせ窓口へ</a>
+        </div>
+
+        <!-- Footer -->
         <footer class="master-footer container mt-xl"
             style="border-top: 1px solid var(--color-border-light); padding-top: var(--space-xl); padding-bottom: var(--space-lg);">
             <div class="footer-grid-new gs-fade-up"
                 style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); text-align: left; align-items: start;">
                 <div>
-                    <div class="logo large" style="color: #111; margin-bottom: 24px;">BeMe</div>
+                    <div class="logo large" style="color: #111; margin-bottom: 24px; font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight:600; letter-spacing:0.15em;">BeMe</div>
                     <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 2;">
-                        所在地<br>
-                        東京都渋谷区神宮前X-X-X<br>
-                        BeMeビルディング 5F
-                    </p>
-                    <p
-                        style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.8; margin-top: 24px;">
-                        圧倒的な基準で社会を動かす、<br>本質的なキャリア支援機関。
+                        学生と企業が対等に向き合える機会をつくる、<br>信頼感のある就活支援事業。
                     </p>
                 </div>
                 <div>
-                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
-                        SITEMAP</h4>
+                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">SITEMAP</h4>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 12px;"><a href="index.html"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">TOP</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#concept"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">PHILOSOPHY / 理念</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#services"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">SERVICES / 事業内容</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#team"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">MEMBERS / 役員紹介</a></li>
-                        <li style="margin-bottom: 12px;"><a href="events.html"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">EVENTS / シークレットイベント</a>
-                        </li>
-                        <li style="margin-bottom: 12px;"><a href="media.html"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">MEDIA / SNS運用</a></li>
-                        <li style="margin-bottom: 12px;"><a href="internship.html"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">INTERNSHIP /
-                                実践型インターン</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html" style="font-size: 0.95rem; color: var(--color-text-secondary);">TOP</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#concept" style="font-size: 0.95rem; color: var(--color-text-secondary);">PHILOSOPHY / 理念</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#services" style="font-size: 0.95rem; color: var(--color-text-secondary);">SERVICES / 事業内容</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#team" style="font-size: 0.95rem; color: var(--color-text-secondary);">MEMBERS / 役員紹介</a></li>
+                        <li style="margin-bottom: 12px;"><a href="media.html" style="font-size: 0.95rem; color: var(--color-text-secondary);">MEDIA / SNS運用</a></li>
+                        <li style="margin-bottom: 12px;"><a href="internship.html" style="font-size: 0.95rem; color: var(--color-text-secondary);">INTERNSHIP / 実践型インターン</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
-                        CONTACT</h4>
-                    <p
-                        style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 24px; line-height: 2;">
-                        事業・採用に関するお問い合わせは<br>下記フォームまたはメールより<br>お願いいたします。
+                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">CONTACT</h4>
+                    <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 24px; line-height: 2;">
+                        事業・採用に関するお問い合わせは<br>下記よりお願いいたします。
                     </p>
                     <a href="mailto:info@b2-career.inc" class="btn-minimal" style="font-size: 1rem;">お問い合わせ窓口へ</a>
                 </div>
             </div>
-            <div class="text-center gs-fade-up"
+            <div class="text-center"
                 style="margin-top: var(--space-xxl); border-top: 1px solid var(--color-border-light); padding-top: var(--space-md);">
-                <div style="font-size:0.85rem; color:var(--color-text-tertiary);">&copy; 2026 BeMe. All rights reserved.
-                </div>
+                <div style="font-size:0.85rem; color:var(--color-text-tertiary);">&copy; 2026 BeMe. All rights reserved.</div>
             </div>
         </footer>
     </main>
 
-    <!-- App Script -->
+    <!-- Scripts -->
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             gsap.registerPlugin(ScrollTrigger);
 
-            // Counters
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                ScrollTrigger.create({
-                    trigger: counter,
-                    start: "top 85%",
-                    onEnter: () => {
+            // ── HERO ENTRANCE ──
+            const tl = gsap.timeline({ delay: 0.3 });
+            tl.to('#hero-tag',   { opacity: 1, y: 0, duration: 1,   ease: 'power3.out' })
+              .to('#hero-title', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }, '-=0.6')
+              .to('#hero-lead',  { opacity: 1, y: 0, duration: 1,   ease: 'power3.out' }, '-=0.7')
+              .to('#hero-meta',  { opacity: 1, y: 0, duration: 1,   ease: 'power3.out' }, '-=0.6')
+              .to('#scroll-ind', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.3');
+
+            // ── PARALLAX HERO BG ──
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                document.getElementById('ev-hero-bg').style.transform = `scale(1.08) translateY(${scrollY * 0.12}px)`;
+            }, { passive: true });
+
+            // ── HEADER COLOR SWITCH ──
+            const header = document.getElementById('ev-header');
+            const logo   = document.getElementById('ev-logo');
+            const backBtn = document.getElementById('ev-back-btn');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 60) {
+                    header.classList.add('scrolled');
+                    logo.style.color   = '#111';
+                    backBtn.style.color = '#444';
+                } else {
+                    header.classList.remove('scrolled');
+                    logo.style.color   = '#FFF';
+                    backBtn.style.color = 'rgba(255,255,255,0.6)';
+                }
+            }, { passive: true });
+
+            // ── SCROLL REVEAL ──
+            const revealEls = document.querySelectorAll('.ev-reveal, .ev-reveal-left, .ev-reveal-right, .ev-stagger');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            revealEls.forEach(el => observer.observe(el));
+
+            // ── COUNTERS ──
+            const counters = document.querySelectorAll('.ev-counter');
+            const counterObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseInt(el.getAttribute('data-target'));
                         let obj = { val: 0 };
                         gsap.to(obj, {
                             val: target,
-                            duration: 2.5,
-                            ease: "power2.out",
+                            duration: target > 10 ? 2 : 1.2,
+                            ease: 'power2.out',
                             onUpdate: () => {
-                                counter.innerHTML = Math.floor(obj.val);
+                                el.textContent = Math.floor(obj.val);
                             }
                         });
-                    },
-                    once: true
+                        counterObs.unobserve(el);
+                    }
                 });
-            });
+            }, { threshold: 0.5 });
 
-            // Bars
-            const bars = document.querySelectorAll('.bar-fill');
-            bars.forEach(bar => {
-                const width = bar.getAttribute('data-width');
+            counters.forEach(c => counterObs.observe(c));
+
+            // ── SATISFACTION BAR ──
+            const bars = document.querySelectorAll('.ev-satisfaction-fill');
+            const barObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.width = entry.target.getAttribute('data-width');
+                        barObs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            bars.forEach(b => barObs.observe(b));
+
+            // ── STAGGER CARDS via GSAP ──
+            document.querySelectorAll('.ev-cards-grid, .ev-stats-grid, .ev-flow-steps').forEach(grid => {
                 ScrollTrigger.create({
-                    trigger: bar.parentElement,
-                    start: "top 85%",
+                    trigger: grid,
+                    start: 'top 80%',
                     onEnter: () => {
-                        gsap.to(bar, {
-                            width: width,
-                            duration: 2,
-                            ease: "cubic-bezier(0.19, 1, 0.22, 1)"
-                        });
+                        gsap.fromTo(grid.children,
+                            { opacity: 0, y: 40 },
+                            { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12 }
+                        );
                     },
                     once: true
                 });
             });
 
-            // Header scroll logic override for dark LP
-            const header = document.querySelector('.master-header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                    header.querySelector('.brand-logo').style.color = '#111';
-                    header.querySelector('.btn-minimal').style.color = '#111';
-                } else {
-                    header.classList.remove('scrolled');
-                    header.querySelector('.brand-logo').style.color = '#FFF';
-                    header.querySelector('.btn-minimal').style.color = '#FFF';
-                }
+            // ── PILLAR STAGGER ──
+            ScrollTrigger.create({
+                trigger: '.ev-foundation-pillars',
+                start: 'top 80%',
+                onEnter: () => {
+                    gsap.fromTo('.ev-pillar',
+                        { opacity: 0, x: 30 },
+                        { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out', stagger: 0.1 }
+                    );
+                },
+                once: true
+            });
+
+            // Horizontal line number animation for stats not covered by counter
+            ScrollTrigger.create({
+                trigger: '.ev-stats-grid',
+                start: 'top 80%',
+                onEnter: () => {
+                    gsap.fromTo('.ev-satisfaction-fill',
+                        { width: 0 },
+                        { width: '96%', duration: 1.8, ease: 'power3.out', delay: 0.6 }
+                    );
+                },
+                once: true
             });
         });
     </script>

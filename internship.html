@@ -4,320 +4,1062 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>長期インターンの事業 | BeMe</title>
+    <title>長期インターンの運営 | BeMe</title>
+    <meta name="description" content="学生が実践を通じて成長し、自分の人生を自分で選べる力を身につけるための長期インターン組織を運営しています。">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
     <!-- Dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
-        .lp-hero {
-            height: 90vh;
+        /* ── Page-level overrides ── */
+        :root {
+            --ev-dark: #141414;
+            --ev-accent: #7B93A8;
+            --ev-light: #F7F7F5;
+            --ev-border: rgba(0, 0, 0, 0.09);
+            --ev-radius: 4px;
+        }
+
+        /* ── HERO ── */
+        .ev-hero {
+            min-height: 92vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 10vh;
             position: relative;
-            background: #111;
+            overflow: hidden;
+            background: var(--ev-dark);
             color: #FFF;
-            padding: 0 12vw;
-            text-align: center;
         }
 
-        .lp-hero-bg {
+        .ev-hero-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-            opacity: 0.3;
-            filter: grayscale(100%);
+            inset: 0;
+            background: url('assets/images/services_practical_internship_1772216728085.png') center/cover no-repeat;
+            filter: grayscale(60%) brightness(0.32);
+            transform: scale(1.08);
+            will-change: transform;
+            transition: transform 0.1s linear;
         }
 
-        .lp-content-wrapper {
+        .ev-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top,
+                    rgba(10, 10, 10, 0.88) 0%,
+                    rgba(10, 10, 10, 0.3) 60%,
+                    transparent 100%);
+        }
+
+        .ev-hero-content {
             position: relative;
             z-index: 2;
-            max-width: 900px;
+            padding: 0 12vw;
+            max-width: 1800px;
+            width: 100%;
         }
 
-        .lp-title {
-            font-size: clamp(3rem, 7vw, 6rem);
-            margin-bottom: var(--space-md);
-            color: #FFF;
-            line-height: 1.1;
-        }
-
-        .lp-subtitle {
-            font-size: 1rem;
-            color: #AAA;
+        .ev-hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
             letter-spacing: 0.2em;
-            margin-bottom: var(--space-sm);
+            color: var(--ev-accent);
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
-        .timeline-container {
-            position: relative;
-            margin-top: var(--space-xxxl);
-            padding-left: 20px;
+        .ev-hero-tag::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 1px;
+            background: var(--ev-accent);
         }
 
-        .timeline-line {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .ev-hero-title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(2.8rem, 7vw, 6.5rem);
+            font-weight: 500;
+            line-height: 1.15;
+            color: #FFFFFF;
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .ev-hero-lead {
+            font-size: clamp(1rem, 1.4vw, 1.2rem);
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 560px;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .ev-hero-meta {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .ev-hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .ev-hero-meta-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 300;
+            color: #FFF;
+            line-height: 1;
+        }
+
+        .ev-hero-meta-label {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.08em;
+        }
+
+        .ev-hero-meta-divider {
             width: 1px;
-            height: 100%;
-            background: var(--color-border-light);
-            z-index: 1;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
         }
 
-        .timeline-progress {
+        .ev-hero-suppl {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.55);
+            max-width: 500px;
+            line-height: 1.9;
+        }
+
+        /* ── SCROLL INDICATOR ── */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            right: 12vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.4);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            z-index: 3;
+            opacity: 0;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                transform: scaleY(1);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: scaleY(0.6);
+                opacity: 0.9;
+            }
+        }
+
+        /* ── SECTION BASE ── */
+        .ev-section {
+            padding: 120px 12vw;
+        }
+
+        .ev-section.alt {
+            background: #F7F7F5;
+        }
+
+        .ev-section.dark {
+            background: var(--ev-dark);
+            color: #FFF;
+        }
+
+        .ev-section-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ── SECTION LABEL ── */
+        .ev-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            color: var(--ev-accent);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .ev-label::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 1px;
+            background: var(--ev-accent);
+        }
+
+        /* ── HEADINGS ── */
+        .ev-h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            font-weight: 500;
+            color: var(--ev-dark);
+            line-height: 1.4;
+            margin-bottom: 48px;
+        }
+
+        .ev-section.dark .ev-h2 {
+            color: #FFF;
+        }
+
+        /* ── ABOUT TEXT ── */
+        .ev-about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .ev-about-left h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+            font-weight: 500;
+            color: var(--ev-dark);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .ev-about-right p {
+            font-size: 1rem;
+            line-height: 2.1;
+            color: #4A4A4A;
+            margin-bottom: 24px;
+        }
+
+        .ev-about-right p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ── WHAT WE DO CARDS ── */
+        .ev-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            background: var(--ev-border);
+            border: 1px solid var(--ev-border);
+        }
+
+        .ev-card {
+            background: #FAFAFA;
+            padding: 48px 44px;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.5s ease;
+        }
+
+        .ev-card::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 2px;
             height: 0;
-            /* GSAP driven */
-            background: #111;
-            z-index: 2;
+            background: var(--ev-accent);
+            transition: height 0.6s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        .milestone {
+        .ev-card:hover::before {
+            height: 100%;
+        }
+
+        .ev-card:hover {
+            background: #FFFFFF;
+        }
+
+        .ev-card-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--ev-accent);
+            margin-bottom: 20px;
+        }
+
+        .ev-card-icon {
+            margin-bottom: 20px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ev-card-icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: var(--ev-accent);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .ev-card h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--ev-dark);
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .ev-card p {
+            font-size: 0.95rem;
+            line-height: 2;
+            color: #5A5A5A;
+            margin-bottom: 0;
+        }
+
+        /* ── FOUNDATION ── */
+        .ev-foundation-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .ev-foundation-text p {
+            font-size: 1.05rem;
+            line-height: 2.2;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 24px;
+        }
+
+        .ev-foundation-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .ev-foundation-pillars {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .ev-pillar {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            transition: background 0.4s ease, border-color 0.4s ease;
+        }
+
+        .ev-pillar:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(123, 147, 168, 0.4);
+        }
+
+        .ev-pillar-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--ev-accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .ev-pillar-text {
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.03em;
+        }
+
+        /* ── STATS ── */
+        .ev-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            background: var(--ev-border);
+            border: 1px solid var(--ev-border);
+        }
+
+        .ev-stats-row2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            background: var(--ev-border);
+            border: 1px solid var(--ev-border);
+            border-top: none;
+        }
+
+        .ev-stat {
+            background: #FAFAFA;
+            padding: 52px 36px;
+            text-align: center;
             position: relative;
-            z-index: 3;
-            margin-bottom: var(--space-xxl);
-            padding-left: var(--space-xl);
-            opacity: 0.3;
-            transform: translateX(30px);
-            transition: all 1s var(--ease-golden);
+            overflow: hidden;
+            transition: background 0.4s;
         }
 
-        .milestone.active {
+        .ev-stat:hover {
+            background: #FFF;
+        }
+
+        .ev-stat-top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .ev-stat-num {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2.4rem, 4vw, 3.5rem);
+            font-weight: 300;
+            color: var(--ev-dark);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .ev-stat-unit {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--ev-accent);
+            margin-left: 2px;
+        }
+
+        .ev-stat-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--ev-accent);
+            letter-spacing: 0.08em;
+            margin-bottom: 18px;
+        }
+
+        .ev-stat-divider {
+            width: 24px;
+            height: 1px;
+            background: var(--ev-border);
+            margin: 0 auto 18px;
+        }
+
+        .ev-stat-desc {
+            font-size: 0.88rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        /* ── VALUES ── */
+        .ev-values-layout {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .ev-values-sticky {
+            position: sticky;
+            top: 120px;
+        }
+
+        .ev-values-sticky h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+            font-weight: 500;
+            color: var(--ev-dark);
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .ev-values-sticky p {
+            font-size: 0.9rem;
+            color: #888;
+            line-height: 1.9;
+        }
+
+        .ev-values-content p {
+            font-size: 1rem;
+            line-height: 2.2;
+            color: #4A4A4A;
+            margin-bottom: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--ev-border);
+        }
+
+        .ev-values-content p:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        /* ── PRACTICE AREAS SECTION ── */
+        .ev-practice-section {
+            background: #F0F2F4;
+        }
+
+        .ev-practice-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        .ev-practice-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            background: #FFF;
+            border: 1px solid var(--ev-border);
+            font-size: 0.9rem;
+            color: #4A4A4A;
+            transition: border-color 0.3s, background 0.3s;
+        }
+
+        .ev-practice-tag::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background: var(--ev-accent);
+            border-radius: 50%;
+        }
+
+        .ev-practice-tag:hover {
+            background: #FAFEFF;
+            border-color: var(--ev-accent);
+        }
+
+        .ev-practice-note {
+            margin-top: 36px;
+            font-size: 0.95rem;
+            line-height: 2;
+            color: #666;
+        }
+
+        /* ── ANIMATIONS ── */
+        .ev-reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .ev-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .ev-reveal-left {
+            opacity: 0;
+            transform: translateX(-36px);
+            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .ev-reveal-left.visible {
             opacity: 1;
             transform: translateX(0);
         }
 
-        .ms-phase {
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            color: var(--color-text-tertiary);
-            font-size: 1.5rem;
-            letter-spacing: 0.1em;
-            margin-bottom: 8px;
+        .ev-reveal-right {
+            opacity: 0;
+            transform: translateX(36px);
+            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        .ms-title {
-            font-size: clamp(1.8rem, 3vw, 2.5rem);
-            margin-bottom: 16px;
-            color: #111;
+        .ev-reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
-        .ms-desc {
-            color: var(--color-text-secondary);
-            font-size: 1.1rem;
-            line-height: 2.2;
+        /* Stagger children */
+        .ev-stagger>* {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s cubic-bezier(0.19, 1, 0.22, 1), transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        .btn-solid {
-            display: inline-block;
-            background: #111;
+        .ev-stagger.visible>*:nth-child(1) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0s;
+        }
+
+        .ev-stagger.visible>*:nth-child(2) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.1s;
+        }
+
+        .ev-stagger.visible>*:nth-child(3) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
+        .ev-stagger.visible>*:nth-child(4) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+
+        /* ── CTA STRIP ── */
+        .ev-cta {
+            background: var(--ev-dark);
+            padding: 100px 12vw;
+            text-align: center;
             color: #FFF;
-            padding: 20px 60px;
+        }
+
+        .ev-cta h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+            font-weight: 500;
+            color: #FFF;
+            margin-bottom: 16px;
+        }
+
+        .ev-cta p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 40px;
+        }
+
+        .ev-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #FFF;
+            padding: 18px 48px;
             font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: background 0.4s, border-color 0.4s;
+        }
+
+        .ev-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ── BACK NAV ── */
+        .ev-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
             letter-spacing: 0.1em;
-            transition: opacity 0.4s;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            transition: color 0.3s;
         }
 
-        .btn-solid:hover {
-            opacity: 0.8;
+        .ev-back:hover {
+            color: #FFF;
         }
 
-        @media (max-width: 768px) {
-            .milestone {
-                padding-left: var(--space-md);
+        .ev-back svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 960px) {
+
+            .ev-about-grid,
+            .ev-foundation-layout,
+            .ev-values-layout {
+                grid-template-columns: 1fr;
+                gap: 48px;
             }
+
+            .ev-cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ev-stats-grid,
+            .ev-stats-row2 {
+                grid-template-columns: 1fr;
+            }
+
+            .ev-values-sticky {
+                position: static;
+            }
+
+            .ev-hero-content {
+                padding: 0 6vw;
+            }
+
+            .ev-section {
+                padding: 80px 6vw;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .ev-hero-meta {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* ── SECTION DIVIDER ── */
+        .ev-divider {
+            width: 48px;
+            height: 1px;
+            background: var(--ev-accent);
+            margin-bottom: 36px;
         }
     </style>
 </head>
 
 <body>
     <!-- Navigation Header -->
-    <header class="master-header">
+    <header class="master-header" id="ev-header">
         <div class="header-container">
-            <a href="index.html" class="brand-logo magnetic" style="color: #FFF;">BeMe</a>
-            <a href="javascript:history.back()" class="btn-minimal" style="color: #FFF;">← 戻る</a>
+            <a href="index.html" class="brand-logo" style="color: #FFF;" id="ev-logo">BeMe</a>
+            <a href="javascript:history.back()" class="ev-back" id="ev-back-btn">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+                戻る
+            </a>
         </div>
     </header>
 
-    <main id="scroll-container">
-        <!-- Hero Section -->
-        <section class="lp-hero">
-            <img src="assets/images/services_practical_internship_1772216728085.png" class="lp-hero-bg gs-parallax"
-                data-speed="0.2" alt="Internship Background">
-            <div class="lp-content-wrapper gs-fade-up">
-                <p class="lp-subtitle">PRACTICAL EXECUTION</p>
-                <h1 class="lp-title">長期インターンの事業</h1>
-                <p style="font-size: 1.2rem; color: #BBB; max-width: 700px; margin: 0 auto; line-height: 1.8;">
-                    「学生だから」という甘えを許さない。圧倒的な基準でリアルな事業課題に向き合う、ビジネス戦闘力育成プログラム。
+    <main>
+        <!-- ─────────────────────────────────── -->
+        <!-- 1. FIRST VIEW / HERO               -->
+        <!-- ─────────────────────────────────── -->
+        <section class="ev-hero" id="ev-hero">
+            <div class="ev-hero-bg" id="ev-hero-bg"></div>
+            <div class="ev-hero-overlay"></div>
+
+            <div class="ev-hero-content">
+                <div class="ev-hero-tag" id="hero-tag">PRACTICAL INTERNSHIP PROGRAM</div>
+                <h1 class="ev-hero-title" id="hero-title">長期インターンの運営</h1>
+                <p class="ev-hero-lead" id="hero-lead">
+                    学生が実践を通じて成長し、<br>自分の人生を自分で選べる力を身につけるための<br>長期インターン組織を運営しています。
+                </p>
+                <div class="ev-hero-meta" id="hero-meta">
+                    <div class="ev-hero-meta-item">
+                        <span class="ev-hero-meta-num">30<span style="font-size:1.3rem; opacity:0.7;">名以上</span></span>
+                        <span class="ev-hero-meta-label">メンバー数</span>
+                    </div>
+                    <div class="ev-hero-meta-divider"></div>
+                    <p class="ev-hero-suppl">
+                        営業、イベント立ち上げ、SNS運用、マーケティング、採用など、実際の事業運営に関わる機会を学生に提供しています。
+                    </p>
+                </div>
+            </div>
+
+            <div class="scroll-indicator" id="scroll-ind">
+                <div class="scroll-line"></div>
+                <span>scroll</span>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────── -->
+        <!-- 2. この事業について                 -->
+        <!-- ─────────────────────────────────── -->
+        <section class="ev-section">
+            <div class="ev-section-inner">
+                <div class="ev-about-grid">
+                    <div class="ev-about-left ev-reveal-left">
+                        <div class="ev-label">About This Business</div>
+                        <h2>実践の中で、<br>自分の選択肢を<br>広げていく。</h2>
+                    </div>
+                    <div class="ev-about-right ev-reveal-right">
+                        <p>
+                            私たちは、学生が実践経験を通じて成長できる長期インターン組織を運営しています。
+                        </p>
+                        <p>
+                            目指しているのは、与えられた選択肢の中から進路を選ぶのではなく、自分の人生を自分で考え、自分で選べる学生を増やすことです。そのために、表面的な体験ではなく、実際の事業運営に関わる機会をインターンの中でつくっています。
+                        </p>
+                        <p>
+                            業務領域は、営業、イベントの立ち上げ、SNSの広報・マーケティング、採用など多岐にわたります。学生が単なる補助的な役割にとどまるのではなく、組織の一員として責任を持ちながら動ける環境を整えています。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────── -->
+        <!-- 3. 私たちが行っていること            -->
+        <!-- ─────────────────────────────────── -->
+        <section class="ev-section alt">
+            <div class="ev-section-inner">
+                <div class="ev-reveal" style="margin-bottom: 56px;">
+                    <div class="ev-label">What We Do</div>
+                    <h2 class="ev-h2" style="margin-bottom:0;">実務機会の提供から、<br>組織づくりまで。</h2>
+                </div>
+                <div class="ev-cards-grid ev-stagger">
+                    <!-- Card 1 -->
+                    <div class="ev-card">
+                        <div class="ev-card-num">01</div>
+                        <div class="ev-card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="2" y="7" width="20" height="14" rx="2" />
+                                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                                <line x1="12" y1="12" x2="12" y2="16" />
+                                <line x1="10" y1="14" x2="14" y2="14" />
+                            </svg>
+                        </div>
+                        <h3>実務機会の提供</h3>
+                        <p>営業、イベント立ち上げ、SNS運用、マーケティング、採用など、実際の事業に関わる実務機会を学生に提供しています。学生が机上の学びだけで終わらず、実践の中で力をつけられる環境を整えています。
+                        </p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="ev-card">
+                        <div class="ev-card-num">02</div>
+                        <div class="ev-card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                        </div>
+                        <h3>役割を持った組織運営</h3>
+                        <p>インターン生は、イベント運営、商談、SNSマーケティング、デザイン、就活面談対応など、さまざまな役割を担っています。それぞれが組織の一員として責任を持ち、実務の中で成長できるようにしています。
+                        </p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="ev-card">
+                        <div class="ev-card-num">03</div>
+                        <div class="ev-card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                            </svg>
+                        </div>
+                        <h3>採用・育成・研修</h3>
+                        <p>運営側では、採用、育成、マネジメント、研修などを含めて、組織づくり全体を行っています。学生が継続的に成長しやすいよう、実務だけでなく育成面にも力を入れています。</p>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="ev-card">
+                        <div class="ev-card-num">04</div>
+                        <div class="ev-card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                        </div>
+                        <h3>学生主体での事業推進</h3>
+                        <p>このインターン組織は、学生主体で事業を動かしている点が大きな特徴です。自ら考え、動き、形にしていく経験を通じて、学生が一から価値を生み出す力を身につけられる環境を目指しています。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────── -->
+        <!-- 補足: 主な実務領域                   -->
+        <!-- ─────────────────────────────────── -->
+        <section class="ev-section ev-practice-section">
+            <div class="ev-section-inner">
+                <div class="ev-reveal">
+                    <div class="ev-label">Practice Areas</div>
+                    <h2 class="ev-h2" style="margin-bottom:0;">主な実務領域</h2>
+                </div>
+                <div class="ev-practice-tags ev-stagger">
+                    <span class="ev-practice-tag">営業</span>
+                    <span class="ev-practice-tag">イベント立ち上げ</span>
+                    <span class="ev-practice-tag">SNS広報・マーケティング</span>
+                    <span class="ev-practice-tag">デザイン</span>
+                    <span class="ev-practice-tag">採用</span>
+                    <span class="ev-practice-tag">就活面談対応</span>
+                </div>
+                <p class="ev-practice-note ev-reveal">
+                    学生が単なるサポートではなく、事業の一部を担う立場として関わることで、より実践的な経験につながる設計にしています。
                 </p>
             </div>
         </section>
 
-        <!-- Logical Redesign -->
-        <section class="logical-section">
-            <div class="logical-header gs-fade-up">
-                <h2>机上の空論を終わらせる実務経験</h2>
-                <p>
-                    自己分析や面接対策だけでは、社会で通用する本物の力は身につきません。BeMeの実践型プロジェクトでは、組織内での新規事業立案や、連携企業から与えられるリアルな事業課題の解決にダイレクトにアサインされ、圧倒的な「事業推進力」を習得します。
-                </p>
-            </div>
-
-            <!-- Split Layout: Traditional vs BeMe -->
-            <div class="split-layout gs-fade-up mt-xxl">
-                <div class="split-content">
-                    <h3 style="font-size: 1.5rem; color: var(--color-text-secondary); margin-bottom: 8px;">THE REALITY
-                    </h3>
-                    <h3 style="font-size: 2rem; margin-bottom: 24px;">「インターン」という言葉の再定義</h3>
-                    <p>
-                        綺麗なプレゼンスライドを作成することだけがインターンではありません。文字通り「泥臭い実行フェーズ」までを学生に委ねることで、リアルな痛みを伴う事業課題に向き合います。
-                    </p>
-                    <ul>
-                        <li><strong>ゼロからの戦略立案:</strong> 未解決課題へのアプローチ</li>
-                        <li><strong>圧倒的な当事者意識:</strong> 社会人同等のプロ環境</li>
-                        <li><strong>P/L（損益計算）意識:</strong> 利益を生み出す構造理解</li>
-                    </ul>
-                </div>
-                <div class="svg-illustration">
-                    <!-- SVG Comparison Growth Curve -->
-                    <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="50" y1="250" x2="350" y2="250" stroke="#ccc" stroke-width="2" />
-                        <line x1="50" y1="50" x2="50" y2="250" stroke="#ccc" stroke-width="2" />
-                        <text x="20" y="50" fill="#888" font-size="12">戦闘力</text>
-                        <text x="350" y="270" fill="#888" font-size="12">時間</text>
-
-                        <!-- Traditional Intern Curve -->
-                        <path d="M50 250 Q150 240 350 200" fill="none" stroke="#ccc" stroke-width="3"
-                            stroke-dasharray="5,5" />
-                        <text x="300" y="190" fill="#888" font-size="12" font-weight="bold">一般的なインターン</text>
-
-                        <!-- BeMe Intern Curve -->
-                        <path d="M50 250 Q200 240 350 50" fill="none" stroke="var(--color-accent)" stroke-width="4" />
-                        <circle cx="150" cy="215" r="5" fill="var(--color-accent)" />
-                        <circle cx="250" cy="140" r="5" fill="var(--color-accent)" />
-                        <circle cx="350" cy="50" r="6" fill="#111" stroke="var(--color-accent)" stroke-width="2" />
-                        <text x="300" y="40" fill="var(--color-accent)" font-size="14" font-weight="bold">BeMe
-                            実践型</text>
-
-                        <text x="110" y="235" fill="#111" font-size="10">戦略立案</text>
-                        <text x="210" y="160" fill="#111" font-size="10">泥臭い実行</text>
-                        <text x="310" y="70" fill="#111" font-size="10">マネジメント</text>
-                    </svg>
-                </div>
-            </div>
-
-            <!-- Split Layout: Roadmap & Skills -->
-            <div class="split-layout reversed gs-fade-up">
-                <div class="split-content">
-                    <h3 style="font-size: 1.5rem; color: var(--color-text-secondary); margin-bottom: 8px;">THE ROADMAP
-                    </h3>
-                    <h3 style="font-size: 2rem; margin-bottom: 24px;">実践カリキュラム</h3>
-                    <p>
-                        偏った能力ではなく、事業全体を俯瞰し推進できるフルスタックなスキルセットを短期間で養成します。
-                    </p>
-                    <div
-                        style="border-left: 2px solid var(--color-accent); padding-left: 24px; margin-top: var(--space-lg); position: relative;">
-                        <div style="margin-bottom: 24px; position:relative;">
-                            <div
-                                style="position:absolute; left:-31px; top:4px; width:12px; height:12px; background:var(--color-accent); border-radius:50%;">
-                            </div>
-                            <strong style="font-family: var(--font-en-serif); display:block; margin-bottom: 4px;">Month
-                                1-2: 基礎オンボーディング</strong>
-                            <p style="font-size:0.95rem; color:var(--color-text-secondary); line-height: 1.6;">
-                                ロジカルシンキングとビジネスフレームワークの叩き込み。</p>
+        <!-- ─────────────────────────────────── -->
+        <!-- 4. この事業を支える基盤              -->
+        <!-- ─────────────────────────────────── -->
+        <section class="ev-section dark">
+            <div class="ev-section-inner">
+                <div class="ev-foundation-layout">
+                    <div class="ev-foundation-text ev-reveal-left">
+                        <div class="ev-label" style="color: rgba(123,147,168,0.9);">Foundation</div>
+                        <h2 class="ev-h2" style="margin-bottom: 40px;">この事業を支える基盤</h2>
+                        <p>この事業は、単なるインターン募集ではなく、学生が継続的に実務へ関わり、成長できる組織基盤の上に成り立っています。</p>
+                        <p>30名以上のメンバーが所属し、学生主体で事業を動かす体制を整えながら、採用・育成・マネジメント・研修まで一貫して行っています。実務に入るだけでなく、組織として学び続けられる仕組みを持っていることが、この事業の土台です。
+                        </p>
+                        <p>また、就活イベントやSNS運用といった他事業とも連動しているため、インターンの中で実際の事業運営に触れながら、より実践的な経験を積める環境になっています。</p>
+                    </div>
+                    <div class="ev-foundation-pillars ev-reveal-right">
+                        <div class="ev-pillar">
+                            <div class="ev-pillar-dot"></div>
+                            <span class="ev-pillar-text">30名以上の学生メンバーが所属</span>
                         </div>
-                        <div style="margin-bottom: 24px; position:relative;">
-                            <div
-                                style="position:absolute; left:-31px; top:4px; width:12px; height:12px; background:var(--color-accent); border-radius:50%;">
-                            </div>
-                            <strong style="font-family: var(--font-en-serif); display:block; margin-bottom: 4px;">Month
-                                3-5: プロジェクトアサイン</strong>
-                            <p style="font-size:0.95rem; color:var(--color-text-secondary); line-height: 1.6;">
-                                実際の事業チームに配属。KPIの所有と実地訓練。</p>
+                        <div class="ev-pillar">
+                            <div class="ev-pillar-dot"></div>
+                            <span class="ev-pillar-text">採用・育成・マネジメント・研修まで一貫対応</span>
                         </div>
-                        <div style="position:relative;">
-                            <div
-                                style="position:absolute; left:-31px; top:4px; width:12px; height:12px; background:var(--color-accent); border-radius:50%;">
-                            </div>
-                            <strong style="font-family: var(--font-en-serif); display:block; margin-bottom: 4px;">Month
-                                6+: プロジェクトマネジメント</strong>
-                            <p style="font-size:0.95rem; color:var(--color-text-secondary); line-height: 1.6;">
-                                チーム統括と、事業のP/L（損益計算）に対する責任を持つ。</p>
+                        <div class="ev-pillar">
+                            <div class="ev-pillar-dot"></div>
+                            <span class="ev-pillar-text">学生主体での事業運営体制</span>
+                        </div>
+                        <div class="ev-pillar">
+                            <div class="ev-pillar-dot"></div>
+                            <span class="ev-pillar-text">就活イベント・SNS運用との連動</span>
+                        </div>
+                        <div class="ev-pillar">
+                            <div class="ev-pillar-dot"></div>
+                            <span class="ev-pillar-text">組織として学び続けられる仕組み</span>
                         </div>
                     </div>
                 </div>
-                <div class="svg-illustration">
-                    <!-- SVG Radar Chart -->
-                    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Hexagon axes -->
-                        <polygon points="150,50 236,100 236,200 150,250 64,200 64,100" fill="none" stroke="#e0e0e0"
-                            stroke-width="2" />
-                        <polygon points="150,90 193,120 193,180 150,210 107,180 107,120" fill="none" stroke="#e0e0e0"
-                            stroke-width="1" />
-                        <line x1="150" y1="50" x2="150" y2="250" stroke="#e0e0e0" stroke-width="1" />
-                        <line x1="64" y1="100" x2="236" y2="200" stroke="#e0e0e0" stroke-width="1" />
-                        <line x1="64" y1="200" x2="236" y2="100" stroke="#e0e0e0" stroke-width="1" />
-
-                        <!-- Data Polygon -->
-                        <polygon points="150,60 220,110 210,190 150,250 80,180 90,110" fill="var(--color-accent)"
-                            opacity="0.5" stroke="var(--color-accent)" stroke-width="3" />
-
-                        <!-- Labels -->
-                        <text x="150" y="40" font-size="12" fill="#111" text-anchor="middle"
-                            font-weight="bold">戦略立案</text>
-                        <text x="250" y="100" font-size="12" fill="#111" text-anchor="start"
-                            font-weight="bold">マーケティング</text>
-                        <text x="250" y="210" font-size="12" fill="#111" text-anchor="start"
-                            font-weight="bold">営業</text>
-                        <text x="150" y="270" font-size="12" fill="#111" text-anchor="middle"
-                            font-weight="bold">財務・P/L</text>
-                        <text x="50" y="210" font-size="12" fill="#111" text-anchor="end"
-                            font-weight="bold">組織マネジメント</text>
-                        <text x="50" y="100" font-size="12" fill="#111" text-anchor="end"
-                            font-weight="bold">論理的思考</text>
-                    </svg>
-                </div>
-            </div>
-
-            <div class="text-center mt-xl gs-fade-up"
-                style="padding-top: var(--space-xl); padding-bottom: var(--space-xl);">
-                <a href="index.html#contact" class="btn-solid magnetic">エントリー詳細を見る</a>
             </div>
         </section>
 
-        <!-- New Multi-Column Footer -->
+        <!-- ─────────────────────────────────── -->
+        <!-- 5. 実績                             -->
+        <!-- ─────────────────────────────────── -->
+        <section class="ev-section">
+            <div class="ev-section-inner">
+                <div class="ev-reveal" style="margin-bottom: 56px;">
+                    <div class="ev-label">Track Record</div>
+                    <h2 class="ev-h2" style="margin-bottom:0;">実績</h2>
+                </div>
+                <!-- Row 1: 2 stats -->
+                <div class="ev-stats-grid ev-stagger">
+                    <!-- Stat 1 -->
+                    <div class="ev-stat">
+                        <div class="ev-stat-label">メンバー数</div>
+                        <div class="ev-stat-top">
+                            <div class="ev-stat-num">
+                                <span class="ev-counter" data-target="30">0</span><span class="ev-stat-unit">名以上</span>
+                            </div>
+                        </div>
+                        <div class="ev-stat-divider"></div>
+                        <p class="ev-stat-desc">学生主体で事業を動かすインターン組織のメンバー数</p>
+                    </div>
+                    <!-- Stat 2 -->
+                    <div class="ev-stat">
+                        <div class="ev-stat-label">主な実務領域</div>
+                        <div class="ev-stat-top">
+                            <div class="ev-stat-num" style="font-size: 1.3rem; line-height: 1.5;">
+                                営業・イベント<br>SNS・採用など
+                            </div>
+                        </div>
+                        <div class="ev-stat-divider"></div>
+                        <p class="ev-stat-desc">営業・イベント立ち上げ・SNS運用・マーケティング・採用など多岐にわたる</p>
+                    </div>
+                </div>
+                <!-- Row 2: 2 stats -->
+                <div class="ev-stats-row2 ev-stagger">
+                    <!-- Stat 3 -->
+                    <div class="ev-stat">
+                        <div class="ev-stat-label">運営内容</div>
+                        <div class="ev-stat-top">
+                            <div class="ev-stat-num" style="font-size: 1.3rem; line-height: 1.5;">
+                                採用・育成<br>マネジメント・研修
+                            </div>
+                        </div>
+                        <div class="ev-stat-divider"></div>
+                        <p class="ev-stat-desc">組織づくり全体を一貫して対応</p>
+                    </div>
+                    <!-- Stat 4 -->
+                    <div class="ev-stat">
+                        <div class="ev-stat-label">運営体制</div>
+                        <div class="ev-stat-top">
+                            <div class="ev-stat-num" style="font-size: 1.3rem; line-height: 1.5;">
+                                学生主体で<br>組織を運営
+                            </div>
+                        </div>
+                        <div class="ev-stat-divider"></div>
+                        <p class="ev-stat-desc">学生が責任ある役割を持ちながら主体的に動く環境</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─────────────────────────────────── -->
+        <!-- 6. 大切にしていること               -->
+        <!-- ─────────────────────────────────── -->
+        <section class="ev-section alt">
+            <div class="ev-section-inner">
+                <div class="ev-values-layout">
+                    <div class="ev-values-sticky ev-reveal-left">
+                        <div class="ev-label">Our Values</div>
+                        <h2>大切にしていること</h2>
+                        <p>長期インターンを単なる経験の場ではなく、学生が本当に成長できる環境として大切にしています。</p>
+                    </div>
+                    <div class="ev-values-content ev-reveal-right">
+                        <p>
+                            私たちは、長期インターンを単なる経験の場ではなく、学生が本当に成長できる環境として大切にしています。
+                        </p>
+                        <p>
+                            大事にしているのは、学生が受け身で参加するのではなく、自ら考え、役割を持ち、責任を持って動くことです。その中で、実務スキルだけでなく、組織を動かす力や、自分で選び取る力を身につけてほしいと考えています。
+                        </p>
+                        <p>
+                            これからも、学生の枠を超えて挑戦できる環境を整えながら、実践を通じて成長できる組織づくりを続けていきます。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="ev-cta ev-reveal">
+            <h2>インターンに関するお問い合わせ</h2>
+            <p>参加・協力・その他ご相談はお気軽にどうぞ。</p>
+            <a href="index.html#contact" class="ev-btn">お問い合わせ窓口へ</a>
+        </div>
+
+        <!-- Footer -->
         <footer class="master-footer container mt-xl"
             style="border-top: 1px solid var(--color-border-light); padding-top: var(--space-xl); padding-bottom: var(--space-lg);">
             <div class="footer-grid-new gs-fade-up"
                 style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); text-align: left; align-items: start;">
                 <div>
-                    <div class="logo large" style="color: #111; margin-bottom: 24px;">BeMe</div>
+                    <div class="logo large"
+                        style="color: #111; margin-bottom: 24px; font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight:600; letter-spacing:0.15em;">
+                        BeMe</div>
                     <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 2;">
-                        所在地<br>
-                        東京都渋谷区神宮前X-X-X<br>
-                        BeMeビルディング 5F
-                    </p>
-                    <p
-                        style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.8; margin-top: 24px;">
-                        圧倒的な基準で社会を動かす、<br>本質的なキャリア支援機関。
+                        学生と企業が対等に向き合える機会をつくる、<br>信頼感のある就活支援事業。
                     </p>
                 </div>
                 <div>
@@ -333,13 +1075,9 @@
                         <li style="margin-bottom: 12px;"><a href="index.html#team"
                                 style="font-size: 0.95rem; color: var(--color-text-secondary);">MEMBERS / 役員紹介</a></li>
                         <li style="margin-bottom: 12px;"><a href="events.html"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">EVENTS / シークレットイベント</a>
-                        </li>
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">EVENTS / 就活イベント</a></li>
                         <li style="margin-bottom: 12px;"><a href="media.html"
                                 style="font-size: 0.95rem; color: var(--color-text-secondary);">MEDIA / SNS運用</a></li>
-                        <li style="margin-bottom: 12px;"><a href="internship.html"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">INTERNSHIP /
-                                実践型インターン</a></li>
                     </ul>
                 </div>
                 <div>
@@ -347,12 +1085,12 @@
                         CONTACT</h4>
                     <p
                         style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 24px; line-height: 2;">
-                        事業・採用に関するお問い合わせは<br>下記フォームまたはメールより<br>お願いいたします。
+                        事業・採用に関するお問い合わせは<br>下記よりお願いいたします。
                     </p>
                     <a href="mailto:info@b2-career.inc" class="btn-minimal" style="font-size: 1rem;">お問い合わせ窓口へ</a>
                 </div>
             </div>
-            <div class="text-center gs-fade-up"
+            <div class="text-center"
                 style="margin-top: var(--space-xxl); border-top: 1px solid var(--color-border-light); padding-top: var(--space-md);">
                 <div style="font-size:0.85rem; color:var(--color-text-tertiary);">&copy; 2026 BeMe. All rights reserved.
                 </div>
@@ -360,46 +1098,118 @@
         </footer>
     </main>
 
-    <!-- App Script -->
+    <!-- Scripts -->
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             gsap.registerPlugin(ScrollTrigger);
 
-            const milestones = document.querySelectorAll('.milestone');
-            const progressLine = document.querySelector('.timeline-progress');
+            // ── HERO ENTRANCE ──
+            const tl = gsap.timeline({ delay: 0.3 });
+            tl.to('#hero-tag', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' })
+                .to('#hero-title', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }, '-=0.6')
+                .to('#hero-lead', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.7')
+                .to('#hero-meta', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.6')
+                .to('#scroll-ind', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.3');
 
-            // Animate progress line natively
-            ScrollTrigger.create({
-                trigger: '.timeline-container',
-                start: "top 60%",
-                end: "bottom 60%",
-                animation: gsap.to(progressLine, { height: "100%", ease: "none" }),
-                scrub: 1
-            });
+            // ── PARALLAX HERO BG ──
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                document.getElementById('ev-hero-bg').style.transform = `scale(1.08) translateY(${scrollY * 0.12}px)`;
+            }, { passive: true });
 
-            // Activate milestones seamlessly
-            milestones.forEach((ms) => {
+            // ── HEADER COLOR SWITCH ──
+            const header = document.getElementById('ev-header');
+            const logo = document.getElementById('ev-logo');
+            const backBtn = document.getElementById('ev-back-btn');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 60) {
+                    header.classList.add('scrolled');
+                    logo.style.color = '#111';
+                    backBtn.style.color = '#444';
+                } else {
+                    header.classList.remove('scrolled');
+                    logo.style.color = '#FFF';
+                    backBtn.style.color = 'rgba(255,255,255,0.6)';
+                }
+            }, { passive: true });
+
+            // ── SCROLL REVEAL ──
+            const revealEls = document.querySelectorAll('.ev-reveal, .ev-reveal-left, .ev-reveal-right, .ev-stagger');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            revealEls.forEach(el => observer.observe(el));
+
+            // ── COUNTERS ──
+            const counters = document.querySelectorAll('.ev-counter');
+            const counterObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseInt(el.getAttribute('data-target'));
+                        let obj = { val: 0 };
+                        gsap.to(obj, {
+                            val: target,
+                            duration: 1.5,
+                            ease: 'power2.out',
+                            onUpdate: () => {
+                                el.textContent = Math.floor(obj.val);
+                            }
+                        });
+                        counterObs.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(c => counterObs.observe(c));
+
+            // ── STAGGER CARDS via GSAP ──
+            document.querySelectorAll('.ev-cards-grid, .ev-stats-grid, .ev-stats-row2').forEach(grid => {
                 ScrollTrigger.create({
-                    trigger: ms,
-                    start: "top 60%",
-                    onEnter: () => ms.classList.add('active'),
-                    onLeaveBack: () => ms.classList.remove('active')
+                    trigger: grid,
+                    start: 'top 80%',
+                    onEnter: () => {
+                        gsap.fromTo(grid.children,
+                            { opacity: 0, y: 40 },
+                            { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12 }
+                        );
+                    },
+                    once: true
                 });
             });
 
-            // Header scroll logic override for dark LP
-            const header = document.querySelector('.master-header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                    header.querySelector('.brand-logo').style.color = '#111';
-                    header.querySelector('.btn-minimal').style.color = '#111';
-                } else {
-                    header.classList.remove('scrolled');
-                    header.querySelector('.brand-logo').style.color = '#FFF';
-                    header.querySelector('.btn-minimal').style.color = '#FFF';
-                }
+            // ── PRACTICE TAGS via GSAP ──
+            ScrollTrigger.create({
+                trigger: '.ev-practice-tags',
+                start: 'top 85%',
+                onEnter: () => {
+                    gsap.fromTo('.ev-practice-tag',
+                        { opacity: 0, y: 20 },
+                        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.08 }
+                    );
+                },
+                once: true
+            });
+
+            // ── PILLAR STAGGER ──
+            ScrollTrigger.create({
+                trigger: '.ev-foundation-pillars',
+                start: 'top 80%',
+                onEnter: () => {
+                    gsap.fromTo('.ev-pillar',
+                        { opacity: 0, x: 30 },
+                        { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out', stagger: 0.1 }
+                    );
+                },
+                once: true
             });
         });
     </script>

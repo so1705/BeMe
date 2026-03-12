@@ -130,72 +130,98 @@ function initLightweightInteractions() {
         });
     }
 
-    // 1. Intersection Observer for high-performance fade-ups & staggered bars
-    const fadeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const delay = entry.target.getAttribute('data-delay') || 0;
-                if (delay > 0) {
-                    setTimeout(() => entry.target.classList.add('visible'), delay * 1000);
-                } else {
-                    entry.target.classList.add('visible');
-                }
-                fadeObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    });
+    // 1. Premium GSAP Scroll Animations (Leverages Style)
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
 
-    document.querySelectorAll('.gs-fade-up, .gs-staggered-bar').forEach(elem => {
-        fadeObserver.observe(elem);
-    });
-    // 2. Navigation Toggle & Overlay (Native JS, no GSAP or Lenis dependencies)
-    const navToggle = document.querySelector('.nav-toggle');
-    const navOverlay = document.querySelector('.nav-overlay');
-    const navLinks = document.querySelectorAll('.nav-item a');
-
-    if (navToggle) {
-        navToggle.addEventListener('click', () => {
-            const isOpen = navToggle.classList.contains('open');
-            navToggle.classList.toggle('open');
-            navOverlay.classList.toggle('active');
-
-            const mainHeader = document.querySelector('.master-header');
-            if (mainHeader) mainHeader.classList.toggle('menu-open');
-
-            if (!isOpen) {
-                document.body.style.overflow = 'hidden'; // Stop native scrolling
-            } else {
-                document.body.style.overflow = '';
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                navToggle.classList.remove('open');
-                navOverlay.classList.remove('active');
-                const mainHeader = document.querySelector('.master-header');
-                if (mainHeader) mainHeader.classList.remove('menu-open');
-
-                document.body.style.overflow = '';
-
-                // Handle smooth scroll natively if on same page
-                const targetId = link.getAttribute('href');
-                if (targetId.startsWith('#') || targetId.startsWith('index.html#')) {
-                    const id = targetId.includes('#') ? targetId.split('#')[1] : null;
-                    if (id) {
-                        const targetElem = document.getElementById(id);
-                        if (targetElem) {
-                            e.preventDefault();
-                            targetElem.scrollIntoView({ behavior: 'smooth' });
-                        }
+        // High-end fade-up with subtle blur and scale
+        const fadeUps = document.querySelectorAll('.gs-fade-up');
+        fadeUps.forEach(elem => {
+            const delay = parseFloat(elem.getAttribute('data-delay') || 0);
+            gsap.fromTo(elem,
+                { opacity: 0, y: 50, scale: 0.98, filter: 'blur(8px)' },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    filter: 'blur(0px)',
+                    duration: 1.2,
+                    ease: 'power3.out',
+                    delay: delay,
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse'
                     }
                 }
+            );
+            // Disable original css logic to let GSAP take over completely
+            elem.style.transition = 'none';
+        });
+
+        // Staggered bars for charts
+        const bars = document.querySelectorAll('.gs-staggered-bar');
+        bars.forEach(bar => {
+            gsap.fromTo(bar,
+                { scaleY: 0 },
+                {
+                    scaleY: 1,
+                    duration: 1.2,
+                    ease: 'power3.out',
+                    transformOrigin: 'bottom',
+                    scrollTrigger: {
+                        trigger: bar,
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+            bar.style.transition = 'none';
+        });
+
+        // Parallax Images
+        const parallaxImgs = document.querySelectorAll('.parallax-img');
+        parallaxImgs.forEach(img => {
+            gsap.fromTo(img,
+                { scale: 1.15, y: -20 },
+                {
+                    scale: 1,
+                    y: 0,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: img.parentElement,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: 1
+                    }
+                }
+            );
+        });
+
+    } else {
+        // Fallback for pages that might not load GSAP
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delay = entry.target.getAttribute('data-delay') || 0;
+                    if (delay > 0) {
+                        setTimeout(() => entry.target.classList.add('visible'), delay * 1000);
+                    } else {
+                        entry.target.classList.add('visible');
+                    }
+                    fadeObserver.unobserve(entry.target);
+                }
             });
+        }, {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        document.querySelectorAll('.gs-fade-up, .gs-staggered-bar').forEach(elem => {
+            fadeObserver.observe(elem);
         });
     }
+    // Removed hamburger menu logic as navigation is now a persistent header
 
     // 3. Simple Header Scrolling Check
     const header = document.querySelector('.master-header');

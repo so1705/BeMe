@@ -35,39 +35,20 @@
         </div>
     </div>
 
-    <!-- Full-screen Overlay Navigation -->
-    <nav class="nav-overlay">
-        <div class="nav-overlay-bg"></div>
-        <div class="nav-content">
-            <ul class="nav-links">
-                <li class="nav-item"><a href="index.html#concept">COMPANY</a></li>
-                <li class="nav-item"><a href="index.html#services">BUSINESS</a></li>
-                <li class="nav-item"><a href="index.html#team">RECRUIT</a></li>
-                <li class="nav-item"><a href="index.html#social">NEWS</a></li>
-                <li class="nav-item"><a href="mailto:info@b2-career.inc"
-                        style="font-size: 1.2rem; margin-top: 40px;">Contact Us</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Removed Overlay Navigation per user request -->
 
     <!-- Navigation Header -->
     <header class="master-header">
         <div class="header-container">
             <a href="index.html" class="brand-logo magnetic">BeMe</a>
 
-            <!-- Desktop Nav Links (Leverages Style) -->
+            <!-- Persistent Nav Links (Leverages Style) -->
             <ul class="header-nav-desktop">
                 <li><a href="index.html#concept">COMPANY</a></li>
                 <li><a href="index.html#services">BUSINESS</a></li>
-                <li><a href="index.html#team">RECRUIT</a></li>
-                <li><a href="index.html#social">NEWS</a></li>
+                <li><a href="index.html#team">MEMBER</a></li>
+                <li><a href="mailto:info@b2-career.inc">CONTACT</a></li>
             </ul>
-
-            <div class="nav-toggle magnetic" id="btn-toggle">
-                <span class="line line-1"></span>
-                <span class="line line-2"></span>
-                <span class="line line-3"></span>
-            </div>
         </div>
     </header>
 
@@ -103,7 +84,7 @@
             <div class="philosophy-block gs-fade-up">
                 <div class="phil-header">
                     <h2 class="phil-title">情報非対称性の<br>破壊。</h2>
-                    <p class="phil-en">THE DESTRUCTION OF ASYMMETRY</p>
+                    <p class="phil-en text-gradient-primary" style="font-weight: 700;">THE DESTRUCTION OF ASYMMETRY</p>
                 </div>
                 <div class="phil-content text-shadow-subtle">
                     <p>「正しい就活」という錯覚。企業と学生の間には、依然として埋めがたい「情報の非対称性」が存在します。我々は、デジタルナレッジの拡散力と、クローズドなオフラインでの泥臭い直接対話を融合させることで、この壁を打ち破ります。
@@ -118,7 +99,7 @@
 
                 <div class="phil-header">
                     <h2 class="phil-title">本質からの<br>逆算。</h2>
-                    <p class="phil-en">RADICAL ESSENTIALISM</p>
+                    <p class="phil-en text-gradient-primary" style="font-weight: 700;">RADICAL ESSENTIALISM</p>
                 </div>
                 <div class="phil-content text-shadow-subtle">
                     <p>社会の表面的な期待を捨て去り、自らの本質に圧倒的な解像度で向き合う。小手先の面接テクニックや自己分析フレームワークに頼るのではなく、ビジネスパーソンとしての純粋な戦闘力と人間的魅力を極限まで高めます。
@@ -133,10 +114,10 @@
             style="padding-left: clamp(24px, 10vw, 160px); padding-right: clamp(24px, 10vw, 160px);">
             <!-- Premium Left-Aligned Section Header -->
             <div class="gs-fade-up mb-xl" style="display: flex; align-items: center; gap: var(--space-md);">
-                <div style="width: 50px; height: 1px; background: var(--color-accent);"></div>
+                <div class="gradient-divider" style="margin: 0; width: 50px;"></div>
                 <div>
-                    <h2
-                        style="font-size: clamp(2rem, 4vw, 3.2rem); font-family: var(--font-en-serif); line-height: 1.1; letter-spacing: 0.05em;">
+                    <h2 class="text-gradient-primary"
+                        style="font-size: clamp(2rem, 4vw, 3.2rem); font-family: var(--font-en-serif); line-height: 1.1; letter-spacing: 0.05em; padding-right: 0.1em;">
                         BUSINESS</h2>
                     <p
                         style="color:var(--color-text-tertiary); letter-spacing:0.15em; font-size: 0.95rem; margin-top: 6px; font-weight: 500;">
@@ -243,13 +224,16 @@
             </div>
         </section>
 
-        <!-- Member Section (Images Fixed & B2 Text) -->
-        <section id="team" class="section-spacing alt-bg">
+        <!-- Member Section (Dark Section for Contrast) -->
+        <section id="team" class="section-spacing bg-dark-section">
             <div class="container">
                 <div class="gs-fade-up text-center mb-xl">
-                    <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-family: var(--font-en-serif);">RECRUIT
+                    <h2 class="text-gradient-primary"
+                        style="font-size: clamp(2rem, 4vw, 3rem); font-family: var(--font-en-serif); padding-right: 0.1em;">
+                        MEMBER
                     </h2>
-                    <p style="color:var(--color-text-tertiary); letter-spacing:0.1em; font-family:'Inter', sans-serif;">
+                    <p
+                        style="color:var(--color-text-tertiary); letter-spacing:0.1em; font-family:'Inter', sans-serif; margin-top:12px;">
                         採用・メンバー</p>
                 </div>
 

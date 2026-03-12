@@ -1815,15 +1815,16 @@
     </div>
 
     <!-- Navigation Header -->
-    <header class="master-header" id="ev-header">
+    <header class="master-header lp-header" id="ev-header">
         <div class="header-container">
-            <a href="index.html" class="brand-logo" style="color: #FFF;" id="ev-logo">BeMe</a>
-            <a href="javascript:history.back()" class="ev-back" id="ev-back-btn">
-                <svg viewBox="0 0 24 24">
-                    <polyline points="15 18 9 12 15 6" />
-                </svg>
-                戻る
-            </a>
+            <a href="index.html" class="brand-logo" id="ev-logo">BeMe</a>
+            <!-- Persistent Nav Links -->
+            <ul class="header-nav-desktop">
+                <li><a href="index.html#concept">COMPANY</a></li>
+                <li><a href="index.html#services">BUSINESS</a></li>
+                <li><a href="index.html#team">MEMBER</a></li>
+                <li><a href="mailto:info@b2-career.inc">CONTACT</a></li>
+            </ul>
         </div>
     </header>
 
@@ -2223,20 +2224,14 @@
                 document.getElementById('ev-hero-bg').style.transform = `scale(1.08) translateY(${scrollY * 0.12}px)`;
             }, { passive: true });
 
-            // ── HEADER COLOR SWITCH ──
+            // ── HEADER COLOR SWITCH (CSS CSS Classes) ──
             const header = document.getElementById('ev-header');
-            const logo = document.getElementById('ev-logo');
-            const backBtn = document.getElementById('ev-back-btn');
 
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 60) {
                     header.classList.add('scrolled');
-                    logo.style.color = '#111';
-                    backBtn.style.color = '#444';
                 } else {
                     header.classList.remove('scrolled');
-                    logo.style.color = '#FFF';
-                    backBtn.style.color = 'rgba(255,255,255,0.6)';
                 }
             }, { passive: true });
 

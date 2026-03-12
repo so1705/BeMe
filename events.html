@@ -10,7 +10,9 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
     <!-- Dependencies -->
@@ -23,7 +25,7 @@
             --ev-dark: #141414;
             --ev-accent: #7B93A8;
             --ev-light: #F7F7F5;
-            --ev-border: rgba(0,0,0,0.09);
+            --ev-border: rgba(0, 0, 0, 0.09);
             --ev-radius: 4px;
         }
 
@@ -52,12 +54,10 @@
         .ev-hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                to top,
-                rgba(10,10,10,0.85) 0%,
-                rgba(10,10,10,0.3) 60%,
-                transparent 100%
-            );
+            background: linear-gradient(to top,
+                    rgba(10, 10, 10, 0.85) 0%,
+                    rgba(10, 10, 10, 0.3) 60%,
+                    transparent 100%);
         }
 
         .ev-hero-content {
@@ -105,7 +105,7 @@
         .ev-hero-lead {
             font-size: clamp(1rem, 1.4vw, 1.2rem);
             line-height: 2;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             max-width: 540px;
             margin-bottom: 40px;
             opacity: 0;
@@ -136,19 +136,19 @@
 
         .ev-hero-meta-label {
             font-size: 0.78rem;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             letter-spacing: 0.08em;
         }
 
         .ev-hero-meta-divider {
             width: 1px;
             height: 40px;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .ev-hero-suppl {
             font-size: 0.9rem;
-            color: rgba(255,255,255,0.55);
+            color: rgba(255, 255, 255, 0.55);
             max-width: 500px;
             line-height: 1.9;
         }
@@ -162,7 +162,7 @@
             flex-direction: column;
             align-items: center;
             gap: 8px;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255, 255, 255, 0.4);
             font-family: 'Inter', sans-serif;
             font-size: 0.7rem;
             letter-spacing: 0.2em;
@@ -174,13 +174,22 @@
         .scroll-line {
             width: 1px;
             height: 60px;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
             animation: scrollPulse 2s ease-in-out infinite;
         }
 
         @keyframes scrollPulse {
-            0%, 100% { transform: scaleY(1); opacity: 0.4; }
-            50% { transform: scaleY(0.6); opacity: 0.9; }
+
+            0%,
+            100% {
+                transform: scaleY(1);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: scaleY(0.6);
+                opacity: 0.9;
+            }
         }
 
         /* ── SECTION BASE ── */
@@ -238,91 +247,131 @@
             color: #FFF;
         }
 
-        /* ── ABOUT TEXT ── */
+        /* ── ABOUT WITH IMAGE ── */
         .ev-about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
+            gap: 72px;
+            align-items: center;
         }
 
-        .ev-about-left h2 {
+        .ev-about-text h2 {
             font-family: 'Shippori Mincho', serif;
             font-size: clamp(1.8rem, 2.5vw, 2.6rem);
             font-weight: 500;
             color: var(--ev-dark);
             line-height: 1.5;
-            margin-bottom: 0;
+            margin-bottom: 32px;
         }
 
-        .ev-about-right p {
+        .ev-about-text p {
             font-size: 1rem;
             line-height: 2.1;
             color: #4A4A4A;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
-        .ev-about-right p:last-child {
+        .ev-about-text p:last-child {
             margin-bottom: 0;
         }
 
-        /* ── WHAT WE DO CARDS ── */
+        .ev-about-img-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .ev-about-img-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(123, 147, 168, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .ev-about-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(20%) brightness(0.92);
+            transition: transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .ev-about-img-wrap:hover .ev-about-img {
+            transform: scale(1.05);
+        }
+
+        /* ── WHAT WE DO CARDS (premium) ── */
         .ev-cards-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2px;
-            background: var(--ev-border);
-            border: 1px solid var(--ev-border);
+            gap: 20px;
         }
 
         .ev-card {
-            background: #FAFAFA;
+            background: #FFF;
             padding: 48px 44px;
             position: relative;
             overflow: hidden;
-            transition: background 0.5s ease;
+            box-shadow: 0 2px 24px rgba(0, 0, 0, 0.07);
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.5s ease;
+            will-change: transform;
         }
 
-        .ev-card::before {
+        .ev-card::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
-            width: 2px;
-            height: 0;
-            background: var(--ev-accent);
-            transition: height 0.6s cubic-bezier(0.19,1,0.22,1);
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--ev-accent), #5B7B92);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        .ev-card:hover::before {
-            height: 100%;
+        .ev-card:hover::after {
+            transform: scaleX(1);
         }
 
         .ev-card:hover {
-            background: #FFFFFF;
+            transform: translateY(-6px);
+            box-shadow: 0 20px 56px rgba(0, 0, 0, 0.12);
         }
 
         .ev-card-num {
             font-family: 'Inter', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            color: var(--ev-accent);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            background: linear-gradient(135deg, var(--ev-accent), #5B7B92);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 20px;
         }
 
-        .ev-card-icon {
-            margin-bottom: 20px;
-            width: 40px;
-            height: 40px;
+        .ev-card-icon-bg {
+            width: 50px;
+            height: 50px;
+            background: rgba(123, 147, 168, 0.1);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 24px;
+            transition: background 0.3s;
         }
 
-        .ev-card-icon svg {
-            width: 36px;
-            height: 36px;
+        .ev-card:hover .ev-card-icon-bg {
+            background: rgba(123, 147, 168, 0.18);
+        }
+
+        .ev-card-icon-bg svg {
+            width: 24px;
+            height: 24px;
             stroke: var(--ev-accent);
             fill: none;
             stroke-width: 1.5;
@@ -330,7 +379,7 @@
 
         .ev-card h3 {
             font-family: 'Shippori Mincho', serif;
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             font-weight: 600;
             color: var(--ev-dark);
             margin-bottom: 16px;
@@ -338,7 +387,7 @@
         }
 
         .ev-card p {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             line-height: 2;
             color: #5A5A5A;
             margin-bottom: 0;
@@ -355,12 +404,27 @@
         .ev-foundation-text p {
             font-size: 1.05rem;
             line-height: 2.2;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255, 255, 255, 0.75);
             margin-bottom: 24px;
         }
 
         .ev-foundation-text p:last-child {
             margin-bottom: 0;
+        }
+
+        .ev-foundation-right {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .ev-foundation-img {
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            filter: grayscale(50%) brightness(0.5);
+            display: block;
+            margin-bottom: 2px;
         }
 
         .ev-foundation-pillars {
@@ -370,8 +434,8 @@
         }
 
         .ev-pillar {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 24px 28px;
             display: flex;
             align-items: center;
@@ -380,8 +444,8 @@
         }
 
         .ev-pillar:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(123,147,168,0.4);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(123, 147, 168, 0.4);
         }
 
         .ev-pillar-dot {
@@ -394,83 +458,98 @@
 
         .ev-pillar-text {
             font-size: 0.92rem;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255, 255, 255, 0.8);
             letter-spacing: 0.03em;
         }
 
-        /* ── STATS ── */
-        .ev-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2px;
-            background: var(--ev-border);
-            border: 1px solid var(--ev-border);
+        /* ── STATS SECTION (dark) ── */
+        .ev-stats-section {
+            background: #0F1923;
+            padding: 100px 12vw;
         }
 
-        .ev-stat {
-            background: #FAFAFA;
-            padding: 52px 36px;
+        .ev-stats-section .ev-label {
+            color: var(--ev-accent);
+        }
+
+        .ev-stats-section .ev-h2 {
+            color: #FFF;
+        }
+
+        .ev-stats-dark-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .ev-stat-dark {
+            padding: 60px 40px;
             text-align: center;
+            background: #0F1923;
             position: relative;
             overflow: hidden;
             transition: background 0.4s;
         }
 
-        .ev-stat:hover {
-            background: #FFF;
+        .ev-stat-dark::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--ev-accent), #5B7B92);
         }
 
-        .ev-stat-top {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 16px;
+        .ev-stat-dark:hover {
+            background: #162330;
         }
 
-        .ev-stat-num {
+        .ev-stat-dark-label {
             font-family: 'Inter', sans-serif;
-            font-size: clamp(2.4rem, 4vw, 3.5rem);
-            font-weight: 300;
-            color: var(--ev-dark);
-            line-height: 1;
-            margin-bottom: 4px;
-            position: relative;
-        }
-
-        .ev-stat-unit {
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            font-weight: 400;
+            font-size: 0.7rem;
+            letter-spacing: 0.22em;
             color: var(--ev-accent);
-            margin-left: 2px;
-        }
-
-        .ev-stat-label {
-            font-size: 0.82rem;
             font-weight: 600;
-            color: var(--ev-accent);
-            letter-spacing: 0.08em;
-            margin-bottom: 18px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
         }
 
-        .ev-stat-divider {
+        .ev-stat-dark-num {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 200;
+            color: #FFF;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .ev-stat-dark-unit {
+            color: var(--ev-accent);
+            font-size: 0.38em;
+            margin-left: 4px;
+        }
+
+        .ev-stat-dark-divider {
             width: 24px;
             height: 1px;
-            background: var(--ev-border);
-            margin: 0 auto 18px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0 auto 16px;
         }
 
-        .ev-stat-desc {
-            font-size: 0.88rem;
-            line-height: 1.8;
-            color: #666;
+        .ev-stat-dark-desc {
+            font-size: 0.82rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.38);
         }
 
-        /* satisfaction bar */
+        /* satisfaction bar (dark bg) */
         .ev-satisfaction-bar {
             width: 80%;
             height: 3px;
-            background: rgba(0,0,0,0.08);
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 2px;
             margin: 12px auto 0;
             overflow: hidden;
@@ -481,7 +560,7 @@
             width: 0;
             background: linear-gradient(to right, var(--ev-accent), #5B7B92);
             border-radius: 2px;
-            transition: width 1.8s cubic-bezier(0.19,1,0.22,1);
+            transition: width 1.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         /* ── VALUES ── */
@@ -529,78 +608,142 @@
 
         /* ── EVENT FLOW ── */
         .ev-flow-section {
-            background: #F0F2F4;
+            background: var(--ev-dark);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ev-flow-bg-img {
+            position: absolute;
+            inset: 0;
+            background: url('assets/images/services_closed_events_1772216713610.png') center/cover no-repeat;
+            filter: grayscale(70%) brightness(0.18);
+            transform: scale(1.04);
+        }
+
+        .ev-flow-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10, 16, 24, 0.92) 0%, rgba(10, 16, 24, 0.75) 100%);
+        }
+
+        .ev-flow-inner {
+            position: relative;
+            z-index: 2;
+            padding: 100px 12vw;
+        }
+
+        .ev-flow-header {
+            margin-bottom: 72px;
+        }
+
+        .ev-flow-header .ev-label {
+            color: var(--ev-accent);
+        }
+
+        .ev-flow-header .ev-h2 {
+            color: #FFF;
+            margin-bottom: 0;
         }
 
         .ev-flow-steps {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 0;
-            margin-top: 56px;
             position: relative;
+        }
+
+        .ev-flow-steps::before {
+            content: '';
+            position: absolute;
+            top: 52px;
+            left: calc(16.67% + 20px);
+            right: calc(16.67% + 20px);
+            height: 1px;
+            background: linear-gradient(to right, var(--ev-accent), rgba(91, 123, 146, 0.3), var(--ev-accent));
         }
 
         .ev-flow-step {
-            flex: 1;
-            padding: 36px 32px;
-            background: #FFF;
-            border: 1px solid var(--ev-border);
-            border-right: none;
+            padding: 0 40px 48px;
             position: relative;
-            transition: background 0.4s;
+            border: none;
+            background: transparent;
+            transition: none;
+        }
+
+        .ev-flow-step:first-child {
+            padding-left: 0;
         }
 
         .ev-flow-step:last-child {
-            border-right: 1px solid var(--ev-border);
+            padding-right: 0;
         }
 
-        .ev-flow-step:hover {
-            background: #FAFEFF;
+        .ev-flow-step-circle {
+            width: 104px;
+            height: 104px;
+            border-radius: 50%;
+            border: 1px solid rgba(123, 147, 168, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 36px;
+            background: rgba(123, 147, 168, 0.06);
+            position: relative;
+        }
+
+        .ev-flow-step-circle::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1px solid rgba(123, 147, 168, 0.12);
         }
 
         .ev-flow-step-num {
             font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
+            font-size: 1.1rem;
+            font-weight: 300;
             color: var(--ev-accent);
-            margin-bottom: 16px;
+            letter-spacing: 0.1em;
         }
 
         .ev-flow-step h4 {
             font-family: 'Shippori Mincho', serif;
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--ev-dark);
-            margin-bottom: 12px;
-            line-height: 1.4;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #FFF;
+            margin-bottom: 16px;
+            line-height: 1.5;
         }
 
         .ev-flow-step p {
             font-size: 0.88rem;
-            line-height: 1.9;
-            color: #666;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.5);
             margin-bottom: 0;
         }
 
         .ev-flow-connector {
-            position: absolute;
-            right: -14px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 28px;
-            height: 28px;
-            background: #FFF;
-            border: 1px solid var(--ev-border);
-            border-left: none;
-            clip-path: polygon(0 0, 100% 50%, 0 100%);
-            z-index: 2;
+            display: none;
+        }
+
+        .ev-flow-note {
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            margin-top: 64px;
+            padding-top: 40px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 2;
+            max-width: 740px;
         }
 
         /* ── ANIMATIONS ── */
         .ev-reveal {
             opacity: 0;
             transform: translateY(36px);
-            transition: opacity 1s cubic-bezier(0.19,1,0.22,1), transform 1s cubic-bezier(0.19,1,0.22,1);
+            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         .ev-reveal.visible {
@@ -611,7 +754,7 @@
         .ev-reveal-left {
             opacity: 0;
             transform: translateX(-36px);
-            transition: opacity 1s cubic-bezier(0.19,1,0.22,1), transform 1s cubic-bezier(0.19,1,0.22,1);
+            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         .ev-reveal-left.visible {
@@ -622,7 +765,7 @@
         .ev-reveal-right {
             opacity: 0;
             transform: translateX(36px);
-            transition: opacity 1s cubic-bezier(0.19,1,0.22,1), transform 1s cubic-bezier(0.19,1,0.22,1);
+            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         .ev-reveal-right.visible {
@@ -631,16 +774,35 @@
         }
 
         /* Stagger children */
-        .ev-stagger > * {
+        .ev-stagger>* {
             opacity: 0;
             transform: translateY(28px);
-            transition: opacity 0.9s cubic-bezier(0.19,1,0.22,1), transform 0.9s cubic-bezier(0.19,1,0.22,1);
+            transition: opacity 0.9s cubic-bezier(0.19, 1, 0.22, 1), transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        .ev-stagger.visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0s; }
-        .ev-stagger.visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
-        .ev-stagger.visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
-        .ev-stagger.visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+        .ev-stagger.visible>*:nth-child(1) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0s;
+        }
+
+        .ev-stagger.visible>*:nth-child(2) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.1s;
+        }
+
+        .ev-stagger.visible>*:nth-child(3) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
+        .ev-stagger.visible>*:nth-child(4) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.3s;
+        }
 
         /* ── CTA STRIP ── */
         .ev-cta {
@@ -660,7 +822,7 @@
 
         .ev-cta p {
             font-size: 1rem;
-            color: rgba(255,255,255,0.55);
+            color: rgba(255, 255, 255, 0.55);
             margin-bottom: 40px;
         }
 
@@ -669,7 +831,7 @@
             align-items: center;
             gap: 12px;
             background: transparent;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: #FFF;
             padding: 18px 48px;
             font-family: 'Inter', sans-serif;
@@ -681,8 +843,8 @@
         }
 
         .ev-btn:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.6);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.6);
         }
 
         /* ── BACK NAV ── */
@@ -694,7 +856,7 @@
             font-size: 0.82rem;
             font-weight: 500;
             letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255, 255, 255, 0.6);
             text-transform: uppercase;
             transition: color 0.3s;
         }
@@ -713,6 +875,7 @@
 
         /* ── RESPONSIVE ── */
         @media (max-width: 960px) {
+
             .ev-about-grid,
             .ev-foundation-layout,
             .ev-values-layout {
@@ -724,25 +887,34 @@
                 grid-template-columns: 1fr;
             }
 
+            .ev-stats-dark-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ev-stats-section {
+                padding: 80px 6vw;
+            }
+
             .ev-stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
             .ev-flow-steps {
-                flex-direction: column;
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .ev-flow-steps::before {
+                display: none;
             }
 
             .ev-flow-step {
-                border-right: 1px solid var(--ev-border);
-                border-bottom: none;
+                padding-left: 0;
+                padding-right: 0;
             }
 
-            .ev-flow-step:last-child {
-                border-bottom: 1px solid var(--ev-border);
-            }
-
-            .ev-flow-connector {
-                display: none;
+            .ev-flow-inner {
+                padding: 80px 6vw;
             }
 
             .ev-values-sticky {
@@ -784,7 +956,9 @@
         <div class="header-container">
             <a href="index.html" class="brand-logo" style="color: #FFF;" id="ev-logo">BeMe</a>
             <a href="javascript:history.back()" class="ev-back" id="ev-back-btn">
-                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+                <svg viewBox="0 0 24 24">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
                 戻る
             </a>
         </div>
@@ -811,7 +985,8 @@
                     </div>
                     <div class="ev-hero-meta-divider"></div>
                     <div class="ev-hero-meta-item">
-                        <span class="ev-hero-meta-num" id="hero-sat-num">96</span><span class="ev-hero-meta-num" style="font-size:1.4rem; opacity:0.7;">%</span>
+                        <span class="ev-hero-meta-num" id="hero-sat-num">96</span><span class="ev-hero-meta-num"
+                            style="font-size:1.4rem; opacity:0.7;">%</span>
                         <span class="ev-hero-meta-label">参加者満足度</span>
                     </div>
                     <div class="ev-hero-meta-divider"></div>
@@ -833,20 +1008,17 @@
         <section class="ev-section">
             <div class="ev-section-inner">
                 <div class="ev-about-grid">
-                    <div class="ev-about-left ev-reveal-left">
+                    <div class="ev-about-text ev-reveal-left">
                         <div class="ev-label">About This Business</div>
                         <h2>ミスマッチのない出会いを、<br>設計から届ける。</h2>
+                        <p>私たちは、学生と企業の双方にとってミスマッチの少ない出会いを生み出すため、就活イベントの企画・運営を行っています。</p>
+                        <p>従来の就活イベントでは、企業から学生への一方的な情報発信に偏ってしまい、学生が本当に知りたいことに十分触れられなかったり、企業側も学生の実際の姿を深く知ることが難しかったりする場面が少なくありませんでした。
+                        </p>
+                        <p>こうした課題に対して、私たちは学生と企業が同じ場で互いのニーズを把握し、理解を深められる設計を大切にしています。学生にとっては、自分の就活に本当に役立つ経験や情報が得られること。企業にとっては、自社に合う学生と出会えること。そうした双方にとって納得感のある機会をつくることを、この事業の中心に置いています。
+                        </p>
                     </div>
-                    <div class="ev-about-right ev-reveal-right">
-                        <p>
-                            私たちは、学生と企業の双方にとってミスマッチの少ない出会いを生み出すため、就活イベントの企画・運営を行っています。
-                        </p>
-                        <p>
-                            従来の就活イベントでは、企業から学生への一方的な情報発信に偏ってしまい、学生が本当に知りたいことに十分触れられなかったり、企業側も学生の実際の姿を深く知ることが難しかったりする場面が少なくありませんでした。
-                        </p>
-                        <p>
-                            こうした課題に対して、私たちは学生と企業が同じ場で互いのニーズを把握し、理解を深められる設計を大切にしています。学生にとっては、自分の就活に本当に役立つ経験や情報が得られること。企業にとっては、表面的な接点ではなく、自社に合う学生と出会えること。そうした双方にとって納得感のある機会をつくることを、この事業の中心に置いています。
-                        </p>
+                    <div class="ev-about-img-wrap ev-reveal-right">
+                        <img src="assets/images/natural_events.png" class="ev-about-img" alt="就活イベントの運営">
                     </div>
                 </div>
             </div>
@@ -865,26 +1037,43 @@
                     <!-- Card 1 -->
                     <div class="ev-card">
                         <div class="ev-card-num">01</div>
-                        <div class="ev-card-icon">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                        <div class="ev-card-icon-bg">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <line x1="3" y1="9" x2="21" y2="9" />
+                                <line x1="9" y1="21" x2="9" y2="9" />
+                            </svg>
                         </div>
                         <h3>企画設計</h3>
-                        <p>学生と企業の双方にとって意味のある時間になるよう、イベント全体の構成を設計しています。一方的な説明の場ではなく、相互理解が深まる場になることを重視し、内容や導線を組み立てています。</p>
+                        <p>学生と企業の双方にとって意味のある時間になるよう、イベント全体の構成を設計しています。一方的な説明の場ではなく、相互理解が深まる場になることを重視し、内容や導線を組み立てています。
+                        </p>
                     </div>
                     <!-- Card 2 -->
                     <div class="ev-card">
                         <div class="ev-card-num">02</div>
-                        <div class="ev-card-icon">
-                            <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                        <div class="ev-card-icon-bg">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="18" cy="5" r="3" />
+                                <circle cx="6" cy="12" r="3" />
+                                <circle cx="18" cy="19" r="3" />
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                            </svg>
                         </div>
                         <h3>学生集客・事前接点</h3>
-                        <p>SNSでの発信に加え、就活面談なども通じて学生との接点をつくり、イベントの趣旨や価値がきちんと伝わる形で集客を行っています。単に人数を集めるのではなく、参加する学生にとっても意義のある場になることを意識しています。</p>
+                        <p>SNSでの発信に加え、就活面談なども通じて学生との接点をつくり、イベントの趣旨や価値がきちんと伝わる形で集客を行っています。単に人数を集めるのではなく、参加する学生にとっても意義のある場になることを意識しています。
+                        </p>
                     </div>
                     <!-- Card 3 -->
                     <div class="ev-card">
                         <div class="ev-card-num">03</div>
-                        <div class="ev-card-icon">
-                            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <div class="ev-card-icon-bg">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
                         </div>
                         <h3>企業対応・当日運営</h3>
                         <p>企業との事前調整から当日の進行管理まで、一貫して対応しています。当日は学生と企業の双方が安心して参加できるよう、進行、交流、接触設計まで丁寧に運営しています。</p>
@@ -892,8 +1081,10 @@
                     <!-- Card 4 -->
                     <div class="ev-card">
                         <div class="ev-card-num">04</div>
-                        <div class="ev-card-icon">
-                            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        <div class="ev-card-icon-bg">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                            </svg>
                         </div>
                         <h3>イベント後のフォロー</h3>
                         <p>イベントで終わらせるのではなく、その後の接点づくりやフォローにも取り組んでいます。学生への後追いや企業との連携を通じて、イベント後のつながりが自然に生まれるよう支援しています。</p>
@@ -905,34 +1096,40 @@
         <!-- ─────────────────────────────────── -->
         <!-- 補足: イベントの主な構成             -->
         <!-- ─────────────────────────────────── -->
-        <section class="ev-section ev-flow-section">
-            <div class="ev-section-inner">
-                <div class="ev-reveal">
+        <section class="ev-flow-section ev-reveal">
+            <div class="ev-flow-bg-img"></div>
+            <div class="ev-flow-overlay"></div>
+            <div class="ev-flow-inner">
+                <div class="ev-flow-header">
                     <div class="ev-label">Event Structure</div>
-                    <h2 class="ev-h2" style="margin-bottom:0;">イベントの主な構成</h2>
+                    <h2 class="ev-h2">イベントの主な構成</h2>
                 </div>
                 <div class="ev-flow-steps ev-stagger">
                     <div class="ev-flow-step">
-                        <div class="ev-flow-step-num">STEP 01</div>
-                        <h4>グループディスカッション</h4>
+                        <div class="ev-flow-step-circle">
+                            <span class="ev-flow-step-num">01</span>
+                        </div>
+                        <h4>グループ<br>ディスカッション</h4>
                         <p>学生が実践的に力を試せる場であると同時に、企業が学生の思考力や対人面を見極める機会にもなります。</p>
                     </div>
                     <div class="ev-flow-step">
-                        <div class="ev-flow-step-num">STEP 02</div>
+                        <div class="ev-flow-step-circle">
+                            <span class="ev-flow-step-num">02</span>
+                        </div>
                         <h4>企業説明</h4>
                         <p>学生の関心をふまえた上で行う企業説明。一方的な紹介ではなく、双方の理解が深まる時間として設計しています。</p>
                     </div>
                     <div class="ev-flow-step">
-                        <div class="ev-flow-step-num">STEP 03</div>
+                        <div class="ev-flow-step-circle">
+                            <span class="ev-flow-step-num">03</span>
+                        </div>
                         <h4>交流会</h4>
                         <p>表面的ではない、率直な対話が生まれるよう場づくりを工夫しています。企業・学生双方にとって納得感のある接点づくりを目指します。</p>
                     </div>
                 </div>
-                <div class="ev-reveal" style="margin-top: 48px;">
-                    <p style="font-size:0.95rem; color:#666; line-height:2;">
-                        代表的なイベントでは、グループディスカッション、企業説明、交流会を組み合わせた構成を採用しています。グループディスカッションでは、学生が実践的に力を試せるだけでなく、企業が学生の思考や対人面を把握する機会にもなります。そのうえで企業説明や交流の時間を設けることで、表面的ではない相互理解につながる設計にしています。
-                    </p>
-                </div>
+                <p class="ev-flow-note ev-reveal">
+                    代表的なイベントでは、グループディスカッション、企業説明、交流会を組み合わせた構成を採用しています。グループディスカッションでは、学生が実践的に力を試せるだけでなく、企業が学生の思考や対人面を把握する機会にもなります。そのうえで企業説明や交流の時間を設けることで、表面的ではない相互理解につながる設計にしています。
+                </p>
             </div>
         </section>
 
@@ -946,29 +1143,33 @@
                         <div class="ev-label" style="color: rgba(123,147,168,0.9);">Foundation</div>
                         <h2 class="ev-h2" style="margin-bottom: 40px;">この事業を支える基盤</h2>
                         <p>この事業は、単発のイベント運営ではなく、日頃から築いている学生接点の上に成り立っています。</p>
-                        <p>就活SNSの運用、継続的な就活面談、関西の学生ネットワーク、そして自社の長期インターン組織による運営体制を土台にしながら、学生のリアルなニーズを把握し、イベント設計へ反映しています。</p>
+                        <p>就活SNSの運用、継続的な就活面談、関西の学生ネットワーク、そして自社の長期インターン組織による運営体制を土台にしながら、学生のリアルなニーズを把握し、イベント設計へ反映しています。
+                        </p>
                         <p>また、学生との距離が近いからこそ見える「今、学生が求めていること」と、企業が採用活動の中で本当に知りたいことの両方を踏まえながら、場づくりを行っています。</p>
                     </div>
-                    <div class="ev-foundation-pillars ev-reveal-right">
-                        <div class="ev-pillar">
-                            <div class="ev-pillar-dot"></div>
-                            <span class="ev-pillar-text">就活SNSの継続的な運用</span>
-                        </div>
-                        <div class="ev-pillar">
-                            <div class="ev-pillar-dot"></div>
-                            <span class="ev-pillar-text">継続的な就活面談の実施</span>
-                        </div>
-                        <div class="ev-pillar">
-                            <div class="ev-pillar-dot"></div>
-                            <span class="ev-pillar-text">関西学生ネットワーク</span>
-                        </div>
-                        <div class="ev-pillar">
-                            <div class="ev-pillar-dot"></div>
-                            <span class="ev-pillar-text">長期インターン生による運営体制</span>
-                        </div>
-                        <div class="ev-pillar">
-                            <div class="ev-pillar-dot"></div>
-                            <span class="ev-pillar-text">学生の生のニーズをイベント設計へ反映</span>
+                    <div class="ev-foundation-right ev-reveal-right">
+                        <img src="assets/images/premium_events_network.png" class="ev-foundation-img" alt="就活イベントの基盤">
+                        <div class="ev-foundation-pillars">
+                            <div class="ev-pillar">
+                                <div class="ev-pillar-dot"></div>
+                                <span class="ev-pillar-text">就活SNSの継続的な運用</span>
+                            </div>
+                            <div class="ev-pillar">
+                                <div class="ev-pillar-dot"></div>
+                                <span class="ev-pillar-text">継続的な就活面談の実施</span>
+                            </div>
+                            <div class="ev-pillar">
+                                <div class="ev-pillar-dot"></div>
+                                <span class="ev-pillar-text">関西学生ネットワーク</span>
+                            </div>
+                            <div class="ev-pillar">
+                                <div class="ev-pillar-dot"></div>
+                                <span class="ev-pillar-text">長期インターン生による運営体制</span>
+                            </div>
+                            <div class="ev-pillar">
+                                <div class="ev-pillar-dot"></div>
+                                <span class="ev-pillar-text">学生の生のニーズをイベント設計へ反映</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -978,63 +1179,46 @@
         <!-- ─────────────────────────────────── -->
         <!-- 5. 実績                             -->
         <!-- ─────────────────────────────────── -->
-        <section class="ev-section">
+        <section class="ev-stats-section">
             <div class="ev-section-inner">
                 <div class="ev-reveal" style="margin-bottom: 56px;">
                     <div class="ev-label">Track Record</div>
                     <h2 class="ev-h2" style="margin-bottom:0;">実績</h2>
                 </div>
-                <div class="ev-stats-grid ev-stagger">
-                    <!-- Stat 1 -->
-                    <div class="ev-stat">
-                        <div class="ev-stat-label">イベント開催実績</div>
-                        <div class="ev-stat-top">
-                            <div class="ev-stat-num">
-                                <span class="ev-counter" data-target="3">0</span><span class="ev-stat-unit">回</span>
-                            </div>
-                        </div>
-                        <div class="ev-stat-divider"></div>
-                        <p class="ev-stat-desc">過去3回の就活イベントを主催・企画・運営</p>
+                <div class="ev-stats-dark-grid ev-stagger">
+                    <div class="ev-stat-dark">
+                        <div class="ev-stat-dark-label">イベント開催実績</div>
+                        <div class="ev-stat-dark-num"><span class="ev-counter" data-target="3">0</span><span
+                                class="ev-stat-dark-unit">回</span></div>
+                        <div class="ev-stat-dark-divider"></div>
+                        <p class="ev-stat-dark-desc">過去3回の就活イベントを主催・企画・運営</p>
                     </div>
-                    <!-- Stat 2 -->
-                    <div class="ev-stat">
-                        <div class="ev-stat-label">主な接点大学</div>
-                        <div class="ev-stat-top">
-                            <div class="ev-stat-num" style="font-size:1.6rem; line-height:1.3;">
-                                関西<br>上位層
-                            </div>
-                        </div>
-                        <div class="ev-stat-divider"></div>
-                        <p class="ev-stat-desc">産近甲龍・関関同立・京阪神を中心とした関西上位層大学</p>
-                    </div>
-                    <!-- Stat 3 -->
-                    <div class="ev-stat">
-                        <div class="ev-stat-label">運営体制</div>
-                        <div class="ev-stat-top">
-                            <div class="ev-stat-num" style="font-size: 1.4rem; line-height:1.5;">
-                                一貫<br>対応
-                            </div>
-                        </div>
-                        <div class="ev-stat-divider"></div>
-                        <p class="ev-stat-desc">企画・集客・企業調整・当日運営・事後フォローまで一貫対応</p>
-                    </div>
-                    <!-- Stat 4 -->
-                    <div class="ev-stat">
-                        <div class="ev-stat-label">満足度</div>
-                        <div class="ev-stat-top">
-                            <div class="ev-stat-num">
-                                <span class="ev-counter" data-target="96">0</span><span class="ev-stat-unit">%</span>
-                            </div>
-                        </div>
+                    <div class="ev-stat-dark">
+                        <div class="ev-stat-dark-label">満足度</div>
+                        <div class="ev-stat-dark-num"><span class="ev-counter" data-target="96">0</span><span
+                                class="ev-stat-dark-unit">%</span></div>
                         <div class="ev-satisfaction-bar">
                             <div class="ev-satisfaction-fill" data-width="96%"></div>
                         </div>
-                        <div class="ev-stat-divider" style="margin-top:12px;"></div>
-                        <p class="ev-stat-desc">参加者アンケートに基づく満足度（参考値）</p>
+                        <div class="ev-stat-dark-divider" style="margin-top:12px;"></div>
+                        <p class="ev-stat-dark-desc">参加者アンケートに基づく満足度（参考値）</p>
+                    </div>
+                    <div class="ev-stat-dark">
+                        <div class="ev-stat-dark-label">主な接点大学</div>
+                        <div class="ev-stat-dark-num" style="font-size:1.6rem; line-height:1.3;">関西<br>上位層</div>
+                        <div class="ev-stat-dark-divider"></div>
+                        <p class="ev-stat-dark-desc">産近甲龍・関関同立・京阪神を中心とした関西上位層大学</p>
+                    </div>
+                    <div class="ev-stat-dark">
+                        <div class="ev-stat-dark-label">運営体制</div>
+                        <div class="ev-stat-dark-num" style="font-size:1.4rem; line-height:1.5;">一貫<br>対応</div>
+                        <div class="ev-stat-dark-divider"></div>
+                        <p class="ev-stat-dark-desc">企画・集客・企業調整・当日運営・事後フォローまで一貫対応</p>
                     </div>
                 </div>
             </div>
         </section>
+
 
         <!-- ─────────────────────────────────── -->
         <!-- 6. 大切にしていること               -->
@@ -1075,25 +1259,37 @@
             <div class="footer-grid-new gs-fade-up"
                 style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); text-align: left; align-items: start;">
                 <div>
-                    <div class="logo large" style="color: #111; margin-bottom: 24px; font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight:600; letter-spacing:0.15em;">BeMe</div>
+                    <div class="logo large"
+                        style="color: #111; margin-bottom: 24px; font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight:600; letter-spacing:0.15em;">
+                        BeMe</div>
                     <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 2;">
                         学生と企業が対等に向き合える機会をつくる、<br>信頼感のある就活支援事業。
                     </p>
                 </div>
                 <div>
-                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">SITEMAP</h4>
+                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
+                        SITEMAP</h4>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 12px;"><a href="index.html" style="font-size: 0.95rem; color: var(--color-text-secondary);">TOP</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#concept" style="font-size: 0.95rem; color: var(--color-text-secondary);">PHILOSOPHY / 理念</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#services" style="font-size: 0.95rem; color: var(--color-text-secondary);">SERVICES / 事業内容</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#team" style="font-size: 0.95rem; color: var(--color-text-secondary);">MEMBERS / 役員紹介</a></li>
-                        <li style="margin-bottom: 12px;"><a href="media.html" style="font-size: 0.95rem; color: var(--color-text-secondary);">MEDIA / SNS運用</a></li>
-                        <li style="margin-bottom: 12px;"><a href="internship.html" style="font-size: 0.95rem; color: var(--color-text-secondary);">INTERNSHIP / 実践型インターン</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">TOP</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#concept"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">PHILOSOPHY / 理念</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#services"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">SERVICES / 事業内容</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#team"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">MEMBERS / 役員紹介</a></li>
+                        <li style="margin-bottom: 12px;"><a href="media.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">MEDIA / SNS運用</a></li>
+                        <li style="margin-bottom: 12px;"><a href="internship.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">INTERNSHIP /
+                                実践型インターン</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">CONTACT</h4>
-                    <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 24px; line-height: 2;">
+                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
+                        CONTACT</h4>
+                    <p
+                        style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 24px; line-height: 2;">
                         事業・採用に関するお問い合わせは<br>下記よりお願いいたします。
                     </p>
                     <a href="mailto:info@b2-career.inc" class="btn-minimal" style="font-size: 1rem;">お問い合わせ窓口へ</a>
@@ -1101,7 +1297,8 @@
             </div>
             <div class="text-center"
                 style="margin-top: var(--space-xxl); border-top: 1px solid var(--color-border-light); padding-top: var(--space-md);">
-                <div style="font-size:0.85rem; color:var(--color-text-tertiary);">&copy; 2026 BeMe. All rights reserved.</div>
+                <div style="font-size:0.85rem; color:var(--color-text-tertiary);">&copy; 2026 BeMe. All rights reserved.
+                </div>
             </div>
         </footer>
     </main>
@@ -1114,11 +1311,11 @@
 
             // ── HERO ENTRANCE ──
             const tl = gsap.timeline({ delay: 0.3 });
-            tl.to('#hero-tag',   { opacity: 1, y: 0, duration: 1,   ease: 'power3.out' })
-              .to('#hero-title', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }, '-=0.6')
-              .to('#hero-lead',  { opacity: 1, y: 0, duration: 1,   ease: 'power3.out' }, '-=0.7')
-              .to('#hero-meta',  { opacity: 1, y: 0, duration: 1,   ease: 'power3.out' }, '-=0.6')
-              .to('#scroll-ind', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.3');
+            tl.to('#hero-tag', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' })
+                .to('#hero-title', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }, '-=0.6')
+                .to('#hero-lead', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.7')
+                .to('#hero-meta', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.6')
+                .to('#scroll-ind', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.3');
 
             // ── PARALLAX HERO BG ──
             window.addEventListener('scroll', () => {
@@ -1128,17 +1325,17 @@
 
             // ── HEADER COLOR SWITCH ──
             const header = document.getElementById('ev-header');
-            const logo   = document.getElementById('ev-logo');
+            const logo = document.getElementById('ev-logo');
             const backBtn = document.getElementById('ev-back-btn');
 
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 60) {
                     header.classList.add('scrolled');
-                    logo.style.color   = '#111';
+                    logo.style.color = '#111';
                     backBtn.style.color = '#444';
                 } else {
                     header.classList.remove('scrolled');
-                    logo.style.color   = '#FFF';
+                    logo.style.color = '#FFF';
                     backBtn.style.color = 'rgba(255,255,255,0.6)';
                 }
             }, { passive: true });

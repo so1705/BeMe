@@ -20,16 +20,1051 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
-        /* ── Page-level overrides ── */
         :root {
             --ev-dark: #141414;
+            --ev-navy: #0C1A27;
             --ev-accent: #7B93A8;
+            --ev-accent2: #5B7B92;
             --ev-light: #F7F7F5;
             --ev-border: rgba(0, 0, 0, 0.09);
-            --ev-radius: 4px;
+        }
+
+        /* accent text */
+        .acc {
+            color: var(--ev-accent);
+            font-style: normal;
+            font-weight: 600;
         }
 
         /* ── HERO ── */
+        .ev-hero {
+            min-height: 92vh;
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 10vh;
+            position: relative;
+            overflow: hidden;
+            background: var(--ev-dark);
+            color: #FFF;
+        }
+
+        .ev-hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('assets/images/services_strategic_media_1772216675381.png') center/cover no-repeat;
+            filter: grayscale(60%) brightness(0.32);
+            transform: scale(1.08);
+            will-change: transform;
+        }
+
+        .ev-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.3) 60%, transparent 100%);
+        }
+
+        .ev-hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 12vw;
+            max-width: 1800px;
+            width: 100%;
+        }
+
+        .ev-hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--ev-accent);
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .ev-hero-tag::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 1px;
+            background: var(--ev-accent);
+        }
+
+        .ev-hero-title {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(2.8rem, 7vw, 6.5rem);
+            font-weight: 500;
+            line-height: 1.15;
+            color: #FFF;
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .ev-hero-lead {
+            font-size: clamp(1rem, 1.4vw, 1.2rem);
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 560px;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .ev-hero-meta {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .ev-hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .ev-hero-meta-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 300;
+            color: #FFF;
+            line-height: 1;
+        }
+
+        .ev-hero-meta-label {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.08em;
+        }
+
+        .ev-hero-meta-divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .ev-hero-suppl {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.55);
+            max-width: 520px;
+            line-height: 1.9;
+        }
+
+        /* ── SCROLL INDICATOR ── */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            right: 12vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.4);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            z-index: 3;
+            opacity: 0;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                transform: scaleY(1);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: scaleY(0.6);
+                opacity: 0.9;
+            }
+        }
+
+        /* ── SECTION BASE ── */
+        .ev-section {
+            padding: 120px 12vw;
+        }
+
+        .ev-section.alt {
+            background: #F7F7F5;
+        }
+
+        .ev-section.dark {
+            background: var(--ev-dark);
+            color: #FFF;
+        }
+
+        .ev-section-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ── LABEL ── */
+        .ev-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            color: var(--ev-accent);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .ev-label::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 1px;
+            background: var(--ev-accent);
+        }
+
+        /* ── HEADINGS ── */
+        .ev-h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            font-weight: 500;
+            color: var(--ev-dark);
+            line-height: 1.4;
+            margin-bottom: 48px;
+        }
+
+        .ev-section.dark .ev-h2 {
+            color: #FFF;
+        }
+
+        /* ── ABOUT WITH IMAGE ── */
+        .ev-about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: center;
+        }
+
+        .ev-about-text h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+            font-weight: 500;
+            color: var(--ev-dark);
+            line-height: 1.5;
+            margin-bottom: 32px;
+        }
+
+        .ev-about-text p {
+            font-size: 1rem;
+            line-height: 2.1;
+            color: #4A4A4A;
+            margin-bottom: 20px;
+        }
+
+        .ev-about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .ev-about-img-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .ev-about-img-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(123, 147, 168, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .ev-about-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(20%) brightness(0.92);
+            transition: transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .ev-about-img-wrap:hover .ev-about-img {
+            transform: scale(1.05);
+        }
+
+        /* ── CARDS (premium) ── */
+        .ev-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .ev-cards-grid-2col {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .ev-card {
+            background: #FFF;
+            padding: 48px 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 24px rgba(0, 0, 0, 0.07);
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.5s ease;
+            will-change: transform;
+        }
+
+        .ev-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--ev-accent), var(--ev-accent2));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .ev-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .ev-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.13);
+        }
+
+        .ev-card-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: var(--ev-accent);
+            margin-bottom: 20px;
+        }
+
+        .ev-card-icon-bg {
+            width: 50px;
+            height: 50px;
+            background: rgba(123, 147, 168, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            transition: background 0.3s;
+        }
+
+        .ev-card:hover .ev-card-icon-bg {
+            background: rgba(123, 147, 168, 0.18);
+        }
+
+        .ev-card-icon-bg svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--ev-accent);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .ev-card h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--ev-dark);
+            margin-bottom: 14px;
+            line-height: 1.4;
+        }
+
+        .ev-card p {
+            font-size: 0.92rem;
+            line-height: 2;
+            color: #5A5A5A;
+        }
+
+        /* ── MENTORING SPOTLIGHT ── */
+        .ev-mentoring {
+            background: var(--ev-navy);
+            overflow: hidden;
+        }
+
+        .ev-mentoring-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 560px;
+        }
+
+        .ev-mentoring-img-side {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ev-mentoring-img-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(50%) brightness(0.45);
+            transform: scale(1.06);
+            transition: transform 8s ease;
+            display: block;
+        }
+
+        .ev-mentoring:hover .ev-mentoring-img-side img {
+            transform: scale(1.0);
+        }
+
+        .ev-mentoring-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, transparent 50%, var(--ev-navy) 100%);
+        }
+
+        .ev-mentoring-content {
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ev-mentoring-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            color: var(--ev-accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ev-mentoring-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 1px;
+            background: var(--ev-accent);
+        }
+
+        .ev-mentoring-h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+            font-weight: 500;
+            color: #FFF;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .ev-mentoring-stat-pre {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
+            margin-bottom: 4px;
+        }
+
+        .ev-mentoring-num {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(5rem, 9vw, 8rem);
+            font-weight: 200;
+            color: #FFF;
+            line-height: 0.9;
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .ev-mentoring-unit {
+            font-size: 0.22em;
+            color: var(--ev-accent);
+            margin-left: 8px;
+            letter-spacing: 0.05em;
+        }
+
+        .ev-mentoring-sub {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.35);
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.1em;
+            margin-bottom: 36px;
+        }
+
+        .ev-mentoring-desc {
+            font-size: 0.92rem;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.58);
+            max-width: 380px;
+        }
+
+        .ev-mentoring-desc strong {
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+        }
+
+        .ev-mentoring-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 28px;
+        }
+
+        .ev-mentoring-tag {
+            padding: 6px 16px;
+            border: 1px solid rgba(123, 147, 168, 0.3);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 0.05em;
+        }
+
+        /* ── CONTENT GRID ── */
+        .ev-content-section {
+            background: #EEEEF0;
+        }
+
+        .ev-content-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            margin-top: 48px;
+        }
+
+        .ev-content-card {
+            background: #FFF;
+            padding: 36px 32px;
+            transition: background 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ev-content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--ev-accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .ev-content-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .ev-content-card:hover {
+            background: #F8FAFB;
+        }
+
+        .ev-content-card-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: var(--ev-accent);
+            margin-bottom: 12px;
+        }
+
+        .ev-content-card h4 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ev-dark);
+            line-height: 1.4;
+        }
+
+        .ev-content-note {
+            margin-top: 32px;
+            font-size: 0.92rem;
+            line-height: 2;
+            color: #666;
+        }
+
+        /* ── FOUNDATION ── */
+        .ev-foundation-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .ev-foundation-text p {
+            font-size: 1.05rem;
+            line-height: 2.2;
+            color: rgba(255, 255, 255, 0.72);
+            margin-bottom: 24px;
+        }
+
+        .ev-foundation-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .ev-foundation-right {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .ev-foundation-img {
+            width: 100%;
+            aspect-ratio: 3/2;
+            object-fit: cover;
+            filter: grayscale(50%) brightness(0.55);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .ev-pillar {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: background 0.3s, border-color 0.3s;
+            margin-top: 2px;
+        }
+
+        .ev-pillar:first-child {
+            margin-top: 0;
+        }
+
+        .ev-pillar:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(123, 147, 168, 0.3);
+        }
+
+        .ev-pillar-dot {
+            width: 5px;
+            height: 5px;
+            background: var(--ev-accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .ev-pillar-text {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.72);
+            letter-spacing: 0.02em;
+        }
+
+        /* ── STATS DARK ── */
+        .ev-stats-section {
+            background: var(--ev-navy);
+            padding: 100px 12vw;
+        }
+
+        .ev-stats-section .ev-label {
+            color: var(--ev-accent);
+        }
+
+        .ev-stats-section .ev-h2 {
+            color: #FFF;
+        }
+
+        .ev-stats-dark-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .ev-stats-dark-row2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-top: none;
+        }
+
+        .ev-stat-dark {
+            padding: 56px 36px;
+            text-align: center;
+            background: var(--ev-navy);
+            transition: background 0.4s;
+        }
+
+        .ev-stat-dark:hover {
+            background: #122130;
+        }
+
+        .ev-stat-dark-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.22em;
+            color: var(--ev-accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .ev-stat-dark-num {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            font-weight: 200;
+            color: #FFF;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .ev-stat-dark-unit {
+            color: var(--ev-accent);
+            font-size: 0.45em;
+            margin-left: 3px;
+        }
+
+        .ev-stat-dark-divider {
+            width: 24px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0 auto 16px;
+        }
+
+        .ev-stat-dark-desc {
+            font-size: 0.82rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.38);
+        }
+
+        /* ── VALUES ── */
+        .ev-values-layout {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .ev-values-sticky {
+            position: sticky;
+            top: 120px;
+        }
+
+        .ev-values-sticky h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+            font-weight: 500;
+            color: var(--ev-dark);
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .ev-values-sticky p {
+            font-size: 0.9rem;
+            color: #888;
+            line-height: 1.9;
+        }
+
+        .ev-values-content p {
+            font-size: 1rem;
+            line-height: 2.2;
+            color: #4A4A4A;
+            margin-bottom: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--ev-border);
+        }
+
+        .ev-values-content p:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        /* ── ANIMATIONS ── */
+        .ev-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .ev-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .ev-reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .ev-reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .ev-reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .ev-reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ── CTA ── */
+        .ev-cta {
+            background: var(--ev-dark);
+            padding: 100px 12vw;
+            text-align: center;
+            color: #FFF;
+        }
+
+        .ev-cta h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+            font-weight: 500;
+            color: #FFF;
+            margin-bottom: 16px;
+        }
+
+        .ev-cta p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 40px;
+        }
+
+        .ev-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #FFF;
+            padding: 18px 48px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: background 0.4s, border-color 0.4s;
+        }
+
+        .ev-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ── BACK NAV ── */
+        .ev-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .ev-back:hover {
+            color: #FFF;
+        }
+
+        .ev-back svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ── MENTORING SPOTLIGHT ── */
+        .ev-mentoring {
+            background: #0F1923;
+            overflow: hidden;
+        }
+
+        .ev-mentoring-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 640px;
+        }
+
+        .ev-mentoring-img-side {
+            position: relative;
+            overflow: hidden;
+            min-height: 480px;
+        }
+
+        .ev-mentoring-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(15, 25, 35, 0.5) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .ev-mentoring-content {
+            padding: 80px 72px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ev-mentoring-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: var(--ev-accent);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .ev-mentoring-h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+            font-weight: 500;
+            color: #FFF;
+            line-height: 1.4;
+            margin-bottom: 36px;
+        }
+
+        .ev-mentoring-stat-pre {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .ev-mentoring-num {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 200;
+            color: #FFF;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .ev-mentoring-unit {
+            font-size: 0.4em;
+            color: var(--ev-accent);
+            margin-left: 4px;
+        }
+
+        .ev-mentoring-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 0.3em;
+            color: rgba(255, 255, 255, 0.25);
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .ev-mentoring-desc {
+            font-size: 0.92rem;
+            line-height: 2.2;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 460px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 32px;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .ev-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ev-mentoring-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .ev-mentoring-img-side {
+                min-height: 300px;
+            }
+
+            .ev-mentoring-content {
+                padding: 60px 6vw;
+            }
+
+            .ev-content-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 960px) {
+
+            .ev-about-grid,
+            .ev-foundation-layout,
+            .ev-values-layout {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .ev-cards-grid,
+            .ev-cards-grid-2col {
+                grid-template-columns: 1fr;
+            }
+
+            .ev-stats-dark-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ev-stats-dark-row2 {
+                grid-template-columns: 1fr;
+            }
+
+            .ev-values-sticky {
+                position: static;
+            }
+
+            .ev-hero-content {
+                padding: 0 6vw;
+            }
+
+            .ev-section {
+                padding: 80px 6vw;
+            }
+
+            .ev-stats-section {
+                padding: 80px 6vw;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .ev-stats-dark-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ev-hero-meta {
+                flex-wrap: wrap;
+            }
+
+            .ev-content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
         .ev-hero {
             min-height: 92vh;
             display: flex;
@@ -824,23 +1859,18 @@
         <section class="ev-section">
             <div class="ev-section-inner">
                 <div class="ev-about-grid">
-                    <div class="ev-about-left ev-reveal-left">
+                    <div class="ev-about-text ev-reveal-left">
                         <div class="ev-label">About This Business</div>
                         <h2>大学別に、学生と<br>信頼でつながる。</h2>
+                        <p>私たちは、関西の大学生に向けて、<em class="acc">大学別に就活SNSを運用</em>しています。</p>
+                        <p>一括りの就活情報ではなく、各大学ごとの雰囲気や学生の特徴に合わせて情報を届けることを大切にしながら、学生にとって<em
+                                class="acc">信頼できる情報発信の場</em>をつくってきました。</p>
+                        <p>発信内容は、就活情報だけにとどまりません。イベント告知、就活面談への導線、先輩のエントリーシート、面接対策のポイント、企業情報など、学生が普段の就活の中で本当に知りたい内容を届けることを重視しています。
+                        </p>
+                        <p>単なる広報アカウントではなく、<em class="acc">学生が継続的に接点を持ち、相談や行動につながるメディア</em>であることが、この事業の特徴です。</p>
                     </div>
-                    <div class="ev-about-right ev-reveal-right">
-                        <p>
-                            私たちは、関西の大学生に向けて、大学別に就活SNSを運用しています。
-                        </p>
-                        <p>
-                            一括りの就活情報ではなく、各大学ごとの雰囲気や学生の特徴に合わせて情報を届けることを大切にしながら、学生にとって信頼できる情報発信の場をつくってきました。
-                        </p>
-                        <p>
-                            発信内容は、就活情報だけにとどまりません。イベント告知、就活面談への導線、先輩のエントリーシート、面接対策のポイント、企業情報など、学生が普段の就活の中で本当に知りたい内容を、できるだけ分かりやすく、正確に届けることを重視しています。
-                        </p>
-                        <p>
-                            単なる広報アカウントではなく、学生が継続的に接点を持ち、相談や行動につながるメディアであることが、この事業の特徴です。
-                        </p>
+                    <div class="ev-about-img-wrap ev-reveal-right">
+                        <img src="assets/images/natural_sns_media.png" class="ev-about-img" alt="就活SNS運用">
                     </div>
                 </div>
             </div>
@@ -859,7 +1889,7 @@
                     <!-- Card 1 -->
                     <div class="ev-card">
                         <div class="ev-card-num">01</div>
-                        <div class="ev-card-icon">
+                        <div class="ev-card-icon-bg">
                             <svg viewBox="0 0 24 24">
                                 <rect x="3" y="3" width="18" height="18" rx="2" />
                                 <line x1="3" y1="9" x2="21" y2="9" />
@@ -872,38 +1902,22 @@
                     <!-- Card 2 -->
                     <div class="ev-card">
                         <div class="ev-card-num">02</div>
-                        <div class="ev-card-icon">
+                        <div class="ev-card-icon-bg">
                             <svg viewBox="0 0 24 24">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                                 <polyline points="14 2 14 8 20 8" />
                                 <line x1="16" y1="13" x2="8" y2="13" />
                                 <line x1="16" y1="17" x2="8" y2="17" />
-                                <polyline points="10 9 9 9 8 9" />
                             </svg>
                         </div>
                         <h3>就活情報の発信</h3>
                         <p>就活の進め方、先輩のエントリーシート、面接対策のコツ、企業情報など、学生にとって実用的な情報を継続的に発信しています。表面的な情報ではなく、実際の就活に役立つ内容を大切にしています。
                         </p>
                     </div>
-                    <!-- Card 3 -->
-                    <div class="ev-card">
-                        <div class="ev-card-num">03</div>
-                        <div class="ev-card-icon">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                                <circle cx="9" cy="7" r="4" />
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                            </svg>
-                        </div>
-                        <h3>学生面談の実施</h3>
-                        <p>各大学支部の上級生やOB・OGにあたる学生を長期インターン生として採用し、大学の先輩による学生面談を実施しています。フォロワーである学生に対して、より近い立場から就活相談や情報提供を行うことで、満足度の高い接点づくりにつなげています。また、面談を通じて各大学の学生が求めているニーズを把握し、その内容をSNS発信やイベント集客の設計にも反映しています。
-                        </p>
-                    </div>
                     <!-- Card 4 -->
                     <div class="ev-card">
                         <div class="ev-card-num">04</div>
-                        <div class="ev-card-icon">
+                        <div class="ev-card-icon-bg">
                             <svg viewBox="0 0 24 24">
                                 <circle cx="18" cy="5" r="3" />
                                 <circle cx="6" cy="12" r="3" />
@@ -919,26 +1933,93 @@
             </div>
         </section>
 
-        <!-- ─────────────────────────────────── -->
-        <!-- 補足: 主な発信内容                   -->
-        <!-- ─────────────────────────────────── -->
-        <section class="ev-section ev-content-types">
+        <!-- Mentoring Spotlight -->
+        <section class="ev-mentoring ev-reveal">
+            <div class="ev-mentoring-inner">
+                <div class="ev-mentoring-img-side">
+                    <img src="assets/images/services_executive_mentoring_1772216688903.png" alt="学生面談"
+                        style="width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(30%) brightness(0.7);">
+                    <div class="ev-mentoring-img-overlay"></div>
+                </div>
+                <div class="ev-mentoring-content">
+                    <div class="ev-mentoring-eyebrow">What We Do — 03</div>
+                    <h2 class="ev-mentoring-h2">学生面談の実施</h2>
+                    <div class="ev-mentoring-stat-pre">月間実施数</div>
+                    <div class="ev-mentoring-num">約<span class="ev-counter" data-target="60">0</span><span
+                            class="ev-mentoring-unit">名</span></div>
+                    <div class="ev-mentoring-sub">PER MONTH</div>
+                    <p class="ev-mentoring-desc">
+                        各大学支部の上級生やOB・OGにあたる学生を長期インターン生として採用し、大学の先輩による学生面談を実施しています。フォロワーである学生に対して、より近い立場から就活相談や情報提供を行うことで、満足度の高い接点づくりにつなげています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 補足: 主な発信内容 -->
+        <section class="ev-section ev-content-section">
             <div class="ev-section-inner">
                 <div class="ev-reveal">
                     <div class="ev-label">Content Types</div>
                     <h2 class="ev-h2" style="margin-bottom:0;">主な発信内容</h2>
                 </div>
-                <div class="ev-content-tags ev-stagger">
-                    <span class="ev-content-tag">就活情報</span>
-                    <span class="ev-content-tag">イベント告知</span>
-                    <span class="ev-content-tag">面談導線</span>
-                    <span class="ev-content-tag">先輩のエントリーシート</span>
-                    <span class="ev-content-tag">面接対策のポイント</span>
-                    <span class="ev-content-tag">企業情報</span>
+                <div class="ev-content-grid ev-stagger">
+                    <div class="ev-content-card">
+                        <div class="ev-content-card-num">01</div>
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--ev-accent)" fill="none"
+                            stroke-width="1.5" style="margin-bottom:10px;">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                        </svg>
+                        <h4>就活情報</h4>
+                    </div>
+                    <div class="ev-content-card">
+                        <div class="ev-content-card-num">02</div>
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--ev-accent)" fill="none"
+                            stroke-width="1.5" style="margin-bottom:10px;">
+                            <rect x="3" y="4" width="18" height="18" rx="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                        <h4>イベント告知</h4>
+                    </div>
+                    <div class="ev-content-card">
+                        <div class="ev-content-card-num">03</div>
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--ev-accent)" fill="none"
+                            stroke-width="1.5" style="margin-bottom:10px;">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                        <h4>面談導線</h4>
+                    </div>
+                    <div class="ev-content-card">
+                        <div class="ev-content-card-num">04</div>
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--ev-accent)" fill="none"
+                            stroke-width="1.5" style="margin-bottom:10px;">
+                            <polyline points="9 11 12 14 22 4" />
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                        </svg>
+                        <h4>先輩のES</h4>
+                    </div>
+                    <div class="ev-content-card">
+                        <div class="ev-content-card-num">05</div>
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--ev-accent)" fill="none"
+                            stroke-width="1.5" style="margin-bottom:10px;">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        <h4>面接対策のポイント</h4>
+                    </div>
+                    <div class="ev-content-card">
+                        <div class="ev-content-card-num">06</div>
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--ev-accent)" fill="none"
+                            stroke-width="1.5" style="margin-bottom:10px;">
+                            <rect x="2" y="7" width="20" height="14" rx="2" />
+                            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                        </svg>
+                        <h4>企業情報</h4>
+                    </div>
                 </div>
-                <p class="ev-content-note ev-reveal">
-                    各大学の学生に合ったテーマを意識しながら、学生が普段は知りにくい情報や、実際の行動につながる内容を発信しています。
-                </p>
+                <p class="ev-content-note ev-reveal">各大学の学生に合ったテーマを意識しながら、学生が普段は知りにくい情報や、実際の行動につながる内容を発信しています。</p>
             </div>
         </section>
 
@@ -982,74 +2063,47 @@
             </div>
         </section>
 
-        <!-- ─────────────────────────────────── -->
-        <!-- 5. 実績                             -->
-        <!-- ─────────────────────────────────── -->
-        <section class="ev-section">
+        <!-- 5. 実績 -->
+        <section class="ev-stats-section">
             <div class="ev-section-inner">
                 <div class="ev-reveal" style="margin-bottom: 56px;">
                     <div class="ev-label">Track Record</div>
                     <h2 class="ev-h2" style="margin-bottom:0;">実績</h2>
                 </div>
-                <!-- Row 1: 3 stats -->
-                <div class="ev-stats-grid ev-stagger">
-                    <!-- Stat 1 -->
-                    <div class="ev-stat">
-                        <div class="ev-stat-label">総フォロワー数</div>
-                        <div class="ev-stat-top">
-                            <div class="ev-stat-num">
-                                2万<span class="ev-stat-unit">人超</span>
-                            </div>
-                        </div>
-                        <div class="ev-stat-divider"></div>
-                        <p class="ev-stat-desc">関西主要大学の学生を中心とした継続的なフォロワー基盤</p>
+                <div class="ev-stats-dark-grid ev-stagger">
+                    <div class="ev-stat-dark">
+                        <div class="ev-stat-dark-label">総フォロワー数</div>
+                        <div class="ev-stat-dark-num">2万<span class="ev-stat-dark-unit">人超</span></div>
+                        <div class="ev-stat-dark-divider"></div>
+                        <p class="ev-stat-dark-desc">関西主要大学の学生を中心とした継続的なフォロワー基盤</p>
                     </div>
-                    <!-- Stat 2 -->
-                    <div class="ev-stat">
-                        <div class="ev-stat-label">接点大学数</div>
-                        <div class="ev-stat-top">
-                            <div class="ev-stat-num">
-                                <span class="ev-counter" data-target="18">0</span><span class="ev-stat-unit">大学以上</span>
-                            </div>
-                        </div>
-                        <div class="ev-stat-divider"></div>
-                        <p class="ev-stat-desc">大学別アカウントを通じた継続的なリーチ</p>
+                    <div class="ev-stat-dark">
+                        <div class="ev-stat-dark-label">接点大学数</div>
+                        <div class="ev-stat-dark-num"><span class="ev-counter" data-target="18">0</span><span
+                                class="ev-stat-dark-unit">大学以上</span></div>
+                        <div class="ev-stat-dark-divider"></div>
+                        <p class="ev-stat-dark-desc">大学別アカウントを通じた継続的なリーチ</p>
                     </div>
-                    <!-- Stat 3 -->
-                    <div class="ev-stat">
-                        <div class="ev-stat-label">月間学生面談数</div>
-                        <div class="ev-stat-top">
-                            <div class="ev-stat-num">
-                                約<span class="ev-counter" data-target="60">0</span><span class="ev-stat-unit">名</span>
-                            </div>
-                        </div>
-                        <div class="ev-stat-divider"></div>
-                        <p class="ev-stat-desc">各大学支部の先輩学生による面談を継続実施。ニーズ把握と質の高いイベント集客につなげています。</p>
+                    <div class="ev-stat-dark">
+                        <div class="ev-stat-dark-label">月間学生面談数</div>
+                        <div class="ev-stat-dark-num">約<span class="ev-counter" data-target="60">0</span><span
+                                class="ev-stat-dark-unit">名</span></div>
+                        <div class="ev-stat-dark-divider"></div>
+                        <p class="ev-stat-dark-desc">先輩学生による面談を継続実施。ニーズ把握と質の高いイベント集客につなげています。</p>
                     </div>
                 </div>
-                <!-- Row 2: 2 stats -->
-                <div class="ev-stats-row2 ev-stagger">
-                    <!-- Stat 4 -->
-                    <div class="ev-stat">
-                        <div class="ev-stat-label">運営体制</div>
-                        <div class="ev-stat-top">
-                            <div class="ev-stat-num" style="font-size: 1.5rem; line-height: 1.4;">
-                                各大学に<br>学生支部を設置
-                            </div>
-                        </div>
-                        <div class="ev-stat-divider"></div>
-                        <p class="ev-stat-desc">大学ごとに近い距離で学生と接する体制</p>
+                <div class="ev-stats-dark-row2 ev-stagger">
+                    <div class="ev-stat-dark">
+                        <div class="ev-stat-dark-label">運営体制</div>
+                        <div class="ev-stat-dark-num" style="font-size:1.4rem; line-height:1.4;">各大学に<br>学生支部を設置</div>
+                        <div class="ev-stat-dark-divider"></div>
+                        <p class="ev-stat-dark-desc">大学ごとに近い距離で学生と接する体制</p>
                     </div>
-                    <!-- Stat 5 -->
-                    <div class="ev-stat">
-                        <div class="ev-stat-label">主な対象大学群</div>
-                        <div class="ev-stat-top">
-                            <div class="ev-stat-num" style="font-size: 1.4rem; line-height: 1.5;">
-                                関西主要大学
-                            </div>
-                        </div>
-                        <div class="ev-stat-divider"></div>
-                        <p class="ev-stat-desc">産近甲龍・関関同立・京阪神を含む関西主要大学</p>
+                    <div class="ev-stat-dark">
+                        <div class="ev-stat-dark-label">主な対象大学群</div>
+                        <div class="ev-stat-dark-num" style="font-size:1.3rem; line-height:1.5;">関西主要大学</div>
+                        <div class="ev-stat-dark-divider"></div>
+                        <p class="ev-stat-dark-desc">産近甲龍・関関同立・京阪神を含む関西主要大学</p>
                     </div>
                 </div>
             </div>

@@ -36,6 +36,29 @@
 
     /* Elegant Accent (Deep Platinum / Slate) */
     --color-accent: #8E9BAE;
+    --color-highlight: #FF7850;
+}
+
+.text-highlight {
+    color: var(--color-highlight);
+    font-weight: 600;
+}
+
+.ev-stat-num, 
+.ev-hero-meta-num,
+.ev-mentoring-num,
+.ev-stat-dark-num,
+.ev-counter {
+    font-family: var(--font-heading) !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.01em;
+}
+
+.flex-row-nowrap {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    white-space: nowrap;
 }
 
 /* =======================================

@@ -476,6 +476,35 @@
             .ev-values-sticky { position: relative; top: 0; }
             .ev-stats-dark-grid { grid-template-columns: 1fr; }
         }
+        /* ── NEW GRID LAYOUTS ── */
+        .ev-cards-grid-2col {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .ev-stats-dark-grid-4col {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        @media (max-width: 991px) {
+            .ev-cards-grid-2col {
+                grid-template-columns: 1fr;
+            }
+            .ev-stats-dark-grid-4col {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ev-stats-dark-grid-4col {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -501,7 +530,7 @@
                     長期インターン（営業）
                 </h1>
                 <p class="ev-hero-lead" id="hero-lead" style="opacity: 0; transform: translateY(20px);">
-                    私たちは、単なる「アルバイト」ではなく、事業の主体者として結果にコミットする組織です。ToBの営業開拓から新規事業の立ち上げまで、学生の枠を超えた基準で価値を生み出し、自らの道を選び取る力を養います。
+                    学生が実践を通じて成長し、自分の人生を自分で選べる力を身につけるための長期インターン組織を運営しています。
                 </p>
                 <div class="ev-hero-meta" id="hero-meta" style="display:flex; gap:60px; align-items:flex-end; opacity:0; transform:translateY(20px);">
                     <div class="ev-hero-meta-item">
@@ -521,10 +550,10 @@
                 <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:80px; align-items:center;">
                     <div class="ev-reveal-left">
                         <div class="ev-label">About This Business</div>
-                        <h2 class="ev-h2">学生が事業の主体となり、<br>組織を動かす。</h2>
+                        <h2 class="ev-h2">実践の中で、<br>自分の選択肢を<br>広げていく。</h2>
                         <p style="margin-bottom:24px;">私たちは、学生が実践経験を通じて成長できる長期インターン組織を運営しています。</p>
                         <p style="margin-bottom:24px;">目指しているのは、与えられた選択肢の中から進路を選ぶのではなく、自分の人生を自分で考え、自分で選べる学生を増やすことです。そのために、表面的な体験ではなく、実際の事業運営に関わる機会をインターンの中でつくっています。</p>
-                        <p>業務領域は多岐にわたり、学生が単なる補助的な役割にとどまるのではなく、<span class="text-highlight">組織の一員</span>として責任を持ちながら動ける環境を整えています。</p>
+                        <p>業務領域は、営業、イベントの立ち上げ、SNSの広報・マーケティング、採用など多岐にわたり。学生が単なる補助的な役割にとどまるのではなく、<span class="text-highlight">組織の一員</span>として責任を持ちながら動ける環境を整えています。</p>
                     </div>
                     <div class="ev-reveal-right">
                         <img src="assets/images/natural_internship.png" style="width:100%; border-radius:var(--ev-radius); box-shadow: 0 30px 60px rgba(0,0,0,0.1);" alt="実践型インターン">
@@ -534,23 +563,28 @@
                 <!-- Domain Pillars (Square Cards) -->
                 <div class="ev-reveal" style="margin-top: 100px;">
                     <div class="ev-label">What We Do</div>
-                    <h2 class="ev-h2">組織の3つの柱</h2>
+                    <h2 class="ev-h2">実務機会の提供から、<br>組織づくりまで。</h2>
                 </div>
-                <div class="ev-cards-grid gs-stagger">
+                <div class="ev-cards-grid-2col gs-stagger">
                     <div class="ev-card">
                         <div class="ev-card-num">01</div>
-                        <h3>実務への参画</h3>
-                        <p>単なる「体験」ではなく、営業開拓やイベント制作など、実際の事業運営に不可欠な実務に直接携わります。</p>
+                        <h3>実務機会の提供</h3>
+                        <p>営業、イベント立ち上げ、SNS運用、マーケティング、採用など、実際の事業に関わる実務機会を学生に提供しています。学生が机上の学びだけで終わらず、実践の中で力をつけられる環境を整えています。</p>
                     </div>
                     <div class="ev-card">
                         <div class="ev-card-num">02</div>
-                        <h3>圧倒的な裁量権</h3>
-                        <p>全員が学生だからこそ、一人ひとりの意見が組織の意思決定に直結し、自ら考えて行動する力が求められます。</p>
+                        <h3>役割を持った組織運営</h3>
+                        <p>インターン生は、イベント運営, 商談, SNSマーケティング, デザイン, 就活面談対応など、さまざまな役割を担っています。それぞれが組織の一員として責任を持ち、実務の中で成長できるようにしています。</p>
                     </div>
                     <div class="ev-card">
                         <div class="ev-card-num">03</div>
-                        <h3>主体的組織運営</h3>
-                        <p>採用から育成、チームのマネジメントまで、すべてのプロセスを学生自身の手で完結させ、組織を動かします。</p>
+                        <h3>採用・育成・研修</h3>
+                        <p>運営側では、採用、育成、マネジメント、研修などを含めて、組織づくり全体を行っています。学生が継続的に成長しやすいよう、実務だけでなく育成面にも力を入れています。</p>
+                    </div>
+                    <div class="ev-card">
+                        <div class="ev-card-num">04</div>
+                        <h3>学生主体での事業推進</h3>
+                        <p>このインターン組織は、学生主体で事業を動かしている点が大きな特徴です。自ら考え、動き、形にしていく経験を通じて、学生が一から価値を生み出す力を身につけられる環境を目指しています。</p>
                     </div>
                 </div>
             </div>
@@ -567,63 +601,69 @@
                 
                 <!-- Detailed Rows -->
                 <div class="business-details-list">
-                    <!-- 1. Sales -->
+                    <!-- Area 01 -->
                     <div style="display:grid; grid-template-columns: 1fr 1.2fr; gap:80px; align-items:center; margin-bottom: 120px;">
                         <div class="ev-reveal-left">
-                            <h3 style="font-family: 'Shippori Mincho', serif; font-size: 2rem; margin-bottom: 24px;">長期インターン（営業）</h3>
-                            <p style="margin-bottom:20px; line-height: 2;">ToBの新規開拓営業や、営業代行プロジェクトに深く関わります。単なるテレアポではなく、顧客の課題をヒアリングし、解決策を提案する「本質的な営業力」を身につけることができます。</p>
-                            <p style="line-height: 2;">商談の進め方からクロージングまで、プロの目線でのフィードバックを受けながら、圧倒的な実践回数を通じて一生モノの折衝スキルを磨きます。</p>
+                            <h3 style="font-family: 'Shippori Mincho', serif; font-size: 2rem; margin-bottom: 24px;">営業</h3>
+                            <p style="line-height: 2;">ToBの営業開拓や営業代行など、ビジネスの根幹となる交渉力を磨きます。</p>
                         </div>
                         <div class="ev-reveal-right">
                             <img src="assets/images/media__1772218066517.jpg" style="width:100%; border-radius:var(--ev-radius); box-shadow: 0 20px 40px rgba(0,0,0,0.1);" alt="営業実務">
                         </div>
                     </div>
 
-                    <!-- Domain 02: Event -->
+                    <!-- Area 02 -->
                     <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:80px; align-items:center; margin-bottom: 120px;">
                         <div class="ev-reveal-right" style="order: 2;">
                             <h3 style="font-family: 'Shippori Mincho', serif; font-size: 2rem; margin-bottom: 24px;">イベント立ち上げ</h3>
-                            <p style="margin-bottom:20px; line-height: 2;">学生と企業の接点となるキャリアイベントを、企画から集客、当日の運営まで一貫して行います。ゼロから形にする難しさと、参加者の満足度を最大化させる醍醐味を味わえます。</p>
-                            <p style="line-height: 2;">プロジェクトマネジメントの基礎から、チームを動かすリーダーシップまで、イベント運営というダイナミックな環境で実践的に学びます。</p>
+                            <p style="line-height: 2;">企画から集客、当日の運営まで、ゼロからイベントを形にする経験を積めます。</p>
                         </div>
                         <div class="ev-reveal-left" style="order: 1;">
                             <img src="assets/images/media__1772218073887.jpg" style="width:100%; border-radius:var(--ev-radius); box-shadow: 0 20px 40px rgba(0,0,0,0.1);" alt="イベント企画">
                         </div>
                     </div>
 
-                    <!-- Domain 03: SNS -->
+                    <!-- Area 03 -->
                     <div style="display:grid; grid-template-columns: 1fr 1.2fr; gap:80px; align-items:center; margin-bottom: 120px;">
                         <div class="ev-reveal-left">
-                            <h3 style="font-family: 'Shippori Mincho', serif; font-size: 2rem; margin-bottom: 24px;">SNS広報マーケティング</h3>
-                            <p style="margin-bottom:20px; line-height: 2;">大学別就活SNSの運用を担当し、累計2万人以上のフォロワーを抱えるメディアの成長を支えます。トレンドの分析から投稿の企画、数値分析に基づく改善まで、実社会で通用するマーケティングスキルを習得します。</p>
-                            <p style="line-height: 2;">「誰に何を届けるか」を徹底的に考え抜き、フォロワー数という目に見える成果を追う経験は、強い自信につながります。</p>
+                            <h3 style="font-family: 'Shippori Mincho', serif; font-size: 2rem; margin-bottom: 24px;">SNS広報・マーケティング</h3>
+                            <p style="line-height: 2;">数万人規模のフォロワーを抱えるSNSメディアの運用を通じて、市場への影響力を生み出します。</p>
                         </div>
                         <div class="ev-reveal-right">
                             <img src="assets/images/media__1772218079267.jpg" style="width:100%; border-radius:var(--ev-radius); box-shadow: 0 20px 40px rgba(0,0,0,0.1);" alt="SNSマーケティング">
                         </div>
                     </div>
 
-                    <!-- Domain 04: Design -->
+                    <!-- Area 04 -->
                     <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:80px; align-items:center; margin-bottom: 120px;">
                         <div class="ev-reveal-right" style="order: 2;">
-                            <h3 style="font-family: 'Shippori Mincho', serif; font-size: 2rem; margin-bottom: 24px;">クリエイティブデザイン</h3>
-                            <p style="margin-bottom:20px; line-height: 2;">SNS用のクリエイティブ制作や、イベントで使用するデザイン物の制作を担当します。「綺麗」なだけではない、ユーザーの行動を促すためのマーケティング視点を持ったデザイン力を養います。</p>
-                            <p style="line-height: 2;">自身が制作したデザインがSNS上でどのように反応されるか、リアルタイムのフィードバックを通じてデザインの本質を追求します。</p>
+                            <h3 style="font-family: 'Shippori Mincho', serif; font-size: 2rem; margin-bottom: 24px;">デザイン</h3>
+                            <p style="line-height: 2;">SNSやイベント、事業運営に必要なあらゆるクリエイティブの制作を担当します。</p>
                         </div>
                         <div class="ev-reveal-left" style="order: 1;">
                             <img src="assets/images/media__1772219106056.png" style="width:100%; border-radius:var(--ev-radius); box-shadow: 0 20px 40px rgba(0,0,0,0.1);" alt="デザイン制作">
                         </div>
                     </div>
 
-                    <!-- Domain 05: Business Launch -->
-                    <div style="display:grid; grid-template-columns: 1fr 1.2fr; gap:80px; align-items:center; margin-bottom: 60px;">
+                    <!-- Area 05 -->
+                    <div style="display:grid; grid-template-columns: 1fr 1.2fr; gap:80px; align-items:center; margin-bottom: 120px;">
                         <div class="ev-reveal-left">
-                            <h3 style="font-family: 'Shippori Mincho', serif; font-size: 2rem; margin-bottom: 24px;">新規事業立ち上げ</h3>
-                            <p style="margin-bottom:20px; line-height: 2;">既存の枠組みに囚われない、新しい価値の創造に挑戦します。学生起業家としての視点を持ち、市場調査からビジネスモデルの構築、テスト運営まで、事業の立ち上げフェーズ特有のスピード感と熱量を体験できます。</p>
-                            <p style="line-height: 2;">学生起業ならではの裁量を持って、ゼロから自分のものを形にする能力を身につけ、自らの道を選び取れるよう支援しています。</p>
+                            <h3 style="font-family: 'Shippori Mincho', serif; font-size: 2rem; margin-bottom: 24px;">採用</h3>
+                            <p style="line-height: 2;">組織を支える新たな仲間を募り、面接から採用戦略の策定まで、人事としての実務を担います。</p>
                         </div>
                         <div class="ev-reveal-right">
-                            <img src="assets/images/vision_abstract_1772219266983.png" style="width:100%; border-radius:var(--ev-radius); box-shadow: 0 20px 40px rgba(0,0,0,0.1);" alt="新規事業立ち上げ">
+                            <img src="assets/images/vision_abstract_1772219266983.png" style="width:100%; border-radius:var(--ev-radius); box-shadow: 0 20px 40px rgba(0,0,0,0.1);" alt="採用面接">
+                        </div>
+                    </div>
+
+                    <!-- Area 06 -->
+                    <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:80px; align-items:center; margin-bottom: 60px;">
+                        <div class="ev-reveal-right" style="order: 2;">
+                            <h3 style="font-family: 'Shippori Mincho', serif; font-size: 2rem; margin-bottom: 24px;">就活面談対応</h3>
+                            <p style="line-height: 2;">学生と企業の相互理解を深めるため、キャリア支援の最前線で対話を通じたサポートを行います。</p>
+                        </div>
+                        <div class="ev-reveal-left" style="order: 1;">
+                            <img src="assets/images/premium_internship_execution.png" style="width:100%; border-radius:var(--ev-radius); box-shadow: 0 20px 40px rgba(0,0,0,0.1);" alt="面談対応">
                         </div>
                     </div>
                 </div>
@@ -636,29 +676,33 @@
                 <div class="ev-foundation-layout">
                     <div class="ev-foundation-text ev-reveal-left">
                         <div class="ev-label" style="color: rgba(123,147,168,0.9);">Foundation</div>
-                        <h2 class="ev-h2">事業を支える基盤</h2>
-                        <p>私たちのインターンシップは、単なる「労働力の提供」ではなく、学生自身が組織を動かすという自負の上に成り立っています。</p>
-                        <p>30名以上の意欲的なメンバーが所属し、採用・教育・マネジメントに至るまでの全工程を学生主体の自律的なコミュニティとして運用することで、高い成果と個人の成長を両立させています。</p>
-                        <p>また、自社で運営する就活イベントやSNSメディアとの密接な連携により、常に市場の最先端に触れながら実務経験を積める環境を維持しています。</p>
+                        <h2 class="ev-h2">この事業を支える基盤</h2>
+                        <p>この事業は、単なるインターン募集ではなく、学生が継続的に実務へ関わり、成長できる組織基盤の上に成り立っています。</p>
+                        <p>30名以上のメンバーが所属し、学生主体で事業を動かす体制を整えながら、採用・育成・マネジメント・研修まで一貫して行っています。実務に入るだけでなく、組織として学び続けられる仕組みを持っていることが、この事業の土台です。</p>
+                        <p>また、就活イベントやSNS運用といった他事業とも連動しているため、インターンの中で実際の事業運営に触れながら、より実践的な経験を積める環境になっています。</p>
                     </div>
                     <div class="ev-foundation-right ev-reveal-right">
                         <img src="assets/images/premium_internship_execution.png" class="ev-foundation-img" alt="組織の基盤">
                         <div class="ev-foundation-pillars">
                             <div class="ev-pillar">
                                 <div class="ev-pillar-dot"></div>
-                                <span class="ev-pillar-text">30名以上の多様な学生メンバー</span>
+                                <span class="ev-pillar-text">30名以上の学生メンバーが所属</span>
                             </div>
                             <div class="ev-pillar">
                                 <div class="ev-pillar-dot"></div>
-                                <span class="ev-pillar-text">学生主体の採用・育成・マネジメント</span>
+                                <span class="ev-pillar-text">採用・育成・マネジメント・研修まで一貫対応</span>
                             </div>
                             <div class="ev-pillar">
                                 <div class="ev-pillar-dot"></div>
-                                <span class="ev-pillar-text">他事業（イベント・SNS）との強固なシナジー</span>
+                                <span class="ev-pillar-text">学生主体での事業運営体制</span>
                             </div>
                             <div class="ev-pillar">
                                 <div class="ev-pillar-dot"></div>
-                                <span class="ev-pillar-text">月次定例・1on1による徹底した伴走</span>
+                                <span class="ev-pillar-text">就活イベント・SNS運用との連動</span>
+                            </div>
+                            <div class="ev-pillar">
+                                <div class="ev-pillar-dot"></div>
+                                <span class="ev-pillar-text">組織として学び続けられる仕組み</span>
                             </div>
                         </div>
                     </div>
@@ -673,24 +717,30 @@
                     <div class="ev-label">Track Record</div>
                     <h2 class="ev-h2" style="margin-bottom:0;">実績</h2>
                 </div>
-                <div class="ev-stats-dark-grid gs-stagger">
+                <div class="ev-stats-dark-grid-4col gs-stagger">
                     <div class="ev-stat-dark">
-                        <div class="ev-stat-dark-label">所属メンバー数</div>
-                        <div class="ev-stat-dark-num"><span class="ev-counter" data-target="30">0</span><span class="ev-stat-dark-unit">名+</span></div>
+                        <div class="ev-stat-dark-label">メンバー数</div>
+                        <div class="ev-stat-dark-num"><span class="ev-counter" data-target="30">0</span><span class="ev-stat-dark-unit">名以上</span></div>
                         <div class="ev-stat-dark-divider"></div>
-                        <p class="ev-stat-dark-desc">関西を中心に、高い目標を掲げる学生たちが切磋琢磨しています。</p>
+                        <p class="ev-stat-dark-desc">学生主体で事業を動かすインターン組織のメンバー数</p>
                     </div>
                     <div class="ev-stat-dark">
-                        <div class="ev-stat-dark-label">平均継続期間</div>
-                        <div class="ev-stat-dark-num"><span class="ev-counter" data-target="10">0</span><span class="ev-stat-dark-unit">ヶ月以上</span></div>
+                        <div class="ev-stat-dark-label">主な実務領域</div>
+                        <div class="ev-stat-dark-num" style="font-size:1.4rem; line-height:1.4; padding-top:10px;">営業・イベント<br>SNS・採用</div>
                         <div class="ev-stat-dark-divider"></div>
-                        <p class="ev-stat-dark-desc">単発ではない、長期的な関わりの中で本質的なスキルを養います。</p>
+                        <p class="ev-stat-dark-desc">営業・イベント立ち上げ・SNS運用・マーケティング・採用など多岐にわたる</p>
                     </div>
                     <div class="ev-stat-dark">
-                        <div class="ev-stat-dark-label">就職実績</div>
-                        <div class="ev-stat-dark-num"><span class="ev-counter" data-target="100">0</span><span class="ev-stat-dark-unit">%</span></div>
+                        <div class="ev-stat-dark-label">運営内容</div>
+                        <div class="ev-stat-dark-num" style="font-size:1.4rem; line-height:1.4; padding-top:10px;">採用・育成<br>マネジメント・研修</div>
                         <div class="ev-stat-dark-divider"></div>
-                        <p class="ev-stat-dark-desc">日系大手から外資・IT・メガベンチャーまで、納得のいく内定を獲得。</p>
+                        <p class="ev-stat-dark-desc">組織づくり全体を一貫して対応</p>
+                    </div>
+                    <div class="ev-stat-dark">
+                        <div class="ev-stat-dark-label">運営体制</div>
+                        <div class="ev-stat-dark-num" style="font-size:1.4rem; line-height:1.4; padding-top:10px;">学生主体で<br>組織を運営</div>
+                        <div class="ev-stat-dark-divider"></div>
+                        <p class="ev-stat-dark-desc">学生が責任ある役割を持ちながら主体的に動く環境</p>
                     </div>
                 </div>
             </div>
@@ -703,17 +753,17 @@
                     <div class="ev-values-sticky ev-reveal-left">
                         <div class="ev-label">Our Values</div>
                         <h2>大切にしていること</h2>
-                        <p>私たちは、インターン生を「顧客」ではなく、苦楽を共にする「パートナー」として捉えています。</p>
+                        <p>長期インターンを単なる経験の場ではなく、学生が本当に成長できる環境として大切にしています。</p>
                     </div>
                     <div class="ev-values-content ev-reveal-right">
                         <p>
-                            単にビジネススキルを教える場所ではありません。事業の主体となり、自らの頭で考え、行動し、結果に責任を持つ。そのプロセスそのものに価値があると考えています。
+                            私たちは、長期インターンを単なる経験の場ではなく、学生が本当に成長できる環境として大切にしています。
                         </p>
                         <p>
-                            世の中には多くの選択肢がありますが、「自分がどうありたいか」という軸がない限り、どこへ行っても迷いは消えません。だからこそ、私たちは実務を通じて、自分自身の可能性と限界に向き合う機会を重視しています。
+                            大事にしているのは、学生が受け身で参加するのではなく、自ら考え、役割を持ち、責任を持って動くことです。その中で、実務スキルだけでなく、組織を動かす力や、自分で選び取る力を身につけてほしいと考えています。
                         </p>
                         <p>
-                            主体性を持ち、やり抜いた経験は、就職活動の成功という側面だけでなく、その後の人生を切り拓くための強力な武器になります。私たちは、一人ひとりが自らの意思で人生の舵を取れるよう、全力で伴走し続けます。
+                            これからも、学生の枠を超えて挑戦できる環境を整ながら、実践を通じて成長できる組織づくりを続けていきます。
                         </p>
                     </div>
                 </div>

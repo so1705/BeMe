@@ -973,32 +973,39 @@ p {
     /* Slightly sharper interior radius */
 }
 
-/* Tap Indicator for Cards */
-.tap-indicator {
-    position: absolute;
-    right: 32px;
-    bottom: 32px;
-    display: flex;
+/* Prominent CTA Button for Cards */
+.btn-service-cta {
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    color: var(--color-accent);
+    gap: 12px;
+    background: #111;
+    color: #FFF;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-size: 0.85rem;
     font-weight: 600;
-    font-size: 0.95rem;
+    letter-spacing: 0.12em;
     font-family: var(--font-en-serif);
-    opacity: 0.6;
     transition: all 0.4s var(--ease-golden);
+    margin-top: 24px;
+    align-self: flex-start;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.tap-indicator.aligned-left {
-    right: auto;
-    left: 32px;
-    /* Position bottom-left for specific cards */
+.service-row:hover .btn-service-cta {
+    background: var(--color-accent);
+    color: #FFF;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
-.service-row:hover .tap-indicator {
-    opacity: 1;
-    color: var(--color-text-primary);
-    transform: translateX(6px);
+.btn-service-cta .arrow {
+    font-size: 1.2rem;
+    transition: transform 0.4s var(--ease-golden);
+}
+
+.service-row:hover .btn-service-cta .arrow {
+    transform: translateX(5px);
 }
 
 .parallax-img {

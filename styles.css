@@ -378,13 +378,14 @@ p {
    ======================================= */
 .hero-section {
     position: relative;
-    height: 100vh;
+    min-height: 100svh;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 12vw;
+    padding: 12vh clamp(24px, 10vw, 140px) 80px;
     text-align: center;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .hero-bg-wrapper {
@@ -393,6 +394,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
+    min-height: 100%;
     z-index: 0;
     overflow: hidden;
 }
@@ -489,11 +491,12 @@ p {
 .philosophy-block {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: var(--space-xxl);
+    align-items: flex-start;
+    gap: clamp(40px, 8vw, 120px);
     position: relative;
     z-index: 2;
     margin-bottom: var(--space-xxl);
+    padding: 0 clamp(24px, 8vw, 120px);
 }
 
 .philosophy-block.reverse {
@@ -525,8 +528,16 @@ p {
 }
 
 .phil-header {
-    flex: 0 0 40%;
-    min-width: 300px;
+    flex: 0 0 36%;
+    min-width: 260px;
+}
+
+.phil-content p {
+    margin-bottom: 1.4em;
+}
+
+.phil-content p:last-child {
+    margin-bottom: 0;
 }
 
 @media (max-width: 900px) {
@@ -741,6 +752,7 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 0 clamp(16px, 4vw, 80px);
 }
 
 .row-num {

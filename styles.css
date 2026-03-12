@@ -759,58 +759,57 @@ p {
 .type-char {
     opacity: 0;
     display: inline-block;
+    /* Apply gradient locally to allow transform animations without clipping issues */
+    background: linear-gradient(90deg, #FFFFFF, #E0F2FE, #FFFFFF);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 @keyframes typeCharIn {
     0% {
         opacity: 0;
         transform: scale(0.95);
+        filter: blur(5px);
     }
 
     100% {
         opacity: 1;
         transform: scale(1);
+        filter: blur(0px);
     }
 }
 
 @keyframes logoFloatGradient {
     0% {
-        background-position: 0% 50%;
         transform: translateY(0px);
     }
 
     100% {
-        background-position: 100% 50%;
         transform: translateY(-10px);
     }
 }
 
 /* Stagger typing after loader finishes (~1.3s delay before text-animate becomes visible) */
 .hero-text-animate.visible .type-char.chr1 {
-    animation: typeCharIn 0.1s forwards 0.3s;
+    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
 }
 
 .hero-text-animate.visible .type-char.chr2 {
-    animation: typeCharIn 0.1s forwards 0.4s;
+    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s;
 }
 
 .hero-text-animate.visible .type-char.chr3 {
-    animation: typeCharIn 0.1s forwards 0.5s;
+    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s;
 }
 
 .hero-text-animate.visible .type-char.chr4 {
-    animation: typeCharIn 0.1s forwards 0.6s;
+    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.6s;
 }
 
-/* Apply the floating motion and gradient to the logo once typing is done */
+/* Apply the floating motion to the logo parent */
 .hero-text-animate.visible.beme-hero-logo {
-    background: linear-gradient(90deg, #FFFFFF, #E0F2FE, #FFFFFF);
-    background-size: 200% auto;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    /* Starts floating 1s after appearing, smoothly varying gradient */
     animation: logoFloatGradient 5s ease-in-out infinite alternate 1.0s forwards;
 }
 
@@ -838,13 +837,15 @@ p {
 }
 
 .hero-subtitle {
-    font-size: 1.05rem;
-    color: #E0E0E0;
-    max-width: 600px;
+    /* Increased size as requested to emphasize the message */
+    font-size: clamp(1.15rem, 1.5vw, 1.4rem);
+    color: #F8F9FA;
+    max-width: 680px;
     margin: 0 auto;
     line-height: 2.2;
-    font-weight: 300;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
     word-break: keep-all;
     overflow-wrap: break-word;
     text-wrap: balance;
@@ -1299,6 +1300,25 @@ p {
 .member-block:hover::before {
     width: 100%;
     /* Formal draw animation on hover */
+}
+
+/* Decorative Typography Accents */
+.section-num-accent {
+    position: absolute;
+    left: -40px;
+    top: -50px;
+    font-size: clamp(6rem, 12vw, 10rem);
+    font-family: var(--font-en-serif);
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.03);
+    /* Subtle watermark */
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+}
+
+.bg-dark-section .section-num-accent {
+    color: rgba(255, 255, 255, 0.03);
 }
 
 /* Base override for dark section */

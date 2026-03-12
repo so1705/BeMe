@@ -678,7 +678,7 @@ p {
 .service-row {
     display: flex;
     align-items: center;
-    gap: var(--space-xxl);
+    gap: clamp(32px, 5vw, 80px);
     padding: var(--space-xl) 0;
     border-top: 1px solid var(--color-border-light);
     color: inherit;
@@ -696,7 +696,7 @@ p {
 }
 
 .row-img-wrapper {
-    flex: 0 0 40%;
+    flex: 0 0 42%;
     height: 500px;
     overflow: hidden;
     background: #EEE;
@@ -752,7 +752,7 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 clamp(16px, 4vw, 80px);
+    min-width: 0;
 }
 
 .row-num {
@@ -1258,4 +1258,20 @@ p {
     height: auto;
     max-height: 350px;
     overflow: visible;
+}
+
+/* =======================================
+   FOOTER EXPLICIT LAYOUT
+   ======================================= */
+.master-footer {
+    padding-left: clamp(24px, 10vw, 160px) !important;
+    padding-right: clamp(24px, 10vw, 160px) !important;
+    max-width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.footer-grid-new {
+    width: 100%;
 }

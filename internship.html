@@ -20,6 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
+        /* ── Page-level overrides ── */
         :root {
             --ev-dark: #141414;
             --ev-accent: #7B93A8;
@@ -28,6 +29,7 @@
             --ev-radius: 4px;
         }
 
+        /* ── HERO ── */
         .ev-hero {
             min-height: 92vh;
             display: flex;
@@ -46,12 +48,16 @@
             filter: grayscale(60%) brightness(0.35);
             transform: scale(1.08);
             will-change: transform;
+            transition: transform 0.1s linear;
         }
 
         .ev-hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.3) 60%, transparent 100%);
+            background: linear-gradient(to top,
+                    rgba(10, 10, 10, 0.85) 0%,
+                    rgba(10, 10, 10, 0.3) 60%,
+                    transparent 100%);
         }
 
         .ev-hero-content {
@@ -105,22 +111,135 @@
             opacity: 0;
             transform: translateY(20px);
         }
-        
-        /* ... existing classes reused from styles.css ... */
-        .ev-section { padding: var(--space-xl) 12vw; position: relative; }
-        .ev-section.alt { background: var(--ev-light); }
-        .ev-section.dark { background: var(--ev-dark); color: #FFF; }
-        .ev-section-inner { max-width: 1600px; margin: 0 auto; }
-        .ev-label { font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ev-accent); margin-bottom: 24px; }
-        .ev-h2 { font-family: 'Shippori Mincho', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1.4; margin-bottom: 40px; }
-        
-        .ev-practice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
-        .ev-practice-card { background: #FFF; padding: 40px; border: 1px solid var(--ev-border); border-radius: var(--ev-radius); transition: all 0.4s var(--ease-golden); }
-        .ev-practice-card:hover { transform: translateY(-8px); border-color: #000; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        .ev-practice-card-icon { width: 48px; height: 48px; margin-bottom: 24px; color: var(--ev-accent); }
-        .ev-practice-card h4 { font-family: 'Shippori Mincho', serif; font-size: 1.25rem; margin-bottom: 16px; }
-        .ev-practice-card p { font-size: 0.9rem; color: #666; line-height: 1.7; }
 
+        /* ── SECTION BASICS ── */
+        .ev-section {
+            padding: var(--space-xl) 12vw;
+            position: relative;
+        }
+
+        .ev-section.alt {
+            background: var(--ev-light);
+        }
+
+        .ev-section.dark {
+            background: var(--ev-dark);
+            color: #FFF;
+        }
+
+        .ev-section-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .ev-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--ev-accent);
+            margin-bottom: 24px;
+        }
+
+        .ev-h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            line-height: 1.4;
+            margin-bottom: 40px;
+        }
+
+        /* ── CARDS (What We Do) ── */
+        .ev-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .ev-card {
+            background: #FFF;
+            padding: 48px 40px;
+            box-shadow: 0 2px 24px rgba(0, 0, 0, 0.07);
+            transition: transform 0.5s var(--ease-golden), box-shadow 0.5s ease;
+        }
+
+        .ev-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 56px rgba(0, 0, 0, 0.12);
+        }
+
+        .ev-card-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: var(--ev-accent);
+            margin-bottom: 24px;
+        }
+
+        .ev-card h3 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #111;
+        }
+
+        .ev-card p {
+            font-size: 0.92rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* ── PRACTICE GRID ── */
+        .ev-practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .ev-practice-card {
+            background: #FFF;
+            padding: 40px;
+            border: 1px solid var(--ev-border);
+            border-radius: var(--ev-radius);
+            transition: all 0.4s var(--ease-golden);
+        }
+
+        .ev-practice-card:hover {
+            transform: translateY(-8px);
+            border-color: #000;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .ev-practice-card-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 24px;
+            color: var(--ev-accent);
+        }
+
+        .ev-practice-card-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .ev-practice-card h4 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+        }
+
+        .ev-practice-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ── REVEALS ── */
         .ev-reveal { opacity: 0; transform: translateY(40px); transition: all 1s var(--ease-golden); }
         .ev-reveal.visible { opacity: 1; transform: translateY(0); }
         .ev-reveal-left { opacity: 0; transform: translateX(-40px); transition: all 1s var(--ease-golden); }
@@ -128,13 +247,61 @@
         .ev-reveal-right { opacity: 0; transform: translateX(40px); transition: all 1s var(--ease-golden); }
         .ev-reveal-right.visible { opacity: 1; transform: translateX(0); }
 
-        .master-header { position: fixed; top: 0; width: 100%; padding: 30px 6vw; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: all 0.4s var(--ease-golden); }
-        .master-header.scrolled { padding: 20px 6vw; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 30px rgba(0,0,0,0.03); }
-        .logo { font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.3rem; letter-spacing: 0.15em; color: #FFF; text-decoration: none; transition: color 0.4s; }
-        .master-header.scrolled .logo { color: #000; }
-        .nav-links { display: flex; gap: 40px; }
-        .nav-links a { color: #FFF; text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; transition: color 0.4s; text-transform: uppercase; font-family: 'Inter', sans-serif; }
-        .master-header.scrolled .nav-links a { color: #000; }
+        /* ── HEADER ── */
+        .master-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 6vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s var(--ease-golden);
+        }
+
+        .master-header.scrolled {
+            padding: 20px 6vw;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 0.15em;
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .master-header.scrolled .logo {
+            color: #000;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: #FFF;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .master-header.scrolled .nav-links a {
+            color: #000;
+        }
+
+        @media (max-width: 900px) {
+            .ev-cards-grid { grid-template-columns: 1fr; }
+            .ev-section { padding: 80px 6vw; }
+        }
     </style>
 </head>
 
@@ -142,10 +309,10 @@
     <header class="master-header" id="ev-header">
         <a href="index.html" class="logo">BeMe</a>
         <nav class="nav-links">
-            <a href="index.html">Company</a>
-            <a href="index.html#services">Business</a>
-            <a href="index.html#team">Member</a>
-            <a href="#contact-btn">Contact</a>
+            <a href="index.html">TOP</a>
+            <a href="index.html#concept">COMPANY</a>
+            <a href="index.html#services">BUSINESS</a>
+            <a href="index.html#team">RECRUIT</a>
         </nav>
     </header>
 
@@ -164,11 +331,11 @@
                 </p>
                 <div class="ev-hero-meta" id="hero-meta" style="display:flex; gap:60px; align-items:flex-end; opacity:0; transform:translateY(20px);">
                     <div class="ev-hero-meta-item">
-                        <div class="flex-row-nowrap">
-                            <span class="ev-stat-num ev-counter" data-target="30" style="font-size:3.5rem; line-height:1;">0</span>
-                            <span class="ev-hero-meta-num" style="font-size:1.4rem; opacity:0.7;">名+</span>
+                        <div style="display:flex; align-items:baseline;">
+                            <span class="ev-stat-num ev-counter" data-target="30" style="font-size:3.5rem; line-height:1; font-family:'Inter', sans-serif; font-weight:600;">0</span>
+                            <span style="font-size:1.4rem; opacity:0.7; margin-left:4px;">名+</span>
                         </div>
-                        <span class="ev-hero-meta-label" style="font-size:0.75rem; letter-spacing:0.1em; opacity:0.6; text-transform:uppercase;">Belonging Members</span>
+                        <span style="font-size:0.75rem; letter-spacing:0.1em; opacity:0.6; text-transform:uppercase; font-family:'Inter', sans-serif;">Belonging Members</span>
                     </div>
                 </div>
             </div>
@@ -186,52 +353,78 @@
                         <p>業務領域は多岐にわたり、学生が単なる補助的な役割にとどまるのではなく、<span class="text-highlight">組織の一員</span>として責任を持ちながら動ける環境を整えています。</p>
                     </div>
                     <div class="ev-reveal-right">
-                        <img src="assets/images/natural_internship.png" style="width:100%; border-radius:var(--ev-radius);" alt="実践型インターン">
+                        <img src="assets/images/natural_internship.png" style="width:100%; border-radius:var(--ev-radius); box-shadow: 0 30px 60px rgba(0,0,0,0.1);" alt="実践型インターン">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. PRACTICE AREAS -->
+        <!-- 3. What We Do (The 3 Square Topics) -->
         <section class="ev-section alt">
             <div class="ev-section-inner">
                 <div class="ev-reveal" style="margin-bottom: 56px;">
-                    <div class="ev-label">Practice Areas</div>
-                    <h2 class="ev-h2" style="margin-bottom:0;">具体的な仕事内容</h2>
+                    <div class="ev-label">What We Do</div>
+                    <h2 class="ev-h2" style="margin-bottom:0;">圧倒的な裁量と実践で、<br>本質的な価値を生み出す。</h2>
                 </div>
-                <div class="ev-practice-grid ev-stagger">
-                    <div class="ev-practice-card">
-                        <div class="ev-practice-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="2"/></svg></div>
-                        <h4>営業</h4>
-                        <p>ToBの営業、営業代行などを通じて商談スキルや折衝力を磨きます。</p>
+                
+                <!-- The 3 Square Topics preserved from original -->
+                <div class="ev-cards-grid ev-stagger">
+                    <div class="ev-card">
+                        <div class="ev-card-num">01</div>
+                        <h3>実務への参画</h3>
+                        <p>シミュレーションではない、実際の事業目標に向けた業務に従事します。売上や成果に直接関わる責任ある仕事を通じて、ビジネスの最前線を体感します。</p>
                     </div>
-                    <div class="ev-practice-card">
-                        <div class="ev-practice-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-                        <h4>イベント立ち上げ</h4>
-                        <p>企画から立案、当日の運営まで一貫してプロジェクトを推進します。</p>
+                    <div class="ev-card">
+                        <div class="ev-card-num">02</div>
+                        <h3>圧倒的な裁量権</h3>
+                        <p>指示を待つのではなく、自ら考え、提案し、実行する。学生自身がプロジェクトの意思決定に関わることで、自律的な行動力を養います。</p>
                     </div>
-                    <div class="ev-practice-card">
-                        <div class="ev-practice-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></div>
-                        <h4>SNS運用・マーケ</h4>
-                        <p>ゼロから運用を開始し、5期で累計2万人のフォロワー達成に貢献します。</p>
-                    </div>
-                    <div class="ev-practice-card">
-                        <div class="ev-practice-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10zM2 12h20"/></svg></div>
-                        <h4>デザイン</h4>
-                        <p>SNS用のイラストから、マーケティングに特化したバナー制作まで幅広く担当。</p>
-                    </div>
-                    <div class="ev-practice-card">
-                        <div class="ev-practice-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-                        <h4>新規事業立ち上げ</h4>
-                        <p>既存の枠に囚われず、新しい価値を生み出す新規事業の構築に携わります。</p>
+                    <div class="ev-card">
+                        <div class="ev-card-num">03</div>
+                        <h3>学生主体の組織運営</h3>
+                        <p>インターン組織自体のマネジメントや教育も、学生メンバーが中心となって行います。組織を動かす視点を持ち、リーダーシップを磨くことができます。</p>
                     </div>
                 </div>
 
-                <div class="ev-reveal" style="margin-top: 80px; padding: 48px; background: #FFF; border: 1px solid var(--ev-border); border-radius: var(--ev-radius);">
-                    <h3 style="font-family: 'Shippori Mincho', serif; font-size: 1.5rem; margin-bottom: 24px;">学生起業だからこその強み</h3>
-                    <p style="line-height: 2; color: #444;">
-                        学生起業ならではの事業立ち上げも経験できます。全員学生で運営しているからこそ、他の長期インターンとは違い、自分で考え行動する裁量を持って、自分のものを形にする能力を身につけられます。また、自分自身の道を選べるような支援をしています。
-                    </p>
+                <!-- Practice Areas (Cards) -->
+                <div style="margin-top: 100px;">
+                    <div class="ev-label">Practice Areas</div>
+                    <h2 class="ev-h2">具体的な実務内容</h2>
+                    <div class="ev-practice-grid ev-stagger">
+                        <div class="ev-practice-card">
+                            <div class="ev-practice-card-icon"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="2"/></svg></div>
+                            <h4>営業</h4>
+                            <p>ToBの営業、営業代行などを通じて商談スキルや折衝力を磨きます。</p>
+                        </div>
+                        <div class="ev-practice-card">
+                            <div class="ev-practice-card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+                            <h4>イベント立ち上げ</h4>
+                            <p>企画から立案、当日の運営まで一貫してプロジェクトを推進します。</p>
+                        </div>
+                        <div class="ev-practice-card">
+                            <div class="ev-practice-card-icon"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></div>
+                            <h4>SNS運用・マーケ</h4>
+                            <p>ゼロから運用を開始し、5期で累計2万人のフォロワー達成に貢献します。</p>
+                        </div>
+                        <div class="ev-practice-card">
+                            <div class="ev-practice-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10zM2 12h20"/></svg></div>
+                            <h4>デザイン</h4>
+                            <p>SNS用のイラストから、マーケティングに特化したバナー制作まで幅広く担当。</p>
+                        </div>
+                        <div class="ev-practice-card">
+                            <div class="ev-practice-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                            <h4>新規事業立ち上げ</h4>
+                            <p>既存の枠に囚われず、新しい価値を生み出す新規事業の構築に携わります。</p>
+                        </div>
+                    </div>
+
+                    <!-- Updated Strength Segment -->
+                    <div class="ev-reveal" style="margin-top: 80px; padding: 48px; background: #FFF; border: 1px solid var(--ev-border); border-radius: var(--ev-radius);">
+                        <h3 style="font-family: 'Shippori Mincho', serif; font-size: 1.5rem; margin-bottom: 24px;">学生起業だからこその強み</h3>
+                        <p style="line-height: 2; color: #444;">
+                            学生起業ならではの事業立ち上げも経験できます。全員学生で運営しているからこそ、他の長期インターンとは違い、自分で考え行動する裁量を持って、自分のものを形にする能力を身につけられます。また、自分自身の道を選べるような支援をしています。
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -252,33 +445,44 @@
                         </div>
                     </div>
                     <div class="ev-reveal-left" style="order:1;">
-                        <img src="assets/images/premium_internship_execution.png" style="width:100%; border-radius:var(--ev-radius);" alt="長期インターンの基盤">
+                        <img src="assets/images/premium_internship_execution.png" style="width:100%; border-radius:var(--ev-radius); opacity:0.8;" alt="長期インターンの基盤">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 5. CONTACT & FOOTER -->
-        <footer class="master-footer container" style="padding: 100px 12vw; background: var(--ev-light);">
-            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 80px;">
+        <!-- 5. FOOTER & CONTACT -->
+        <footer class="master-footer container mt-xl" style="border-top: 1px solid var(--color-border-light); padding-top: var(--space-xl); padding-bottom: var(--space-lg);">
+            <div class="footer-grid-new gs-fade-up" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); text-align: left; align-items: start;">
                 <div>
-                    <div class="logo" style="color:#000; font-size:1.8rem; margin-bottom:24px;">BeMe</div>
-                    <p style="color:#666; line-height:2;">学生と企業が対等に向き合える機会をつくる、<br>信頼感のある就活支援事業。</p>
+                    <div class="logo large" style="color: #111; margin-bottom: 24px; font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight:600; letter-spacing:0.15em;">BeMe</div>
+                    <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 2;">
+                        学生が事業の主体となり、<br>自らの実力で価値を生み出す実践型インターン組織。
+                    </p>
                 </div>
-                <div id="contact-form-area" style="background:#FFF; padding:40px; border-radius:12px; border:1px solid var(--ev-border);">
-                    <h4 style="font-family:'Cinzel', serif; font-size:1.1rem; margin-bottom:20px;">INTERNSHIP CONTACT</h4>
-                    <p style="font-size:0.9rem; color:#666; margin-bottom:30px;">実践型インターンに関するお問い合わせは、<br>下記よりお願いいたします。</p>
-                    <form action="https://formspree.io/f/placeholder" method="POST" style="display:flex; flex-direction:column; gap:20px;">
-                        <input type="text" name="name" placeholder="お名前" required style="padding:14px; border:1px solid #DDD; border-radius:6px;">
-                        <input type="email" name="email" placeholder="メールアドレス" required style="padding:14px; border:1px solid #DDD; border-radius:6px;">
-                        <input type="text" name="subject" value="実践型インターンについて" style="padding:14px; border:1px solid #DDD; border-radius:6px;">
-                        <textarea placeholder="お問い合わせ内容" rows="5" style="padding:14px; border:1px solid #DDD; border-radius:6px; resize:none;"></textarea>
-                        <button type="submit" style="background:#111; color:#FFF; padding:16px; border:none; border-radius:6px; cursor:pointer; font-weight:600;">送信する</button>
+                <div>
+                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">SITEMAP</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 12px;"><a href="index.html" style="font-size: 0.95rem; color: var(--color-text-secondary);">TOP</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#concept" style="font-size: 0.95rem; color: var(--color-text-secondary);">COMPANY / 理念</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#services" style="font-size: 0.95rem; color: var(--color-text-secondary);">BUSINESS / 事業内容</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#team" style="font-size: 0.95rem; color: var(--color-text-secondary);">RECRUIT / メンバー</a></li>
+                    </ul>
+                </div>
+                <div id="contact-form-area" style="background: rgba(255, 255, 255, 0.5); padding: 32px; border-radius: 12px; border: 1px solid var(--color-border-light);">
+                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">INTERNSHIP CONTACT</h4>
+                    <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 24px;">実践型インターンに関するお問い合わせは、<br>下記よりお願いいたします。</p>
+                    <form action="https://formspree.io/f/placeholder" method="POST" id="contact-form" style="display: flex; flex-direction: column; gap: 16px;">
+                        <input type="text" name="name" placeholder="お名前" required style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD;">
+                        <input type="email" name="_replyto" placeholder="メールアドレス" required style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD;">
+                        <input type="text" name="subject" value="実践型インターンについて" style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD;">
+                        <textarea placeholder="お問い合わせ内容" rows="5" required style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; resize: none;"></textarea>
+                        <button type="submit" style="font-size: 0.9rem; width: fit-content; border: none; background: #111; color: #FFF; padding: 12px 32px; cursor: pointer;">送信する</button>
                     </form>
                 </div>
             </div>
-            <div style="margin-top:100px; padding-top:40px; border-top:1px solid var(--ev-border); color:#AAA; font-size:0.8rem; text-align:center;">
-                &copy; 2026 BeMe. All rights reserved.
+            <div style="text-center; margin-top: 60px; border-top: 1px solid var(--color-border-light); padding-top: 20px;">
+                <div style="text-align:center; font-size:0.85rem; color:var(--color-text-tertiary);">&copy; 2026 BeMe. All rights reserved.</div>
             </div>
         </footer>
     </main>
@@ -293,25 +497,32 @@
               .to('#hero-meta', { opacity: 1, y: 0, duration: 1 }, '-=0.6');
 
             window.addEventListener('scroll', () => {
-                const head = document.getElementById('ev-header');
-                if(window.scrollY > 60) head.classList.add('scrolled');
-                else head.classList.remove('scrolled');
+                const header = document.getElementById('ev-header');
+                if (window.scrollY > 60) header.classList.add('scrolled');
+                else header.classList.remove('scrolled');
             });
 
             const reveals = document.querySelectorAll('.ev-reveal, .ev-reveal-left, .ev-reveal-right');
-            const obs = new IntersectionObserver(entries => {
-                entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-            }, { threshold: 0.1 });
-            reveals.forEach(r => obs.observe(r));
+            reveals.forEach(el => {
+                ScrollTrigger.create({
+                    trigger: el,
+                    start: 'top 85%',
+                    onEnter: () => el.classList.add('visible'),
+                    once: true
+                });
+            });
 
             const counters = document.querySelectorAll('.ev-counter');
-            counters.forEach(c => {
-                const target = parseInt(c.dataset.target);
+            counters.forEach(el => {
                 ScrollTrigger.create({
-                    trigger: c,
+                    trigger: el,
                     onEnter: () => {
-                        let o = {v:0};
-                        gsap.to(o, { v: target, duration: 2, onUpdate: () => c.textContent = Math.floor(o.v) });
+                        let obj = {val:0};
+                        gsap.to(obj, {
+                            val: parseInt(el.dataset.target),
+                            duration: 2,
+                            onUpdate: () => el.textContent = Math.floor(obj.val)
+                        });
                     },
                     once: true
                 });

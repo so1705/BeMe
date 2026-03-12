@@ -747,6 +747,18 @@ p {
     padding-top: 15vh;
 }
 
+.hero-main-title .beme-hero-logo {
+    /* Ensure the BeMe logo stays large and prominent */
+    font-size: clamp(3rem, 10vw, 8rem);
+    line-height: 1;
+}
+
+.hero-main-title .brush-ja {
+    /* Slightly smaller main copy to emphasize the logo */
+    font-size: clamp(1.8rem, 4.5vw, 4rem);
+    margin-top: 10px;
+}
+
 .brush-en {
     font-family: var(--font-en-serif);
     font-weight: 400;
@@ -1279,25 +1291,31 @@ p {
 
     .member-block.leader-block .member-photo-frame {
         flex: auto;
-        width: 140px;
+        width: 160px;
         /* Strict max on mobile */
-        height: 140px;
+        height: 160px;
     }
 }
 
 .member-photo-frame {
     width: 100%;
     aspect-ratio: 1/1;
-    /* Square for sub-members formal look */
-    max-width: 140px;
-    /* Formal small portrait */
+    max-width: 160px;
+    /* Slightly larger to accommodate the cut */
     overflow: hidden;
     background: rgba(255, 255, 255, 0.05);
     margin: 0 auto 20px auto;
-    /* Center image */
-    border-radius: 4px;
-    /* Sharp formal */
+    /* Elegant diagonal slice instead of plain square */
+    clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    transition: clip-path 0.5s cubic-bezier(0.19, 1, 0.22, 1), transform 0.5s;
+}
+
+.member-block:hover .member-photo-frame {
+    /* Slight expansion of the cut on hover */
+    clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .member-photo-frame img {
@@ -1326,8 +1344,10 @@ p {
     font-weight: 600;
 }
 
-.bg-dark-section .member-name {
-    color: #FFF;
+.bg-dark-section .member-name,
+.bg-dark-section .member-bio {
+    color: #FFF !important;
+    /* Force pure white for high contrast */
 }
 
 .member-name {

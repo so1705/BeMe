@@ -754,9 +754,12 @@ p {
 }
 
 .hero-main-title .brush-ja {
-    /* Slightly smaller main copy to emphasize the logo */
-    font-size: clamp(1.8rem, 4.5vw, 4rem);
-    margin-top: 10px;
+    /* Significantly smaller main copy to ensure the BeMe logo dominates the hierarchy */
+    font-size: clamp(1.2rem, 2.5vw, 2.2rem);
+    margin-top: 16px;
+    line-height: 1.5;
+    /* Added line-height to support the requested line break */
+    font-weight: 500;
 }
 
 .brush-en {

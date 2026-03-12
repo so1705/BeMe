@@ -743,22 +743,82 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* Ensures it's centered */
     gap: 15px;
     padding-top: 15vh;
 }
 
 .hero-main-title .beme-hero-logo {
-    /* Ensure the BeMe logo stays large and prominent */
-    font-size: clamp(3rem, 10vw, 8rem);
+    /* Increased the BeMe logo size as requested */
+    font-size: clamp(4rem, 14vw, 10rem);
     line-height: 1;
+    display: inline-block;
+}
+
+/* Typing & Continuous Animation Logic */
+.type-char {
+    opacity: 0;
+    display: inline-block;
+}
+
+@keyframes typeCharIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes logoFloatGradient {
+    0% {
+        background-position: 0% 50%;
+        transform: translateY(0px);
+    }
+
+    100% {
+        background-position: 100% 50%;
+        transform: translateY(-10px);
+    }
+}
+
+/* Stagger typing after loader finishes (~1.3s delay before text-animate becomes visible) */
+.hero-text-animate.visible .type-char.chr1 {
+    animation: typeCharIn 0.1s forwards 0.3s;
+}
+
+.hero-text-animate.visible .type-char.chr2 {
+    animation: typeCharIn 0.1s forwards 0.4s;
+}
+
+.hero-text-animate.visible .type-char.chr3 {
+    animation: typeCharIn 0.1s forwards 0.5s;
+}
+
+.hero-text-animate.visible .type-char.chr4 {
+    animation: typeCharIn 0.1s forwards 0.6s;
+}
+
+/* Apply the floating motion and gradient to the logo once typing is done */
+.hero-text-animate.visible.beme-hero-logo {
+    background: linear-gradient(90deg, #FFFFFF, #E0F2FE, #FFFFFF);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Starts floating 1s after appearing, smoothly varying gradient */
+    animation: logoFloatGradient 5s ease-in-out infinite alternate 1.0s forwards;
 }
 
 .hero-main-title .brush-ja {
-    /* Significantly smaller main copy to ensure the BeMe logo dominates the hierarchy */
-    font-size: clamp(1.2rem, 2.5vw, 2.2rem);
-    margin-top: 16px;
-    line-height: 1.5;
-    /* Added line-height to support the requested line break */
+    /* Increased from previous reduction to give it more presence, but still smaller than BeMe */
+    font-size: clamp(1.6rem, 3.5vw, 3rem);
+    margin-top: 24px;
+    line-height: 1.6;
     font-weight: 500;
 }
 

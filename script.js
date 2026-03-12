@@ -130,6 +130,18 @@ function initLightweightInteractions() {
         });
     }
 
+    // Header Background on Scroll
+    const header = document.querySelector('.master-header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
+
     // 1. Premium GSAP Scroll Animations (Leverages Style)
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);

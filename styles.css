@@ -97,7 +97,7 @@ p {
 .container {
     max-width: 1800px;
     margin: 0 auto;
-    padding: 0 12vw;
+    padding: 0 max(12vw, 40px);
 }
 
 .section-spacing {
@@ -515,11 +515,13 @@ p {
 
 .phil-content {
     flex: 1;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     line-height: 2.2;
     color: var(--color-text-secondary);
     text-align: justify;
-    max-width: 800px;
+    max-width: 640px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
 
 .phil-header {
@@ -610,6 +612,9 @@ p {
     line-height: 2.2;
     font-weight: 300;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    text-wrap: balance;
 }
 
 /* =======================================
@@ -760,7 +765,9 @@ p {
     font-size: 1rem;
     line-height: 2;
     margin-bottom: var(--space-lg);
-    max-width: 90%;
+    max-width: 580px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
 
 .btn-minimal {

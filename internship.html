@@ -818,37 +818,71 @@
         </section>
 
         <!-- 5. FOOTER & CONTACT -->
-        <footer class="master-footer container mt-xl" style="border-top: 1px solid var(--color-border-light); padding-top: var(--space-xl); padding-bottom: var(--space-lg);">
-            <div class="footer-grid-new gs-fade-up" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); text-align: left; align-items: start;">
+        <!-- New Multi-Column Footer -->
+        <footer id="contact" class="master-footer container mt-xl"
+            style="border-top: 1px solid var(--color-border-light); padding-top: var(--space-xl); padding-bottom: var(--space-lg);">
+            <div class="footer-grid-new gs-fade-up"
+                style="display: grid; grid-template-columns: repeat(3, minmax(160px, 1fr)); gap: var(--space-xl); text-align: left; align-items: start;">
                 <div>
-                    <div class="logo large" style="color: #111; margin-bottom: 24px; font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight:600; letter-spacing:0.15em;">BeMe</div>
+                    <div class="logo large" style="color: #111; margin-bottom: 24px;">BeMe</div>
                     <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 2;">
-                        学生が事業の主体となり、<br>自らの実力で価値を生み出す実践型インターン組織。
+                        所在地<br>
+                        東京都渋谷区神宮前X-X-X<br>
+                        BeMeビルディング 5F
+                    </p>
+                    <p
+                        style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.8; margin-top: 24px;">
+                        <span class="text-highlight">圧倒的な基準</span>で社会を動かす、<br>本質的なキャリア支援機関。
                     </p>
                 </div>
                 <div>
-                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">SITEMAP</h4>
+                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
+                        SITEMAP</h4>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 12px;"><a href="index.html" style="font-size: 0.95rem; color: var(--color-text-secondary);">TOP</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#concept" style="font-size: 0.95rem; color: var(--color-text-secondary);">COMPANY / 理念</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#services" style="font-size: 0.95rem; color: var(--color-text-secondary);">BUSINESS / 事業内容</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#team" style="font-size: 0.95rem; color: var(--color-text-secondary);">MEMBER / メンバー</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">TOP</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#concept"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">COMPANY / 企業情報</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#services"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">BUSINESS / 事業内容</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#team"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">MEMBER / 採用・メンバー</a>
+                        </li>
+                        <li style="margin-bottom: 12px;"><a href="events.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">EVENTS / シークレットイベント</a>
+                        </li>
+                        <li style="margin-bottom: 12px;"><a href="media.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">MEDIA / SNS運用</a></li>
+                        <li style="margin-bottom: 12px;"><a href="internship.html"
+                                style="font-size: 0.95rem; color: var(--color-text-secondary);">INTERNSHIP /
+                                実践型インターン</a></li>
                     </ul>
                 </div>
-                <div id="contact-form-area" style="background: rgba(255, 255, 255, 0.5); padding: 32px; border-radius: 12px; border: 1px solid var(--color-border-light);">
-                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">INTERNSHIP CONTACT</h4>
-                    <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 24px;">実践型インターンに関するお問い合わせは、<br>下記よりお願いいたします。</p>
-                    <form action="https://formspree.io/f/placeholder" method="POST" id="contact-form" style="display: flex; flex-direction: column; gap: 16px;">
-                        <input type="text" name="name" placeholder="お名前" required style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD;">
-                        <input type="email" name="_replyto" placeholder="メールアドレス" required style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD;">
-                        <input type="text" name="subject" value="実践型インターンについて" style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD;">
-                        <textarea placeholder="お問い合わせ内容" rows="5" required style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; resize: none;"></textarea>
-                        <button type="submit" style="font-size: 0.9rem; width: fit-content; border: none; background: #111; color: #FFF; padding: 12px 32px; cursor: pointer;">送信する</button>
+                <div id="contact-form-area"
+                    style="background: rgba(255, 255, 255, 0.5); padding: 32px; border-radius: 12px; border: 1px solid var(--color-border-light);">
+                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
+                        CONTACT</h4>
+                    <form action="https://formspree.io/f/placeholder" method="POST" id="contact-form"
+                        style="display: flex; flex-direction: column; gap: 16px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <input type="text" name="name" placeholder="お名前" required
+                                style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem;">
+                            <input type="email" name="_replyto" placeholder="メールアドレス" required
+                                style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem;">
+                        </div>
+                        <input type="text" name="subject" placeholder="お問い合わせ件名"
+                            style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem;">
+                        <textarea name="message" placeholder="お問い合わせ内容" rows="5" required
+                            style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem; resize: none;"></textarea>
+                        <button type="submit" class="btn-minimal"
+                            style="font-size: 0.9rem; width: fit-content; align-self: flex-start; border: none; background: #111; color: #FFF; padding: 12px 32px; cursor: pointer;">送信する</button>
                     </form>
                 </div>
             </div>
-            <div style="text-align:center; margin-top: 60px; border-top: 1px solid var(--color-border-light); padding-top: 20px;">
-                <div style="text-align:center; font-size:0.85rem; color:var(--color-text-tertiary);">&copy; 2026 BeMe. All rights reserved.</div>
+            <div class="text-center gs-fade-up"
+                style="margin-top: var(--space-xxl); border-top: 1px solid var(--color-border-light); padding-top: var(--space-md);">
+                <div style="font-size:0.85rem; color:var(--color-text-tertiary);">&copy; 2026 BeMe. All rights reserved.
+                </div>
             </div>
         </footer>
     </main>

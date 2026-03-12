@@ -298,9 +298,183 @@
             color: #000;
         }
 
+        /* ── FOUNDATION ── */
+        .ev-foundation-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .ev-foundation-text p {
+            font-size: 1.05rem;
+            line-height: 2.2;
+            color: rgba(255, 255, 255, 0.72);
+            margin-bottom: 24px;
+        }
+
+        .ev-foundation-right {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .ev-foundation-img {
+            width: 100%;
+            aspect-ratio: 3/2;
+            object-fit: cover;
+            filter: grayscale(50%) brightness(0.55);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .ev-foundation-pillars {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .ev-pillar {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .ev-pillar:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(123, 147, 168, 0.3);
+        }
+
+        .ev-pillar-dot {
+            width: 5px;
+            height: 5px;
+            background: var(--ev-accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .ev-pillar-text {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.72);
+            letter-spacing: 0.02em;
+        }
+
+        /* ── STATS DARK ── */
+        .ev-stats-section {
+            background: #0C1A27; /* ev-navy */
+            padding: 100px 12vw;
+        }
+
+        .ev-stats-dark-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .ev-stat-dark {
+            padding: 56px 36px;
+            text-align: center;
+            background: #0C1A27;
+            transition: background 0.4s;
+        }
+
+        .ev-stat-dark:hover {
+            background: #122130;
+        }
+
+        .ev-stat-dark-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.22em;
+            color: var(--ev-accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .ev-stat-dark-num {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            font-weight: 200;
+            color: #FFF;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .ev-stat-dark-unit {
+            color: var(--ev-accent);
+            font-size: 0.45em;
+            margin-left: 3px;
+        }
+
+        .ev-stat-dark-divider {
+            width: 24px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0 auto 16px;
+        }
+
+        .ev-stat-dark-desc {
+            font-size: 0.82rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.38);
+        }
+
+        /* ── VALUES ── */
+        .ev-values-layout {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .ev-values-sticky {
+            position: sticky;
+            top: 120px;
+        }
+
+        .ev-values-sticky h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+            font-weight: 500;
+            color: #111;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .ev-values-sticky p {
+            font-size: 0.9rem;
+            color: #888;
+            line-height: 1.9;
+        }
+
+        .ev-values-content p {
+            font-size: 1rem;
+            line-height: 2.2;
+            color: #4A4A4A;
+            margin-bottom: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--ev-border);
+        }
+
+        .ev-values-content p:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
         @media (max-width: 900px) {
             .ev-cards-grid { grid-template-columns: 1fr; }
             .ev-section { padding: 80px 6vw; }
+            .ev-foundation-layout, .ev-values-layout { grid-template-columns: 1fr; gap: 40px; }
+            .ev-values-sticky { position: relative; top: 0; }
+            .ev-stats-dark-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -312,7 +486,7 @@
             <a href="index.html">TOP</a>
             <a href="index.html#concept">COMPANY</a>
             <a href="index.html#services">BUSINESS</a>
-            <a href="index.html#team">RECRUIT</a>
+            <a href="index.html#team">MEMBER</a>
         </nav>
     </header>
 
@@ -354,6 +528,29 @@
                     </div>
                     <div class="ev-reveal-right">
                         <img src="assets/images/natural_internship.png" style="width:100%; border-radius:var(--ev-radius); box-shadow: 0 30px 60px rgba(0,0,0,0.1);" alt="実践型インターン">
+                    </div>
+                </div>
+
+                <!-- Domain Pillars (Square Cards) -->
+                <div class="ev-reveal" style="margin-top: 100px;">
+                    <div class="ev-label">What We Do</div>
+                    <h2 class="ev-h2">組織の3つの柱</h2>
+                </div>
+                <div class="ev-cards-grid gs-stagger">
+                    <div class="ev-card">
+                        <div class="ev-card-num">01</div>
+                        <h3>実務への参画</h3>
+                        <p>単なる「体験」ではなく、営業開拓やイベント制作など、実際の事業運営に不可欠な実務に直接携わります。</p>
+                    </div>
+                    <div class="ev-card">
+                        <div class="ev-card-num">02</div>
+                        <h3>圧倒的な裁量権</h3>
+                        <p>全員が学生だからこそ、一人ひとりの意見が組織の意思決定に直結し、自ら考えて行動する力が求められます。</p>
+                    </div>
+                    <div class="ev-card">
+                        <div class="ev-card-num">03</div>
+                        <h3>主体的組織運営</h3>
+                        <p>採用から育成、チームのマネジメントまで、すべてのプロセスを学生自身の手で完結させ、組織を動かします。</p>
                     </div>
                 </div>
             </div>
@@ -432,38 +629,92 @@
                 </div>
             </div>
         </section>
-                </div>
-            </div>
-        </section>
 
         <!-- 4. FOUNDATION -->
         <section class="ev-section dark">
             <div class="ev-section-inner">
-                <div class="ev-reveal" style="margin-bottom: 80px; text-align: center;">
-                    <div class="ev-label">Foundation</div>
-                    <h2 class="ev-h2" style="color: #FFF;">組織としての基盤</h2>
-                    <p style="color: rgba(255,255,255,0.7); max-width: 800px; margin: 0 auto;">単なるインターン募集ではなく、学生が継続的に実務へ関わり、成長できる組織基盤の上に成り立っています。採用から育成、マネジメントまで自社で完結させています。</p>
+                <div class="ev-foundation-layout">
+                    <div class="ev-foundation-text ev-reveal-left">
+                        <div class="ev-label" style="color: rgba(123,147,168,0.9);">Foundation</div>
+                        <h2 class="ev-h2">事業を支える基盤</h2>
+                        <p>私たちのインターンシップは、単なる「労働力の提供」ではなく、学生自身が組織を動かすという自負の上に成り立っています。</p>
+                        <p>30名以上の意欲的なメンバーが所属し、採用・教育・マネジメントに至るまでの全工程を学生主体の自律的なコミュニティとして運用することで、高い成果と個人の成長を両立させています。</p>
+                        <p>また、自社で運営する就活イベントやSNSメディアとの密接な連携により、常に市場の最先端に触れながら実務経験を積める環境を維持しています。</p>
+                    </div>
+                    <div class="ev-foundation-right ev-reveal-right">
+                        <img src="assets/images/premium_internship_execution.png" class="ev-foundation-img" alt="組織の基盤">
+                        <div class="ev-foundation-pillars">
+                            <div class="ev-pillar">
+                                <div class="ev-pillar-dot"></div>
+                                <span class="ev-pillar-text">30名以上の多様な学生メンバー</span>
+                            </div>
+                            <div class="ev-pillar">
+                                <div class="ev-pillar-dot"></div>
+                                <span class="ev-pillar-text">学生主体の採用・育成・マネジメント</span>
+                            </div>
+                            <div class="ev-pillar">
+                                <div class="ev-pillar-dot"></div>
+                                <span class="ev-pillar-text">他事業（イベント・SNS）との強固なシナジー</span>
+                            </div>
+                            <div class="ev-pillar">
+                                <div class="ev-pillar-dot"></div>
+                                <span class="ev-pillar-text">月次定例・1on1による徹底した伴走</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Point 1 -->
-                <div style="display:grid; grid-template-columns: 1fr 1.2fr; gap:80px; align-items:center; margin-bottom: 100px;">
-                    <div class="ev-reveal-left">
-                        <h3 style="font-family: 'Shippori Mincho', serif; font-size: 1.6rem; color: #FFF; margin-bottom: 24px;">30名以上の学生メンバーが所属</h3>
-                        <p style="color: rgba(255,255,255,0.72); line-height: 2;">関西を中心に、意欲の高い30名以上の学生が所属する大規模な組織へと成長しました。多様なバックグラウンドを持つ学生たちが、互いに切磋琢磨しながら事業を前に進めています。</p>
+        <!-- 5. STATS -->
+        <section class="ev-stats-section">
+            <div class="ev-section-inner">
+                <div class="ev-reveal" style="margin-bottom: 56px;">
+                    <div class="ev-label">Track Record</div>
+                    <h2 class="ev-h2" style="margin-bottom:0;">実績</h2>
+                </div>
+                <div class="ev-stats-dark-grid gs-stagger">
+                    <div class="ev-stat-dark">
+                        <div class="ev-stat-dark-label">所属メンバー数</div>
+                        <div class="ev-stat-dark-num"><span class="ev-counter" data-target="30">0</span><span class="ev-stat-dark-unit">名+</span></div>
+                        <div class="ev-stat-dark-divider"></div>
+                        <p class="ev-stat-dark-desc">関西を中心に、高い目標を掲げる学生たちが切磋琢磨しています。</p>
                     </div>
-                    <div class="ev-reveal-right">
-                        <img src="assets/images/premium_internship_execution.png" style="width:100%; border-radius:var(--ev-radius); opacity:0.8;" alt="長期インターン 組織規模">
+                    <div class="ev-stat-dark">
+                        <div class="ev-stat-dark-label">平均継続期間</div>
+                        <div class="ev-stat-dark-num"><span class="ev-counter" data-target="10">0</span><span class="ev-stat-dark-unit">ヶ月以上</span></div>
+                        <div class="ev-stat-dark-divider"></div>
+                        <p class="ev-stat-dark-desc">単発ではない、長期的な関わりの中で本質的なスキルを養います。</p>
+                    </div>
+                    <div class="ev-stat-dark">
+                        <div class="ev-stat-dark-label">就職実績</div>
+                        <div class="ev-stat-dark-num"><span class="ev-counter" data-target="100">0</span><span class="ev-stat-dark-unit">%</span></div>
+                        <div class="ev-stat-dark-divider"></div>
+                        <p class="ev-stat-dark-desc">日系大手から外資・IT・メガベンチャーまで、納得のいく内定を獲得。</p>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Point 2 -->
-                <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:80px; align-items:center;">
-                    <div class="ev-reveal-left" style="order: 2;">
-                        <h3 style="font-family: 'Shippori Mincho', serif; font-size: 1.6rem; color: #FFF; margin-bottom: 24px;">採用・育成・マネジメントの一貫体制</h3>
-                        <p style="color: rgba(255,255,255,0.72); line-height: 2;">入口となる採用から、実務に必要なスキルの育成、そしてチームを率いるマネジメントまで。すべてのステップにおいて学生自らが主体となり、組織の質を保つための仕組みを構築・運用しています。</p>
+        <!-- 6. VALUES -->
+        <section class="ev-section alt">
+            <div class="ev-section-inner">
+                <div class="ev-values-layout">
+                    <div class="ev-values-sticky ev-reveal-left">
+                        <div class="ev-label">Our Values</div>
+                        <h2>大切にしていること</h2>
+                        <p>私たちは、インターン生を「顧客」ではなく、苦楽を共にする「パートナー」として捉えています。</p>
                     </div>
-                    <div class="ev-reveal-right" style="order: 1;">
-                        <img src="assets/images/process_abstract_1772219282377.png" style="width:100%; border-radius:var(--ev-radius); opacity:0.75;" alt="長期インターン 育成体制">
+                    <div class="ev-values-content ev-reveal-right">
+                        <p>
+                            単にビジネススキルを教える場所ではありません。事業の主体となり、自らの頭で考え、行動し、結果に責任を持つ。そのプロセスそのものに価値があると考えています。
+                        </p>
+                        <p>
+                            世の中には多くの選択肢がありますが、「自分がどうありたいか」という軸がない限り、どこへ行っても迷いは消えません。だからこそ、私たちは実務を通じて、自分自身の可能性と限界に向き合う機会を重視しています。
+                        </p>
+                        <p>
+                            主体性を持ち、やり抜いた経験は、就職活動の成功という側面だけでなく、その後の人生を切り拓くための強力な武器になります。私たちは、一人ひとりが自らの意思で人生の舵を取れるよう、全力で伴走し続けます。
+                        </p>
                     </div>
                 </div>
             </div>
@@ -484,7 +735,7 @@
                         <li style="margin-bottom: 12px;"><a href="index.html" style="font-size: 0.95rem; color: var(--color-text-secondary);">TOP</a></li>
                         <li style="margin-bottom: 12px;"><a href="index.html#concept" style="font-size: 0.95rem; color: var(--color-text-secondary);">COMPANY / 理念</a></li>
                         <li style="margin-bottom: 12px;"><a href="index.html#services" style="font-size: 0.95rem; color: var(--color-text-secondary);">BUSINESS / 事業内容</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#team" style="font-size: 0.95rem; color: var(--color-text-secondary);">RECRUIT / メンバー</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#team" style="font-size: 0.95rem; color: var(--color-text-secondary);">MEMBER / メンバー</a></li>
                     </ul>
                 </div>
                 <div id="contact-form-area" style="background: rgba(255, 255, 255, 0.5); padding: 32px; border-radius: 12px; border: 1px solid var(--color-border-light);">
@@ -508,20 +759,34 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             gsap.registerPlugin(ScrollTrigger);
+
+            // ── HERO ENTRANCE ──
             const tl = gsap.timeline({ delay: 0.3 });
-            tl.to('#hero-tag', { opacity: 1, y: 0, duration: 1 })
-              .to('#hero-title', { opacity: 1, y: 0, duration: 1.2 }, '-=0.6')
-              .to('#hero-lead', { opacity: 1, y: 0, duration: 1 }, '-=0.7')
-              .to('#hero-meta', { opacity: 1, y: 0, duration: 1 }, '-=0.6');
+            tl.to('#hero-tag', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' })
+                .to('#hero-title', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }, '-=0.6')
+                .to('#hero-lead', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.7')
+                .to('#hero-meta', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.6');
 
+            // ── PARALLAX HERO BG ──
             window.addEventListener('scroll', () => {
-                const header = document.getElementById('ev-header');
-                if (window.scrollY > 60) header.classList.add('scrolled');
-                else header.classList.remove('scrolled');
-            });
+                const scrollY = window.scrollY;
+                const bg = document.getElementById('ev-hero-bg');
+                if (bg) bg.style.transform = `scale(1.08) translateY(${scrollY * 0.12}px)`;
+            }, { passive: true });
 
-            const reveals = document.querySelectorAll('.ev-reveal, .ev-reveal-left, .ev-reveal-right');
-            reveals.forEach(el => {
+            // ── HEADER COLOR SWITCH ──
+            const header = document.getElementById('ev-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 60) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }, { passive: true });
+
+            // ── SCROLL REVEAL ──
+            const revealEls = document.querySelectorAll('.ev-reveal, .ev-reveal-left, .ev-reveal-right');
+            revealEls.forEach(el => {
                 ScrollTrigger.create({
                     trigger: el,
                     start: 'top 85%',
@@ -530,20 +795,54 @@
                 });
             });
 
+            // ── COUNTERS ──
             const counters = document.querySelectorAll('.ev-counter');
             counters.forEach(el => {
                 ScrollTrigger.create({
                     trigger: el,
+                    start: 'top 85%',
                     onEnter: () => {
-                        let obj = {val:0};
+                        const target = parseInt(el.getAttribute('data-target'));
+                        let obj = { val: 0 };
                         gsap.to(obj, {
-                            val: parseInt(el.dataset.target),
+                            val: target,
                             duration: 2,
-                            onUpdate: () => el.textContent = Math.floor(obj.val)
+                            ease: 'power2.out',
+                            onUpdate: () => {
+                                el.textContent = Math.floor(obj.val);
+                            }
                         });
                     },
                     once: true
                 });
+            });
+
+            // ── STAGGER CARDS ──
+            document.querySelectorAll('.ev-cards-grid, .ev-stats-dark-grid').forEach(grid => {
+                ScrollTrigger.create({
+                    trigger: grid,
+                    start: 'top 80%',
+                    onEnter: () => {
+                        gsap.fromTo(grid.children,
+                            { opacity: 0, y: 40 },
+                            { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12 }
+                        );
+                    },
+                    once: true
+                });
+            });
+
+            // ── PILLAR STAGGER ──
+            ScrollTrigger.create({
+                trigger: '.ev-foundation-pillars',
+                start: 'top 80%',
+                onEnter: () => {
+                    gsap.fromTo('.ev-pillar',
+                        { opacity: 0, x: 30 },
+                        { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out', stagger: 0.1 }
+                    );
+                },
+                once: true
             });
         });
     </script>

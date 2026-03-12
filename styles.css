@@ -1032,42 +1032,12 @@ p {
    ======================================= */
 .member-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-xl);
 }
 
 .member-block {
     text-align: left;
-}
-
-.member-block.founder-block {
-    grid-column: 1 / -1;
-    display: flex;
-    gap: var(--space-xxl);
-    align-items: center;
-    margin-bottom: var(--space-xl);
-}
-
-.member-block.founder-block .member-photo-frame {
-    flex: 0 0 45%;
-    margin-bottom: 0;
-    aspect-ratio: 3/4;
-}
-
-.member-block.founder-block .founder-content {
-    flex: 1;
-}
-
-@media (max-width: 900px) {
-    .member-block.founder-block {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--space-md);
-    }
-
-    .member-block.founder-block .member-photo-frame {
-        width: 100%;
-    }
 }
 
 .member-photo-frame {

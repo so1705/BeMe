@@ -745,12 +745,13 @@ p {
     align-items: center;
     /* Ensures it's centered */
     gap: 15px;
-    padding-top: 15vh;
+    padding-top: 25vh;
+    /* Lowered the overall title block */
 }
 
 .hero-main-title .beme-hero-logo {
-    /* Increased the BeMe logo size as requested */
-    font-size: clamp(4rem, 14vw, 10rem);
+    /* Made the BeMe logo slightly larger as requested */
+    font-size: clamp(5rem, 18vw, 13rem);
     line-height: 1;
     display: inline-block;
 }
@@ -760,7 +761,7 @@ p {
     opacity: 0;
     display: inline-block;
     /* Apply gradient locally to allow transform animations without clipping issues */
-    background: linear-gradient(90deg, #FFFFFF, #E0F2FE, #FFFFFF);
+    background: linear-gradient(90deg, #FFFFFF, #E0F2FE, #B8E2F2, #FFFFFF);
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
@@ -781,6 +782,16 @@ p {
     }
 }
 
+@keyframes textGradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
 @keyframes logoFloatGradient {
     0% {
         transform: translateY(0px);
@@ -792,20 +803,21 @@ p {
 }
 
 /* Stagger typing after loader finishes (~1.3s delay before text-animate becomes visible) */
+/* Apply both typeIn and the continuous gradient shift so the color flows inside the text */
 .hero-text-animate.visible .type-char.chr1 {
-    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
+    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s, textGradientShift 4s linear infinite alternate;
 }
 
 .hero-text-animate.visible .type-char.chr2 {
-    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s;
+    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s, textGradientShift 4s linear infinite alternate;
 }
 
 .hero-text-animate.visible .type-char.chr3 {
-    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s;
+    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s, textGradientShift 4s linear infinite alternate;
 }
 
 .hero-text-animate.visible .type-char.chr4 {
-    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.6s;
+    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.6s, textGradientShift 4s linear infinite alternate;
 }
 
 /* Apply the floating motion to the logo parent */
@@ -837,13 +849,13 @@ p {
 }
 
 .hero-subtitle {
-    /* Increased size as requested to emphasize the message */
+    /* Kept the size but restored the original thin (#E0E0E0/300) styling */
     font-size: clamp(1.15rem, 1.5vw, 1.4rem);
-    color: #F8F9FA;
+    color: #E0E0E0;
     max-width: 680px;
     margin: 0 auto;
     line-height: 2.2;
-    font-weight: 400;
+    font-weight: 300;
     letter-spacing: 0.05em;
     text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
     word-break: keep-all;

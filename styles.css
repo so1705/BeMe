@@ -1032,7 +1032,7 @@ p {
    ======================================= */
 .member-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-xl);
 }
 
@@ -1041,16 +1041,81 @@ p {
     background: #FFF;
     padding: 32px;
     border-radius: 16px;
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(123, 147, 168, 0.1);
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     position: relative;
+    overflow: hidden;
+}
+
+.member-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-accent), rgba(123, 147, 168, 0.4));
+    opacity: 0.9;
 }
 
 .member-block:hover {
     transform: translateY(-8px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
-    border-color: rgba(123, 147, 168, 0.2);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+    border-color: rgba(123, 147, 168, 0.3);
+}
+
+.member-block.leader-block {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 48px;
+    align-items: center;
+    background: linear-gradient(145deg, #FFFFFF 0%, #F4F7F9 100%);
+    padding: 48px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+}
+
+.member-block.leader-block::before {
+    height: 0;
+    /* Remove top border for leader, use a side accent instead */
+}
+
+.member-block.leader-block::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--color-accent), #2A3B4C);
+}
+
+.member-block.leader-block .member-photo-frame {
+    flex: 0 0 320px;
+    aspect-ratio: 1/1;
+    margin-bottom: 0;
+    border-radius: 16px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.member-block.leader-block .leader-content {
+    flex: 1;
+}
+
+@media (max-width: 900px) {
+    .member-block.leader-block {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+        padding: 32px;
+    }
+
+    .member-block.leader-block .member-photo-frame {
+        flex: auto;
+        width: 100%;
+        max-width: 360px;
+        aspect-ratio: 1/1;
+    }
 }
 
 .member-photo-frame {

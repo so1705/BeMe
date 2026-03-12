@@ -1175,22 +1175,28 @@ p {
 }
 
 /* =======================================
-   MEMBERS SECTION
+   MEMBERS SECTION (Formal & Compact)
    ======================================= */
 .member-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-xl);
+    gap: var(--space-lg);
+    /* Reduced from xl */
+    max-width: 900px;
+    /* Keep it compact centrally */
+    margin: 0 auto;
 }
 
 .member-block {
     text-align: left;
     background: #FFF;
-    padding: 32px;
-    border-radius: 16px;
-    border: 1px solid rgba(123, 147, 168, 0.1);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
-    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    padding: 24px;
+    /* Reduced padding */
+    border-radius: 4px;
+    /* Sharper formal look */
+    border: 1px solid rgba(123, 147, 168, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
 }
@@ -1200,49 +1206,61 @@ p {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-accent), rgba(123, 147, 168, 0.4));
-    opacity: 0.9;
+    width: 0%;
+    /* Start empty for animation */
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-accent), #00D2FF);
+    transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .member-block:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
-    border-color: rgba(123, 147, 168, 0.3);
+    transform: translateY(-4px);
+    /* Subtler lift */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    /* Darker formal shadow */
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.member-block:hover::before {
+    width: 100%;
+    /* Formal draw animation on hover */
+}
+
+/* Base override for dark section */
+.bg-dark-section .member-block {
+    background: rgba(10, 15, 26, 0.6);
+    /* Deep elegant dark */
+    backdrop-filter: blur(10px);
+}
+
+.bg-dark-section .member-block.leader-block {
+    background: rgba(10, 15, 26, 0.8);
 }
 
 .member-block.leader-block {
     grid-column: 1 / -1;
     display: flex;
-    gap: 48px;
-    align-items: center;
-    background: linear-gradient(145deg, #FFFFFF 0%, #F4F7F9 100%);
-    padding: 48px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
-}
-
-.member-block.leader-block::before {
-    height: 0;
-    /* Remove top border for leader, use a side accent instead */
+    gap: 32px;
+    /* Reduced gap */
+    align-items: flex-start;
+    /* Align top for editorial look */
+    padding: 32px;
+    /* Reduced padding */
 }
 
 .member-block.leader-block::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 6px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--color-accent), #2A3B4C);
+    display: none;
+    /* Remove old chunky side bar */
 }
 
 .member-block.leader-block .member-photo-frame {
-    flex: 0 0 320px;
+    flex: 0 0 160px;
+    /* Much smaller leader frame */
     aspect-ratio: 1/1;
     margin-bottom: 0;
-    border-radius: 16px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    /* Formal sharp edges */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .member-block.leader-block .leader-content {
@@ -1252,28 +1270,34 @@ p {
 @media (max-width: 900px) {
     .member-block.leader-block {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 32px;
-        padding: 32px;
+        align-items: center;
+        /* Center on mobile */
+        gap: 24px;
+        padding: 24px;
+        text-align: center;
     }
 
     .member-block.leader-block .member-photo-frame {
         flex: auto;
-        width: 100%;
-        max-width: 360px;
-        aspect-ratio: 1/1;
+        width: 140px;
+        /* Strict max on mobile */
+        height: 140px;
     }
 }
 
 .member-photo-frame {
     width: 100%;
-    aspect-ratio: 4/5;
+    aspect-ratio: 1/1;
+    /* Square for sub-members formal look */
+    max-width: 140px;
+    /* Formal small portrait */
     overflow: hidden;
-    background: #eee;
-    margin-bottom: var(--space-lg);
-    border-radius: 12px;
-    position: relative;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.05);
+    margin: 0 auto 20px auto;
+    /* Center image */
+    border-radius: 4px;
+    /* Sharp formal */
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .member-photo-frame img {
@@ -1281,37 +1305,67 @@ p {
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    transition: transform 0.8s;
+    filter: grayscale(20%) contrast(1.1);
+    /* Slightly formal tone */
+    transition: filter 0.6s, transform 0.8s;
 }
 
-.member-photo-frame img:hover {
+.member-block:hover .member-photo-frame img {
     transform: scale(1.05);
+    filter: grayscale(0%) contrast(1.1);
+    /* Restore color on hover */
 }
 
 .member-role {
     font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    color: var(--color-text-tertiary);
-    margin-bottom: 4px;
-    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    /* Smaller, formal */
+    color: var(--color-accent);
+    margin-bottom: 6px;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+}
+
+.bg-dark-section .member-name {
+    color: #FFF;
 }
 
 .member-name {
     font-family: var(--font-heading);
-    font-size: 1.4rem;
+    font-size: 1.1rem;
+    /* Reduced from 1.4/1.8 */
     font-weight: 500;
-    margin-bottom: var(--space-sm);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+}
+
+.leader-block .member-name {
+    font-size: 1.3rem;
+    /* Slightly larger for leader */
+    margin-bottom: 16px;
 }
 
 .member-bio {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    /* Formal editorial size */
     color: var(--color-text-secondary);
     line-height: 1.8;
+    text-align: justify;
+    /* Formal text block */
 }
 
 @media (max-width: 768px) {
     .member-list {
         grid-template-columns: 1fr;
+    }
+
+    .member-block {
+        text-align: center;
+    }
+
+    .member-bio {
+        text-align: left;
+        /* Keep left or center on mobile depending on pref */
     }
 }
 

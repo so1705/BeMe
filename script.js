@@ -168,7 +168,9 @@ function initLightweightInteractions() {
                     scrollTrigger: {
                         trigger: elem,
                         start: 'top 85%',
-                        toggleActions: 'play none none reverse'
+                        toggleActions: 'play none none reverse',
+                        onEnter: () => elem.classList.add('visible'),
+                        onEnterBack: () => elem.classList.add('visible')
                     }
                 }
             );

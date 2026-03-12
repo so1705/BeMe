@@ -924,32 +924,26 @@ p {
 .services-list {
     display: flex;
     flex-direction: column;
-    gap: clamp(20px, 4vw, 32px);
-    /* Tighter spacing between cards */
-    padding: var(--space-md) 0;
+    gap: 16px;
+    /* Condensed gap between cards */
+    padding: var(--space-sm) 0;
 }
 
 .service-row {
     display: flex;
     align-items: stretch;
-    /* Make children fill height */
-    gap: clamp(24px, 4vw, 48px);
-    padding: clamp(20px, 3vw, 32px);
-    /* Inner padding for the box */
+    gap: clamp(20px, 3vw, 40px);
+    padding: clamp(16px, 2vw, 24px);
+    /* Significantly reduced vertical padding for PC fit */
     background: rgba(255, 255, 255, 0.85);
-    /* Glassmorphic clear white */
     backdrop-filter: blur(12px);
-    /* Blur effect to lift off from the background lines */
     border: 1px solid rgba(255, 255, 255, 0.6);
-    /* Subtle framing */
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-    /* Floating shadow */
     color: inherit;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     z-index: 2;
-    /* Keep above grid */
 }
 
 .service-row:hover {
@@ -961,51 +955,76 @@ p {
 }
 
 .row-img-wrapper {
-    flex: 0 0 35%;
-    /* Reduced from 42% to fit better */
+    flex: 0 0 32%;
+    /* Slightly narrower image */
     height: auto;
-    min-height: 280px;
-    /* Condensed height */
+    min-height: 220px;
+    /* Reduced min-height for PC fit */
     overflow: hidden;
     background: #EEE;
     position: relative;
     border-radius: 8px;
-    /* Slightly sharper interior radius */
 }
 
-/* Prominent CTA Button for Cards */
+/* High-Impact Orange/Red CTA Button */
 .btn-service-cta {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    background: #111;
+    background: linear-gradient(135deg, #FF4B2B, #FF416C);
+    /* Vibrant Red-Orange Gradient */
     color: #FFF;
-    padding: 12px 28px;
+    padding: 14px 36px;
+    /* Slightly larger */
     border-radius: 40px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     font-family: var(--font-en-serif);
-    transition: all 0.4s var(--ease-golden);
-    margin-top: 24px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-top: 16px;
     align-self: flex-start;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 20px rgba(255, 75, 43, 0.3);
+    position: relative;
+    overflow: hidden;
 }
 
 .service-row:hover .btn-service-cta {
-    background: var(--color-accent);
-    color: #FFF;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    background: linear-gradient(135deg, #FF416C, #FF4B2B);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 12px 30px rgba(255, 75, 43, 0.45);
 }
 
 .btn-service-cta .arrow {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     transition: transform 0.4s var(--ease-golden);
 }
 
 .service-row:hover .btn-service-cta .arrow {
-    transform: translateX(5px);
+    transform: translateX(6px);
+}
+
+/* "Shush" reveal animation for the button */
+.service-row .btn-service-cta {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.service-row.gs-fade-up.visible .btn-service-cta {
+    animation: ctaReveal 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards 0.4s;
+}
+
+@keyframes ctaReveal {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px) scaleX(0.8);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scaleX(1);
+        filter: blur(0px);
+    }
 }
 
 .parallax-img {

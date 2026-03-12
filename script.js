@@ -159,6 +159,9 @@ function initLightweightInteractions() {
             navToggle.classList.toggle('open');
             navOverlay.classList.toggle('active');
 
+            const mainHeader = document.querySelector('.master-header');
+            if (mainHeader) mainHeader.classList.toggle('menu-open');
+
             if (!isOpen) {
                 document.body.style.overflow = 'hidden'; // Stop native scrolling
             } else {
@@ -170,6 +173,9 @@ function initLightweightInteractions() {
             link.addEventListener('click', (e) => {
                 navToggle.classList.remove('open');
                 navOverlay.classList.remove('active');
+                const mainHeader = document.querySelector('.master-header');
+                if (mainHeader) mainHeader.classList.remove('menu-open');
+
                 document.body.style.overflow = '';
 
                 // Handle smooth scroll natively if on same page

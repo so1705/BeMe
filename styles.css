@@ -63,11 +63,8 @@ body {
     font-family: var(--font-body);
     background-color: var(--color-bg-base);
     background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='%23ffffff'/%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E"),
-        radial-gradient(at 0% 0%, rgba(240, 245, 255, 0.6) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(250, 250, 250, 0.8) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(235, 242, 250, 0.5) 0px, transparent 50%),
-        radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.9) 0px, transparent 50%);
+        linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94)),
+        url('https://images.unsplash.com/photo-1590189182193-1fd44f2b4048?q=80&w=2000&auto=format&fit=crop');
     background-size: cover;
     background-position: center top;
     background-attachment: fixed;
@@ -232,9 +229,17 @@ p {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 102;
+    /* Above nav-overlay (101) */
     padding: var(--space-md) 12vw;
-    transition: padding 0.6s var(--ease-golden), background 0.6s;
+    transition: padding 0.6s var(--ease-golden), background 0.6s, backdrop-filter 0.6s;
+}
+
+.master-header:has(.nav-toggle.open),
+.master-header.menu-open {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border-bottom-color: transparent !important;
 }
 
 .master-header.scrolled {
@@ -320,8 +325,9 @@ p {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-    z-index: 99;
+    height: 100svh;
+    z-index: 101;
+    /* Ensure it is above the header but below the toggle */
     visibility: hidden;
     pointer-events: none;
 }
@@ -332,9 +338,11 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #111111;
+    background: rgba(15, 25, 35, 0.95);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     transform: translateY(-100%);
-    transition: transform 0.8s var(--ease-golden);
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .nav-overlay.active {
@@ -352,7 +360,8 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2;
+    z-index: 102;
+    /* Above the background */
 }
 
 .nav-links {
@@ -361,25 +370,50 @@ p {
 }
 
 .nav-item {
-    margin: 24px 0;
+    margin: 28px 0;
     overflow: hidden;
+    /* For textbook reveal wipe */
 }
 
 .nav-item a {
     display: inline-block;
     font-family: var(--font-en-serif);
-    color: #FFF;
-    font-size: clamp(1.5rem, 3.5vw, 3rem);
-    letter-spacing: 0.2em;
-    transform: translateY(100%);
-    opacity: 0;
-    transition: transform 1.2s var(--ease-golden), opacity 1.2s;
-    padding: 0 12px;
+    color: #FFFFFF;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    transform: translateY(110%);
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), color 0.3s;
+    padding: 0 16px;
+}
+
+.nav-item a:hover {
+    color: var(--color-accent);
 }
 
 .nav-overlay.active .nav-item a {
     transform: translateY(0);
-    opacity: 1;
+}
+
+/* Staggered text reveal */
+.nav-overlay.active .nav-item:nth-child(1) a {
+    transition-delay: 0.2s;
+}
+
+.nav-overlay.active .nav-item:nth-child(2) a {
+    transition-delay: 0.25s;
+}
+
+.nav-overlay.active .nav-item:nth-child(3) a {
+    transition-delay: 0.3s;
+}
+
+.nav-overlay.active .nav-item:nth-child(4) a {
+    transition-delay: 0.4s;
+}
+
+.nav-overlay.active .nav-item:nth-child(5) a {
+    transition-delay: 0.5s;
 }
 
 /* =======================================

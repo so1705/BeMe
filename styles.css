@@ -969,101 +969,109 @@ p {
 /* =======================================
    NEW DIRECTIONAL CTA LANE (Flying Arrow)
    ======================================= */
-.service-cta-lane {
-    position: relative;
+/* =======================================
+   LEVERAGES STYLE CTA
+   ======================================= */
+.btn-leverages-wrapper {
     width: 100%;
-    height: 60px; /* Increased height for larger text */
-    margin-top: 16px;
-    display: flex;
+}
+
+.btn-leverages {
+    display: inline-flex;
     align-items: center;
-    padding: 0 10px;
-    overflow: hidden;
-    border-top: 1px solid rgba(0,0,0,0.03);
-}
-
-.service-row[style*="reverse"] .service-cta-lane {
-    flex-direction: row-reverse;
-}
-
-.cta-lane-bg {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 1px;
-    background: var(--color-accent);
-    opacity: 0.3;
-}
-
-.service-cta-lane[data-dir="rtl"] .cta-lane-bg {
-    left: auto;
-    right: 0;
-}
-
-.cta-lane-content {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.service-cta-lane[data-dir="rtl"] .cta-lane-content {
-    left: auto;
-    right: 0;
-    flex-direction: row-reverse;
-}
-
-.cta-lane-text {
-    font-family: var(--font-en-serif);
-    font-size: 1.15rem; /* Larger font size */
-    font-weight: 800;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #FF5A1F; /* High-visibility Orange */
+    justify-content: center;
     position: relative;
-    padding: 2px 4px;
-    z-index: 1;
+    padding: 12px 40px;
+    border: 1px solid #333;
+    background: transparent;
+    color: #333;
+    font-family: var(--font-en-serif);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    overflow: hidden;
+    min-width: 200px;
 }
 
-/* Marker (Highlight) Effect */
-.cta-lane-text::after {
+/* Corner Accents (Parallel Diagonals) */
+.btn-leverages::before,
+.btn-leverages::after {
     content: '';
     position: absolute;
-    bottom: 2px;
-    left: 0;
-    width: 100%;
-    height: 45%;
-    background: rgba(255, 90, 31, 0.2); /* Soft orange marker */
-    z-index: -1;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    width: 14px;
+    height: 1.2px;
+    background: #333;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: 3;
 }
 
-.service-row.visible .cta-lane-text::after {
-    transform: scaleX(1);
+/* Top Right */
+.btn-leverages::before {
+    top: 5px;
+    right: -2px;
+    transform: rotate(45deg);
 }
 
-.cta-lane-arrow {
-    font-size: 1.8rem; /* Larger arrow */
-    color: #FF5A1F;
-    line-height: 1;
+/* Bottom Left */
+.btn-leverages::after {
+    bottom: 5px;
+    left: -2px;
+    transform: rotate(45deg);
 }
 
-/* Base Reveal from Parent */
-.service-row.gs-fade-up.visible .cta-lane-bg {
-    animation: laneBgReveal 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards 0.4s;
+.btn-arrow {
+    margin-left: auto;
+    width: 8px;
+    height: 8px;
+    border-top: 1.5px solid #333;
+    border-right: 1.5px solid #333;
+    transform: rotate(45deg);
+    transition: all 0.4s var(--ease-golden);
 }
 
-@keyframes laneBgReveal {
-    from { width: 0%; }
-    to { width: 100%; }
+/* Hover Effect */
+.service-row:hover .btn-leverages {
+    background: #111;
+    color: #FFF;
+    border-color: #111;
+}
+
+.service-row:hover .btn-leverages::before,
+.service-row:hover .btn-leverages::after {
+    background: #FFF;
+}
+
+.service-row:hover .btn-arrow,
+.service-row:hover .btn-arrow::after {
+    background: #FFF;
+    border-color: #FFF;
+}
+
+.service-row:hover .btn-arrow {
+    transform: translateX(5px);
+}
+
+/* Base Reveal */
+.service-row.gs-fade-up .btn-leverages {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.service-row.gs-fade-up.visible .btn-leverages {
+    animation: btnLeveragesReveal 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards 0.6s;
+}
+
+@keyframes btnLeveragesReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .parallax-img {

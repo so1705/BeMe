@@ -171,15 +171,6 @@ function initLightweightInteractions() {
                         toggleActions: 'play none none reverse',
                         onEnter: () => {
                             elem.classList.add('visible');
-                            const lane = elem.querySelector('.service-cta-lane');
-                            if (lane) {
-                                const content = lane.querySelector('.cta-lane-content');
-                                const dir = lane.getAttribute('data-dir');
-                                gsap.fromTo(content, 
-                                    { opacity: 0, x: dir === 'ltr' ? -60 : 60 },
-                                    { opacity: 1, x: 0, duration: 1.2, ease: "power4.out", delay: 0.5 }
-                                );
-                            }
                         },
                         onEnterBack: () => elem.classList.add('visible')
                     }

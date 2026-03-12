@@ -93,10 +93,10 @@ body {
     background-color: #FAFAFB;
     /* Base off-white */
     color: var(--color-text-primary);
-    line-height: 1.8;
+    line-height: 1.65;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
 }
 
 /* =======================================

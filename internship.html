@@ -600,16 +600,23 @@
         }
 
         .ev-practice-card {
-            background: #FFF;
-            padding: 28px 24px;
-            border: 1px solid var(--ev-border);
-            border-top: 2px solid transparent;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            padding: 32px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
         .ev-practice-card:hover {
-            border-top-color: var(--ev-accent);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+            transform: translateY(-10px);
+            background: #FFF;
+            border-color: var(--color-highlight-blue);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
         }
 
         .ev-practice-card-icon {
@@ -872,7 +879,7 @@
                 <div class="ev-hero-tag" id="hero-tag">PRACTICAL INTERNSHIP PROGRAM</div>
                 <h1 class="ev-hero-title" id="hero-title">長期インターンの運営</h1>
                 <p class="ev-hero-lead" id="hero-lead">
-                    学生が実践を通じて成長し、<br>自分の人生を自分で選べる力を身につけるための<br>長期インターン組織を運営しています。
+                    学生が実践を通じて成長し、<br>自分の人生を<span class="text-highlight">自分で選べる力</span>を身につけるための<br>長期インターン組織を運営しています。
                 </p>
                 <div class="ev-hero-meta" id="hero-meta">
                     <div class="ev-hero-meta-item">
@@ -904,7 +911,7 @@
                         <p>私たちは、学生が実践経験を通じて成長できる長期インターン組織を運営しています。</p>
                         <p>目指しているのは、与えられた選択肢の中から進路を選ぶのではなく、自分の人生を自分で考え、自分で選べる学生を増やすことです。そのために、表面的な体験ではなく、実際の事業運営に関わる機会をインターンの中でつくっています。
                         </p>
-                        <p>業務領域は、営業、イベントの立ち上げ、SNSの広報・マーケティング、採用など多岐にわたります。学生が単なる補助的な役割にとどまるのではなく、組織の一員として責任を持ちながら動ける環境を整えています。
+                        <p>業務領域は、営業、イベントの立ち上げ、SNSの広報・マーケティング、採用など多岐にわたります。学生が単なる補助的な役割にとどまるのではなく、<span class="text-highlight">組織の一員</span>として責任を持ちながら動ける環境を整えています。
                         </p>
                     </div>
                     <div class="ev-about-img-wrap ev-reveal-right">
@@ -974,7 +981,7 @@
                             </svg>
                         </div>
                         <h3>学生主体での事業推進</h3>
-                        <p>このインターン組織は、学生主体で事業を動かしている点が大きな特徴です。自ら考え、動き、形にしていく経験を通じて、学生が一から価値を生み出す力を身につけられる環境を目指しています。</p>
+                        <p>このインターン組織は、学生主体で事業を動かしている点が大きな特徴です。自ら考え、動き、形にしていく経験を通じて、学生が<span class="text-highlight">一から価値を生み出す力</span>を身につけられる環境を目指しています。</p>
                     </div>
                 </div>
             </div>
@@ -998,6 +1005,7 @@
                             </svg>
                         </div>
                         <h4>営業</h4>
+                        <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">ToBの営業、営業代行などを通じて商談スキルや折衝力を磨きます。</p>
                     </div>
                     <div class="ev-practice-card">
                         <div class="ev-practice-card-icon">
@@ -1009,6 +1017,7 @@
                             </svg>
                         </div>
                         <h4>イベント立ち上げ</h4>
+                        <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">企画から立案、当日の運営まで一貫してプロジェクトを推進します。</p>
                     </div>
                     <div class="ev-practice-card">
                         <div class="ev-practice-card-icon">
@@ -1018,6 +1027,7 @@
                             </svg>
                         </div>
                         <h4>SNS広報・マーケティング</h4>
+                        <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">ゼロから運用を開始し、5期で累計2万人のフォロワー達成に貢献します。</p>
                     </div>
                     <div class="ev-practice-card">
                         <div class="ev-practice-card-icon">
@@ -1029,6 +1039,7 @@
                             </svg>
                         </div>
                         <h4>デザイン</h4>
+                        <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">SNS用のイラストから、マーケティングに特化したバナー制作まで幅広く担当。</p>
                     </div>
                     <div class="ev-practice-card">
                         <div class="ev-practice-card-icon">
@@ -1048,10 +1059,20 @@
                             </svg>
                         </div>
                         <h4>就活面談対応</h4>
+                        <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">学生の悩みに寄り添い、本質的なキャリア選択をサポートします。</p>
+                    </div>
+                    <div class="ev-practice-card">
+                        <div class="ev-practice-card-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                            </svg>
+                        </div>
+                        <h4>新規事業立ち上げ</h4>
+                        <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">既存の枠に囚われず、新しい価値を生み出す新規事業の構築に携わります。</p>
                     </div>
                 </div>
                 <p class="ev-practice-note ev-reveal">
-                    学生が単なるサポートではなく、事業の一部を担う立場として関わることで、より実践的な経験につながる設計にしています。
+                    単なるサポート付きの長期インターンではなく、学生が企業の一員として実践的に能力を高められる設計にしています。
                 </p>
             </div>
         </section>
@@ -1159,7 +1180,7 @@
                             私たちは、長期インターンを単なる経験の場ではなく、学生が本当に成長できる環境として大切にしています。
                         </p>
                         <p>
-                            大事にしているのは、学生が受け身で参加するのではなく、自ら考え、役割を持ち、責任を持って動くことです。その中で、実務スキルだけでなく、組織を動かす力や、自分で選び取る力を身につけてほしいと考えています。
+                            大事にしているのは、学生が受け身で参加するのではなく、自ら考え、役割を持ち、責任を持って動くことです。その中で、実務スキルだけでなく、組織を動かす力や、新規事業立ち上げなどに<span class="text-highlight">主体的に挑戦</span>できる環境を身につけてほしいと考えています。
                         </p>
                         <p>
                             これからも、学生の枠を超えて挑戦できる環境を整えながら、実践を通じて成長できる組織づくりを続けていきます。

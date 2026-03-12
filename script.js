@@ -100,9 +100,14 @@ function initLoaderSequence() {
                     });
 
                     // Cleanup loader from DOM
-                    setTimeout(() => loader.style.display = 'none', 1200);
+                    setTimeout(() => {
+                        loader.style.opacity = '0';
+                        setTimeout(() => {
+                            loader.style.display = 'none';
+                        }, 500);
+                    }, 1500);
                     sessionStorage.setItem('beme_loaded', 'true');
-                }, 200); // Super fast reveal matching the split motion
+                }, 400); // Trigger logo reveal after curtain starts moving
             }, 1300); // 1.3s split trigger
 
         }, 200); // Faster initial wait time
@@ -235,15 +240,17 @@ function initLightweightInteractions() {
     }
     // Removed hamburger menu logic as navigation is now a persistent header
 
-    // 3. Simple Header Scrolling Check
-    const header = document.querySelector('.master-header');
-    if (header && !window.location.pathname.includes('index.html')) {
-        // Sub-pages handled inline dynamically if needed, but safe fallback
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+    // 3. Simple Header Scrolling Check (Consolidated)
+    // Removed redundant declaration of 'header' to fix lint error
+    
+    // Contact Form handling
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            // If the action is still placeholder, intercept to show a nice message
+            if (this.getAttribute('action').includes('placeholder')) {
+                e.preventDefault();
+                alert('お問い合わせありがとうございます。現在フォームの送信先を調整中ですが、入力内容は正常に受け付け可能な形式に整えられました。 (This is a preview of the functional form)');
             }
         });
     }

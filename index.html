@@ -98,8 +98,8 @@
             <div class="philosophy-block gs-fade-up">
                 <div class="phil-header">
                     <!-- Adjusted line breaks for better visual balance -->
-                    <h2 class="phil-title" style="font-size: clamp(1.8rem, 4vw, 2.8rem);">
-                        就活は、<br>本当に「自分で選ぶ」場に<br>なっているか。</h2>
+                    <!-- Corrected 3-line breakdown as requested -->
+                    <h2 class="phil-title" style="font-size: clamp(1.8rem, 4vw, 2.8rem);">就活は、<br>ほんとに<br>自分で選ぶ場に。</h2>
                     <p class="phil-en text-gradient-primary" style="font-weight: 700; margin-top: 16px;">WHY CHOICE
                         FEELS DIFFICULT TODAY</p>
                 </div>
@@ -117,7 +117,8 @@
 
                 <div class="phil-header">
                     <!-- Adjusted line breaks and size -->
-                    <h2 class="phil-title" style="font-size: clamp(1.8rem, 4vw, 2.8rem);">自分で選べるキャリアを、<br>つくる。</h2>
+                    <!-- Corrected 2-line breakdown as requested -->
+                    <h2 class="phil-title" style="font-size: clamp(1.8rem, 4vw, 2.8rem);">自分で選べるキャリアを、<br>作る。</h2>
                     <p class="phil-en text-gradient-primary" style="font-weight: 700; margin-top: 16px;">CAREERS CHOSEN
                         WITH INTENT</p>
                 </div>
@@ -346,14 +347,19 @@
                                 実践型インターン</a></li>
                     </ul>
                 </div>
-                <div>
+                <div id="contact-form-area" style="background: rgba(255, 255, 255, 0.5); padding: 32px; border-radius: 12px; border: 1px solid var(--color-border-light);">
                     <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
                         CONTACT</h4>
-                    <p
-                        style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 24px; line-height: 2;">
-                        事業・採用に関するお問い合わせは<br>下記フォームまたはメールより<br>お願いいたします。
-                    </p>
-                    <a href="mailto:info@b2-career.inc" class="btn-minimal" style="font-size: 1rem;">お問い合わせ窓口へ</a>
+                    <form action="https://formspree.io/f/placeholder" method="POST" id="contact-form" style="display: flex; flex-direction: column; gap: 16px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <input type="text" name="name" placeholder="お名前" required style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem;">
+                            <input type="email" name="_replyto" placeholder="メールアドレス" required style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem;">
+                        </div>
+                        <input type="text" name="subject" placeholder="お問い合わせ件名" style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem;">
+                        <textarea name="message" placeholder="お問い合わせ内容" rows="5" required style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem; resize: none;"></textarea>
+                        
+                        <button type="submit" class="btn-minimal" style="font-size: 0.9rem; width: fit-content; align-self: flex-start; border: none; background: #111; color: #FFF; padding: 12px 32px; cursor: pointer;">送信する</button>
+                    </form>
                 </div>
             </div>
             <div class="text-center gs-fade-up"

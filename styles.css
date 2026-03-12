@@ -765,7 +765,8 @@ p {
 
 /* Typing & Continuous Animation Logic */
 .type-char {
-    opacity: 0;
+    opacity: 1;
+    /* Make chars fully visible inherently */
     display: inline-block;
     /* Apply gradient locally */
     background: linear-gradient(90deg, #FFFFFF, #E0F2FE, #B8E2F2, #FFFFFF);
@@ -776,22 +777,21 @@ p {
     /* Hardware acceleration hack to prevent clipping bugs */
     transform: translateZ(0);
     will-change: opacity, transform, filter;
+    animation: textGradientShift 1.5s linear infinite alternate;
 }
 
 /* Hard cut for a mechanical ticking feel */
-@keyframes typeCharIn {
-
-    0%,
-    99% {
-        opacity: 0;
+@keyframes diagonalWipeIn {
+    0% {
+        clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+        filter: blur(5px);
         transform: scale(0.98);
-        filter: blur(2px);
     }
 
     100% {
-        opacity: 1;
-        transform: scale(1);
+        clip-path: polygon(0 0, 200% 0, 200% 200%, 0 200%);
         filter: blur(0px);
+        transform: scale(1);
     }
 }
 
@@ -833,9 +833,9 @@ p {
 }
 
 
-/* Apply the floating motion to the logo parent */
+/* Diagonal wipe animation applied to the parent once it becomes visible */
 .hero-text-animate.visible.beme-hero-logo {
-    animation: logoFloatGradient 5s ease-in-out infinite alternate 1.0s forwards;
+    animation: diagonalWipeIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.3s, logoFloatGradient 5s ease-in-out infinite alternate 1.5s forwards;
 }
 
 .hero-main-title .brush-ja {
@@ -932,20 +932,28 @@ p {
     gap: clamp(24px, 4vw, 48px);
     padding: clamp(20px, 3vw, 32px);
     /* Inner padding for the box */
-    background: #FFFFFF;
-    border: 1px solid rgba(12, 34, 79, 0.06);
+    background: rgba(255, 255, 255, 0.85);
+    /* Glassmorphic clear white */
+    backdrop-filter: blur(12px);
+    /* Blur effect to lift off from the background lines */
+    border: 1px solid rgba(255, 255, 255, 0.6);
     /* Subtle framing */
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    /* Floating shadow */
     color: inherit;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
+    z-index: 2;
+    /* Keep above grid */
 }
 
 .service-row:hover {
     transform: translateY(-4px);
-    border-color: rgba(12, 34, 79, 0.15);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    border-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+    /* Enhance shadow on hover */
+    background: rgba(255, 255, 255, 0.95);
 }
 
 .row-img-wrapper {
@@ -975,6 +983,12 @@ p {
     font-family: var(--font-en-serif);
     opacity: 0.6;
     transition: all 0.4s var(--ease-golden);
+}
+
+.tap-indicator.aligned-left {
+    right: auto;
+    left: 32px;
+    /* Position bottom-left for specific cards */
 }
 
 .service-row:hover .tap-indicator {

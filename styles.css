@@ -835,7 +835,8 @@ p {
 
 /* Diagonal wipe animation applied to the parent once it becomes visible */
 .hero-text-animate.visible.beme-hero-logo {
-    animation: diagonalWipeIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.3s, logoFloatGradient 5s ease-in-out infinite alternate 1.5s forwards;
+    /* Adjusted cubic-bezier for a liquid-smooth reveal and increased duration slightly */
+    animation: diagonalWipeIn 1.6s cubic-bezier(0.33, 1, 0.68, 1) forwards 0.3s, logoFloatGradient 5s ease-in-out infinite alternate 1.8s forwards;
 }
 
 .hero-main-title .brush-ja {

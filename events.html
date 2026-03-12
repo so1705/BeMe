@@ -608,7 +608,8 @@
 
         /* ── EVENT FLOW ── */
         .ev-flow-section {
-            background: var(--ev-dark);
+            background: #F8F9FA;
+            /* Premium light gray */
             padding: 0;
             position: relative;
             overflow: hidden;
@@ -618,14 +619,14 @@
             position: absolute;
             inset: 0;
             background: url('assets/images/services_closed_events_1772216713610.png') center/cover no-repeat;
-            filter: grayscale(70%) brightness(0.18);
+            filter: grayscale(30%) brightness(0.95);
             transform: scale(1.04);
         }
 
         .ev-flow-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(10, 16, 24, 0.92) 0%, rgba(10, 16, 24, 0.75) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.95) 100%);
         }
 
         .ev-flow-inner {
@@ -643,7 +644,7 @@
         }
 
         .ev-flow-header .ev-h2 {
-            color: #FFF;
+            color: var(--ev-dark);
             margin-bottom: 0;
         }
 
@@ -661,7 +662,7 @@
             left: calc(16.67% + 20px);
             right: calc(16.67% + 20px);
             height: 1px;
-            background: linear-gradient(to right, var(--ev-accent), rgba(91, 123, 146, 0.3), var(--ev-accent));
+            background: linear-gradient(to right, rgba(123, 147, 168, 0.1), rgba(12, 34, 79, 0.15), rgba(123, 147, 168, 0.1));
         }
 
         .ev-flow-step {
@@ -684,12 +685,13 @@
             width: 104px;
             height: 104px;
             border-radius: 50%;
-            border: 1px solid rgba(123, 147, 168, 0.3);
+            border: 1px solid rgba(12, 34, 79, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 36px;
-            background: rgba(123, 147, 168, 0.06);
+            background: #FFFFFF;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
             position: relative;
         }
 
@@ -698,7 +700,7 @@
             position: absolute;
             inset: -4px;
             border-radius: 50%;
-            border: 1px solid rgba(123, 147, 168, 0.12);
+            border: 1px solid rgba(12, 34, 79, 0.05);
         }
 
         .ev-flow-step-num {
@@ -712,16 +714,16 @@
         .ev-flow-step h4 {
             font-family: 'Shippori Mincho', serif;
             font-size: 1.3rem;
-            font-weight: 500;
-            color: #FFF;
+            font-weight: 600;
+            color: var(--ev-dark);
             margin-bottom: 16px;
             line-height: 1.5;
         }
 
         .ev-flow-step p {
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             line-height: 2;
-            color: rgba(255, 255, 255, 0.5);
+            color: #4A4A4A;
             margin-bottom: 0;
         }
 
@@ -730,11 +732,11 @@
         }
 
         .ev-flow-note {
-            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            border-top: 1px solid rgba(12, 34, 79, 0.1);
             margin-top: 64px;
             padding-top: 40px;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.4);
+            color: #666;
             line-height: 2;
             max-width: 740px;
         }

@@ -61,18 +61,143 @@ html.lenis {
 
 body {
     font-family: var(--font-body);
-    background-color: var(--color-bg-base);
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94)),
-        url('https://images.unsplash.com/photo-1590189182193-1fd44f2b4048?q=80&w=2000&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center top;
-    background-attachment: fixed;
+    background-color: #FAFAFB;
+    /* Base off-white */
     color: var(--color-text-primary);
     line-height: 1.8;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     letter-spacing: 0.03em;
+}
+
+/* =======================================
+   HIGH-END DYNAMIC BACKGROUND
+   ======================================= */
+.global-bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: #FFFFFF;
+    pointer-events: none;
+}
+
+/* High-quality SVG grain noise overlay */
+.global-bg-animation::after {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    opacity: 0.8;
+    z-index: 2;
+    pointer-events: none;
+    animation: grainShift 8s steps(10) infinite;
+}
+
+/* Premium Orbs for Mesh Gradient */
+.bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: floatOrb 20s infinite alternate ease-in-out;
+    z-index: 1;
+}
+
+.bg-orb-1 {
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(142, 155, 174, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+    top: -10%;
+    left: -10%;
+    animation-delay: 0s;
+}
+
+.bg-orb-2 {
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(200, 210, 225, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+    bottom: -20%;
+    right: -10%;
+    animation-duration: 25s;
+    animation-delay: -5s;
+}
+
+.bg-orb-3 {
+    width: 45vw;
+    height: 45vw;
+    background: radial-gradient(circle, rgba(235, 242, 250, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+    top: 40%;
+    left: 30%;
+    animation-duration: 18s;
+    animation-delay: -10s;
+}
+
+@keyframes floatOrb {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(5%, 10%) scale(1.05);
+    }
+
+    66% {
+        transform: translate(-5%, 5%) scale(0.95);
+    }
+
+    100% {
+        transform: translate(2%, -5%) scale(1.02);
+    }
+}
+
+@keyframes grainShift {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    10% {
+        transform: translate(-1%, -1%);
+    }
+
+    20% {
+        transform: translate(1%, 1%);
+    }
+
+    30% {
+        transform: translate(-2%, 1%);
+    }
+
+    40% {
+        transform: translate(1%, -1%);
+    }
+
+    50% {
+        transform: translate(-1%, 2%);
+    }
+
+    60% {
+        transform: translate(2%, -2%);
+    }
+
+    70% {
+        transform: translate(1%, 2%);
+    }
+
+    80% {
+        transform: translate(-2%, -1%);
+    }
+
+    90% {
+        transform: translate(2%, 1%);
+    }
 }
 
 h1,

@@ -83,26 +83,29 @@ function initLoaderSequence() {
 
     if (loader && text) {
         setTimeout(() => {
-            playBrushSound();
+            // Apply fast fade and slight zoom to Logo instead of old brush animation
             text.classList.add('brushed');
 
-            // After text reveals, wait a bit, then pull up curtain
+            // Logo animation lasts 1.4s. Split screen exactly matching it for momentum.
             setTimeout(() => {
                 loader.classList.add('curtain-up');
 
                 // Allow scrolling again
                 document.body.style.overflow = '';
 
-                // Trigger hero text float up elegantly with delay
+                // Trigger hero text float up with very short delay for high impact
                 setTimeout(() => {
                     document.querySelectorAll('.hero-text-animate').forEach(el => {
                         el.classList.add('visible');
                     });
-                    sessionStorage.setItem('beme_loaded', 'true'); // Set session storage on completion
-                }, 600); // 幕が開いてから文字が浮き上がる
-            }, 1800);
 
-        }, 500);
+                    // Cleanup loader from DOM
+                    setTimeout(() => loader.style.display = 'none', 1200);
+                    sessionStorage.setItem('beme_loaded', 'true');
+                }, 200); // Super fast reveal matching the split motion
+            }, 1300); // 1.3s split trigger
+
+        }, 200); // Faster initial wait time
     } else {
         document.body.style.overflow = '';
         document.querySelectorAll('.hero-text-animate').forEach(el => el.classList.add('visible'));

@@ -526,13 +526,13 @@ p {
 .hero-section {
     position: relative;
     height: 100vh;
-    display: flex;
+    min-height: 800px;
+    /* Increased min-height to guarantee space for the large logo and text */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12vh clamp(24px, 10vw, 140px) 80px;
-    text-align: center;
-    overflow: visible;
+    color: var(--color-bg-light);
+    overflow: hidden;
 }
 
 .hero-bg-wrapper {
@@ -541,15 +541,17 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    min-height: 100%;
-    z-index: 0;
     overflow: hidden;
+    min-height: 100vh;
+    /* Force it to cover at least the whole height even on very tall screens */
 }
 
 .hero-bg {
     width: 100%;
-    height: 100%;
+    height: 120%;
+    /* Expanded to allow for parallax without seeing the bottom edge */
     object-fit: cover;
+    will-change: transform;
 }
 
 .hero-overlay {
@@ -565,9 +567,11 @@ p {
 .hero-content {
     position: relative;
     z-index: 2;
-    color: #FFF;
-    width: 100%;
-    max-width: 1000px;
+    text-align: center;
+    max-width: 1200px;
+    padding: 0 var(--space-md);
+    margin-top: -5vh;
+    /* Lift the whole content block slightly to prevent bottom clipping */
 }
 
 .hero-main-title {
@@ -804,20 +808,21 @@ p {
 
 /* Stagger typing after loader finishes (~1.3s delay before text-animate becomes visible) */
 /* Apply both typeIn and the continuous gradient shift so the color flows inside the text */
+/* User requested a faster, more intense gradient shift speed: reduced from 4s to 1.5s */
 .hero-text-animate.visible .type-char.chr1 {
-    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s, textGradientShift 4s linear infinite alternate;
+    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s, textGradientShift 1.5s linear infinite alternate;
 }
 
 .hero-text-animate.visible .type-char.chr2 {
-    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s, textGradientShift 4s linear infinite alternate;
+    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s, textGradientShift 1.5s linear infinite alternate;
 }
 
 .hero-text-animate.visible .type-char.chr3 {
-    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s, textGradientShift 4s linear infinite alternate;
+    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s, textGradientShift 1.5s linear infinite alternate;
 }
 
 .hero-text-animate.visible .type-char.chr4 {
-    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.6s, textGradientShift 4s linear infinite alternate;
+    animation: typeCharIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.6s, textGradientShift 1.5s linear infinite alternate;
 }
 
 /* Apply the floating motion to the logo parent */
@@ -913,8 +918,9 @@ p {
 .service-row {
     display: flex;
     align-items: center;
-    gap: clamp(32px, 5vw, 80px);
-    padding: var(--space-xl) 0;
+    gap: clamp(32px, 5vw, 60px);
+    padding: var(--space-lg) 0;
+    /* Reduced padding for tighter layout */
     border-top: 1px solid var(--color-border-light);
     color: inherit;
     transition: all 0.6s var(--ease-golden);
@@ -1333,7 +1339,24 @@ p {
     color: rgba(255, 255, 255, 0.03);
 }
 
-/* Base override for dark section */
+/* High-end design for dark section background */
+.bg-dark-section {
+    background: #060B14;
+    position: relative;
+    /* Add a subtle, premium dark mesh/texture overlay via linear gradients */
+    background-image:
+        url('/assets/img/dark-bg-texture.webp'),
+        /* New texture image */
+        radial-gradient(circle at 15% 50%, rgba(0, 210, 255, 0.05), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(5, 50, 150, 0.1), transparent 30%);
+    background-size: cover, cover, cover;
+    /* Ensure all backgrounds cover */
+    background-blend-mode: overlay, normal, normal;
+    /* Blend the texture */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Base override for dark section cards */
 .bg-dark-section .member-block {
     background: rgba(10, 15, 26, 0.6);
     /* Deep elegant dark */
@@ -1482,6 +1505,15 @@ p {
         text-align: left;
         /* Keep left or center on mobile depending on pref */
     }
+}
+
+/* =======================================
+   REDUCED SECTION SPACING
+   ======================================= */
+.section-spacing {
+    padding-top: var(--space-xl);
+    /* Reduced padding to tighten up layout */
+    padding-bottom: var(--space-xl);
 }
 
 /* =======================================

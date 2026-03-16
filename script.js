@@ -242,11 +242,38 @@ function initLightweightInteractions() {
             fadeObserver.observe(elem);
         });
     }
-    // Removed hamburger menu logic as navigation is now a persistent header
-
     // 3. Simple Header Scrolling Check (Consolidated)
     // Removed redundant declaration of 'header' to fix lint error
     
+    // Hamburger Menu Logic
+    const toggle = document.getElementById('nav-toggle');
+    const overlay = document.getElementById('nav-overlay');
+    
+    if (toggle && overlay) {
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('open');
+            overlay.classList.toggle('open');
+            document.body.classList.toggle('nav-active');
+            
+            // Prevent scrolling when menu is open
+            if (overlay.classList.contains('open')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close menu on link click
+        overlay.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggle.classList.remove('open');
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+                document.body.classList.remove('nav-active');
+            });
+        });
+    }
+
     // Contact Form handling
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {

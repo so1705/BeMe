@@ -621,14 +621,37 @@
 
 <body>
     <header class="master-header" id="ev-header">
-        <a href="index.html" class="logo">BeMe</a>
-        <nav class="nav-links">
-            <a href="index.html">TOP</a>
-            <a href="index.html#concept">COMPANY</a>
-            <a href="index.html#services">BUSINESS</a>
-            <a href="index.html#team">MEMBER</a>
-        </nav>
+        <div class="header-container">
+            <a href="index.html" class="logo">BeMe</a>
+
+            <!-- Mobile Toggle -->
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="nav-links header-nav-desktop">
+                <a href="index.html">TOP</a>
+                <a href="index.html#concept">COMPANY</a>
+                <a href="index.html#services">BUSINESS</a>
+                <a href="index.html#team">MEMBER</a>
+            </nav>
+        </div>
     </header>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="nav-overlay" id="nav-overlay">
+        <nav class="overlay-menu">
+            <ul>
+                <li><a href="index.html">TOP</a></li>
+                <li><a href="index.html#concept">COMPANY</a></li>
+                <li><a href="index.html#services">BUSINESS</a></li>
+                <li><a href="index.html#team">MEMBER</a></li>
+                <li><a href="mailto:info@b2-career.inc" class="cta-link">CONTACT</a></li>
+            </ul>
+        </nav>
+    </div>
 
     <main>
         <!-- 1. HERO -->

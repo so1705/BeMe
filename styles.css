@@ -1883,20 +1883,30 @@ p {
     .master-header {
         padding: 16px 20px !important;
         display: flex !important;
-        justify-content: space-between !important;
+        justify-content: center !important; /* Centered for mobile header */
         align-items: center !important;
+        height: 70px !important;
     }
 
-    .brand-logo {
-        font-size: 1.1rem !important;
-        margin: 0 !important;
-        padding: 0 !important;
+    .header-container {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
         position: relative !important;
     }
 
+    .brand-logo {
+        font-size: 1.2rem !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        position: relative !important;
+        left: 0 !important;
+        transform: none !important;
+    }
+
     .header-nav-desktop {
-        gap: 1rem !important;
-        display: flex !important;
+        display: none !important; /* Hide tiny nav links as they often conflict with centering branding on mobile */
     }
 
     .header-nav-desktop a {
@@ -1911,8 +1921,10 @@ p {
     }
 
     .beme-hero-logo {
-        font-size: clamp(4.5rem, 18vw, 8rem) !important; /* Made significantly larger as requested */
-        margin-bottom: 8px !important;
+        font-size: clamp(5.5rem, 25vw, 10rem) !important; /* Maximized for impact as requested */
+        margin-bottom: 4px !important;
+        width: 100% !important;
+        text-align: center !important;
     }
 
     .hero-main-title {

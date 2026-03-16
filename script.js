@@ -248,20 +248,26 @@ function initLightweightInteractions() {
     // Hamburger Menu Logic
     const toggle = document.getElementById('nav-toggle');
     const overlay = document.getElementById('nav-overlay');
+    const closeBtn = document.getElementById('nav-close');
     
     if (toggle && overlay) {
-        toggle.addEventListener('click', () => {
+        const toggleMenu = () => {
             toggle.classList.toggle('open');
             overlay.classList.toggle('open');
             document.body.classList.toggle('nav-active');
             
-            // Prevent scrolling when menu is open
             if (overlay.classList.contains('open')) {
                 document.body.style.overflow = 'hidden';
             } else {
                 document.body.style.overflow = '';
             }
-        });
+        };
+
+        toggle.addEventListener('click', toggleMenu);
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', toggleMenu);
+        }
 
         // Close menu on link click
         overlay.querySelectorAll('a').forEach(link => {

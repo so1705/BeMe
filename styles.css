@@ -1879,15 +1879,24 @@ p {
 
     .section-spacing {
         padding: var(--space-xl) 0 !important;
-    }
-
-    /* Header Refinements */
+    }    /* Header Refinements */
     .master-header {
         padding: 16px 20px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
+    .brand-logo {
+        font-size: 1.1rem !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: relative !important;
     }
 
     .header-nav-desktop {
         gap: 1rem !important;
+        display: flex !important;
     }
 
     .header-nav-desktop a {
@@ -1895,46 +1904,54 @@ p {
         letter-spacing: 0.05em !important;
     }
 
-    .brand-logo {
-        font-size: 1.1rem !important;
-    }
-
     /* Hero Section */
     .hero-section {
-        min-height: 100vh !important; /* Ensure it covers the full screen to prevent cutting off */
+        min-height: 100vh !important;
         padding-top: 80px !important;
     }
 
     .beme-hero-logo {
-        font-size: clamp(2.8rem, 12vw, 5rem) !important;
+        font-size: clamp(4.5rem, 18vw, 8rem) !important; /* Made significantly larger as requested */
         margin-bottom: 8px !important;
     }
 
     .hero-main-title {
-        font-size: clamp(1rem, 4vw, 1.5rem) !important;
+        font-size: clamp(1rem, 4.5vw, 1.4rem) !important;
         margin-bottom: var(--space-md) !important;
     }
 
     .hero-content {
-        margin-top: -10vh !important;
+        margin-top: -15vh !important;
+        width: 100% !important;
+        padding: 0 20px !important;
     }
 
     /* Philosophy / Concept Block */
     .philosophy-block {
         flex-direction: column !important;
-        gap: 32px !important;
+        gap: 24px !important;
         padding: 0 20px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .phil-title {
-        font-size: 1.4rem !important;
+        font-size: 1.3rem !important;
         margin-bottom: 12px !important;
     }
 
+    .phil-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
     .phil-content p {
-        font-size: 0.9rem !important;
-        line-height: 1.8 !important;
-        margin-bottom: 16px !important;
+        font-size: 0.82rem !important; /* Further reduced size as requested */
+        line-height: 1.7 !important;
+        margin-bottom: 12px !important;
+        word-break: break-all !important; /* Prevent cutting off */
+        overflow-wrap: break-word !important;
     }
 
     .watermark-bg {
@@ -2156,4 +2173,5 @@ p {
         display: none !important;
     }
 }
+
 }

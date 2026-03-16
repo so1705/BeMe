@@ -1861,3 +1861,259 @@ p {
 .footer-grid-new {
     width: 100%;
 }
+
+/* =======================================
+   MOBILE ADAPTABILITY (Max-width: 768px)
+   ======================================= */
+@media (max-width: 768px) {
+    :root {
+        --space-md: 32px !important;
+        --space-lg: 56px !important;
+        --space-xl: 80px !important;
+        --space-xxl: 100px !important;
+    }
+
+    .container {
+        padding: 0 20px !important;
+    }
+
+    .section-spacing {
+        padding: var(--space-xl) 0 !important;
+    }
+
+    /* Header Refinements */
+    .master-header {
+        padding: 16px 20px !important;
+    }
+
+    .header-nav-desktop {
+        gap: 1rem !important;
+    }
+
+    .header-nav-desktop a {
+        font-size: 0.7rem !important;
+        letter-spacing: 0.05em !important;
+    }
+
+    .brand-logo {
+        font-size: 1.1rem !important;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        min-height: 500px !important;
+        height: 60vh !important;
+        padding-top: 80px !important;
+    }
+
+    .beme-hero-logo {
+        font-size: clamp(3.2rem, 15vw, 6rem) !important;
+        margin-bottom: 12px !important;
+    }
+
+    .hero-main-title {
+        font-size: clamp(1.2rem, 5vw, 1.8rem) !important;
+        margin-bottom: var(--space-md) !important;
+    }
+
+    .hero-content {
+        margin-top: 0 !important;
+    }
+
+    /* Philosophy / Concept Block */
+    .philosophy-block {
+        flex-direction: column !important;
+        gap: 40px !important;
+        padding: 0 20px !important;
+    }
+
+    .phil-title {
+        font-size: clamp(1.6rem, 6vw, 2.2rem) !important;
+    }
+
+    .watermark-bg {
+        font-size: 5rem !important;
+        top: 0 !important;
+    }
+
+    /* Business / Services Section */
+    .services-list {
+        margin-top: var(--space-lg) !important;
+    }
+
+    .service-row {
+        flex-direction: column !important;
+        gap: 32px !important;
+        padding: 0 !important;
+        margin-bottom: 64px !important;
+    }
+
+    .row-img-wrapper {
+        width: 100% !important;
+        height: 200px !important;
+        margin: 0 !important;
+    }
+
+    .row-content {
+        width: 100% !important;
+        padding: 0 !important;
+        text-align: center !important;
+    }
+
+    .row-desc {
+        font-size: 0.95rem !important;
+        line-height: 1.8 !important;
+    }
+
+    .service-stats {
+        justify-content: center !important;
+        gap: 24px !important;
+    }
+
+    .stat-num {
+        font-size: 1.5rem !important;
+    }
+
+    .service-features {
+        text-align: left !important;
+        max-width: 320px !important;
+        margin: 0 auto !important;
+    }
+
+    .btn-leverages-wrapper {
+        justify-content: center !important;
+    }
+
+    /* Member Section */
+    .member-list {
+        margin-top: var(--space-lg) !important;
+        gap: 60px !important;
+    }
+
+    .member-block {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .member-photo-frame {
+        width: 180px !important;
+        height: 180px !important;
+        margin-bottom: 24px !important;
+        margin-right: 0 !important;
+    }
+
+    .leader-content {
+        padding-left: 0 !important;
+    }
+
+    .member-bio {
+        font-size: 0.9rem !important;
+        line-height: 1.8 !important;
+    }
+
+    /* Footer */
+    .footer-grid-new {
+        grid-template-columns: 1fr !important;
+        gap: 56px !important;
+        text-align: center !important;
+    }
+
+    .footer-grid-new > div {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .master-footer {
+        padding: 64px 20px 48px !important;
+    }
+
+    .footer-grid-new ul li {
+        margin-bottom: 16px !important;
+    }
+
+    #contact-form-area {
+        padding: 24px !important;
+    }
+
+    #contact-form div {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Subpage / LP Specifics */
+    .logical-header h2,
+    .row-heading,
+    .phil-title {
+        font-size: 1.6rem !important;
+        line-height: 1.3 !important;
+    }
+
+    .logical-header p {
+        font-size: 0.95rem !important;
+    }
+
+    .split-layout {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+
+    .split-content h3 {
+        font-size: 1.45rem !important;
+        line-height: 1.4 !important;
+    }
+
+    /* Standard Cards on Subpages */
+    .ev-card, .pillar-card {
+        padding: 24px !important;
+    }
+
+    /* Subpage / LP Components Shared Classes */
+    .ev-hero {
+        min-height: 500px !important;
+        height: 65vh !important;
+        align-items: center !important;
+        padding-bottom: 60px !important;
+        padding-top: 100px !important;
+    }
+
+    .ev-hero-content {
+        padding: 0 20px !important;
+    }
+
+    .ev-hero-title {
+        font-size: clamp(1.8rem, 10vw, 3rem) !important;
+        margin-bottom: 24px !important;
+    }
+
+    .ev-hero-tag {
+        margin-bottom: 20px !important;
+        font-size: 0.7rem !important;
+    }
+
+    .ev-section {
+        padding: 64px 20px !important;
+    }
+
+    .ev-hero-meta {
+        gap: 20px !important;
+        flex-wrap: wrap !important;
+    }
+
+    .ev-hero-meta-num {
+        font-size: 1.4rem !important;
+    }
+
+    .ev-hero-meta-divider {
+        display: none !important;
+    }
+
+    .ev-hero-suppl {
+        font-size: 0.85rem !important;
+        line-height: 1.7 !important;
+    }
+
+    .scroll-indicator {
+        display: none !important;
+    }
+}

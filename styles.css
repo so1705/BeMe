@@ -2020,16 +2020,20 @@ p {
     }
 
     .member-block {
+        display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .member-photo-frame {
         width: 150px !important;
         height: 150px !important;
         margin-bottom: 20px !important;
-        margin-right: 0 !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 
     .leader-content {

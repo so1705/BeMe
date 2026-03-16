@@ -1918,10 +1918,30 @@ p {
     .hero-main-title {
         font-size: clamp(1rem, 4.5vw, 1.4rem) !important;
         margin-bottom: var(--space-md) !important;
+        line-height: 1.4 !important; /* Improved line height for Japanese text */
+    }
+
+    .brush-ja {
+        font-size: clamp(1.1rem, 5vw, 1.6rem) !important;
+        margin-top: 16px !important;
+        line-height: 1.6 !important;
+    }
+
+    .hero-subtitle {
+        font-size: 0.85rem !important;
+        line-height: 1.8 !important;
+        margin-top: 24px !important;
+        max-width: 90% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .hero-subtitle br {
+        display: none !important; /* Remove manual breaks to let it flow naturally on small screens */
     }
 
     .hero-content {
-        margin-top: -15vh !important;
+        margin-top: -10vh !important; /* Slightly adjusted to move content up */
         width: 100% !important;
         padding: 0 20px !important;
     }

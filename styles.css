@@ -1901,39 +1901,46 @@ p {
 
     /* Hero Section */
     .hero-section {
-        min-height: 500px !important;
-        height: 60vh !important;
+        min-height: 100vh !important; /* Ensure it covers the full screen to prevent cutting off */
         padding-top: 80px !important;
     }
 
     .beme-hero-logo {
-        font-size: clamp(3.2rem, 15vw, 6rem) !important;
-        margin-bottom: 12px !important;
+        font-size: clamp(2.8rem, 12vw, 5rem) !important;
+        margin-bottom: 8px !important;
     }
 
     .hero-main-title {
-        font-size: clamp(1.2rem, 5vw, 1.8rem) !important;
+        font-size: clamp(1rem, 4vw, 1.5rem) !important;
         margin-bottom: var(--space-md) !important;
     }
 
     .hero-content {
-        margin-top: 0 !important;
+        margin-top: -10vh !important;
     }
 
     /* Philosophy / Concept Block */
     .philosophy-block {
         flex-direction: column !important;
-        gap: 40px !important;
+        gap: 32px !important;
         padding: 0 20px !important;
     }
 
     .phil-title {
-        font-size: clamp(1.6rem, 6vw, 2.2rem) !important;
+        font-size: 1.4rem !important;
+        margin-bottom: 12px !important;
+    }
+
+    .phil-content p {
+        font-size: 0.9rem !important;
+        line-height: 1.8 !important;
+        margin-bottom: 16px !important;
     }
 
     .watermark-bg {
-        font-size: 5rem !important;
+        font-size: 4rem !important;
         top: 0 !important;
+        opacity: 0.02 !important;
     }
 
     /* Business / Services Section */
@@ -1943,14 +1950,14 @@ p {
 
     .service-row {
         flex-direction: column !important;
-        gap: 32px !important;
+        gap: 24px !important;
         padding: 0 !important;
-        margin-bottom: 64px !important;
+        margin-bottom: 56px !important;
     }
 
     .row-img-wrapper {
         width: 100% !important;
-        height: 200px !important;
+        height: 180px !important;
         margin: 0 !important;
     }
 
@@ -1961,23 +1968,28 @@ p {
     }
 
     .row-desc {
-        font-size: 0.95rem !important;
-        line-height: 1.8 !important;
+        font-size: 0.9rem !important;
+        line-height: 1.7 !important;
     }
 
     .service-stats {
         justify-content: center !important;
-        gap: 24px !important;
+        gap: 16px !important;
     }
 
     .stat-num {
-        font-size: 1.5rem !important;
+        font-size: 1.3rem !important;
+    }
+
+    .stat-label {
+        font-size: 0.7rem !important;
     }
 
     .service-features {
         text-align: left !important;
-        max-width: 320px !important;
+        max-width: 280px !important;
         margin: 0 auto !important;
+        font-size: 0.8rem !important;
     }
 
     .btn-leverages-wrapper {
@@ -1987,7 +1999,7 @@ p {
     /* Member Section */
     .member-list {
         margin-top: var(--space-lg) !important;
-        gap: 60px !important;
+        gap: 48px !important;
     }
 
     .member-block {
@@ -1997,9 +2009,9 @@ p {
     }
 
     .member-photo-frame {
-        width: 180px !important;
-        height: 180px !important;
-        margin-bottom: 24px !important;
+        width: 150px !important;
+        height: 150px !important;
+        margin-bottom: 20px !important;
         margin-right: 0 !important;
     }
 
@@ -2007,15 +2019,23 @@ p {
         padding-left: 0 !important;
     }
 
+    .member-name {
+        font-size: 1.2rem !important;
+    }
+
+    .member-role {
+        font-size: 0.75rem !important;
+    }
+
     .member-bio {
-        font-size: 0.9rem !important;
-        line-height: 1.8 !important;
+        font-size: 0.85rem !important;
+        line-height: 1.7 !important;
     }
 
     /* Footer */
     .footer-grid-new {
         grid-template-columns: 1fr !important;
-        gap: 56px !important;
+        gap: 48px !important;
         text-align: center !important;
     }
 
@@ -2026,15 +2046,16 @@ p {
     }
 
     .master-footer {
-        padding: 64px 20px 48px !important;
+        padding: 48px 20px 32px !important;
     }
 
     .footer-grid-new ul li {
-        margin-bottom: 16px !important;
+        margin-bottom: 12px !important;
+        font-size: 0.85rem !important;
     }
 
     #contact-form-area {
-        padding: 24px !important;
+        padding: 20px !important;
     }
 
     #contact-form div {
@@ -2045,36 +2066,43 @@ p {
     .logical-header h2,
     .row-heading,
     .phil-title {
-        font-size: 1.6rem !important;
+        font-size: 1.4rem !important;
         line-height: 1.3 !important;
     }
 
     .logical-header p {
-        font-size: 0.95rem !important;
+        font-size: 0.9rem !important;
     }
 
     .split-layout {
         grid-template-columns: 1fr !important;
-        gap: 32px !important;
+        gap: 24px !important;
     }
 
     .split-content h3 {
-        font-size: 1.45rem !important;
+        font-size: 1.3rem !important;
         line-height: 1.4 !important;
     }
 
+    /* Subpage Grid Fixes */
+    .ev-cards-grid,
+    .pillar-cards,
+    .ev-practice-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
     /* Standard Cards on Subpages */
-    .ev-card, .pillar-card {
+    .ev-card, .pillar-card, .ev-practice-card {
         padding: 24px !important;
     }
 
     /* Subpage / LP Components Shared Classes */
     .ev-hero {
-        min-height: 500px !important;
-        height: 65vh !important;
+        min-height: 100vh !important; /* Full screen for subpages too */
         align-items: center !important;
-        padding-bottom: 60px !important;
-        padding-top: 100px !important;
+        padding-bottom: 40px !important;
+        padding-top: 80px !important;
     }
 
     .ev-hero-content {
@@ -2082,26 +2110,36 @@ p {
     }
 
     .ev-hero-title {
-        font-size: clamp(1.8rem, 10vw, 3rem) !important;
-        margin-bottom: 24px !important;
+        font-size: clamp(1.5rem, 8vw, 2.5rem) !important;
+        margin-bottom: 16px !important;
     }
 
     .ev-hero-tag {
-        margin-bottom: 20px !important;
-        font-size: 0.7rem !important;
+        margin-bottom: 16px !important;
+        font-size: 0.65rem !important;
+    }
+
+    .ev-hero-lead {
+        font-size: 0.9rem !important;
+        margin-bottom: 24px !important;
     }
 
     .ev-section {
-        padding: 64px 20px !important;
+        padding: 48px 20px !important;
     }
 
     .ev-hero-meta {
-        gap: 20px !important;
+        gap: 16px !important;
         flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+
+    .ev-hero-meta-item {
+        align-items: center !important;
     }
 
     .ev-hero-meta-num {
-        font-size: 1.4rem !important;
+        font-size: 1.2rem !important;
     }
 
     .ev-hero-meta-divider {
@@ -2109,11 +2147,13 @@ p {
     }
 
     .ev-hero-suppl {
-        font-size: 0.85rem !important;
-        line-height: 1.7 !important;
+        font-size: 0.8rem !important;
+        line-height: 1.6 !important;
+        text-align: center !important;
     }
 
     .scroll-indicator {
         display: none !important;
     }
+}
 }

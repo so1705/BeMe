@@ -1865,6 +1865,10 @@ p {
 /* =======================================
    MOBILE ADAPTABILITY (Max-width: 768px)
    ======================================= */
+.nav-toggle, .nav-overlay {
+    display: none;
+}
+
 @media (max-width: 768px) {
     :root {
         --space-md: 32px !important;
@@ -2304,6 +2308,23 @@ p {
         margin-top: 10px;
         display: inline-block;
     }
-}
 
-}
+    /* Fixed Nav Close Button - Ensuring Visibility on Mobile */
+    .nav-close {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        font-size: 2.8rem;
+        color: #FFF !important;
+        cursor: pointer;
+        line-height: 1;
+        z-index: 2000;
+        font-family: Arial, sans-serif;
+        display: block !important;
+        padding: 10px;
+    }
+
+    .nav-close:active {
+        transform: scale(0.9);
+    }
+}

@@ -31,7 +31,9 @@
         var lenis = initLenis();
         initAurora('aurora');
         initAurora('aurora2');
-        initHeroIntro();
+        initLoader(function () {
+            initHeroIntro();
+        });
         initHeroParallax();
         initIssueLines();
         initReveals();
@@ -132,6 +134,82 @@
         }).observe(canvas);
     }
 
+    // ---------- ローディング画面 ----------
+    function initLoader(onDone) {
+        var loader = document.getElementById('loader');
+        if (!loader) {
+            onDone();
+            return;
+        }
+
+        document.body.classList.add('is-loading');
+
+        var logo = loader.querySelector('.loader-logo');
+        var logoSmall = logo ? logo.querySelector('small') : null;
+        var chars = [];
+        if (logo) {
+            // small以外のテキストノードを文字分割
+            var textNode = logo.firstChild;
+            var text = textNode ? textNode.textContent : '';
+            if (textNode) logo.removeChild(textNode);
+            var frag = document.createDocumentFragment();
+            Array.from(text).forEach(function (ch) {
+                var span = document.createElement('span');
+                span.className = 'char';
+                span.textContent = ch;
+                frag.appendChild(span);
+            });
+            logo.insertBefore(frag, logoSmall);
+            chars = logo.querySelectorAll('.char');
+        }
+
+        var numEl = document.getElementById('loader-num');
+        var barEl = document.getElementById('loader-bar');
+        var count = { v: 0 };
+
+        var tl = gsap.timeline({
+            onComplete: function () {
+                loader.classList.add('done');
+                document.body.classList.remove('is-loading');
+                onDone();
+            }
+        });
+
+        // ロゴが立ち上がる
+        tl.to(chars, {
+            y: 0,
+            duration: 0.9,
+            ease: 'power4.out',
+            stagger: 0.06
+        }, 0.15);
+        if (logoSmall) {
+            tl.to(logoSmall, { y: 0, duration: 0.8, ease: 'power4.out' }, 0.45);
+        }
+
+        // カウント & プログレスバー
+        tl.to(count, {
+            v: 100,
+            duration: 1.05,
+            ease: 'power2.inOut',
+            onUpdate: function () {
+                if (numEl) numEl.textContent = Math.round(count.v);
+                if (barEl) barEl.style.transform = 'scaleX(' + (count.v / 100) + ')';
+            }
+        }, 0.2);
+
+        // ロゴ・カウントを送り出す
+        tl.to('.loader-inner, .loader-count', {
+            y: -30,
+            opacity: 0,
+            duration: 0.45,
+            ease: 'power2.in'
+        }, '+=0.1');
+
+        // 上下のパネルが開いて本編へ
+        tl.to('.loader-panel.p1', { yPercent: -102, duration: 0.9, ease: 'power4.inOut' }, '-=0.1');
+        tl.to('.loader-panel.p2', { yPercent: 102, duration: 0.9, ease: 'power4.inOut' }, '<');
+    }
+
     // ---------- ヒーロー:文字が立ち上がる ----------
     function splitChars(el) {
         var text = el.textContent;
@@ -154,14 +232,25 @@
             splitChars(line).forEach(function (c) { chars.push(c); });
         });
 
-        var tl = gsap.timeline({ delay: 0.25 });
-        tl.to(chars, {
-            y: 0,
-            rotate: 0,
-            duration: 1.3,
-            ease: 'power4.out',
-            stagger: 0.05
-        });
+        var tl = gsap.timeline({ delay: 0.1 });
+        if (chars.length) {
+            tl.to(chars, {
+                y: 0,
+                rotate: 0,
+                duration: 1.3,
+                ease: 'power4.out',
+                stagger: 0.05
+            });
+        }
+        // グラデーション行は行ごと立ち上げ(文字分割するとグラデが途切れるため)
+        var blocks = document.querySelectorAll('.hero-title .block-in');
+        if (blocks.length) {
+            tl.to(blocks, {
+                y: 0,
+                duration: 1.3,
+                ease: 'power4.out'
+            }, chars.length ? '-=0.9' : 0);
+        }
         tl.to('.js-hero-fade', {
             opacity: 1,
             y: 0,
@@ -328,29 +417,41 @@
     // ---------- クロージング:文字の立ち上がり ----------
     function initClosing() {
         var lines = document.querySelectorAll('.js-close-line');
-        if (!lines.length) return;
+        var blocks = document.querySelectorAll('.closing-title .block-in');
+        if (!lines.length && !blocks.length) return;
 
         var chars = [];
         lines.forEach(function (line) {
             splitChars(line).forEach(function (c) { chars.push(c); });
         });
 
-        gsap.to(chars, {
-            y: 0,
-            duration: 1.2,
-            ease: 'power4.out',
-            stagger: 0.045,
+        var tl = gsap.timeline({
             scrollTrigger: {
                 trigger: '.closing',
                 start: 'top 60%',
                 once: true
             }
         });
+        if (chars.length) {
+            tl.to(chars, {
+                y: 0,
+                duration: 1.2,
+                ease: 'power4.out',
+                stagger: 0.045
+            });
+        }
+        if (blocks.length) {
+            tl.to(blocks, {
+                y: 0,
+                duration: 1.2,
+                ease: 'power4.out'
+            }, chars.length ? '-=0.8' : 0);
+        }
     }
 
     // ---------- ヘッダーの明暗切り替え ----------
     function lightSections() {
-        return document.querySelectorAll('.about, .scene-student, .team, .faq');
+        return document.querySelectorAll('.about, .scene-student, .team, .faq, .sub-intro, .flow, .basis, .sub-value');
     }
 
     function initHeaderTheme() {
@@ -391,6 +492,12 @@
 
     // ---------- フォールバック(GSAPなし/モーション低減) ----------
     function fallbackShowAll() {
+        var loader = document.getElementById('loader');
+        if (loader) loader.classList.add('done');
+        document.body.classList.remove('is-loading');
+        document.querySelectorAll('.hero-title .block-in, .closing-title .block-in').forEach(function (el) {
+            el.style.transform = 'none';
+        });
         document.querySelectorAll('.js-reveal, .js-clip, .num-row').forEach(function (el) {
             el.classList.add('visible');
         });

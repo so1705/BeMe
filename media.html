@@ -1,2351 +1,266 @@
 <!DOCTYPE html>
-<html lang="ja" class="lenis">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>就活SNSの運用 | BeMe</title>
-    <meta name="description" content="関西の大学生に向けて、大学別に就活SNSを運用し、信頼性の高い情報発信と継続的な学生接点を築いています。">
+    <title>就活SNSの運用 | BeMeキャリア</title>
+    <meta name="description"
+        content="関西の主要18大学ごとにSNSアカウントを運用し、学生に信頼される就活情報と継続的な接点を届けています。総フォロワー2万人以上、月間60名規模の就活面談を実施。">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@500;600;700;800&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2">
-
-    <!-- Dependencies -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <style>
-        :root {
-            --ev-dark: #141414;
-            --ev-navy: #0C1A27;
-            --ev-accent: #7B93A8;
-            --ev-accent2: #5B7B92;
-            --ev-light: #F7F7F5;
-            --ev-border: rgba(0, 0, 0, 0.09);
-        }
-
-        /* accent text */
-        .acc {
-            color: var(--color-highlight-blue);
-            font-style: normal;
-            font-weight: 600;
-        }
-
-        /* ── HERO ── */
-        .ev-hero {
-            min-height: 92vh;
-            display: flex;
-            align-items: flex-end;
-            padding-bottom: 10vh;
-            position: relative;
-            overflow: hidden;
-            background: var(--ev-dark);
-            color: #FFF;
-        }
-
-        .ev-hero-bg {
-            position: absolute;
-            inset: 0;
-            background: url('assets/images/service_sns_app.jpg') center/cover no-repeat;
-            filter: none;
-            transform: scale(1.08);
-            will-change: transform;
-        }
-
-        .ev-hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.3) 60%, transparent 100%);
-        }
-
-        .ev-hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 0 12vw;
-            max-width: 1800px;
-            width: 100%;
-        }
-
-        .ev-hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            color: var(--ev-accent);
-            text-transform: uppercase;
-            margin-bottom: 28px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .ev-hero-tag::before {
-            content: '';
-            display: inline-block;
-            width: 28px;
-            height: 1px;
-            background: var(--ev-accent);
-        }
-
-        .ev-hero-title {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(2.8rem, 7vw, 6.5rem);
-            font-weight: 500;
-            line-height: 1.15;
-            color: #FFF;
-            margin-bottom: 32px;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .ev-hero-lead {
-            font-size: clamp(1rem, 1.4vw, 1.2rem);
-            line-height: 2;
-            color: rgba(255, 255, 255, 0.75);
-            max-width: 560px;
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .ev-hero-meta {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .ev-hero-meta-item {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .ev-hero-meta-num {
-            font-family: 'Inter', sans-serif;
-            font-size: 2rem;
-            font-weight: 300;
-            color: #FFF;
-            line-height: 1;
-        }
-
-        .ev-hero-meta-label {
-            font-size: 0.78rem;
-            color: rgba(255, 255, 255, 0.5);
-            letter-spacing: 0.08em;
-        }
-
-        .ev-hero-meta-divider {
-            width: 1px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .ev-hero-suppl {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.55);
-            max-width: 520px;
-            line-height: 1.9;
-        }
-
-        /* ── SCROLL INDICATOR ── */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            right: 12vw;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: rgba(255, 255, 255, 0.4);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            z-index: 3;
-            opacity: 0;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollPulse {
-
-            0%,
-            100% {
-                transform: scaleY(1);
-                opacity: 0.4;
-            }
-
-            50% {
-                transform: scaleY(0.6);
-                opacity: 0.9;
-            }
-        }
-
-        /* ── SECTION BASE ── */
-        .ev-section {
-            padding: 120px 12vw;
-        }
-
-        .ev-section.alt {
-            background: #F7F7F5;
-        }
-
-        .ev-section.dark {
-            background: var(--ev-dark);
-            color: #FFF;
-        }
-
-        .ev-section-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* ── LABEL ── */
-        .ev-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.22em;
-            color: var(--ev-accent);
-            text-transform: uppercase;
-            margin-bottom: 24px;
-        }
-
-        .ev-label::before {
-            content: '';
-            display: inline-block;
-            width: 20px;
-            height: 1px;
-            background: var(--ev-accent);
-        }
-
-        /* ── HEADINGS ── */
-        .ev-h2 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(1.8rem, 3vw, 2.8rem);
-            font-weight: 500;
-            color: var(--ev-dark);
-            line-height: 1.4;
-            margin-bottom: 48px;
-        }
-
-        .ev-section.dark .ev-h2 {
-            color: #FFF;
-        }
-
-        /* ── ABOUT WITH IMAGE ── */
-        .ev-about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 72px;
-            align-items: center;
-        }
-
-        .ev-about-text h2 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(2rem, 3.5vw, 3.2rem);
-            font-weight: 500;
-            color: var(--ev-dark);
-            line-height: 1.4;
-            margin-bottom: 32px;
-        }
-
-        .ev-about-text p {
-            font-size: 1.05rem;
-            line-height: 2;
-            color: #4A4A4A;
-            margin-bottom: 24px;
-        }
-
-        .ev-about-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        .ev-about-img-wrap {
-            position: relative;
-            overflow: hidden;
-            border-radius: 2px;
-        }
-
-        .ev-about-img-wrap::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(123, 147, 168, 0.12) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .ev-about-img {
-            width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover;
-            display: block;
-            filter: grayscale(20%) brightness(0.92);
-            transition: transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .ev-about-img-wrap:hover .ev-about-img {
-            transform: scale(1.05);
-        }
-
-        /* ── CARDS (premium) ── */
-        .ev-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .ev-cards-grid-2col {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .ev-card {
-            background: #FFF;
-            padding: 48px 40px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 2px 24px rgba(0, 0, 0, 0.07);
-            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.5s ease;
-            will-change: transform;
-        }
-
-        .ev-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(to right, var(--ev-accent), var(--ev-accent2));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .ev-card:hover::after {
-            transform: scaleX(1);
-        }
-
-        .ev-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.13);
-        }
-
-        .ev-card-num {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 0.25em;
-            color: var(--ev-accent);
-            margin-bottom: 20px;
-        }
-
-        .ev-card-icon-bg {
-            width: 50px;
-            height: 50px;
-            background: rgba(123, 147, 168, 0.1);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-            transition: background 0.3s;
-        }
-
-        .ev-card:hover .ev-card-icon-bg {
-            background: rgba(123, 147, 168, 0.18);
-        }
-
-        .ev-card-icon-bg svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--ev-accent);
-            fill: none;
-            stroke-width: 1.5;
-        }
-
-        .ev-card h3 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--ev-dark);
-            margin-bottom: 14px;
-            line-height: 1.4;
-        }
-
-        .ev-card p {
-            font-size: 0.92rem;
-            line-height: 2;
-            color: #5A5A5A;
-        }
-
-        /* ── MENTORING SPOTLIGHT ── */
-        .ev-mentoring {
-            background: var(--ev-navy);
-            overflow: hidden;
-        }
-
-        .ev-mentoring-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 560px;
-        }
-
-        .ev-mentoring-img-side {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ev-mentoring-img-side img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(50%) brightness(0.45);
-            transform: scale(1.06);
-            transition: transform 8s ease;
-            display: block;
-        }
-
-        .ev-mentoring:hover .ev-mentoring-img-side img {
-            transform: scale(1.0);
-        }
-
-        .ev-mentoring-img-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to right, transparent 50%, var(--ev-navy) 100%);
-        }
-
-        .ev-mentoring-content {
-            padding: 80px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .ev-mentoring-eyebrow {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.72rem;
-            letter-spacing: 0.22em;
-            color: var(--ev-accent);
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .ev-mentoring-eyebrow::before {
-            content: '';
-            display: inline-block;
-            width: 20px;
-            height: 1px;
-            background: var(--ev-accent);
-        }
-
-        .ev-mentoring-h2 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(1.4rem, 2.2vw, 1.9rem);
-            font-weight: 500;
-            color: #FFF;
-            margin-bottom: 40px;
-            line-height: 1.5;
-        }
-
-        .ev-mentoring-stat-pre {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.4);
-            font-weight: 300;
-            margin-bottom: 4px;
-        }
-
-        .ev-mentoring-num {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(5rem, 9vw, 8rem);
-            font-weight: 200;
-            color: #FFF;
-            line-height: 0.9;
-            display: flex;
-            align-items: baseline;
-            margin-bottom: 10px;
-        }
-
-        .ev-mentoring-unit {
-            font-size: 0.22em;
-            color: var(--ev-accent);
-            margin-left: 8px;
-            letter-spacing: 0.05em;
-        }
-
-        .ev-mentoring-sub {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.35);
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.1em;
-            margin-bottom: 36px;
-        }
-
-        .ev-mentoring-desc {
-            font-size: 0.92rem;
-            line-height: 2;
-            color: rgba(255, 255, 255, 0.58);
-            max-width: 380px;
-        }
-
-        .ev-mentoring-desc strong {
-            color: rgba(255, 255, 255, 0.85);
-            font-weight: 500;
-        }
-
-        .ev-mentoring-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 28px;
-        }
-
-        .ev-mentoring-tag {
-            padding: 6px 16px;
-            border: 1px solid rgba(123, 147, 168, 0.3);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.72rem;
-            color: rgba(255, 255, 255, 0.45);
-            letter-spacing: 0.05em;
-        }
-
-        /* ── CONTENT GRID ── */
-        .ev-content-section {
-            background: #FAFAFA;
-        }
-
-        .ev-content-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 48px;
-        }
-
-        .ev-content-card {
-            background: #FFF;
-            padding: 40px 32px;
-            border-radius: 16px;
-            border: 1px solid rgba(0, 0, 0, 0.04);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
-            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .ev-content-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
-            border-color: rgba(123, 147, 168, 0.2);
-        }
-
-        .ev-content-card-num {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            background: linear-gradient(135deg, var(--ev-accent), #2A3B4C);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
-
-        .ev-content-card svg {
-            width: 48px !important;
-            height: 48px !important;
-            padding: 12px;
-            background: rgba(123, 147, 168, 0.08);
-            /* subtle accent tint */
-            border-radius: 50%;
-            margin-bottom: 24px !important;
-            stroke: var(--ev-accent);
-        }
-
-        .ev-content-card h4 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--ev-dark);
-            line-height: 1.4;
-            margin: 0;
-        }
-
-        .ev-content-note {
-            margin-top: 32px;
-            font-size: 0.92rem;
-            line-height: 2;
-            color: #666;
-        }
-
-        /* ── FOUNDATION ── */
-        .ev-foundation-layout {
-            display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .ev-foundation-text p {
-            font-size: 1.05rem;
-            line-height: 2.2;
-            color: rgba(255, 255, 255, 0.72);
-            margin-bottom: 24px;
-        }
-
-        .ev-foundation-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        .ev-foundation-right {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .ev-foundation-img {
-            width: 100%;
-            aspect-ratio: 3/2;
-            object-fit: cover;
-            filter: grayscale(50%) brightness(0.55);
-            display: block;
-            margin-bottom: 2px;
-        }
-
-        .ev-pillar {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            padding: 18px 24px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            transition: background 0.3s, border-color 0.3s;
-            margin-top: 2px;
-        }
-
-        .ev-pillar:first-child {
-            margin-top: 0;
-        }
-
-        .ev-pillar:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(123, 147, 168, 0.3);
-        }
-
-        .ev-pillar-dot {
-            width: 5px;
-            height: 5px;
-            background: var(--ev-accent);
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .ev-pillar-text {
-            font-size: 0.88rem;
-            color: rgba(255, 255, 255, 0.72);
-            letter-spacing: 0.02em;
-        }
-
-        /* ── STATS DARK ── */
-        .ev-stats-section {
-            background: var(--ev-navy);
-            padding: 100px 12vw;
-        }
-
-        .ev-stats-section .ev-label {
-            color: var(--ev-accent);
-        }
-
-        .ev-stats-section .ev-h2 {
-            color: #FFF;
-        }
-
-        .ev-stats-dark-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .ev-stats-dark-row2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-top: none;
-        }
-
-        .ev-stat-dark {
-            padding: 56px 36px;
-            text-align: center;
-            background: var(--ev-navy);
-            transition: background 0.4s;
-        }
-
-        .ev-stat-dark:hover {
-            background: #122130;
-        }
-
-        .ev-stat-dark-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            letter-spacing: 0.22em;
-            color: var(--ev-accent);
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .ev-stat-dark-num {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(2.8rem, 5vw, 4rem);
-            font-weight: 200;
-            color: #FFF;
-            line-height: 1;
-            margin-bottom: 12px;
-        }
-
-        .ev-stat-dark-unit {
-            color: var(--ev-accent);
-            font-size: 0.45em;
-            margin-left: 3px;
-        }
-
-        .ev-stat-dark-divider {
-            width: 24px;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-            margin: 0 auto 16px;
-        }
-
-        .ev-stat-dark-desc {
-            font-size: 0.82rem;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.38);
-        }
-
-        /* ── VALUES ── */
-        .ev-values-layout {
-            display: grid;
-            grid-template-columns: 360px 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .ev-values-sticky {
-            position: sticky;
-            top: 120px;
-        }
-
-        .ev-values-sticky h2 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
-            font-weight: 500;
-            color: var(--ev-dark);
-            line-height: 1.5;
-            margin-bottom: 24px;
-        }
-
-        .ev-values-sticky p {
-            font-size: 0.9rem;
-            color: #888;
-            line-height: 1.9;
-        }
-
-        .ev-values-content p {
-            font-size: 1rem;
-            line-height: 2.2;
-            color: #4A4A4A;
-            margin-bottom: 28px;
-            padding-bottom: 28px;
-            border-bottom: 1px solid var(--ev-border);
-        }
-
-        .ev-values-content p:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        /* ── ANIMATIONS ── */
-        .ev-reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .ev-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .ev-reveal-left {
-            opacity: 0;
-            transform: translateX(-40px);
-            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .ev-reveal-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .ev-reveal-right {
-            opacity: 0;
-            transform: translateX(40px);
-            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .ev-reveal-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* ── CTA ── */
-        .ev-cta {
-            background: var(--ev-dark);
-            padding: 100px 12vw;
-            text-align: center;
-            color: #FFF;
-        }
-
-        .ev-cta h2 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(1.6rem, 2.5vw, 2.4rem);
-            font-weight: 500;
-            color: #FFF;
-            margin-bottom: 16px;
-        }
-
-        .ev-cta p {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 40px;
-        }
-
-        .ev-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #FFF;
-            padding: 18px 48px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.88rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            transition: background 0.4s, border-color 0.4s;
-        }
-
-        .ev-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* ── BACK NAV ── */
-        .ev-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.82rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            transition: color 0.3s;
-        }
-
-        .ev-back:hover {
-            color: #FFF;
-        }
-
-        .ev-back svg {
-            width: 16px;
-            height: 16px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-        }
-
-        /* ── MENTORING SPOTLIGHT ── */
-        .ev-mentoring {
-            background: #0F1923;
-            overflow: hidden;
-        }
-
-        .ev-mentoring-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 640px;
-        }
-
-        .ev-mentoring-img-side {
-            position: relative;
-            overflow: hidden;
-            min-height: 480px;
-        }
-
-        .ev-mentoring-img-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to right, rgba(15, 25, 35, 0.5) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .ev-mentoring-content {
-            padding: 80px 72px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .ev-mentoring-eyebrow {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.25em;
-            color: var(--ev-accent);
-            text-transform: uppercase;
-            margin-bottom: 24px;
-        }
-
-        .ev-mentoring-h2 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(1.6rem, 2.5vw, 2.4rem);
-            font-weight: 500;
-            color: #FFF;
-            line-height: 1.4;
-            margin-bottom: 36px;
-        }
-
-        .ev-mentoring-stat-pre {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.68rem;
-            letter-spacing: 0.22em;
-            color: rgba(255, 255, 255, 0.4);
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .ev-mentoring-num {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(3rem, 5vw, 4.5rem);
-            font-weight: 200;
-            color: #FFF;
-            line-height: 1;
-            margin-bottom: 6px;
-        }
-
-        .ev-mentoring-unit {
-            font-size: 0.4em;
-            color: var(--ev-accent);
-            margin-left: 4px;
-        }
-
-        .ev-mentoring-sub {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.62rem;
-            letter-spacing: 0.3em;
-            color: rgba(255, 255, 255, 0.25);
-            text-transform: uppercase;
-            margin-bottom: 32px;
-        }
-
-        .ev-mentoring-desc {
-            font-size: 0.92rem;
-            line-height: 2.2;
-            color: rgba(255, 255, 255, 0.6);
-            max-width: 460px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 32px;
-        }
-
-        /* ── RESPONSIVE ── */
-        @media (max-width: 1024px) {
-            .ev-cards-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .ev-mentoring-inner {
-                grid-template-columns: 1fr;
-            }
-
-            .ev-mentoring-img-side {
-                min-height: 300px;
-            }
-
-            .ev-mentoring-content {
-                padding: 60px 6vw;
-            }
-
-            .ev-content-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 960px) {
-
-            .ev-about-grid,
-            .ev-foundation-layout,
-            .ev-values-layout {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .ev-cards-grid,
-            .ev-cards-grid-2col {
-                grid-template-columns: 1fr;
-            }
-
-            .ev-stats-dark-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .ev-stats-dark-row2 {
-                grid-template-columns: 1fr;
-            }
-
-            .ev-values-sticky {
-                position: static;
-            }
-
-            .ev-hero-content {
-                padding: 0 6vw;
-            }
-
-            .ev-section {
-                padding: 80px 6vw;
-            }
-
-            .ev-stats-section {
-                padding: 80px 6vw;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .ev-stats-dark-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .ev-hero-meta {
-                flex-wrap: wrap;
-            }
-
-            .ev-content-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-
-        .ev-hero {
-            min-height: 92vh;
-            display: flex;
-            align-items: flex-end;
-            padding-bottom: 10vh;
-            position: relative;
-            overflow: hidden;
-            background: var(--ev-dark);
-            color: #FFF;
-        }
-
-        .ev-hero-bg {
-            position: absolute;
-            inset: 0;
-            background: url('assets/images/services_strategic_media_1772216675381.png') center/cover no-repeat;
-            filter: grayscale(60%) brightness(0.32);
-            transform: scale(1.08);
-            will-change: transform;
-            transition: transform 0.1s linear;
-        }
-
-        .ev-hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top,
-                    rgba(10, 10, 10, 0.88) 0%,
-                    rgba(10, 10, 10, 0.3) 60%,
-                    transparent 100%);
-        }
-
-        .ev-hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 0 12vw;
-            max-width: 1800px;
-            width: 100%;
-        }
-
-        .ev-hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            color: var(--ev-accent);
-            text-transform: uppercase;
-            margin-bottom: 28px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .ev-hero-tag::before {
-            content: '';
-            display: inline-block;
-            width: 28px;
-            height: 1px;
-            background: var(--ev-accent);
-        }
-
-        .ev-hero-title {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(2.8rem, 7vw, 6.5rem);
-            font-weight: 500;
-            line-height: 1.15;
-            color: #FFFFFF;
-            margin-bottom: 32px;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .ev-hero-lead {
-            font-size: clamp(1rem, 1.4vw, 1.2rem);
-            line-height: 2;
-            color: rgba(255, 255, 255, 0.75);
-            max-width: 560px;
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .ev-hero-meta {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .ev-hero-meta-item {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .ev-hero-meta-num {
-            font-family: 'Inter', sans-serif;
-            font-size: 2rem;
-            font-weight: 300;
-            color: #FFF;
-            line-height: 1;
-        }
-
-        .ev-hero-meta-label {
-            font-size: 0.78rem;
-            color: rgba(255, 255, 255, 0.5);
-            letter-spacing: 0.08em;
-        }
-
-        .ev-hero-meta-divider {
-            width: 1px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .ev-hero-suppl {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.55);
-            max-width: 520px;
-            line-height: 1.9;
-        }
-
-        /* ── SCROLL INDICATOR ── */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            right: 12vw;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: rgba(255, 255, 255, 0.4);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            z-index: 3;
-            opacity: 0;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollPulse {
-
-            0%,
-            100% {
-                transform: scaleY(1);
-                opacity: 0.4;
-            }
-
-            50% {
-                transform: scaleY(0.6);
-                opacity: 0.9;
-            }
-        }
-
-        /* ── SECTION BASE ── */
-        .ev-section {
-            padding: 120px 12vw;
-        }
-
-        .ev-section.alt {
-            background: #F7F7F5;
-        }
-
-        .ev-section.dark {
-            background: var(--ev-dark);
-            color: #FFF;
-        }
-
-        .ev-section-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* ── SECTION LABEL ── */
-        .ev-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.22em;
-            color: var(--ev-accent);
-            text-transform: uppercase;
-            margin-bottom: 24px;
-        }
-
-        .ev-label::before {
-            content: '';
-            display: inline-block;
-            width: 20px;
-            height: 1px;
-            background: var(--ev-accent);
-        }
-
-        /* ── HEADINGS ── */
-        .ev-h2 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(1.8rem, 3vw, 2.8rem);
-            font-weight: 500;
-            color: var(--ev-dark);
-            line-height: 1.4;
-            margin-bottom: 48px;
-        }
-
-        .ev-section.dark .ev-h2 {
-            color: #FFF;
-        }
-
-        /* ── ABOUT TEXT ── */
-        .ev-about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .ev-about-left h2 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(1.8rem, 2.5vw, 2.6rem);
-            font-weight: 500;
-            color: var(--ev-dark);
-            line-height: 1.5;
-            margin-bottom: 0;
-        }
-
-        .ev-about-right p {
-            font-size: 1rem;
-            line-height: 2.1;
-            color: #4A4A4A;
-            margin-bottom: 24px;
-        }
-
-        .ev-about-right p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* ── WHAT WE DO CARDS ── */
-        .ev-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2px;
-            background: var(--ev-border);
-            border: 1px solid var(--ev-border);
-        }
-
-        .ev-card {
-            background: #FAFAFA;
-            padding: 48px 44px;
-            position: relative;
-            overflow: hidden;
-            transition: background 0.5s ease;
-        }
-
-        .ev-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 2px;
-            height: 0;
-            background: var(--ev-accent);
-            transition: height 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .ev-card:hover::before {
-            height: 100%;
-        }
-
-        .ev-card:hover {
-            background: #FFFFFF;
-        }
-
-        .ev-card-num {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            color: var(--ev-accent);
-            margin-bottom: 20px;
-        }
-
-        .ev-card-icon {
-            margin-bottom: 20px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .ev-card-icon svg {
-            width: 36px;
-            height: 36px;
-            stroke: var(--ev-accent);
-            fill: none;
-            stroke-width: 1.5;
-        }
-
-        .ev-card h3 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: 1.35rem;
-            font-weight: 600;
-            color: var(--ev-dark);
-            margin-bottom: 16px;
-            line-height: 1.4;
-        }
-
-        .ev-card p {
-            font-size: 0.95rem;
-            line-height: 2;
-            color: #5A5A5A;
-            margin-bottom: 0;
-        }
-
-        /* ── FOUNDATION ── */
-        .ev-foundation-layout {
-            display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .ev-foundation-text p {
-            font-size: 1.05rem;
-            line-height: 2.2;
-            color: rgba(255, 255, 255, 0.75);
-            margin-bottom: 24px;
-        }
-
-        .ev-foundation-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        .ev-foundation-pillars {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .ev-pillar {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 24px 28px;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            transition: background 0.4s ease, border-color 0.4s ease;
-        }
-
-        .ev-pillar:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(123, 147, 168, 0.4);
-        }
-
-        .ev-pillar-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--ev-accent);
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .ev-pillar-text {
-            font-size: 0.92rem;
-            color: rgba(255, 255, 255, 0.8);
-            letter-spacing: 0.03em;
-        }
-
-        /* ── STATS ── */
-        .ev-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            background: var(--ev-border);
-            border: 1px solid var(--ev-border);
-        }
-
-        .ev-stats-row2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2px;
-            background: var(--ev-border);
-            border: 1px solid var(--ev-border);
-            border-top: none;
-        }
-
-        .ev-stat {
-            background: #FAFAFA;
-            padding: 52px 36px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: background 0.4s;
-        }
-
-        .ev-stat:hover {
-            background: #FFF;
-        }
-
-        .ev-stat-top {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .ev-stat-num {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(2.4rem, 4vw, 3.5rem);
-            font-weight: 300;
-            color: var(--ev-dark);
-            line-height: 1;
-            margin-bottom: 4px;
-            position: relative;
-        }
-
-        .ev-stat-unit {
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--ev-accent);
-            margin-left: 2px;
-        }
-
-        .ev-stat-label {
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--ev-accent);
-            letter-spacing: 0.08em;
-            margin-bottom: 18px;
-        }
-
-        .ev-stat-divider {
-            width: 24px;
-            height: 1px;
-            background: var(--ev-border);
-            margin: 0 auto 18px;
-        }
-
-        .ev-stat-desc {
-            font-size: 0.88rem;
-            line-height: 1.8;
-            color: #666;
-        }
-
-        /* ── VALUES ── */
-        .ev-values-layout {
-            display: grid;
-            grid-template-columns: 360px 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .ev-values-sticky {
-            position: sticky;
-            top: 120px;
-        }
-
-        .ev-values-sticky h2 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
-            font-weight: 500;
-            color: var(--ev-dark);
-            line-height: 1.5;
-            margin-bottom: 24px;
-        }
-
-        .ev-values-sticky p {
-            font-size: 0.9rem;
-            color: #888;
-            line-height: 1.9;
-        }
-
-        .ev-values-content p {
-            font-size: 1rem;
-            line-height: 2.2;
-            color: #4A4A4A;
-            margin-bottom: 28px;
-            padding-bottom: 28px;
-            border-bottom: 1px solid var(--ev-border);
-        }
-
-        .ev-values-content p:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        /* ── CONTENT TYPES SECTION ── */
-        .ev-content-types {
-            background: #F0F2F4;
-        }
-
-        .ev-content-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 40px;
-        }
-
-        .ev-content-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 22px;
-            background: #FFF;
-            border: 1px solid var(--ev-border);
-            font-size: 0.9rem;
-            color: #4A4A4A;
-            transition: border-color 0.3s, background 0.3s;
-        }
-
-        .ev-content-tag::before {
-            content: '';
-            display: inline-block;
-            width: 5px;
-            height: 5px;
-            background: var(--ev-accent);
-            border-radius: 50%;
-        }
-
-        .ev-content-tag:hover {
-            background: #FAFEFF;
-            border-color: var(--ev-accent);
-        }
-
-        .ev-content-note {
-            margin-top: 36px;
-            font-size: 0.95rem;
-            line-height: 2;
-            color: #666;
-        }
-
-        /* ── ANIMATIONS ── */
-        .ev-reveal {
-            opacity: 0;
-            transform: translateY(36px);
-            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .ev-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .ev-reveal-left {
-            opacity: 0;
-            transform: translateX(-36px);
-            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .ev-reveal-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .ev-reveal-right {
-            opacity: 0;
-            transform: translateX(36px);
-            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .ev-reveal-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* Stagger children */
-        .ev-stagger>* {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.9s cubic-bezier(0.19, 1, 0.22, 1), transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .ev-stagger.visible>*:nth-child(1) {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0s;
-        }
-
-        .ev-stagger.visible>*:nth-child(2) {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.1s;
-        }
-
-        .ev-stagger.visible>*:nth-child(3) {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.2s;
-        }
-
-        .ev-stagger.visible>*:nth-child(4) {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.3s;
-        }
-
-        .ev-stagger.visible>*:nth-child(5) {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.4s;
-        }
-
-        /* ── CTA STRIP ── */
-        .ev-cta {
-            background: var(--ev-dark);
-            padding: 100px 12vw;
-            text-align: center;
-            color: #FFF;
-        }
-
-        .ev-cta h2 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(1.6rem, 2.5vw, 2.4rem);
-            font-weight: 500;
-            color: #FFF;
-            margin-bottom: 16px;
-        }
-
-        .ev-cta p {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.55);
-            margin-bottom: 40px;
-        }
-
-        .ev-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #FFF;
-            padding: 18px 48px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.88rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            transition: background 0.4s, border-color 0.4s;
-        }
-
-        .ev-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* ── BACK NAV ── */
-        .ev-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.82rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            transition: color 0.3s;
-        }
-
-        .ev-back:hover {
-            color: #FFF;
-        }
-
-        .ev-back svg {
-            width: 16px;
-            height: 16px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-        }
-
-        /* ── RESPONSIVE ── */
-        @media (max-width: 960px) {
-
-            .ev-about-grid,
-            .ev-foundation-layout,
-            .ev-values-layout {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .ev-cards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .ev-stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .ev-stats-row2 {
-                grid-template-columns: 1fr;
-            }
-
-            .ev-values-sticky {
-                position: static;
-            }
-
-            .ev-hero-content {
-                padding: 0 6vw;
-            }
-
-            .ev-section {
-                padding: 80px 6vw;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .ev-stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .ev-hero-meta {
-                flex-wrap: wrap;
-            }
-        }
-
-        /* ── SECTION DIVIDER ── */
-        .ev-divider {
-            width: 48px;
-            height: 1px;
-            background: var(--ev-accent);
-            margin-bottom: 36px;
-        }
-    </style>
+    <link rel="stylesheet" href="home.css?v=3">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js" defer></script>
+    <script src="home.js?v=3" defer></script>
 </head>
 
 <body>
-    <!-- Advanced Dynamic Background -->
-    <div class="global-bg-animation">
-        <div class="bg-orb bg-orb-1"></div>
-        <div class="bg-orb bg-orb-2"></div>
-        <div class="bg-orb bg-orb-3"></div>
-    </div>
+    <div class="grain" aria-hidden="true"></div>
 
-    <!-- Navigation Header -->
-    <header class="master-header lp-header" id="ev-header">
-        <div class="header-container">
-            <a href="index.html" class="brand-logo" id="ev-logo">BeMe</a>
-            <!-- Persistent Nav Links -->
-            <ul class="header-nav-desktop">
-                <li><a href="index.html#concept">COMPANY</a></li>
-                <li><a href="index.html#services">BUSINESS</a></li>
-                <li><a href="index.html#team">MEMBER</a></li>
-                <li><a href="mailto:info@bemecareer.com">CONTACT</a></li>
-            </ul>
-
-            <!-- Mobile Toggle -->
-            <div class="nav-toggle" id="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <!-- ヘッダー -->
+    <header class="site-header" id="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="site-logo">
+                <span class="logo-en">BeMe</span><span class="logo-jp">キャリア</span>
+            </a>
+            <nav class="header-nav" aria-label="メインナビゲーション">
+                <a href="index.html#about">私たちについて</a>
+                <a href="events.html">就活イベント</a>
+                <a href="media.html">SNSメディア</a>
+                <a href="internship.html">長期インターン</a>
+                <a href="index.html#contact" class="nav-cta">お問い合わせ</a>
+            </nav>
+            <button class="menu-btn" id="menu-btn" aria-label="メニュー" aria-expanded="false" aria-controls="mobile-nav">
+                <span></span><span></span>
+            </button>
         </div>
     </header>
 
-    <!-- Mobile Nav Overlay -->
-    <div class="nav-overlay" id="nav-overlay">
-        <div class="nav-close" id="nav-close">&times;</div>
-        <nav class="overlay-menu">
-            <ul>
-                <li><a href="index.html#concept">COMPANY</a></li>
-                <li><a href="index.html#services">BUSINESS</a></li>
-                <li><a href="index.html#team">MEMBER</a></li>
-                <li><a href="mailto:info@bemecareer.com" class="cta-link">CONTACT</a></li>
-            </ul>
+    <!-- モバイルメニュー -->
+    <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+        <nav>
+            <a href="index.html"><em>TOP</em>トップページ</a>
+            <a href="index.html#about"><em>01</em>私たちについて</a>
+            <a href="events.html"><em>02</em>就活イベント</a>
+            <a href="media.html"><em>03</em>SNSメディア</a>
+            <a href="internship.html"><em>04</em>長期インターン</a>
         </nav>
+        <div class="mobile-nav-foot">
+            <!-- TODO: 公式LINEのURLに差し替えてください -->
+            <a href="https://lin.ee/placeholder" target="_blank" rel="noopener" class="btn btn-line">LINEで就活情報を受け取る</a>
+            <a href="index.html#contact" class="btn btn-outline-light">企業の方のお問い合わせ</a>
+        </div>
     </div>
 
     <main>
-        <!-- ─────────────────────────────────── -->
-        <!-- 1. FIRST VIEW / HERO               -->
-        <!-- ─────────────────────────────────── -->
-        <section class="ev-hero" id="ev-hero">
-            <div class="ev-hero-bg" id="ev-hero-bg"></div>
-            <div class="ev-hero-overlay"></div>
-
-            <div class="ev-hero-content">
-                <div class="ev-hero-tag" id="hero-tag">SNS COMMUNITY MANAGEMENT</div>
-                <h1 class="ev-hero-title" id="hero-title">就活SNSの運用</h1>
-                <p class="ev-hero-lead" id="hero-lead">
-                    関西の大学生に向けて、大学別に就活SNSを運用し、<br>信頼性の高い情報発信と継続的な学生接点を築いています。
+        <!-- ヒーロー -->
+        <section class="sub-hero">
+            <canvas id="aurora" class="hero-aurora" aria-hidden="true"></canvas>
+            <div class="sub-hero-photo" aria-hidden="true"><img src="assets/images/service_sns_app.jpg" alt=""></div>
+            <div class="sub-hero-shade" aria-hidden="true"></div>
+            <div class="sub-hero-body">
+                <p class="sub-crumb js-hero-fade"><em>02</em>事業内容</p>
+                <h1><span class="line js-hero-line">就活SNSの運用</span></h1>
+                <p class="lead js-hero-fade">
+                    関西の主要大学ごとにSNSアカウントを運用し、先輩学生が等身大の目線で就活情報を発信。
+                    日常的な接点と面談を重ねることで、学生にとって「信頼して相談できる場所」を育てています。
                 </p>
-                <div class="ev-hero-meta" id="hero-meta">
-                    <div class="ev-hero-meta-item">
-                        <span class="ev-hero-meta-num">2万<span style="font-size:1.3rem; opacity:0.7;">人超</span></span>
-                        <span class="ev-hero-meta-label">総フォロワー数</span>
-                    </div>
-                    <div class="ev-hero-meta-divider"></div>
-                    <div class="ev-hero-meta-item">
-                        <span class="ev-hero-meta-num">18<span style="font-size:1.3rem; opacity:0.7;">大学以上</span></span>
-                        <span class="ev-hero-meta-label">接点大学数</span>
-                    </div>
-                    <div class="ev-hero-meta-divider"></div>
-                    <p class="ev-hero-suppl">
-                        各大学ごとの特性に合わせた発信を行いながら、学生にとって本当に役立つ情報と出会える導線を整えています。
+            </div>
+            <dl class="sub-hero-meta js-hero-fade">
+                <div>
+                    <dt>総フォロワー</dt>
+                    <dd>2万人以上</dd>
+                </div>
+                <div>
+                    <dt>展開大学</dt>
+                    <dd>18大学</dd>
+                </div>
+                <div>
+                    <dt>月間面談</dt>
+                    <dd>60名以上</dd>
+                </div>
+            </dl>
+        </section>
+
+        <!-- 導入 -->
+        <section class="sub-intro">
+            <div class="sub-intro-grid">
+                <div class="sub-intro-copy">
+                    <h2 class="sec-title js-reveal">大学別に、学生と<br><span class="grad-deep">信頼でつながる</span>。</h2>
+                    <p class="js-reveal">
+                        一括りの就活情報ではなく、各大学ごとの雰囲気や学生の特徴に合わせて情報を届けることを大切にしています。
+                        発信するのは、就活の進め方、イベント告知、先輩のエントリーシート、面接対策のポイント、企業情報など、
+                        学生が普段の就活の中で<b>本当に知りたい内容</b>です。
+                    </p>
+                    <p class="js-reveal">
+                        単なる広報アカウントではなく、先輩学生による面談への導線も備えた「相談できるメディア」として運用しているため、
+                        フォロワー数以上に、学生との関係の深さがこの事業の価値になっています。
                     </p>
                 </div>
-            </div>
-
-            <div class="scroll-indicator" id="scroll-ind">
-                <div class="scroll-line"></div>
-                <span>scroll</span>
+                <figure class="sub-intro-photo js-clip"><img src="assets/images/natural_sns_media.png"
+                        alt="スマートフォンでSNSの就活情報を見る学生"></figure>
             </div>
         </section>
 
-        <!-- ─────────────────────────────────── -->
-        <!-- 2. この事業について                 -->
-        <!-- ─────────────────────────────────── -->
-        <section class="ev-section">
-            <div class="ev-section-inner">
-                <div class="ev-about-grid">
-                    <div class="ev-about-text ev-reveal-left">
-                        <div class="ev-label">About This Business</div>
-                        <h2>大学別に、学生と<br>信頼でつながる。</h2>
-                        <p>私たちは、関西の大学生に向けて、<em class="acc">大学別に就活SNSを運用</em>しています。</p>
-                        <p>一括りの就活情報ではなく、各大学ごとの雰囲気や学生の特徴に合わせて情報を届けることを大切にしながら、学生にとって<em
-                                class="acc">信頼できる情報発信の場</em>をつくってきました。</p>
-                        <p>発信内容は、就活情報だけにとどまりません。イベント告知、就活面談への導線、先輩のエントリーシート、面接対策のポイント、企業情報など、学生が普段の就活の中で本当に知りたい内容を届けることを重視しています。
-                        </p>
-                        <p>単なる広報アカウントではなく、<em class="acc">学生が継続的に接点を持ち、相談や行動につながるメディア</em>であることが、この事業の特徴です。</p>
-                    </div>
-                    <div class="ev-about-img-wrap ev-reveal-right">
-                        <img src="assets/images/natural_sns_media.png" class="ev-about-img" alt="就活SNS運用">
-                    </div>
-                </div>
+        <!-- 取り組み -->
+        <section class="flow">
+            <div class="sec-head wide">
+                <div class="sec-no"><em>運用</em><span>大学別の運用から、面談まで。</span></div>
             </div>
-        </section>
-
-        <!-- ─────────────────────────────────── -->
-        <!-- 3. 私たちが行っていること            -->
-        <!-- ─────────────────────────────────── -->
-        <section class="ev-section alt">
-            <div class="ev-section-inner">
-                <div class="ev-reveal" style="margin-bottom: 56px;">
-                    <div class="ev-label">What We Do</div>
-                    <h2 class="ev-h2" style="margin-bottom:0;">大学別の運用から、<br>行動につながる導線まで。</h2>
-                </div>
-                <div class="ev-cards-grid ev-stagger">
-                    <!-- Card 1 -->
-                    <div class="ev-card">
-                        <div class="ev-card-num">01</div>
-                        <div class="ev-card-icon-bg">
-                            <svg viewBox="0 0 24 24">
-                                <rect x="3" y="3" width="18" height="18" rx="2" />
-                                <line x1="3" y1="9" x2="21" y2="9" />
-                                <line x1="9" y1="21" x2="9" y2="9" />
-                            </svg>
-                        </div>
+            <div class="flow-rows">
+                <div class="flow-row js-reveal">
+                    <em>01</em>
+                    <div>
                         <h3>大学別アカウントの運用</h3>
-                        <p>各大学ごとにSNSアカウントを運用し、それぞれの学生に合った情報発信を行っています。大学ごとの空気感やニーズを踏まえながら、学生に届きやすい形で情報を発信しています。</p>
+                        <p>各大学ごとにSNSアカウントを運用し、それぞれの学生に合った情報発信を実施。大学ごとの空気感やニーズを踏まえながら、学生に届きやすい形で発信しています。</p>
                     </div>
-                    <!-- Card 2 -->
-                    <div class="ev-card">
-                        <div class="ev-card-num">02</div>
-                        <div class="ev-card-icon-bg">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                <polyline points="14 2 14 8 20 8" />
-                                <line x1="16" y1="13" x2="8" y2="13" />
-                                <line x1="16" y1="17" x2="8" y2="17" />
-                            </svg>
-                        </div>
+                </div>
+                <div class="flow-row js-reveal">
+                    <em>02</em>
+                    <div>
                         <h3>就活情報の発信</h3>
-                        <p>就活の進め方、先輩のエントリーシート、面接対策のコツ、企業情報など、学生にとって実用的な情報を継続的に発信しています。表面的な情報ではなく、実際の就活に役立つ内容を大切にしています。
-                        </p>
+                        <p>就活の進め方、先輩のエントリーシート、面接対策のコツ、企業情報など、実用的な情報を継続的に発信。表面的な情報ではなく、実際の就活に役立つ内容を大切にしています。</p>
                     </div>
-                    <!-- Card 4 -->
-                    <div class="ev-card">
-                        <div class="ev-card-num">04</div>
-                        <div class="ev-card-icon-bg">
-                            <svg viewBox="0 0 24 24">
-                                <circle cx="18" cy="5" r="3" />
-                                <circle cx="6" cy="12" r="3" />
-                                <circle cx="18" cy="19" r="3" />
-                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-                            </svg>
-                        </div>
+                </div>
+                <div class="flow-row js-reveal">
+                    <em>03</em>
+                    <div>
+                        <h3>学生面談の実施</h3>
+                        <p>SNSからの導線で、先輩学生による1対1の就活面談を月間60名規模で実施。学生のニーズを深く把握し、質の高いイベント集客にもつなげています。</p>
+                    </div>
+                </div>
+                <div class="flow-row js-reveal">
+                    <em>04</em>
+                    <div>
                         <h3>企業広報・接点づくり</h3>
-                        <p>企業情報の発信やアンケート施策などを通じて、企業と学生の新たな接点づくりにも取り組んでいます。学生との継続的な接点基盤があるからこそ、自然な形で情報を届けられる点が強みです。</p>
+                        <p>企業情報の発信やアンケート施策などを通じて、企業と学生の新たな接点づくりにも取り組んでいます。継続的な接点基盤があるからこそ、自然な形で情報を届けられます。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Mentoring Spotlight -->
-        <section class="ev-mentoring ev-reveal">
-            <div class="ev-mentoring-inner">
-                <div class="ev-mentoring-img-side">
-                    <img src="assets/images/services_executive_mentoring_1772216688903.jpg" alt="学生面談"
-                        style="width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(30%) brightness(0.7);">
-                    <div class="ev-mentoring-img-overlay"></div>
+        <!-- 発信内容 -->
+        <section class="trio">
+            <div class="sec-head wide">
+                <div class="sec-no light"><em>内容</em><span>主な発信内容</span></div>
+            </div>
+            <ul class="chips light">
+                <li>就活情報</li>
+                <li>イベント告知</li>
+                <li>面談導線</li>
+                <li>先輩のエントリーシート</li>
+                <li>面接対策のポイント</li>
+                <li>企業情報</li>
+            </ul>
+            <div class="trio-grid" style="margin-top: clamp(32px, 5vw, 56px);">
+                <div class="trio-item js-reveal">
+                    <h3>大学ごとの最適化</h3>
+                    <p>各大学の学生に合ったテーマを意識しながら、学生が普段は知りにくい情報や、実際の行動につながる内容を発信しています。</p>
                 </div>
-                <div class="ev-mentoring-content">
-                    <div class="ev-mentoring-eyebrow">What We Do — 03</div>
-                    <h2 class="ev-mentoring-h2">学生面談の実施</h2>
-                    <div class="ev-mentoring-stat-pre">月間実施数</div>
-                    <div class="ev-mentoring-num">約<span class="ev-counter" data-target="60">0</span><span
-                            class="ev-mentoring-unit">名</span></div>
-                    <div class="ev-mentoring-sub">PER MONTH</div>
-                    <p class="ev-mentoring-desc">
-                        各大学支部の上級生やOB・OGにあたる学生を長期インターン生として採用し、大学の先輩による学生面談を実施しています。フォロワーである学生に対して、より近い立場から就活相談や情報提供を行うことで、満足度の高い接点づくりにつなげています。
-                    </p>
+                <div class="trio-item js-reveal">
+                    <h3>先輩というリアリティ</h3>
+                    <p>発信も面談も、同じ大学の先輩学生が担当。等身大の言葉だからこそ、学生に信頼して受け取ってもらえます。</p>
+                </div>
+                <div class="trio-item js-reveal">
+                    <h3>行動につながる導線</h3>
+                    <p>読んで終わりではなく、面談やイベント参加など、次の一歩につながる導線を丁寧に設計しています。</p>
                 </div>
             </div>
         </section>
 
-        <!-- 補足: 主な発信内容 -->
-        <section class="ev-section ev-content-section">
-            <div class="ev-section-inner">
-                <div class="ev-reveal">
-                    <div class="ev-label">Content Types</div>
-                    <h2 class="ev-h2" style="margin-bottom:0;">主な発信内容</h2>
-                </div>
-                <div class="ev-content-grid ev-stagger">
-                    <div class="ev-content-card">
-                        <div class="ev-content-card-num">01</div>
-                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--ev-accent)" fill="none"
-                            stroke-width="1.5" style="margin-bottom:10px;">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                            <polyline points="14 2 14 8 20 8" />
-                        </svg>
-                        <h4>就活情報</h4>
-                    </div>
-                    <div class="ev-content-card">
-                        <div class="ev-content-card-num">02</div>
-                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--ev-accent)" fill="none"
-                            stroke-width="1.5" style="margin-bottom:10px;">
-                            <rect x="3" y="4" width="18" height="18" rx="2" />
-                            <line x1="16" y1="2" x2="16" y2="6" />
-                            <line x1="8" y1="2" x2="8" y2="6" />
-                            <line x1="3" y1="10" x2="21" y2="10" />
-                        </svg>
-                        <h4>イベント告知</h4>
-                    </div>
-                    <div class="ev-content-card">
-                        <div class="ev-content-card-num">03</div>
-                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--ev-accent)" fill="none"
-                            stroke-width="1.5" style="margin-bottom:10px;">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                        </svg>
-                        <h4>面談導線</h4>
-                    </div>
-                    <div class="ev-content-card">
-                        <div class="ev-content-card-num">04</div>
-                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--ev-accent)" fill="none"
-                            stroke-width="1.5" style="margin-bottom:10px;">
-                            <polyline points="9 11 12 14 22 4" />
-                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-                        </svg>
-                        <h4>先輩のES</h4>
-                    </div>
-                    <div class="ev-content-card">
-                        <div class="ev-content-card-num">05</div>
-                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--ev-accent)" fill="none"
-                            stroke-width="1.5" style="margin-bottom:10px;">
-                            <circle cx="12" cy="12" r="10" />
-                            <polyline points="12 6 12 12 16 14" />
-                        </svg>
-                        <h4>面接対策のポイント</h4>
-                    </div>
-                    <div class="ev-content-card">
-                        <div class="ev-content-card-num">06</div>
-                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--ev-accent)" fill="none"
-                            stroke-width="1.5" style="margin-bottom:10px;">
-                            <rect x="2" y="7" width="20" height="14" rx="2" />
-                            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
-                        </svg>
-                        <h4>企業情報</h4>
-                    </div>
-                </div>
-                <p class="ev-content-note ev-reveal">各大学の学生に合ったテーマを意識しながら、学生が普段は知りにくい情報や、実際の行動につながる内容を発信しています。</p>
+        <!-- 基盤 -->
+        <section class="basis">
+            <div class="basis-inner">
+                <h2 class="sec-title js-reveal">日常的な接点が、<br><span class="grad-deep">リアルなニーズ</span>を教えてくれる。</h2>
+                <p class="js-reveal">
+                    この事業は、単なるSNS運用ではなく、日常的に学生との接点を持ち続けていることを土台に成り立っています。
+                    各大学に近い距離で学生の声を拾えることに加え、先輩による面談を通じて、学生が今何を求めているのかをより深く把握しています。
+                </p>
+                <p class="js-reveal">
+                    こうしたリアルなニーズの蓄積を、SNSでの発信内容やイベント集客の設計にも反映しています。
+                    学生にとっては信頼できる情報源に、企業にとっては質の高い学生接点の基盤になっています。
+                </p>
             </div>
         </section>
 
-        <!-- ─────────────────────────────────── -->
-        <!-- 4. この事業を支える基盤              -->
-        <!-- ─────────────────────────────────── -->
-        <section class="ev-section dark">
-            <div class="ev-section-inner">
-                <div class="ev-foundation-layout">
-                    <div class="ev-foundation-text ev-reveal-left">
-                        <div class="ev-label" style="color: rgba(123,147,168,0.9);">Foundation</div>
-                        <h2 class="ev-h2" style="margin-bottom: 40px;">この事業を支える基盤</h2>
-                        <p>この事業は、単なるSNS運用ではなく、日常的に学生との接点を持ち続けていることを土台に成り立っています。</p>
-                        <p>就活SNSの運用、継続的な就活面談、関西の学生ネットワーク、そして自社の長期インターン組織による運営体制を土台にしながら、学生の<span
-                                class="text-highlight">リアルなニーズ</span>を把握し、コンテンツ発信へ反映しています。</p>
-                        <p>また、各大学に近い距離で学生の声を拾えることに加え、大学の先輩による面談を通じて、学生が今何を求めているのかをより深く把握しています。こうしたリアルなニーズの蓄積を、SNSでの発信内容やイベント集客の設計にも反映しています。
-                        </p>
-                    </div>
-                    <div class="ev-foundation-right ev-reveal-right">
-                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200"
-                            class="ev-foundation-img" alt="就活SNS運用の基盤">
-                        <div class="ev-foundation-pillars">
-                            <div class="ev-pillar">
-                                <div class="ev-pillar-dot"></div>
-                                <span class="ev-pillar-text">総フォロワー2万人超の接点基盤</span>
-                            </div>
-                            <div class="ev-pillar">
-                                <div class="ev-pillar-dot"></div>
-                                <span class="ev-pillar-text">18大学以上との継続的なつながり</span>
-                            </div>
-                            <div class="ev-pillar">
-                                <div class="ev-pillar-dot"></div>
-                                <span class="ev-pillar-text">月間60名規模の就活面談</span>
-                            </div>
-                            <div class="ev-pillar">
-                                <div class="ev-pillar-dot"></div>
-                                <span class="ev-pillar-text">各大学への学生支部設置による運営体制</span>
-                            </div>
-                            <div class="ev-pillar">
-                                <div class="ev-pillar-dot"></div>
-                                <span class="ev-pillar-text">大学に近い距離での学生ニーズの把握</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- 実績 -->
+        <section class="numbers">
+            <div class="sec-head wide">
+                <div class="sec-no light"><em>実績</em><span>数字で見るこの事業</span></div>
+            </div>
+            <ul class="num-list">
+                <li class="num-row js-numrow">
+                    <span class="num-label">関西主要大学の学生を中心とした総フォロワー</span>
+                    <span class="num-value"><b data-count="20000">0</b><small>人以上</small></span>
+                </li>
+                <li class="num-row js-numrow">
+                    <span class="num-label">大学別アカウントを展開する大学数</span>
+                    <span class="num-value"><b data-count="18">0</b><small>大学</small></span>
+                </li>
+                <li class="num-row js-numrow">
+                    <span class="num-label">先輩学生による月間の就活面談</span>
+                    <span class="num-value"><b data-count="60">0</b><small>名以上</small></span>
+                </li>
+            </ul>
+            <p class="num-note">※ 2026年時点・自社集計</p>
         </section>
 
-        <!-- 5. 実績 -->
-        <section class="ev-stats-section">
-            <div class="ev-section-inner">
-                <div class="ev-reveal" style="margin-bottom: 56px;">
-                    <div class="ev-label">Track Record</div>
-                    <h2 class="ev-h2" style="margin-bottom:0;">実績</h2>
-                </div>
-                <div class="ev-stats-dark-grid ev-stagger">
-                    <div class="ev-stat-dark">
-                        <div class="ev-stat-dark-label">総フォロワー数</div>
-                        <div class="ev-stat-dark-num">2万<span class="ev-stat-dark-unit">人超</span></div>
-                        <div class="ev-stat-dark-divider"></div>
-                        <p class="ev-stat-dark-desc">関西主要大学の学生を中心とした継続的なフォロワー基盤</p>
-                    </div>
-                    <div class="ev-stat-dark">
-                        <div class="ev-stat-dark-label">接点大学数</div>
-                        <div class="ev-stat-dark-num"><span class="ev-counter" data-target="18">0</span><span
-                                class="ev-stat-dark-unit">大学以上</span></div>
-                        <div class="ev-stat-dark-divider"></div>
-                        <p class="ev-stat-dark-desc">大学別アカウントを通じた継続的なリーチ</p>
-                    </div>
-                    <div class="ev-stat-dark">
-                        <div class="ev-stat-dark-label">月間学生面談数</div>
-                        <div class="ev-stat-dark-num">約<span class="ev-counter" data-target="60">0</span><span
-                                class="ev-stat-dark-unit">名</span></div>
-                        <div class="ev-stat-dark-divider"></div>
-                        <p class="ev-stat-dark-desc">先輩学生による面談を継続実施。ニーズ把握と質の高いイベント集客につなげています。</p>
-                    </div>
-                </div>
-                <div class="ev-stats-dark-row2 ev-stagger">
-                    <div class="ev-stat-dark">
-                        <div class="ev-stat-dark-label">運営体制</div>
-                        <div class="ev-stat-dark-num" style="font-size:1.4rem; line-height:1.4;">各大学に<br>学生支部を設置</div>
-                        <div class="ev-stat-dark-divider"></div>
-                        <p class="ev-stat-dark-desc">大学ごとに近い距離で学生と接する体制</p>
-                    </div>
-                    <div class="ev-stat-dark">
-                        <div class="ev-stat-dark-label">主な対象大学群</div>
-                        <div class="ev-stat-dark-num" style="font-size:1.3rem; line-height:1.5;">関西主要大学</div>
-                        <div class="ev-stat-dark-divider"></div>
-                        <p class="ev-stat-dark-desc">産近甲龍・関関同立・京阪神を含む関西主要大学</p>
-                    </div>
-                </div>
+        <!-- 締め -->
+        <section class="sub-value">
+            <blockquote class="js-reveal">
+                就活SNSを、情報発信の場ではなく、<br>
+                学生が<span class="grad-deep">信頼して接点を持てる場所</span>に。
+            </blockquote>
+            <p class="sub-value-note js-reveal">学生の方はLINEから、企業の方はお問い合わせから。それぞれの入り口をご用意しています。</p>
+            <div class="ctas js-reveal">
+                <!-- TODO: 公式LINEのURLに差し替えてください -->
+                <a href="https://lin.ee/placeholder" target="_blank" rel="noopener"
+                    class="btn btn-line">LINEで就活情報を受け取る</a>
+                <a href="index.html#contact" class="btn btn-dark">企業の方のお問い合わせ</a>
             </div>
         </section>
-
-        <!-- ─────────────────────────────────── -->
-        <!-- 6. 大切にしていること               -->
-        <!-- ─────────────────────────────────── -->
-        <section class="ev-section alt">
-            <div class="ev-section-inner">
-                <div class="ev-values-layout">
-                    <div class="ev-values-sticky ev-reveal-left">
-                        <div class="ev-label">Our Values</div>
-                        <h2>大切にしていること</h2>
-                        <p>就活SNSを単なる情報発信の場ではなく、学生が信頼して接点を持てる場として大切にしています。</p>
-                    </div>
-                    <div class="ev-values-content ev-reveal-right">
-                        <p>
-                            私たちは、就活SNSを単なる情報発信の場ではなく、学生が信頼して接点を持てる場として大切にしています。
-                        </p>
-                        <p>
-                            就活に関する情報は多くありますが、学生にとって本当に必要な情報が、必ずしも分かりやすく届いているとは限りません。だからこそ、各大学の学生に近い立場から、正確で実用的な情報を届けることを重視しています。
-                        </p>
-                        <p>
-                            また、SNSは単発の接触ではなく、継続的な関係を築ける基盤でもあります。これからも、学生にとって価値のある情報発信を続けながら、企業にとっても学生との自然な接点が生まれる基盤づくりを進めていきます。
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Footer -->
-        <footer class="master-footer container mt-xl"
-            style="border-top: 1px solid var(--color-border-light); padding-top: var(--space-xl); padding-bottom: var(--space-lg);">
-            <div class="footer-grid-new gs-fade-up"
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); text-align: left; align-items: start;">
-                <div>
-                    <div class="logo large"
-                        style="color: #111; margin-bottom: 24px; font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight:600; letter-spacing:0.15em;">
-                        BeMe</div>
-                    <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 2;">
-                        SNSを通じた学生との信頼構築と、<br>各大学に根ざした密着型の情報発信メディア。
-                    </p>
-                </div>
-                <div>
-                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
-                        SITEMAP</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 12px;"><a href="index.html"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">TOP</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#concept"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">COMPANY / 理念</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#services"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">BUSINESS / 事業内容</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#team"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">MEMBER / メンバー</a></li>
-                        <li style="margin-bottom: 12px;"><a href="events.html"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">EVENTS / シークレットイベント</a>
-                        </li>
-                        <li style="margin-bottom: 12px;"><a href="internship.html"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">INTERNSHIP /
-                                実践型インターン</a></li>
-                    </ul>
-                </div>
-                <div id="contact-form-area"
-                    style="background: rgba(255, 255, 255, 0.5); padding: 32px; border-radius: 12px; border: 1px solid var(--color-border-light);">
-                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
-                        SNS CONTACT</h4>
-                    <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 24px;">
-                        就活SNS運用に関するお問い合わせは、<br>下記よりお願いいたします。</p>
-                    <form action="https://formspree.io/f/placeholder" method="POST" id="contact-form"
-                        style="display: flex; flex-direction: column; gap: 16px;">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                            <input type="text" name="name" placeholder="お名前" required
-                                style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem;">
-                            <input type="email" name="_replyto" placeholder="メールアドレス" required
-                                style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem;">
-                        </div>
-                        <input type="text" name="subject" value="就活SNS運用について" placeholder="お問い合わせ件名"
-                            style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem;">
-                        <textarea name="message" placeholder="お問い合わせ内容" rows="5" required
-                            style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem; resize: none;"></textarea>
-
-                        <button type="submit" class="btn-minimal"
-                            style="font-size: 0.9rem; width: fit-content; align-self: flex-start; border: none; background: #111; color: #FFF; padding: 12px 32px; cursor: pointer;">送信する</button>
-                    </form>
-                </div>
-            </div>
-            <div class="text-center"
-                style="margin-top: var(--space-xxl); border-top: 1px solid var(--color-border-light); padding-top: var(--space-md);">
-                <div style="font-size:0.85rem; color:var(--color-text-tertiary);">&copy; 2026 BeMe. All rights reserved.
-                </div>
-            </div>
-        </footer>
     </main>
 
-    <!-- Scripts -->
-    <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            gsap.registerPlugin(ScrollTrigger);
-
-            // ── HERO ENTRANCE ──
-            const tl = gsap.timeline({ delay: 0.3 });
-            tl.to('#hero-tag', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' })
-                .to('#hero-title', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }, '-=0.6')
-                .to('#hero-lead', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.7')
-                .to('#hero-meta', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.6')
-                .to('#scroll-ind', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.3');
-
-            // ── PARALLAX HERO BG ──
-            window.addEventListener('scroll', () => {
-                const scrollY = window.scrollY;
-                document.getElementById('ev-hero-bg').style.transform = `scale(1.08) translateY(${scrollY * 0.12}px)`;
-            }, { passive: true });
-
-            // ── HEADER COLOR SWITCH (CSS CSS Classes) ──
-            const header = document.getElementById('ev-header');
-
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 60) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            }, { passive: true });
-
-            // ── SCROLL REVEAL ──
-            const revealEls = document.querySelectorAll('.ev-reveal, .ev-reveal-left, .ev-reveal-right, .ev-stagger');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.12 });
-
-            revealEls.forEach(el => observer.observe(el));
-
-            // ── COUNTERS ──
-            const counters = document.querySelectorAll('.ev-counter');
-            const counterObs = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const el = entry.target;
-                        const target = parseInt(el.getAttribute('data-target'));
-                        let obj = { val: 0 };
-                        gsap.to(obj, {
-                            val: target,
-                            duration: target > 10 ? 2 : 1.2,
-                            ease: 'power2.out',
-                            onUpdate: () => {
-                                el.textContent = Math.floor(obj.val);
-                            }
-                        });
-                        counterObs.unobserve(el);
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            counters.forEach(c => counterObs.observe(c));
-
-            // ── STAGGER CARDS via GSAP ──
-            document.querySelectorAll('.ev-cards-grid, .ev-stats-grid, .ev-stats-row2').forEach(grid => {
-                ScrollTrigger.create({
-                    trigger: grid,
-                    start: 'top 80%',
-                    onEnter: () => {
-                        gsap.fromTo(grid.children,
-                            { opacity: 0, y: 40 },
-                            { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12 }
-                        );
-                    },
-                    once: true
-                });
-            });
-
-            // ── CONTENT TAGS via GSAP ──
-            ScrollTrigger.create({
-                trigger: '.ev-content-tags',
-                start: 'top 85%',
-                onEnter: () => {
-                    gsap.fromTo('.ev-content-tag',
-                        { opacity: 0, y: 20 },
-                        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.08 }
-                    );
-                },
-                once: true
-            });
-
-            // ── PILLAR STAGGER ──
-            ScrollTrigger.create({
-                trigger: '.ev-foundation-pillars',
-                start: 'top 80%',
-                onEnter: () => {
-                    gsap.fromTo('.ev-pillar',
-                        { opacity: 0, x: 30 },
-                        { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out', stagger: 0.1 }
-                    );
-                },
-                once: true
-            });
-        });
-    </script>
+    <!-- フッター -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="site-logo"><span class="logo-en">BeMe</span><span class="logo-jp">キャリア</span></div>
+                <p>自分の意思で、未来を選ぶ。<br>学生が納得して進路を選べる社会をつくる、キャリア支援カンパニー。</p>
+                <a href="mailto:info@bemecareer.com" class="footer-mail">info@bemecareer.com</a>
+            </div>
+            <nav class="footer-nav" aria-label="サイトマップ">
+                <p class="footer-head">サイトマップ</p>
+                <a href="index.html">トップページ</a>
+                <a href="index.html#about">私たちについて</a>
+                <a href="events.html">就活イベント</a>
+                <a href="media.html">SNSメディア</a>
+                <a href="internship.html">長期インターン</a>
+            </nav>
+            <div class="footer-contact">
+                <p class="footer-head">お問い合わせ</p>
+                <form action="https://formspree.io/f/placeholder" method="POST" id="contact-form">
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="お名前" required aria-label="お名前">
+                        <input type="email" name="_replyto" placeholder="メールアドレス" required aria-label="メールアドレス">
+                    </div>
+                    <input type="text" name="subject" placeholder="件名" aria-label="件名">
+                    <textarea name="message" rows="4" placeholder="お問い合わせ内容" required aria-label="お問い合わせ内容"></textarea>
+                    <button type="submit" class="btn btn-light">送信する</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 BeMe. All rights reserved.</span>
+        </div>
+    </footer>
 </body>
 
 </html>

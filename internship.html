@@ -1,1095 +1,266 @@
 <!DOCTYPE html>
-<html lang="ja" class="lenis">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>実践型長期インターン | BeMe</title>
-    <meta name="description" content="学生が事業の一員として実践的な経験を積み、自らの道を選び取る力を養う長期インターンシップを提供しています。">
+    <title>長期インターンの運営 | BeMeキャリア</title>
+    <meta name="description"
+        content="30名以上の学生メンバーが、営業・イベント制作・SNS運用・採用まで、裁量を持って事業を動かす長期インターン組織を運営しています。">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@500;600;700;800&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2">
-
-    <!-- Dependencies -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <style>
-        /* ── Page-level overrides ── */
-        :root {
-            --ev-dark: #141414;
-            --ev-accent: #7B93A8;
-            --ev-light: #F7F7F5;
-            --ev-border: rgba(0, 0, 0, 0.09);
-            --ev-radius: 4px;
-        }
-
-        /* ── HERO ── */
-        .ev-hero {
-            min-height: 92vh;
-            display: flex;
-            align-items: flex-end;
-            padding-bottom: 10vh;
-            position: relative;
-            overflow: hidden;
-            background: var(--ev-dark);
-            color: #FFF;
-        }
-
-        .ev-hero-bg {
-            position: absolute;
-            inset: 0;
-            background: url('assets/images/service_internship_team.jpg') center/cover no-repeat;
-            filter: none;
-            transform: scale(1.08);
-            will-change: transform;
-            transition: transform 0.1s linear;
-        }
-
-        .ev-hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top,
-                    rgba(10, 10, 10, 0.85) 0%,
-                    rgba(10, 10, 10, 0.3) 60%,
-                    transparent 100%);
-        }
-
-        .ev-hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 0 12vw;
-            max-width: 1800px;
-            width: 100%;
-        }
-
-        .ev-hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            color: var(--ev-accent);
-            text-transform: uppercase;
-            margin-bottom: 28px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .ev-hero-tag::before {
-            content: '';
-            display: inline-block;
-            width: 28px;
-            height: 1px;
-            background: var(--ev-accent);
-        }
-
-        .ev-hero-title {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(2.8rem, 7vw, 6.5rem);
-            font-weight: 500;
-            line-height: 1.15;
-            color: #FFFFFF;
-            margin-bottom: 32px;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .ev-hero-lead {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            max-width: 700px;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 48px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        /* ── SECTION BASICS ── */
-        .ev-section {
-            padding: var(--space-xl) 12vw;
-            position: relative;
-        }
-
-        .ev-section.alt {
-            background: var(--ev-light);
-        }
-
-        .ev-section.dark {
-            background: var(--ev-dark);
-            color: #FFF;
-        }
-
-        .ev-section-inner {
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .ev-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--ev-accent);
-            margin-bottom: 24px;
-        }
-
-        .ev-h2 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-            line-height: 1.4;
-            margin-bottom: 40px;
-        }
-
-        /* ── CARDS (What We Do) ── */
-        .ev-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .ev-card {
-            background: #FFF;
-            padding: 48px 40px;
-            box-shadow: 0 2px 24px rgba(0, 0, 0, 0.07);
-            transition: transform 0.5s var(--ease-golden), box-shadow 0.5s ease;
-        }
-
-        .ev-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 56px rgba(0, 0, 0, 0.12);
-        }
-
-        .ev-card-num {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            color: var(--ev-accent);
-            margin-bottom: 24px;
-        }
-
-        .ev-card h3 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            color: #111;
-        }
-
-        .ev-card p {
-            font-size: 0.92rem;
-            line-height: 1.8;
-            color: #555;
-        }
-
-        /* ── PRACTICE GRID ── */
-        .ev-practice-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            margin-top: 60px;
-        }
-
-        .ev-practice-card {
-            background: #FFF;
-            padding: 40px;
-            border: 1px solid var(--ev-border);
-            border-radius: var(--ev-radius);
-            transition: all 0.4s var(--ease-golden);
-        }
-
-        .ev-practice-card:hover {
-            transform: translateY(-8px);
-            border-color: #000;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-        }
-
-        .ev-practice-card-icon {
-            width: 48px;
-            height: 48px;
-            margin-bottom: 24px;
-            color: var(--ev-accent);
-        }
-
-        .ev-practice-card-icon svg {
-            width: 32px;
-            height: 32px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 1.5;
-        }
-
-        .ev-practice-card h4 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: 1.25rem;
-            margin-bottom: 16px;
-        }
-
-        .ev-practice-card p {
-            font-size: 0.9rem;
-            color: #666;
-            line-height: 1.7;
-        }
-
-        /* ── REVEALS ── */
-        .ev-reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s var(--ease-golden);
-        }
-
-        .ev-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .ev-reveal-left {
-            opacity: 0;
-            transform: translateX(-40px);
-            transition: all 1s var(--ease-golden);
-        }
-
-        .ev-reveal-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .ev-reveal-right {
-            opacity: 0;
-            transform: translateX(40px);
-            transition: all 1s var(--ease-golden);
-        }
-
-        .ev-reveal-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* ── HEADER ── */
-        .master-header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 30px 6vw;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: all 0.4s var(--ease-golden);
-        }
-
-        .master-header.scrolled {
-            padding: 20px 6vw;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-        }
-
-        .logo {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 1.3rem;
-            letter-spacing: 0.15em;
-            color: #FFF;
-            text-decoration: none;
-        }
-
-        .master-header.scrolled .logo {
-            color: #000;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        .nav-links a {
-            color: #FFF;
-            text-decoration: none;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-        }
-
-        .master-header.scrolled .nav-links a {
-            color: #000;
-        }
-
-        /* ── FOUNDATION ── */
-        .ev-foundation-layout {
-            display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .ev-foundation-text p {
-            font-size: 1.05rem;
-            line-height: 2.2;
-            color: rgba(255, 255, 255, 0.72);
-            margin-bottom: 24px;
-        }
-
-        .ev-foundation-right {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .ev-foundation-img {
-            width: 100%;
-            aspect-ratio: 3/2;
-            object-fit: cover;
-            filter: grayscale(50%) brightness(0.55);
-            display: block;
-            margin-bottom: 2px;
-        }
-
-        .ev-foundation-pillars {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .ev-pillar {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            padding: 18px 24px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            transition: background 0.3s, border-color 0.3s;
-        }
-
-        .ev-pillar:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(123, 147, 168, 0.3);
-        }
-
-        .ev-pillar-dot {
-            width: 5px;
-            height: 5px;
-            background: var(--ev-accent);
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .ev-pillar-text {
-            font-size: 0.88rem;
-            color: rgba(255, 255, 255, 0.72);
-            letter-spacing: 0.02em;
-        }
-
-        /* ── STATS DARK ── */
-        .ev-stats-section {
-            background: #0C1A27;
-            /* ev-navy */
-            padding: 100px 12vw;
-        }
-
-        .ev-stats-dark-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .ev-stat-dark {
-            padding: 56px 36px;
-            text-align: center;
-            background: #0C1A27;
-            transition: background 0.4s;
-        }
-
-        .ev-stat-dark:hover {
-            background: #122130;
-        }
-
-        .ev-stat-dark-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            letter-spacing: 0.22em;
-            color: var(--ev-accent);
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .ev-stat-dark-num {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(2.8rem, 5vw, 4rem);
-            font-weight: 200;
-            color: #FFF;
-            line-height: 1;
-            margin-bottom: 12px;
-        }
-
-        .ev-stat-dark-unit {
-            color: var(--ev-accent);
-            font-size: 0.45em;
-            margin-left: 3px;
-        }
-
-        .ev-stat-dark-divider {
-            width: 24px;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-            margin: 0 auto 16px;
-        }
-
-        .ev-stat-dark-desc {
-            font-size: 0.82rem;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.38);
-        }
-
-        /* ── VALUES ── */
-        .ev-values-layout {
-            display: grid;
-            grid-template-columns: 360px 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .ev-values-sticky {
-            position: sticky;
-            top: 120px;
-        }
-
-        .ev-values-sticky h2 {
-            font-family: 'Shippori Mincho', serif;
-            font-size: clamp(1.8rem, 2.5vw, 2.5rem);
-            font-weight: 500;
-            color: #111;
-            line-height: 1.5;
-            margin-bottom: 24px;
-        }
-
-        .ev-values-sticky p {
-            font-size: 0.9rem;
-            color: #888;
-            line-height: 1.9;
-        }
-
-        .ev-values-content p {
-            font-size: 1rem;
-            line-height: 2.2;
-            color: #4A4A4A;
-            margin-bottom: 28px;
-            padding-bottom: 28px;
-            border-bottom: 1px solid var(--ev-border);
-        }
-
-        .ev-values-content p:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        @media (max-width: 900px) {
-            .ev-cards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .ev-section {
-                padding: 80px 6vw;
-            }
-
-            .ev-foundation-layout,
-            .ev-values-layout {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .ev-values-sticky {
-                position: relative;
-                top: 0;
-            }
-
-            .ev-stats-dark-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ── PRACTICE GRID ── */
-        .ev-practice-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-bottom: 60px;
-        }
-
-        .ev-practice-card {
-            background: #FFF;
-            padding: 40px 32px;
-            border-radius: var(--ev-radius);
-            border: 1px solid var(--ev-border);
-            text-align: left;
-            transition: all 0.4s var(--ease-golden);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-        }
-
-        .ev-practice-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-            border-color: var(--ev-accent);
-        }
-
-        .ev-practice-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(123, 147, 168, 0.08);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .ev-practice-title {
-            font-family: 'Shippori Mincho', serif;
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--ev-dark);
-        }
-
-        .ev-practice-bottom-text {
-            text-align: left;
-            font-size: 0.95rem;
-            color: var(--color-text-secondary);
-            margin-top: 40px;
-            max-width: 800px;
-            line-height: 1.8;
-        }
-
-        @media (max-width: 991px) {
-            .ev-practice-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 580px) {
-            .ev-practice-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ── NEW GRID LAYOUTS ── */
-        .ev-cards-grid-2col {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .ev-stats-dark-grid-4col {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        @media (max-width: 991px) {
-            .ev-cards-grid-2col {
-                grid-template-columns: 1fr;
-            }
-
-            .ev-stats-dark-grid-4col {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .ev-stats-dark-grid-4col {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="home.css?v=3">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js" defer></script>
+    <script src="home.js?v=3" defer></script>
 </head>
 
 <body>
-    <header class="master-header" id="ev-header">
-        <div class="header-container">
-            <a href="index.html" class="logo">BeMe</a>
+    <div class="grain" aria-hidden="true"></div>
 
-            <!-- Mobile Toggle -->
-            <div class="nav-toggle" id="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
-            <nav class="nav-links header-nav-desktop">
-                <a href="index.html">TOP</a>
-                <a href="index.html#concept">COMPANY</a>
-                <a href="index.html#services">BUSINESS</a>
-                <a href="index.html#team">MEMBER</a>
+    <!-- ヘッダー -->
+    <header class="site-header" id="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="site-logo">
+                <span class="logo-en">BeMe</span><span class="logo-jp">キャリア</span>
+            </a>
+            <nav class="header-nav" aria-label="メインナビゲーション">
+                <a href="index.html#about">私たちについて</a>
+                <a href="events.html">就活イベント</a>
+                <a href="media.html">SNSメディア</a>
+                <a href="internship.html">長期インターン</a>
+                <a href="index.html#contact" class="nav-cta">お問い合わせ</a>
             </nav>
+            <button class="menu-btn" id="menu-btn" aria-label="メニュー" aria-expanded="false" aria-controls="mobile-nav">
+                <span></span><span></span>
+            </button>
         </div>
     </header>
 
-    <!-- Mobile Nav Overlay -->
-    <div class="nav-overlay" id="nav-overlay">
-        <div class="nav-close" id="nav-close">&times;</div>
-        <nav class="overlay-menu">
-            <ul>
-                <li><a href="index.html">TOP</a></li>
-                <li><a href="index.html#concept">COMPANY</a></li>
-                <li><a href="index.html#services">BUSINESS</a></li>
-                <li><a href="index.html#team">MEMBER</a></li>
-                <li><a href="mailto:info@bemecareer.com" class="cta-link">CONTACT</a></li>
-            </ul>
+    <!-- モバイルメニュー -->
+    <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+        <nav>
+            <a href="index.html"><em>TOP</em>トップページ</a>
+            <a href="index.html#about"><em>01</em>私たちについて</a>
+            <a href="events.html"><em>02</em>就活イベント</a>
+            <a href="media.html"><em>03</em>SNSメディア</a>
+            <a href="internship.html"><em>04</em>長期インターン</a>
         </nav>
+        <div class="mobile-nav-foot">
+            <!-- TODO: 公式LINEのURLに差し替えてください -->
+            <a href="https://lin.ee/placeholder" target="_blank" rel="noopener" class="btn btn-line">LINEで就活情報を受け取る</a>
+            <a href="index.html#contact" class="btn btn-outline-light">お問い合わせ</a>
+        </div>
     </div>
 
     <main>
-        <!-- 1. HERO -->
-        <section class="ev-hero">
-            <div class="ev-hero-bg" id="ev-hero-bg"></div>
-            <div class="ev-hero-overlay"></div>
-            <div class="ev-hero-content">
-                <div class="ev-hero-tag" id="hero-tag">Student Growth Platform</div>
-                <h1 class="ev-hero-title" id="hero-title">
-                    長期インターン運営
-                </h1>
-                <p class="ev-hero-lead" id="hero-lead" style="opacity: 0; transform: translateY(20px);">
-                    学生が実践を通じて成長し、自分の人生を自分で選べる力を身につけるための長期インターン組織を運営しています。
+        <!-- ヒーロー -->
+        <section class="sub-hero">
+            <canvas id="aurora" class="hero-aurora" aria-hidden="true"></canvas>
+            <div class="sub-hero-photo" aria-hidden="true"><img src="assets/images/service_internship_team.jpg" alt="">
+            </div>
+            <div class="sub-hero-shade" aria-hidden="true"></div>
+            <div class="sub-hero-body">
+                <p class="sub-crumb js-hero-fade"><em>03</em>事業内容</p>
+                <h1><span class="line js-hero-line">長期インターンの運営</span></h1>
+                <p class="lead js-hero-fade">
+                    BeMeキャリアの事業運営そのものが、学生の実践の場。営業、イベント制作、SNS運用、採用まで、
+                    30名以上の学生メンバーが裁量を持って事業を動かしています。
                 </p>
-                <div class="ev-hero-meta" id="hero-meta"
-                    style="display:flex; gap:60px; align-items:flex-end; opacity:0; transform:translateY(20px);">
-                    <div class="ev-hero-meta-item">
-                        <div style="display:flex; align-items:baseline;">
-                            <span class="ev-stat-num ev-counter" data-target="30"
-                                style="font-size:3.5rem; line-height:1; font-family:'Inter', sans-serif; font-weight:600;">0</span>
-                            <span style="font-size:1.4rem; opacity:0.7; margin-left:4px;">名+</span>
-                        </div>
-                        <span
-                            style="font-size:0.75rem; letter-spacing:0.1em; opacity:0.6; text-transform:uppercase; font-family:'Inter', sans-serif;">Belonging
-                            Members</span>
-                    </div>
-                </div>
             </div>
-        </section>
-
-        <!-- 2. ABOUT -->
-        <section class="ev-section">
-            <div class="ev-section-inner">
-                <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:80px; align-items:center;">
-                    <div class="ev-reveal-left">
-                        <div class="ev-label">About This Business</div>
-                        <h2 class="ev-h2">実践の中で、<br>自分の選択肢を<br>広げていく。</h2>
-                        <p style="margin-bottom:24px;">私たちは、学生が実践経験を通じて成長できる長期インターン組織を運営しています。</p>
-                        <p style="margin-bottom:24px;">
-                            目指しているのは、与えられた選択肢の中から進路を選ぶのではなく、自分の人生を自分で考え、自分で選べる学生を増やすことです。そのために、表面的な体験ではなく、実際の事業運営に関わる機会をインターンの中でつくっています。
-                        </p>
-                        <p>業務領域は、営業、イベントの立ち上げ、SNSの広報・マーケティング、採用など多岐にわたり。学生が単なる補助的な役割にとどまるのではなく、<span
-                                class="text-highlight">組織の一員</span>として責任を持ちながら動ける環境を整えています。</p>
-                    </div>
-                    <div class="ev-reveal-right">
-                        <img src="assets/images/natural_internship.png"
-                            style="width:100%; border-radius:var(--ev-radius); box-shadow: 0 30px 60px rgba(0,0,0,0.1);"
-                            alt="実践型インターン">
-                    </div>
-                </div>
-
-                <!-- Domain Pillars (Square Cards) -->
-                <div class="ev-reveal" style="margin-top: 100px;">
-                    <div class="ev-label">What We Do</div>
-                    <h2 class="ev-h2">実務機会の提供から、<br>組織づくりまで。</h2>
-                </div>
-                <div class="ev-cards-grid-2col gs-stagger">
-                    <div class="ev-card">
-                        <div class="ev-card-num">01</div>
-                        <h3>実務機会の提供</h3>
-                        <p>営業、イベント立ち上げ、SNS運用、マーケティング、採用など、実際の事業に関わる実務機会を学生に提供しています。学生が机上の学びだけで終わらず、実践の中で力をつけられる環境を整えています。
-                        </p>
-                    </div>
-                    <div class="ev-card">
-                        <div class="ev-card-num">02</div>
-                        <h3>役割を持った組織運営</h3>
-                        <p>インターン生は、イベント運営, 商談, SNSマーケティング, デザイン,
-                            就活面談対応など、さまざまな役割を担っています。それぞれが組織の一員として責任を持ち、実務の中で成長できるようにしています。</p>
-                    </div>
-                    <div class="ev-card">
-                        <div class="ev-card-num">03</div>
-                        <h3>採用・育成・研修</h3>
-                        <p>運営側では、採用、育成、マネジメント、研修などを含めて、組織づくり全体を行っています。学生が継続的に成長しやすいよう、実務だけでなく育成面にも力を入れています。</p>
-                    </div>
-                    <div class="ev-card">
-                        <div class="ev-card-num">04</div>
-                        <h3>学生主体での事業推進</h3>
-                        <p>このインターン組織は、学生主体で事業を動かしている点が大きな特徴です。自ら考え、動き、形にしていく経験を通じて、学生が一から価値を生み出す力を身につけられる環境を目指しています。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. Practice Areas (Separated Business Content) -->
-        <section class="ev-section alt">
-            <div class="ev-section-inner">
-                <div class="ev-reveal" style="margin-bottom: 80px;">
-                    <div class="ev-label">Practice Areas</div>
-                    <h2 class="ev-h2">具体的な事業内容</h2>
-                    <p>営業、イベント企画、SNSマーケティングなど、学生が主体となって各領域の目標達成に邁進します。</p>
-                </div>
-
-                <!-- Detailed Rows -->
-                <div class="business-details-list">
-                    <!-- Practice Areas Grid -->
-                    <div class="ev-practice-grid gs-stagger">
-                        <!-- Area 01 -->
-                        <div class="ev-practice-card">
-                            <div class="ev-practice-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#7B93A8"
-                                    viewBox="0 0 256 256">
-                                    <path
-                                        d="M240,192H224V56a16,16,0,0,0-16-16H48A16,16,0,0,0,32,56V192H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM48,56H208V192H48Z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <h3 class="ev-practice-title">営業</h3>
-                        </div>
-                        <!-- Area 02 -->
-                        <div class="ev-practice-card">
-                            <div class="ev-practice-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#7B93A8"
-                                    viewBox="0 0 256 256">
-                                    <path
-                                        d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,176H48V80H208V208ZM208,64H48V48H72v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V64Z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <h3 class="ev-practice-title">イベント立ち上げ</h3>
-                        </div>
-                        <!-- Area 03 -->
-                        <div class="ev-practice-card">
-                            <div class="ev-practice-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#7B93A8"
-                                    viewBox="0 0 256 256">
-                                    <path
-                                        d="M247.39,68.32a8,8,0,0,0-8.19-.33c-23.07,11.31-48,11.82-71,1.44C151.49,61.76,131.24,56,110.12,56a105.3,105.3,0,0,0-58.46,17.41V56a8,8,0,0,0-16,0V208a8,8,0,0,0,16,0V113.84c17.55-9,37.38-14,58.46-14,17.2,0,34,3.87,49,10.63,22.25,10,46.3,10.43,68.61.3A8,8,0,0,0,256,103.73V75.33A8,8,0,0,0,247.39,68.32ZM240,94.21c-19,8-39.06,7.86-57.57-.45-18.78-8.43-39.75-12.87-61.12-12.87-19.12,0-37.16,3.63-53.11,10.41l0-17.89c14.65-6.32,31-9.61,48.69-9.61,17.92,0,35.1,3.48,51.05,10.37,25.43,11,53.25,10.45,78.22-.51Z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <h3 class="ev-practice-title">SNS広報・マーケティング</h3>
-                        </div>
-                        <!-- Area 04 -->
-                        <div class="ev-practice-card">
-                            <div class="ev-practice-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#7B93A8"
-                                    viewBox="0 0 256 256">
-                                    <path
-                                        d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216ZM128,56a72,72,0,1,0,72,72A72.08,72.08,0,0,0,128,56Zm0,128a56,56,0,1,1,56-56A56.06,56.06,0,0,1,128,184Z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <h3 class="ev-practice-title">デザイン</h3>
-                        </div>
-                        <!-- Area 05 -->
-                        <div class="ev-practice-card">
-                            <div class="ev-practice-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#7B93A8"
-                                    viewBox="0 0 256 256">
-                                    <path
-                                        d="M117.3,158c-1.3,0-2.6.2-3.9.5A48,48,0,0,1,86.1,91.8c-.8-5,2.4-10,7.3-11.2s10,2.4,11.2,7.3,0,10-4.9,11.2a32,32,0,0,0,11.2,62.7c5.1-.4,9.6,3.3,10,8.3s-3.3,9.6-8.3,10C118,158,117.7,158,117.3,158ZM175.4,96A48,48,0,0,0,105,65.6a8.1,8.1,0,0,0-.4,11.3,8,8,0,0,0,11.3.4A32,32,0,1,1,163,124.6c4.2,2.7,9.7,1.4,12.4-2.8,2.7-4.2,1.3-9.5-2.8-12.2a47.2,47.2,0,0,0-13-6.5A48,48,0,0,0,175.4,96ZM216.3,192a8,8,0,0,1-13.9,8c-12.7-22-36.2-36-62.4-36s-49.7,14-62.4,36a8,8,0,0,1-13.9-8c15.9-27.6,45.4-44,76.3-44S200.4,164.4,216.3,192ZM136,88a16,16,0,1,0-16-16A16,16,0,0,0,136,88Z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <h3 class="ev-practice-title">採用</h3>
-                        </div>
-                        <!-- Area 06 -->
-                        <div class="ev-practice-card">
-                            <div class="ev-practice-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#7B93A8"
-                                    viewBox="0 0 256 256">
-                                    <path
-                                        d="M216,48V160a16,16,0,0,1-16,16H107.31L73.37,209.94A8,8,0,0,1,60,204V176H56a16,16,0,0,1-16-16V48A16,16,0,0,1,56,32H200A16,16,0,0,1,216,48ZM200,48H56V160H68a8,8,0,0,1,8,8v15.31l20.46-20.45A8,8,0,0,1,102.12,160h97.88V48Z">
-                                    </path>
-                                </svg>
-                            </div>
-                            <h3 class="ev-practice-title">就活面談対応</h3>
-                        </div>
-                    </div>
-
-                    <p class="ev-practice-bottom-text">学生が単なるサポートではなく、事業の一部を担う立場として関わることで、より実践的な経験につながる設計にしています。</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. FOUNDATION -->
-        <section class="ev-section dark">
-            <div class="ev-section-inner">
-                <div class="ev-foundation-layout">
-                    <div class="ev-foundation-text ev-reveal-left">
-                        <div class="ev-label" style="color: rgba(123,147,168,0.9);">Foundation</div>
-                        <h2 class="ev-h2">この事業を支える基盤</h2>
-                        <p>この事業は、単なるインターン募集ではなく、学生が継続的に実務へ関わり、成長できる組織基盤の上に成り立っています。</p>
-                        <p>30名以上のメンバーが所属し、学生主体で事業を動かす体制を整えながら、採用・育成・マネジメント・研修まで一貫して行っています。実務に入るだけでなく、組織として学び続けられる仕組みを持っていることが、この事業の土台です。
-                        </p>
-                        <p>また、就活イベントやSNS運用といった他事業とも連動しているため、インターンの中で実際の事業運営に触れながら、より実践的な経験を積める環境になっています。</p>
-                    </div>
-                    <div class="ev-foundation-right ev-reveal-right">
-                        <img src="assets/images/premium_internship_execution.png" class="ev-foundation-img" alt="組織の基盤">
-                        <div class="ev-foundation-pillars">
-                            <div class="ev-pillar">
-                                <div class="ev-pillar-dot"></div>
-                                <span class="ev-pillar-text">30名以上の学生メンバーが所属</span>
-                            </div>
-                            <div class="ev-pillar">
-                                <div class="ev-pillar-dot"></div>
-                                <span class="ev-pillar-text">採用・育成・マネジメント・研修まで一貫対応</span>
-                            </div>
-                            <div class="ev-pillar">
-                                <div class="ev-pillar-dot"></div>
-                                <span class="ev-pillar-text">学生主体での事業運営体制</span>
-                            </div>
-                            <div class="ev-pillar">
-                                <div class="ev-pillar-dot"></div>
-                                <span class="ev-pillar-text">就活イベント・SNS運用との連動</span>
-                            </div>
-                            <div class="ev-pillar">
-                                <div class="ev-pillar-dot"></div>
-                                <span class="ev-pillar-text">組織として学び続けられる仕組み</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. STATS -->
-        <section class="ev-stats-section">
-            <div class="ev-section-inner">
-                <div class="ev-reveal" style="margin-bottom: 56px;">
-                    <div class="ev-label">Track Record</div>
-                    <h2 class="ev-h2" style="margin-bottom:0;">実績</h2>
-                </div>
-                <div class="ev-stats-dark-grid-4col gs-stagger">
-                    <div class="ev-stat-dark">
-                        <div class="ev-stat-dark-label">メンバー数</div>
-                        <div class="ev-stat-dark-num"><span class="ev-counter" data-target="30">0</span><span
-                                class="ev-stat-dark-unit">名以上</span></div>
-                        <div class="ev-stat-dark-divider"></div>
-                        <p class="ev-stat-dark-desc">学生主体で事業を動かすインターン組織のメンバー数</p>
-                    </div>
-                    <div class="ev-stat-dark">
-                        <div class="ev-stat-dark-label">主な実務領域</div>
-                        <div class="ev-stat-dark-num" style="font-size:1.4rem; line-height:1.4; padding-top:10px;">
-                            営業・イベント<br>SNS・採用</div>
-                        <div class="ev-stat-dark-divider"></div>
-                        <p class="ev-stat-dark-desc">営業・イベント立ち上げ・SNS運用・マーケティング・採用など多岐にわたる</p>
-                    </div>
-                    <div class="ev-stat-dark">
-                        <div class="ev-stat-dark-label">運営内容</div>
-                        <div class="ev-stat-dark-num" style="font-size:1.4rem; line-height:1.4; padding-top:10px;">
-                            採用・育成<br>マネジメント・研修</div>
-                        <div class="ev-stat-dark-divider"></div>
-                        <p class="ev-stat-dark-desc">組織づくり全体を一貫して対応</p>
-                    </div>
-                    <div class="ev-stat-dark">
-                        <div class="ev-stat-dark-label">運営体制</div>
-                        <div class="ev-stat-dark-num" style="font-size:1.4rem; line-height:1.4; padding-top:10px;">
-                            学生主体で<br>組織を運営</div>
-                        <div class="ev-stat-dark-divider"></div>
-                        <p class="ev-stat-dark-desc">学生が責任ある役割を持ちながら主体的に動く環境</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. VALUES -->
-        <section class="ev-section alt">
-            <div class="ev-section-inner">
-                <div class="ev-values-layout">
-                    <div class="ev-values-sticky ev-reveal-left">
-                        <div class="ev-label">Our Values</div>
-                        <h2>大切にしていること</h2>
-                        <p>長期インターンを単なる経験の場ではなく、学生が本当に成長できる環境として大切にしています。</p>
-                    </div>
-                    <div class="ev-values-content ev-reveal-right">
-                        <p>
-                            私たちは、長期インターンを単なる経験の場ではなく、学生が本当に成長できる環境として大切にしています。
-                        </p>
-                        <p>
-                            大事にしているのは、学生が受け身で参加するのではなく、自ら考え、役割を持ち、責任を持って動くことです。その中で、実務スキルだけでなく、組織を動かす力や、自分で選び取る力を身につけてほしいと考えています。
-                        </p>
-                        <p>
-                            これからも、学生の枠を超えて挑戦できる環境を整ながら、実践を通じて成長できる組織づくりを続けていきます。
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. FOOTER & CONTACT -->
-        <!-- Footer -->
-        <footer class="master-footer container"
-            style="background: #0C1A27; color: #FFF; border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-xl); padding-bottom: var(--space-lg);">
-            <div class="footer-grid-new gs-fade-up"
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); text-align: left; align-items: start;">
+            <dl class="sub-hero-meta js-hero-fade">
                 <div>
-                    <div class="logo large"
-                        style="color: #FFF; margin-bottom: 24px; font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight:600; letter-spacing:0.15em;">
-                        BeMe</div>
-                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 2;">
-                        学生が事業の主体となり、<br>自らの実力で価値を生み出す実践型インターン組織。
+                    <dt>学生メンバー</dt>
+                    <dd>30名以上</dd>
+                </div>
+                <div>
+                    <dt>事業運営</dt>
+                    <dd>学生主体</dd>
+                </div>
+                <div>
+                    <dt>業務領域</dt>
+                    <dd>営業からデザインまで</dd>
+                </div>
+            </dl>
+        </section>
+
+        <!-- 導入 -->
+        <section class="sub-intro">
+            <div class="sub-intro-grid">
+                <div class="sub-intro-copy">
+                    <h2 class="sec-title js-reveal">実践の中で、<br><span class="grad-deep">選べる力</span>を身につける。</h2>
+                    <p class="js-reveal">
+                        私たちは、学生が実践経験を通じて成長できる長期インターン組織を運営しています。
+                        業務領域は、営業、イベントの立ち上げ、SNSの広報・マーケティング、採用など多岐にわたります。
+                    </p>
+                    <p class="js-reveal">
+                        学生が単なる補助的な役割にとどまるのではなく、<b>事業の一部を担う立場</b>として関わることで、
+                        自ら考え、動き、形にしていく力が身につく。それが、このインターンの設計思想です。
                     </p>
                 </div>
-                <div>
-                    <h4 style="font-size: 1.1rem; color: #FFF; margin-bottom: 24px; font-family: var(--font-en-serif);">
-                        SITEMAP</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 12px;"><a href="index.html"
-                                style="font-size: 0.95rem; color: rgba(255,255,255,0.6);">TOP</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#concept"
-                                style="font-size: 0.95rem; color: rgba(255,255,255,0.6);">COMPANY / 理念</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#services"
-                                style="font-size: 0.95rem; color: rgba(255,255,255,0.6);">BUSINESS / 事業内容</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#team"
-                                style="font-size: 0.95rem; color: rgba(255,255,255,0.6);">MEMBER / メンバー</a></li>
-                        <li style="margin-bottom: 12px;"><a href="media.html"
-                                style="font-size: 0.95rem; color: rgba(255,255,255,0.6);">MEDIA / SNS運用</a></li>
-                        <li style="margin-bottom: 12px;"><a href="internship.html"
-                                style="font-size: 0.95rem; color: rgba(255,255,255,0.6);">INTERNSHIP / 実践型インターン</a></li>
-                    </ul>
-                </div>
-                <div id="contact-form-area"
-                    style="background: rgba(255, 255, 255, 0.05); padding: 32px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                    <h4 style="font-size: 1.1rem; color: #FFF; margin-bottom: 24px; font-family: var(--font-en-serif);">
-                        INTERNSHIP CONTACT</h4>
-                    <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-bottom: 24px;">
-                        長期インターン事業に関するお問い合わせは、<br>下記よりお願いいたします。</p>
-                    <form action="https://formspree.io/f/placeholder" method="POST" id="contact-form"
-                        style="display: flex; flex-direction: column; gap: 16px;">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                            <input type="text" name="name" placeholder="お名前" required
-                                style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #FFF; font-family: inherit; font-size: 0.9rem;">
-                            <input type="email" name="_replyto" placeholder="メールアドレス" required
-                                style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #FFF; font-family: inherit; font-size: 0.9rem;">
-                        </div>
-                        <input type="text" name="subject" value="長期インターン事業について" placeholder="お問い合わせ件名"
-                            style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #FFF; font-family: inherit; font-size: 0.9rem;">
-                        <textarea name="message" placeholder="お問い合わせ内容" rows="5" required
-                            style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #FFF; font-family: inherit; font-size: 0.9rem; resize: none;"></textarea>
+                <figure class="sub-intro-photo js-clip"><img src="assets/images/natural_internship.png"
+                        alt="長期インターンでプロジェクトを進める学生チーム"></figure>
+            </div>
+        </section>
 
-                        <button type="submit" class="btn-minimal"
-                            style="font-size: 0.9rem; width: fit-content; align-self: flex-start; border: none; background: #FFF; color: #0C1A27; padding: 12px 32px; cursor: pointer; font-weight: 600;">送信する</button>
-                    </form>
+        <!-- 取り組み -->
+        <section class="flow">
+            <div class="sec-head wide">
+                <div class="sec-no"><em>体制</em><span>実務機会の提供から、組織づくりまで。</span></div>
+            </div>
+            <div class="flow-rows">
+                <div class="flow-row js-reveal">
+                    <em>01</em>
+                    <div>
+                        <h3>実務機会の提供</h3>
+                        <p>営業、イベント立ち上げ、SNS運用、マーケティング、採用など、実際の事業に関わる実務機会を提供。机上の学びで終わらず、実践の中で力をつけられる環境を整えています。</p>
+                    </div>
+                </div>
+                <div class="flow-row js-reveal">
+                    <em>02</em>
+                    <div>
+                        <h3>役割を持った組織運営</h3>
+                        <p>インターン生一人ひとりが、イベント運営、商談、SNSマーケティング、デザインなどの役割を持ち、責任ある立場で事業に関わります。</p>
+                    </div>
+                </div>
+                <div class="flow-row js-reveal">
+                    <em>03</em>
+                    <div>
+                        <h3>採用・育成・研修</h3>
+                        <p>運営側では、採用、育成、マネジメント、研修までを含めた組織づくり全体を実施。学生が継続的に成長しやすいよう、実務だけでなく育成面にも力を入れています。</p>
+                    </div>
+                </div>
+                <div class="flow-row js-reveal">
+                    <em>04</em>
+                    <div>
+                        <h3>学生主体での事業推進</h3>
+                        <p>この組織の特徴は、学生主体で事業を動かしていること。自ら考え、動き、形にしていく経験を通じて、一から価値を生み出す力を身につけられる環境を目指しています。</p>
+                    </div>
                 </div>
             </div>
-            <div class="text-center"
-                style="margin-top: var(--space-xxl); border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--space-md);">
-                <div style="font-size:0.85rem; color:rgba(255,255,255,0.3);">&copy; 2026 BeMe. All rights reserved.
+        </section>
+
+        <!-- 事業領域 -->
+        <section class="trio">
+            <div class="sec-head wide">
+                <div class="sec-no light"><em>領域</em><span>関われる業務領域</span></div>
+            </div>
+            <ul class="chips light">
+                <li>営業</li>
+                <li>イベント立ち上げ</li>
+                <li>SNS広報・マーケティング</li>
+                <li>デザイン</li>
+                <li>採用</li>
+                <li>就活面談対応</li>
+            </ul>
+            <div class="trio-grid" style="margin-top: clamp(32px, 5vw, 56px);">
+                <div class="trio-item js-reveal">
+                    <h3>高い裁量</h3>
+                    <p>学生がサポート役ではなく、事業の一部を担う立場として関わることで、より実践的な経験につながる設計にしています。</p>
+                </div>
+                <div class="trio-item js-reveal">
+                    <h3>他事業との連動</h3>
+                    <p>就活イベントやSNS運用といった他事業とも連動しているため、実際の事業運営に触れながら経験を積めます。</p>
+                </div>
+                <div class="trio-item js-reveal">
+                    <h3>学び続ける仕組み</h3>
+                    <p>実務に入るだけでなく、研修やフィードバックを通じて、組織として学び続けられる仕組みを持っています。</p>
                 </div>
             </div>
-        </footer>
+        </section>
+
+        <!-- 基盤 -->
+        <section class="basis">
+            <div class="basis-inner">
+                <h2 class="sec-title js-reveal">学生が、<br><span class="grad-deep">本当に成長できる組織</span>であるために。</h2>
+                <p class="js-reveal">
+                    この事業は、単なるインターン募集ではなく、学生が継続的に実務へ関わり、成長できる組織基盤の上に成り立っています。
+                    30名以上のメンバーが所属し、学生主体で事業を動かす体制を整えながら、採用・育成・マネジメント・研修まで一貫して行っています。
+                </p>
+                <p class="js-reveal">
+                    「自分の人生を、自分で選べる学生を増やす」というBeMeキャリアの思いを、
+                    運営メンバー自身が実践の中で体現する。それがこのインターン組織の役割です。
+                </p>
+            </div>
+        </section>
+
+        <!-- 実績 -->
+        <section class="numbers">
+            <div class="sec-head wide">
+                <div class="sec-no light"><em>実績</em><span>数字で見るこの事業</span></div>
+            </div>
+            <ul class="num-list">
+                <li class="num-row js-numrow">
+                    <span class="num-label">学生主体で事業を動かすメンバー数</span>
+                    <span class="num-value"><b data-count="30">0</b><small>名以上</small></span>
+                </li>
+                <li class="num-row js-numrow">
+                    <span class="num-label">営業・イベント・SNS・採用など</span>
+                    <span class="num-value"><b data-count="6">0</b><small>領域以上の実務</small></span>
+                </li>
+                <li class="num-row js-numrow">
+                    <span class="num-label">採用・育成・研修まで</span>
+                    <span class="num-value"><small>組織づくりを一貫対応</small></span>
+                </li>
+            </ul>
+            <p class="num-note">※ 2026年時点・自社集計</p>
+        </section>
+
+        <!-- 締め -->
+        <section class="sub-value">
+            <blockquote class="js-reveal">
+                長期インターンを、経験の場ではなく、<br>
+                学生が<span class="grad-deep">本当に成長できる環境</span>に。
+            </blockquote>
+            <p class="sub-value-note js-reveal">運営への参加に興味のある学生の方は、LINEまたはお問い合わせからご連絡ください。</p>
+            <div class="ctas js-reveal">
+                <!-- TODO: 公式LINEのURLに差し替えてください -->
+                <a href="https://lin.ee/placeholder" target="_blank" rel="noopener"
+                    class="btn btn-line">LINEで話を聞いてみる</a>
+                <a href="index.html#contact" class="btn btn-dark">お問い合わせ</a>
+            </div>
+        </section>
     </main>
 
-    <!-- App Script -->
-    <script src="script.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            gsap.registerPlugin(ScrollTrigger);
-
-            // ── HERO ENTRANCE ──
-            const tl = gsap.timeline({ delay: 0.3 });
-            tl.to('#hero-tag', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' })
-                .to('#hero-title', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out' }, '-=0.6')
-                .to('#hero-lead', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.7')
-                .to('#hero-meta', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.6');
-
-            // ── PARALLAX HERO BG ──
-            window.addEventListener('scroll', () => {
-                const scrollY = window.scrollY;
-                const bg = document.getElementById('ev-hero-bg');
-                if (bg) bg.style.transform = `scale(1.08) translateY(${scrollY * 0.12}px)`;
-            }, { passive: true });
-
-            // ── HEADER COLOR SWITCH ──
-            const header = document.getElementById('ev-header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 60) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            }, { passive: true });
-
-            // ── SCROLL REVEAL ──
-            const revealEls = document.querySelectorAll('.ev-reveal, .ev-reveal-left, .ev-reveal-right');
-            revealEls.forEach(el => {
-                ScrollTrigger.create({
-                    trigger: el,
-                    start: 'top 85%',
-                    onEnter: () => el.classList.add('visible'),
-                    once: true
-                });
-            });
-
-            // ── COUNTERS ──
-            const counters = document.querySelectorAll('.ev-counter');
-            counters.forEach(el => {
-                ScrollTrigger.create({
-                    trigger: el,
-                    start: 'top 85%',
-                    onEnter: () => {
-                        const target = parseInt(el.getAttribute('data-target'));
-                        let obj = { val: 0 };
-                        gsap.to(obj, {
-                            val: target,
-                            duration: 2,
-                            ease: 'power2.out',
-                            onUpdate: () => {
-                                el.textContent = Math.floor(obj.val);
-                            }
-                        });
-                    },
-                    once: true
-                });
-            });
-
-            // ── STAGGER CARDS ──
-            document.querySelectorAll('.ev-cards-grid, .ev-cards-grid-2col, .ev-stats-dark-grid, .ev-stats-dark-grid-4col, .ev-practice-grid').forEach(grid => {
-                ScrollTrigger.create({
-                    trigger: grid,
-                    start: 'top 80%',
-                    onEnter: () => {
-                        gsap.fromTo(grid.children,
-                            { opacity: 0, y: 40 },
-                            { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.12 }
-                        );
-                    },
-                    once: true
-                });
-            });
-
-            // ── PILLAR STAGGER ──
-            ScrollTrigger.create({
-                trigger: '.ev-foundation-pillars',
-                start: 'top 80%',
-                onEnter: () => {
-                    gsap.fromTo('.ev-pillar',
-                        { opacity: 0, x: 30 },
-                        { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out', stagger: 0.1 }
-                    );
-                },
-                once: true
-            });
-        });
-    </script>
+    <!-- フッター -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="site-logo"><span class="logo-en">BeMe</span><span class="logo-jp">キャリア</span></div>
+                <p>自分の意思で、未来を選ぶ。<br>学生が納得して進路を選べる社会をつくる、キャリア支援カンパニー。</p>
+                <a href="mailto:info@bemecareer.com" class="footer-mail">info@bemecareer.com</a>
+            </div>
+            <nav class="footer-nav" aria-label="サイトマップ">
+                <p class="footer-head">サイトマップ</p>
+                <a href="index.html">トップページ</a>
+                <a href="index.html#about">私たちについて</a>
+                <a href="events.html">就活イベント</a>
+                <a href="media.html">SNSメディア</a>
+                <a href="internship.html">長期インターン</a>
+            </nav>
+            <div class="footer-contact">
+                <p class="footer-head">お問い合わせ</p>
+                <form action="https://formspree.io/f/placeholder" method="POST" id="contact-form">
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="お名前" required aria-label="お名前">
+                        <input type="email" name="_replyto" placeholder="メールアドレス" required aria-label="メールアドレス">
+                    </div>
+                    <input type="text" name="subject" placeholder="件名" aria-label="件名">
+                    <textarea name="message" rows="4" placeholder="お問い合わせ内容" required aria-label="お問い合わせ内容"></textarea>
+                    <button type="submit" class="btn btn-light">送信する</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 BeMe. All rights reserved.</span>
+        </div>
+    </footer>
 </body>
 
 </html>

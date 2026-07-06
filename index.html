@@ -24,7 +24,18 @@
     <script src="home.js?v=3" defer></script>
 </head>
 
-<body>
+<body class="is-loading">
+    <!-- ローディング画面 -->
+    <div class="loader" id="loader" aria-hidden="true">
+        <div class="loader-panel p1"></div>
+        <div class="loader-panel p2"></div>
+        <div class="loader-inner">
+            <div class="loader-logo">BeMe<small>キャリア</small></div>
+            <div class="loader-bar"><i id="loader-bar"></i></div>
+        </div>
+        <div class="loader-count"><span id="loader-num">0</span>%</div>
+    </div>
+
     <!-- 粒子ノイズ(全体の質感) -->
     <div class="grain" aria-hidden="true"></div>
 
@@ -83,7 +94,7 @@
                 <p class="hero-kicker js-hero-fade">BeMeキャリア</p>
                 <h1 class="hero-title">
                     <span class="line js-hero-line">自分の意思で、</span>
-                    <span class="line js-hero-line">未来を選ぶ。</span>
+                    <span class="line"><span class="block-in grad-text">未来を選ぶ。</span></span>
                 </h1>
                 <p class="hero-lead js-hero-fade">
                     情報の差が、選択の差になってしまう就職活動。<br class="pc">
@@ -119,7 +130,7 @@
                     <p class="issue-line">同じように悩み、同じように迷っても、</p>
                     <p class="issue-line">出会う情報と人の数で、</p>
                     <p class="issue-line">就活の景色は変わってしまう。</p>
-                    <p class="issue-line accent">その差を、なくしたい。</p>
+                    <p class="issue-line accent grad-text">その差を、なくしたい。</p>
                 </div>
             </div>
         </section>
@@ -135,7 +146,7 @@
             <div class="about-grid">
                 <div class="about-copy">
                     <h2 class="sec-title js-reveal">
-                        「ありたい姿」を、<br>「自らの意思」で。
+                        「ありたい姿」を、<br>「<span class="grad-deep">自らの意思</span>」で。
                     </h2>
                     <p class="js-reveal">
                         BeMe(ビーミー)という名前は、<b>Be=ありたい姿</b>、<b>Me=自らの意思</b>からつくりました。
@@ -275,7 +286,7 @@
             </figure>
             <div class="scene-copy">
                 <div class="sec-no"><em>04</em><span>学生の方へ</span></div>
-                <h2 class="sec-title js-reveal">就活を、<br>ひとりで抱えなくていい。</h2>
+                <h2 class="sec-title js-reveal">就活を、<br><span class="grad-deep">ひとりで抱えなくていい。</span></h2>
                 <p class="js-reveal">
                     「何から始めればいいか分からない」「周りと比べて焦る」——。
                     その状態のままで大丈夫です。まずはLINEで、先輩学生が選んだ情報を受け取るところから始めてください。
@@ -301,7 +312,7 @@
         <section class="scene scene-company" id="companies">
             <div class="scene-copy">
                 <div class="sec-no light"><em>05</em><span>企業の方へ</span></div>
-                <h2 class="sec-title js-reveal">学生のリアルに、<br>いちばん近い場所から。</h2>
+                <h2 class="sec-title js-reveal">学生のリアルに、<br><span class="grad-text">いちばん近い場所</span>から。</h2>
                 <p class="js-reveal">
                     BeMeキャリアは、SNS・面談・イベントを通じて、学生と日常的につながるコミュニケーション基盤を持っています。
                     母集団の「数」だけではなく、価値観の見える「質」の高い学生接点を、貴社の採用活動に合わせて設計します。
@@ -417,7 +428,7 @@
                 <p class="closing-kicker js-reveal">BeMeキャリア</p>
                 <h2 class="closing-title">
                     <span class="line js-close-line">納得できる選択を、</span>
-                    <span class="line js-close-line">ここから。</span>
+                    <span class="line"><span class="block-in grad-text">ここから。</span></span>
                 </h2>
                 <div class="closing-ctas js-reveal">
                     <!-- TODO: 公式LINEのURLに差し替えてください -->

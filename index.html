@@ -4,420 +4,625 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeMeキャリア | 成りたい自分を描く</title>
+    <title>BeMeキャリア | 自分の意思で、未来を選ぶ。学生のためのキャリア支援コミュニティ</title>
+    <meta name="description"
+        content="BeMeキャリアは、就活情報の発信・就活イベントの運営・キャリア面談の機会づくりを通じて、学生が納得感を持って進路を選べるように伴走するキャリア支援コミュニティです。">
+    <meta property="og:title" content="BeMeキャリア | 自分の意思で、未来を選ぶ。">
+    <meta property="og:description" content="学生が納得感を持って就活を進められるように、情報・イベント・面談機会を届けるキャリア支援コミュニティ。">
+    <meta property="og:type" content="website">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700;800&family=Yuji+Boku&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2">
-
-    <!-- Dependencies -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="home.css?v=1">
 </head>
 
 <body>
-    <!-- Advanced Dynamic Background -->
-    <div class="global-bg-animation">
-        <div class="bg-orb bg-orb-1"></div>
-        <div class="bg-orb bg-orb-2"></div>
-        <div class="bg-orb bg-orb-3"></div>
+    <!-- Ambient gradient background -->
+    <div class="bm-ambient" aria-hidden="true">
+        <div class="bm-orb bm-orb-1"></div>
+        <div class="bm-orb bm-orb-2"></div>
+        <div class="bm-orb bm-orb-3"></div>
     </div>
 
-    <!-- Premium Decorative Grid Lines -->
-    <div class="premium-grid-lines">
-        <div class="grid-line"></div>
-        <div class="grid-line"></div>
-        <div class="grid-line"></div>
-        <div class="grid-line"></div>
-        <div class="grid-line"></div>
-    </div>
+    <!-- Header -->
+    <header class="bm-header" id="bm-header">
+        <div class="bm-container bm-header-inner">
+            <a href="index.html" class="bm-logo">BeMe<small>キャリア</small></a>
 
-    <!-- Advanced Loading Screen -->
-    <div id="global-loader">
-        <div class="loader-bg-left"></div>
-        <div class="loader-bg-right"></div>
-        <div class="loader-content">
-            <div class="loader-text brushed">BeMe</div>
-        </div>
-    </div>
+            <nav class="bm-nav" aria-label="メインナビゲーション">
+                <a href="#about">BeMeキャリアとは</a>
+                <a href="#services">活動内容</a>
+                <a href="#students">学生の方へ</a>
+                <a href="#companies">企業の方へ</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact" class="bm-btn bm-btn-primary">お問い合わせ</a>
+            </nav>
 
-    <!-- Removed Overlay Navigation per user request -->
-
-    <!-- Navigation Header -->
-    <header class="master-header">
-        <div class="header-container">
-            <a href="index.html" class="brand-logo magnetic">BeMe</a>
-
-            <!-- Persistent Nav Links (Leverages Style) -->
-            <ul class="header-nav-desktop">
-                <li><a href="index.html#concept">COMPANY</a></li>
-                <li><a href="index.html#services">BUSINESS</a></li>
-                <li><a href="index.html#team">MEMBER</a></li>
-                <li><a href="mailto:info@bemecareer.com">CONTACT</a></li>
-            </ul>
-
-            <!-- Mobile Toggle -->
-            <div class="nav-toggle" id="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="bm-menu-btn" id="bm-menu-btn" aria-label="メニューを開く" aria-expanded="false"
+                aria-controls="bm-mobile-nav">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
-    <!-- Mobile Nav Overlay -->
-    <div class="nav-overlay" id="nav-overlay">
-        <div class="nav-close" id="nav-close">&times;</div>
-        <nav class="overlay-menu">
-            <ul>
-                <li><a href="index.html#concept">COMPANY</a></li>
-                <li><a href="index.html#services">BUSINESS</a></li>
-                <li><a href="index.html#team">MEMBER</a></li>
-                <li><a href="mailto:info@bemecareer.com" class="cta-link">CONTACT</a></li>
-            </ul>
-        </nav>
-    </div>
+    <!-- Mobile Nav -->
+    <nav class="bm-mobile-nav" id="bm-mobile-nav" aria-label="モバイルナビゲーション">
+        <a href="#about">BeMeキャリアとは</a>
+        <a href="#services">活動内容</a>
+        <a href="#students">学生の方へ</a>
+        <a href="#companies">企業の方へ</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="bm-btn bm-btn-primary">お問い合わせ</a>
+    </nav>
 
-    <main id="scroll-container">
-        <!-- Hero Section -->
-        <section class="hero-section" id="hero">
-            <!-- Background Elements -->
-            <div class="hero-bg-wrapper">
-                <img src="assets/images/hero_city_sunset.jpg" alt="Corporate background" class="hero-bg gs-parallax"
-                    data-speed="0.2">
-                <div class="hero-overlay"></div>
-            </div>
-
-            <!-- Content -->
-            <div class="hero-content">
-                <div class="text-mask">
-                    <h1 class="hero-main-title">
-                        <span class="hero-text-animate beme-hero-logo">
-                            <span class="type-char chr1">B</span><span class="type-char chr2">e</span><span
-                                class="type-char chr3">M</span><span class="type-char chr4">e</span>
-                        </span>
-                        <span class="hero-text-animate brush-ja" style="display: block;">自分らしい選択から<br>納得できる<span
-                                class="text-highlight">キャリア選択</span>を。</span>
+    <main>
+        <!-- ============ HERO ============ -->
+        <section class="bm-hero" id="hero">
+            <div class="bm-hero-grid" aria-hidden="true"></div>
+            <div class="bm-container bm-hero-inner">
+                <div>
+                    <div class="bm-hero-badge bm-hero-enter">学生のためのキャリア支援コミュニティ</div>
+                    <h1 class="bm-hero-enter" style="--d: 0.1s;">
+                        自分の意思で、<br>
+                        <span class="bm-grad-text">未来を選ぶ。</span>
                     </h1>
+                    <p class="bm-hero-sub bm-hero-enter" style="--d: 0.2s;">
+                        BeMeキャリアは、就活情報の発信・就活イベントの運営・キャリア面談の機会づくりを通じて、学生が納得感を持って進路を選べるように伴走するキャリア支援コミュニティです。
+                    </p>
+                    <div class="bm-hero-ctas bm-hero-enter" style="--d: 0.3s;">
+                        <!-- TODO: 公式LINEのURLに差し替えてください -->
+                        <a href="https://lin.ee/placeholder" target="_blank" rel="noopener"
+                            class="bm-btn bm-btn-line">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M12 2C6.48 2 2 5.64 2 10.13c0 4.03 3.58 7.4 8.42 8.04.33.07.77.22.89.5.1.26.07.66.03.92l-.14.87c-.04.26-.2 1.01.88.55 1.09-.46 5.87-3.46 8.01-5.92C21.56 13.35 22 11.8 22 10.13 22 5.64 17.52 2 12 2z" />
+                            </svg>
+                            LINEで就活情報を受け取る
+                        </a>
+                        <a href="#services" class="bm-btn bm-btn-ghost">
+                            活動内容を見る
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="bm-hero-note bm-hero-enter" style="--d: 0.4s;">追加・相談はすべて無料です。営業や勧誘のための連絡は行いません。</p>
                 </div>
-                <p class="hero-subtitle hero-text-animate" style="transition-delay: 0.2s;">
-                    BeMeキャリアは、<br>Be=ありたい姿、Me=自らの意思という考えを軸に、学生が自身のやりたいことを見つけ、納得感のあるキャリアを描ける機会をつくっています。
-                </p>
+
+                <div class="bm-hero-visual bm-hero-enter" style="--d: 0.35s;" aria-hidden="true">
+                    <div class="bm-hero-ring"></div>
+                    <div class="bm-glass-card gc-1">
+                        <div class="gc-icon" style="background: var(--bm-sky); color: var(--bm-blue);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                        </div>
+                        <div class="gc-label">SNS総フォロワー</div>
+                        <div class="gc-value">2<small>万人以上</small></div>
+                    </div>
+                    <div class="bm-glass-card gc-2">
+                        <div class="gc-icon" style="background: var(--bm-mint-bg); color: var(--bm-mint);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                            </svg>
+                        </div>
+                        <div class="gc-label">月間キャリア面談</div>
+                        <div class="gc-value">60<small>名以上</small></div>
+                    </div>
+                    <div class="bm-glass-card gc-3">
+                        <div class="gc-icon" style="background: var(--bm-sky); color: var(--bm-blue);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M8 2v4M16 2v4M3 10h18" />
+                                <rect x="3" y="4" width="18" height="18" rx="2" />
+                            </svg>
+                        </div>
+                        <div class="gc-label">イベント参加満足度</div>
+                        <div class="gc-value">96<small>%</small></div>
+                    </div>
+                </div>
             </div>
+            <div class="bm-scroll-cue" aria-hidden="true">SCROLL</div>
         </section>
 
-        <!-- Concept Matrix - 100% Redesign -->
-        <section id="concept" class="section-spacing" style="position:relative; overflow:hidden;">
-            <!-- Watermark text -->
-            <div class="watermark-bg" data-speed="0.2">COMPANY</div>
-            <div class="section-num-accent" style="top: 0; left: 0;">01</div>
-
-            <div class="philosophy-block gs-fade-up">
-                <div class="phil-header">
-                    <!-- Adjusted line breaks for better visual balance -->
-                    <!-- Corrected 3-line breakdown as requested -->
-                    <h2 class="phil-title" style="font-size: clamp(1.5rem, 3.5vw, 2.4rem); line-height: 1.4;">
-                        就活が、本当に<br>
-                        「<span class="text-highlight">自分で選ぶ</span>」場に<br>
-                        なっているか。</h2>
-                    <p class="phil-en text-gradient-primary" style="font-weight: 700; margin-top: 16px;">WHY CHOICE
-                        FEELS DIFFICULT TODAY</p>
+        <!-- ============ ABOUT ============ -->
+        <section class="bm-section" id="about">
+            <div class="bm-container">
+                <div class="bm-section-head bm-reveal">
+                    <p class="bm-eyebrow">About</p>
+                    <h2 class="bm-title">BeMeキャリアとは</h2>
+                    <p class="bm-lead">
+                        BeMeキャリアは、学生インターンが中心となって運営するキャリア支援団体です。SNSでの就活情報発信、就活イベントの企画・運営、キャリア面談の機会づくりを通じて、学生と企業が<span
+                            class="bm-marker">本音で向き合える場</span>をつくっています。
+                    </p>
                 </div>
-                <div class="phil-content text-shadow-subtle">
-                    <!-- Added paragraph break and margin for readability -->
-                    <p style="margin-bottom: 24px;">近年の就職活動では、学生が自分の価値観や将来像を十分に言語化できないまま、人生の選択を進めてしまうことが少なくありません。</p>
-                    <p>情報は多くても理解は浅くなりやすく、本当に自分がやりたいことや、自分に合った環境を見極めきれないまま進むことで、学生にとっても企業にとっても、納得感のある出会いにつながりにくくなっている現状を打破する必要があります。
+
+                <div class="bm-about-grid">
+                    <div class="bm-about-card bm-reveal">
+                        <div class="bm-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16" />
+                                <circle cx="5" cy="19" r="1" />
+                            </svg>
+                        </div>
+                        <h3>就活情報の発信</h3>
+                        <p>InstagramやLINEを通じて、就活の進め方・イベント情報・先輩の経験談など、学生目線で本当に役立つ情報を日々届けています。</p>
+                    </div>
+                    <div class="bm-about-card bm-reveal" style="--d: 0.1s;">
+                        <div class="bm-card-icon mint">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                        </div>
+                        <h3>イベントの企画・運営</h3>
+                        <p>GDサバイバルFESをはじめ、学生と企業が対話と実践を通じて互いを理解できる就活イベントを企画・運営しています。</p>
+                    </div>
+                    <div class="bm-about-card bm-reveal" style="--d: 0.2s;">
+                        <div class="bm-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                            </svg>
+                        </div>
+                        <h3>面談・接点づくり</h3>
+                        <p>先輩学生によるキャリア面談や、新卒紹介エージェント・企業との接点づくりを通じて、一人ひとりに合った選択肢との出会いをサポートします。</p>
+                    </div>
+                </div>
+
+                <div class="bm-name-origin bm-reveal">
+                    <div class="origin-mark">Be × Me</div>
+                    <p>
+                        「BeMe」という名前には、<strong>Be=ありたい姿</strong>、<strong>Me=自らの意思</strong>という想いを込めています。誰かに決められるのではなく、自分の意思で自分らしいキャリアを選べる学生を増やすことが、私たちの活動の原点です。
                     </p>
                 </div>
             </div>
-
-            <div class="philosophy-block reverse gs-fade-up mt-xxl">
-                <!-- Second Watermark -->
-                <div class="watermark-bg" data-speed="0.15" style="top: 40%; left: auto; right: -10%;">COMPANY</div>
-
-                <div class="phil-header">
-                    <!-- Adjusted line breaks and size -->
-                    <!-- Corrected 2-line breakdown as requested -->
-                    <h2 class="phil-title" style="font-size: clamp(1.5rem, 3.5vw, 2.4rem); line-height: 1.4;">
-                        <span class="text-highlight">自分で選べる</span><br>
-                        キャリアを、作る。
-                    </h2>
-                    <p class="phil-en text-gradient-primary" style="font-weight: 700; margin-top: 16px;">CAREERS CHOSEN
-                        WITH INTENT</p>
-                </div>
-                <div class="phil-content text-shadow-subtle">
-                    <!-- Improved readability with line breaks -->
-                    <p style="margin-bottom: 24px;">
-                        BeMeキャリアは、SNS・イベント・自社インターンを通じて、学生が自分の価値観や目的意識を言語化し、納得して進路を選べる状態をつくります。</p>
-                    <p>さらに、学生だからこそ築ける信頼あるSNSメディアと日常的な接点を活かし、学生のリアルなニーズを捉えながら、企業の採用活動におけるより自然で精度の高い接点づくりを支援しています。</p>
-                </div>
-            </div>
         </section>
 
-        <!-- Services Section (Expanded Volume) -->
-        <section id="services" class="section-spacing container"
-            style="padding-left: clamp(24px, 10vw, 160px); padding-right: clamp(24px, 10vw, 160px);">
-            <!-- Premium Left-Aligned Section Header -->
-            <div class="gs-fade-up mb-xl"
-                style="display: flex; align-items: center; gap: var(--space-md); position: relative;">
-                <div class="section-num-accent" style="top: -60px; left: -40px;">02</div>
-                <div class="gradient-divider" style="margin: 0; width: 50px; position: relative; z-index: 1;"></div>
-                <div>
-                    <h2 class="text-gradient-primary"
-                        style="font-size: clamp(2rem, 4vw, 3.2rem); font-family: var(--font-en-serif); line-height: 1.1; letter-spacing: 0.05em; padding-right: 0.1em;">
-                        BUSINESS</h2>
-                    <p
-                        style="color:var(--color-text-tertiary); letter-spacing:0.15em; font-size: 0.95rem; margin-top: 6px; font-weight: 500;">
-                        事業内容</p>
-                </div>
-            </div>
-
-            <div class="services-list mt-xl">
-                <!-- Service 1 -->
-                <a href="events.html" class="service-row gs-fade-up">
-                    <div class="row-img-wrapper">
-                        <img src="assets/images/service_events_hall.jpg" alt="就活イベントの運営" class="parallax-img">
-                    </div>
-                    <div class="row-content">
-                        <div class="row-num" style="letter-spacing: 0.15em;">DOMAIN 01</div>
-                        <h3 class="row-heading" style="font-size: clamp(1.5rem, 2.5vw, 2.2rem);">就活イベントの運営<br><span
-                                style="font-size:0.9rem; color:var(--color-text-tertiary); font-family: var(--font-en-serif); letter-spacing: 0.1em; display:block; margin-top:8px;">GROUP
-                                DISCUSSION EVENTS</span></h3>
-                        <p class="row-desc" style="font-size: 1.05rem; line-height: 2;">
-                            学生と企業が、表面的な印象だけで判断するのではなく、対話と実践を通じて互いを理解できる就活イベントを企画・運営しています。グループディスカッションを軸に、企業説明や交流の時間も組み合わせることで、学生にとっても企業にとって、<span
-                                class="text-highlight">納得感のある出会い</span>につながる場を設計しています。
-                        </p>
-                        <div class="service-stats">
-                            <div class="stat-item">
-                                <span class="stat-num">3<span>回</span></span>
-                                <span class="stat-label">過去開催数</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-num">96<span>％</span></span>
-                                <span class="stat-label">参加満足率</span>
-                            </div>
-                        </div>
-                        <ul class="service-features" style="font-size: 0.9rem;">
-                            <li><span class="check"></span>グループディスカッションを軸にした相互理解型イベント</li>
-                            <li><span class="check"></span>学生と企業が直接対話できる交流設計</li>
-                            <li><span class="check"></span>ミスマッチの少ない出会いを生む接点づくり</li>
-                        </ul>
-                        <div class="btn-leverages-wrapper"
-                            style="display: flex; justify-content: flex-end; width: 100%; margin-top: 24px;">
-                            <div class="btn-leverages">
-                                <span class="btn-text">VIEW MORE</span>
-                                <span class="btn-arrow"></span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Service 2 -->
-                <a href="media.html" class="service-row gs-fade-up" style="flex-direction: row-reverse;">
-                    <div class="row-img-wrapper">
-                        <img src="assets/images/service_sns_app.jpg" alt="就活SNSの運用" class="parallax-img">
-                    </div>
-                    <div class="row-content">
-                        <div class="row-num" style="letter-spacing: 0.15em;">DOMAIN 02</div>
-                        <h3 class="row-heading" style="font-size: clamp(1.5rem, 2.5vw, 2.2rem);">就活SNSの運用<br><span
-                                style="font-size:0.9rem; color:var(--color-text-tertiary); font-family: var(--font-en-serif); letter-spacing: 0.1em; display:block; margin-top:8px;">TRUSTED
-                                CAMPUS MEDIA</span></h3>
-                        <p class="row-desc" style="font-size: 1.05rem; line-height: 2;">
-                            関西の主要大学ごとにSNSを運用し、学生にとって信頼できる情報と継続的な接点を築いています。先輩学生による面談や日常的な発信を通じて、学生のリアルなニーズを捉えながら、企業の採用活動にもつながる質の高い情報収集と接点形成を支えています。
-                        </p>
-                        <div class="service-stats">
-                            <div class="stat-item">
-                                <span class="stat-num">2<span>万人以上</span></span>
-                                <span class="stat-label">総フォロワー数</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-num">60<span>名以上</span></span>
-                                <span class="stat-label">月間面談数</span>
-                            </div>
-                        </div>
-                        <ul class="service-features" style="font-size: 0.9rem;">
-                            <li><span class="check"></span>関西主要18大学に支部を展開するSNSメディア</li>
-                            <li><span class="check"></span>先輩学生による面談を通じた継続接点</li>
-                            <li><span class="check"></span>学生だからこそ得られるリアルな情報収集基盤</li>
-                        </ul>
-                        <div class="btn-leverages-wrapper"
-                            style="display: flex; justify-content: flex-start; width: 100%; margin-top: 24px;">
-                            <div class="btn-leverages">
-                                <span class="btn-text">VIEW MORE</span>
-                                <span class="btn-arrow"></span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Service 3 -->
-                <a href="internship.html" class="service-row gs-fade-up">
-                    <div class="row-img-wrapper">
-                        <img src="assets/images/service_internship_team.jpg" alt="長期インターン運営" class="parallax-img">
-                    </div>
-                    <div class="row-content">
-                        <div class="row-num" style="letter-spacing: 0.15em;">DOMAIN 03</div>
-                        <h3 class="row-heading" style="font-size: clamp(1.5rem, 2.5vw, 2.2rem);">長期インターン運営<br><span
-                                style="font-size:0.9rem; color:var(--color-text-tertiary); font-family: var(--font-en-serif); letter-spacing: 0.1em; display:block; margin-top:8px;">STUDENT
-                                GROWTH PLATFORM</span></h3>
-                        <p class="row-desc" style="font-size: 1.05rem; line-height: 2;">
-                            学生が実践を通じて成長し、自分の人生を自分で選べる力を身につけるための長期インターン組織を運営しています。営業、イベント立ち上げ、SNS運用、マーケティング、採用など、実際の事業運営に関わる機会を学生に提供しています。
-                        </p>
-                        <div class="service-stats">
-                            <div class="stat-item">
-                                <span class="stat-num">30<span>名以上</span></span>
-                                <span class="stat-label">メンバー数</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-num">100<span>％</span></span>
-                                <span class="stat-label">学生主体の事業運営</span>
-                            </div>
-                        </div>
-                        <ul class="service-features" style="font-size: 0.9rem;">
-                            <li><span class="check"></span>営業・イベント制作などのリアルな実務機会</li>
-                            <li><span class="check"></span>採用・育成まで含めた組織運営の経験</li>
-                            <li><span class="check"></span>自ら考え、動き、形にしていく高い裁量権</li>
-                        </ul>
-                        <div class="btn-leverages-wrapper"
-                            style="display: flex; justify-content: flex-end; width: 100%; margin-top: 24px;">
-                            <div class="btn-leverages">
-                                <span class="btn-text">VIEW MORE</span>
-                                <span class="btn-arrow"></span>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <!-- Member Section (Dark Section for Contrast) -->
-        <section id="team" class="section-spacing bg-dark-section">
-            <div class="container" style="position: relative;">
-                <div class="section-num-accent" style="top: -40px; left: 0;">03</div>
-                <div class="gs-fade-up text-center mb-xl" style="position: relative; z-index: 1;">
-                    <h2 class="text-gradient-primary"
-                        style="font-size: clamp(2rem, 4vw, 3rem); font-family: var(--font-en-serif); padding-right: 0.1em;">
-                        MEMBER
-                    </h2>
-                    <p
-                        style="color:var(--color-text-tertiary); letter-spacing:0.1em; font-family:'Inter', sans-serif; margin-top:12px;">
-                        採用・メンバー</p>
-                </div>
-
-                <div class="member-list mt-xl">
-                    <!-- Member 1: Leader -->
-                    <div class="member-block leader-block gs-fade-up">
-                        <div class="member-photo-frame">
-                            <img src="assets/images/media__1772218066517.jpg" alt="Member 1 Portrait">
-                        </div>
-                        <div class="leader-content">
-                            <div class="member-role">REPRESENTATIVE</div>
-                            <h3 class="member-name">代表：森平心</h3>
-                            <p class="member-bio">
-                                高校野球で甲子園出場など、これまで本気で何かに取り組んできた経験を通して、進路や挑戦に迷う学生の力になりたいと思うようになりました。幼馴染の新谷・山本とともに、学生が自分なりの選択肢を見つけ、一歩を踏み出せるきっかけをつくりたいという思いで、BeMeキャリアの運営に取り組んでいます。
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Member 2 -->
-                    <div class="member-block gs-fade-up" data-delay="0.1">
-                        <div class="member-photo-frame">
-                            <img src="assets/images/media__1772218073887.jpg" alt="Member 2 Portrait">
-                        </div>
-                        <div class="member-role">BOARD MEMBER</div>
-                        <h3 class="member-name">副代表：新谷壮太郎</h3>
-                        <p class="member-bio">
-                            学生メンバーのマネジメントやSNS運用、長期インターンの運営を担当しています。正解を与えるのではなく、一人ひとりが自分で考え、自分の人生を自分で決められる学生を増やしたいという思いで活動しています。日々の関わりの中で、少しでも前向きな選択を後押しできる存在を目指しています。
-                        </p>
-                    </div>
-
-                    <!-- Member 3 -->
-                    <div class="member-block gs-fade-up" data-delay="0.2">
-                        <div class="member-photo-frame">
-                            <img src="assets/images/media__1772218079267.jpg" alt="Member 3 Portrait">
-                        </div>
-                        <div class="member-role">BOARD MEMBER</div>
-                        <h3 class="member-name">企画部担当：山本和葉</h3>
-                        <p class="member-bio">
-                            何かに挑戦したいと思っていても、最初のきっかけがないまま立ち止まってしまう学生は多いと感じています。だからこそ、自分自身もBeMeキャリアの企画や運営に関わりながら、誰かが一歩を踏み出すきっかけをつくれたらと思っています。学生にとって身近で、参加しやすい場づくりを大切にしています。
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- New Multi-Column Footer -->
-        <footer id="contact" class="master-footer container mt-xl"
-            style="border-top: 1px solid var(--color-border-light); padding-top: var(--space-xl); padding-bottom: var(--space-lg);">
-            <div class="footer-grid-new gs-fade-up"
-                style="display: grid; grid-template-columns: repeat(3, minmax(160px, 1fr)); gap: var(--space-xl); text-align: left; align-items: start;">
-                <div>
-                    <div class="logo large" style="color: #111; margin-bottom: 24px;">BeMe</div>
-                    <p style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 2;">
-                    </p>
-                    <p
-                        style="font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.8; margin-top: 24px;">
-                        <span class="text-highlight">圧倒的な基準</span>で社会を動かす、<br>本質的なキャリア支援機関。
+        <!-- ============ MISSION ============ -->
+        <section class="bm-section bm-mission" id="mission">
+            <div class="bm-container">
+                <div class="bm-section-head bm-reveal">
+                    <p class="bm-eyebrow">Our Mission</p>
+                    <h2 class="bm-title">就活を、<br>「自分で選べる」ものに。</h2>
+                    <p class="bm-lead">
+                        就職活動は、持っている情報量や出会いの数によって、選択肢が大きく変わってしまいます。私たちは、その差を埋め、学生一人ひとりが納得して進路を選べる環境をつくりたいと考えています。
                     </p>
                 </div>
-                <div>
-                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
-                        SITEMAP</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 12px;"><a href="index.html"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">TOP</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#concept"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">COMPANY / 企業情報</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#services"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">BUSINESS / 事業内容</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#team"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">MEMBER / 採用・メンバー</a>
-                        </li>
-                        <li style="margin-bottom: 12px;"><a href="events.html"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">EVENTS / 新卒採用イベント</a>
-                        </li>
-                        <li style="margin-bottom: 12px;"><a href="media.html"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">MEDIA / SNS運用</a></li>
-                        <li style="margin-bottom: 12px;"><a href="internship.html"
-                                style="font-size: 0.95rem; color: var(--color-text-secondary);">INTERNSHIP /
-                                長期インターン運営</a></li>
+
+                <div class="bm-mission-grid">
+                    <div class="bm-mission-card bm-reveal">
+                        <span class="num">01</span>
+                        <h3>情報と出会いの格差をなくす</h3>
+                        <p>大学や環境によって生まれる就活の情報格差を、SNS・イベント・面談を通じて埋めていきます。誰もが同じスタートラインに立てる状態を目指します。</p>
+                    </div>
+                    <div class="bm-mission-card bm-reveal" style="--d: 0.1s;">
+                        <span class="num">02</span>
+                        <h3>学生と企業のミスマッチを減らす</h3>
+                        <p>表面的な印象や知名度だけで判断するのではなく、対話を通じて互いを理解できる接点をつくることで、入社後のミスマッチを減らします。</p>
+                    </div>
+                    <div class="bm-mission-card bm-reveal" style="--d: 0.2s;">
+                        <span class="num">03</span>
+                        <h3>自分らしい選択を後押しする</h3>
+                        <p>正解を与えるのではなく、学生が自分の価値観や将来像を言語化し、自分の意思で選べるようになるまで、同じ目線で伴走します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SERVICES ============ -->
+        <section class="bm-section" id="services">
+            <div class="bm-container">
+                <div class="bm-section-head center bm-reveal">
+                    <p class="bm-eyebrow">What We Do</p>
+                    <h2 class="bm-title">主な活動内容</h2>
+                    <p class="bm-lead">SNS・イベント・面談・インターン運営まで、学生のキャリア選択に関わる活動を学生主体で行っています。</p>
+                </div>
+
+                <div class="bm-services-grid">
+                    <a href="media.html" class="bm-service-card bm-reveal">
+                        <div class="sv-tag">SNS MEDIA</div>
+                        <h3>就活情報発信</h3>
+                        <p>関西の主要大学ごとにSNSアカウントを運用し、学生にとって信頼できる就活情報と継続的な接点を届けています。</p>
+                        <span class="sv-link">詳しく見る
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="events.html" class="bm-service-card bm-reveal" style="--d: 0.08s;">
+                        <div class="sv-tag">EVENTS</div>
+                        <h3>就活イベントの運営</h3>
+                        <p>グループディスカッションを軸に、企業説明や交流も組み合わせた、相互理解型の就活イベントを企画・運営しています。</p>
+                        <span class="sv-link">詳しく見る
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="events.html" class="bm-service-card bm-reveal" style="--d: 0.16s;">
+                        <div class="sv-tag">GD SURVIVAL FES</div>
+                        <h3>GDサバイバルFES</h3>
+                        <p>実践形式のグループディスカッションを通じて、学生が力を試しながら企業と出会える、BeMeキャリアの看板イベントです。</p>
+                        <span class="sv-link">詳しく見る
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </a>
+                    <div class="bm-service-card bm-reveal">
+                        <div class="sv-tag">CAREER TALK</div>
+                        <h3>キャリア面談・相談</h3>
+                        <p>先輩学生との1対1の面談を通じて、自己分析や進路の悩みを気軽に相談できます。就活を一人で抱え込まなくて大丈夫です。</p>
+                    </div>
+                    <div class="bm-service-card bm-reveal" style="--d: 0.08s;">
+                        <div class="sv-tag">MATCHING</div>
+                        <h3>企業との接点づくり</h3>
+                        <p>イベントや面談を通じて、学生の価値観や志向に合った企業・新卒紹介エージェントとの自然な出会いの機会をつくっています。</p>
+                    </div>
+                    <a href="internship.html" class="bm-service-card bm-reveal" style="--d: 0.16s;">
+                        <div class="sv-tag">INTERNSHIP</div>
+                        <h3>学生インターンによる運営</h3>
+                        <p>BeMeキャリアの運営自体が学生の実践の場。営業・イベント制作・SNS運用など、事業運営を学生が主体で担っています。</p>
+                        <span class="sv-link">詳しく見る
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ STATS ============ -->
+        <section class="bm-section bm-stats" id="stats">
+            <div class="bm-container">
+                <div class="bm-section-head center bm-reveal">
+                    <p class="bm-eyebrow">Numbers</p>
+                    <h2 class="bm-title">数字で見るBeMeキャリア</h2>
+                </div>
+
+                <div class="bm-stats-grid">
+                    <div class="bm-stat-card bm-reveal">
+                        <div class="bm-stat-value"><span data-count="20000">0</span><span class="unit">人以上</span></div>
+                        <div class="bm-stat-label">SNS総フォロワー数</div>
+                    </div>
+                    <div class="bm-stat-card bm-reveal" style="--d: 0.06s;">
+                        <div class="bm-stat-value"><span data-count="18">0</span><span class="unit">大学</span></div>
+                        <div class="bm-stat-label">SNS支部を展開する大学数</div>
+                    </div>
+                    <div class="bm-stat-card bm-reveal" style="--d: 0.12s;">
+                        <div class="bm-stat-value"><span data-count="60">0</span><span class="unit">名以上</span></div>
+                        <div class="bm-stat-label">月間キャリア面談数</div>
+                    </div>
+                    <div class="bm-stat-card bm-reveal" style="--d: 0.18s;">
+                        <div class="bm-stat-value"><span data-count="30">0</span><span class="unit">名以上</span></div>
+                        <div class="bm-stat-label">学生運営メンバー数</div>
+                    </div>
+                    <div class="bm-stat-card bm-reveal" style="--d: 0.24s;">
+                        <div class="bm-stat-value"><span data-count="3">0</span><span class="unit">回</span></div>
+                        <div class="bm-stat-label">就活イベント開催実績</div>
+                    </div>
+                    <div class="bm-stat-card bm-reveal" style="--d: 0.3s;">
+                        <div class="bm-stat-value"><span data-count="96">0</span><span class="unit">%</span></div>
+                        <div class="bm-stat-label">イベント参加満足度</div>
+                    </div>
+                </div>
+                <p class="bm-stats-note bm-reveal">※ 数値は2026年時点の自社集計によるものです。</p>
+            </div>
+        </section>
+
+        <!-- ============ AUDIENCE ============ -->
+        <section class="bm-section" id="students">
+            <div class="bm-container">
+                <div class="bm-section-head center bm-reveal">
+                    <p class="bm-eyebrow">For You</p>
+                    <h2 class="bm-title">学生の方へ、企業の方へ</h2>
+                </div>
+
+                <div class="bm-audience-grid">
+                    <!-- Students -->
+                    <div class="bm-audience-card student bm-reveal">
+                        <span class="bm-audience-tag">FOR STUDENTS</span>
+                        <h3>就活を、一人で<br>進めなくていい。</h3>
+                        <p>「何から始めればいいか分からない」「相談できる相手がいない」。そんな状態からで大丈夫です。まずはLINEで情報を受け取るところから始めてみてください。</p>
+                        <ul class="bm-check-list">
+                            <li>
+                                <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg></span>
+                                就活の進め方やイベント情報がLINEで届く
+                            </li>
+                            <li>
+                                <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg></span>
+                                GDサバイバルFESなどの実践イベントに参加できる
+                            </li>
+                            <li>
+                                <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg></span>
+                                先輩学生にキャリアの悩みを気軽に相談できる
+                            </li>
+                            <li>
+                                <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg></span>
+                                利用はすべて無料。しつこい営業連絡はありません
+                            </li>
+                        </ul>
+                        <!-- TODO: 公式LINEのURLに差し替えてください -->
+                        <a href="https://lin.ee/placeholder" target="_blank" rel="noopener" class="bm-btn bm-btn-line">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M12 2C6.48 2 2 5.64 2 10.13c0 4.03 3.58 7.4 8.42 8.04.33.07.77.22.89.5.1.26.07.66.03.92l-.14.87c-.04.26-.2 1.01.88.55 1.09-.46 5.87-3.46 8.01-5.92C21.56 13.35 22 11.8 22 10.13 22 5.64 17.52 2 12 2z" />
+                            </svg>
+                            LINEで情報を受け取る
+                        </a>
+                    </div>
+
+                    <!-- Companies -->
+                    <div class="bm-audience-card company bm-reveal" id="companies" style="--d: 0.1s;">
+                        <span class="bm-audience-tag">FOR COMPANIES</span>
+                        <h3>学生のリアルに、<br>いちばん近い場所から。</h3>
+                        <p>BeMeキャリアは、SNS・イベント・面談を通じた学生との日常的なコミュニケーション基盤を持っています。貴社の採用活動における、自然で質の高い学生接点づくりをお手伝いします。</p>
+                        <ul class="bm-check-list">
+                            <li>
+                                <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg></span>
+                                就活イベントへの出展・共催による学生との直接接点
+                            </li>
+                            <li>
+                                <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg></span>
+                                学生の価値観・志向に直接触れられる対話の場づくり
+                            </li>
+                            <li>
+                                <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg></span>
+                                SNS・面談を通じた継続的な学生コミュニケーション基盤
+                            </li>
+                            <li>
+                                <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg></span>
+                                学生団体ならではの、等身大の学生インサイト
+                            </li>
+                        </ul>
+                        <a href="#contact" class="bm-btn bm-btn-white">
+                            お問い合わせする
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ TEAM ============ -->
+        <section class="bm-section" id="team" style="padding-top: 0;">
+            <div class="bm-container">
+                <div class="bm-section-head center bm-reveal">
+                    <p class="bm-eyebrow">Members</p>
+                    <h2 class="bm-title">運営メンバー</h2>
+                    <p class="bm-lead">BeMeキャリアは、学生の未来に本気で向き合うメンバーが運営しています。</p>
+                </div>
+
+                <div class="bm-team-grid">
+                    <div class="bm-team-card bm-reveal">
+                        <div class="bm-team-photo">
+                            <img src="assets/images/media__1772218066517.jpg" alt="代表 森平心" loading="lazy">
+                        </div>
+                        <div class="bm-team-body">
+                            <div class="bm-team-role">REPRESENTATIVE</div>
+                            <h3>代表　森平 心</h3>
+                            <p>高校野球で甲子園出場など、本気で何かに取り組んできた経験から、進路や挑戦に迷う学生の力になりたいと考えるように。学生が自分なりの選択肢を見つけ、一歩を踏み出せるきっかけをつくるため、BeMeキャリアの運営に取り組んでいます。</p>
+                        </div>
+                    </div>
+                    <div class="bm-team-card bm-reveal" style="--d: 0.1s;">
+                        <div class="bm-team-photo">
+                            <img src="assets/images/media__1772218073887.jpg" alt="副代表 新谷壮太郎" loading="lazy">
+                        </div>
+                        <div class="bm-team-body">
+                            <div class="bm-team-role">BOARD MEMBER</div>
+                            <h3>副代表　新谷 壮太郎</h3>
+                            <p>学生メンバーのマネジメントやSNS運用、長期インターンの運営を担当。正解を与えるのではなく、一人ひとりが自分で考え、自分の人生を自分で決められる学生を増やしたいという思いで活動しています。</p>
+                        </div>
+                    </div>
+                    <div class="bm-team-card bm-reveal" style="--d: 0.2s;">
+                        <div class="bm-team-photo">
+                            <img src="assets/images/media__1772218079267.jpg" alt="企画部担当 山本和葉" loading="lazy">
+                        </div>
+                        <div class="bm-team-body">
+                            <div class="bm-team-role">BOARD MEMBER</div>
+                            <h3>企画部担当　山本 和葉</h3>
+                            <p>挑戦したい気持ちがあっても、きっかけがないまま立ち止まってしまう学生は多いもの。誰かが一歩を踏み出すきっかけをつくれるよう、学生にとって身近で参加しやすい場づくりを大切にしています。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FAQ ============ -->
+        <section class="bm-section bm-faq" id="faq">
+            <div class="bm-container">
+                <div class="bm-section-head center bm-reveal">
+                    <p class="bm-eyebrow">FAQ</p>
+                    <h2 class="bm-title">よくあるご質問</h2>
+                </div>
+
+                <div class="bm-faq-list">
+                    <details class="bm-faq-item bm-reveal">
+                        <summary>
+                            <span class="bm-faq-q">Q</span>
+                            利用は無料ですか?
+                            <span class="bm-faq-icon" aria-hidden="true"></span>
+                        </summary>
+                        <div class="bm-faq-a">
+                            はい、学生の方はLINEでの情報受け取り・イベント参加・キャリア面談など、すべて無料でご利用いただけます。
+                        </div>
+                    </details>
+                    <details class="bm-faq-item bm-reveal" style="--d: 0.05s;">
+                        <summary>
+                            <span class="bm-faq-q">Q</span>
+                            どんな学生が対象ですか?
+                            <span class="bm-faq-icon" aria-hidden="true"></span>
+                        </summary>
+                        <div class="bm-faq-a">
+                            就職活動を控えた大学生・大学院生が中心です。学年や就活の進み具合は問いません。「まだ何も始めていない」という段階からでも大歓迎です。
+                        </div>
+                    </details>
+                    <details class="bm-faq-item bm-reveal" style="--d: 0.1s;">
+                        <summary>
+                            <span class="bm-faq-q">Q</span>
+                            LINEを追加すると何が届きますか?
+                            <span class="bm-faq-icon" aria-hidden="true"></span>
+                        </summary>
+                        <div class="bm-faq-a">
+                            就活の進め方に関する情報や、イベントの開催案内、キャリア面談のご案内などをお届けします。不要になった場合は、いつでもブロック・解除いただけます。
+                        </div>
+                    </details>
+                    <details class="bm-faq-item bm-reveal" style="--d: 0.15s;">
+                        <summary>
+                            <span class="bm-faq-q">Q</span>
+                            イベント情報はどこで確認できますか?
+                            <span class="bm-faq-icon" aria-hidden="true"></span>
+                        </summary>
+                        <div class="bm-faq-a">
+                            公式LINEおよび各大学のSNSアカウントで随時ご案内しています。イベントの詳細は<a href="events.html"
+                                style="color: var(--bm-blue); font-weight: 700;">就活イベントのページ</a>でもご覧いただけます。
+                        </div>
+                    </details>
+                    <details class="bm-faq-item bm-reveal" style="--d: 0.2s;">
+                        <summary>
+                            <span class="bm-faq-q">Q</span>
+                            企業として相談したい場合はどうすればよいですか?
+                            <span class="bm-faq-icon" aria-hidden="true"></span>
+                        </summary>
+                        <div class="bm-faq-a">
+                            ページ下部のお問い合わせフォーム、またはメール(info@bemecareer.com)よりご連絡ください。イベント出展や学生接点づくりなど、内容に応じてご提案いたします。
+                        </div>
+                    </details>
+                    <details class="bm-faq-item bm-reveal" style="--d: 0.25s;">
+                        <summary>
+                            <span class="bm-faq-q">Q</span>
+                            運営に参加することはできますか?
+                            <span class="bm-faq-icon" aria-hidden="true"></span>
+                        </summary>
+                        <div class="bm-faq-a">
+                            はい。BeMeキャリアは学生インターンが主体となって運営しており、営業・イベント制作・SNS運用など幅広い実務に挑戦できます。詳しくは<a href="internship.html"
+                                style="color: var(--bm-blue); font-weight: 700;">長期インターンのページ</a>をご覧ください。
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FINAL CTA ============ -->
+        <section class="bm-section" id="cta">
+            <div class="bm-container">
+                <div class="bm-final-cta-card bm-reveal">
+                    <h2>納得できるキャリア選択を、<br>ここから始めよう。</h2>
+                    <p>学生の方はLINEから、企業の方はお問い合わせフォームから。BeMeキャリアが、次の一歩を一緒に考えます。</p>
+                    <div class="bm-final-ctas">
+                        <!-- TODO: 公式LINEのURLに差し替えてください -->
+                        <a href="https://lin.ee/placeholder" target="_blank" rel="noopener" class="bm-btn bm-btn-line">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M12 2C6.48 2 2 5.64 2 10.13c0 4.03 3.58 7.4 8.42 8.04.33.07.77.22.89.5.1.26.07.66.03.92l-.14.87c-.04.26-.2 1.01.88.55 1.09-.46 5.87-3.46 8.01-5.92C21.56 13.35 22 11.8 22 10.13 22 5.64 17.52 2 12 2z" />
+                            </svg>
+                            LINEで情報を受け取る
+                        </a>
+                        <a href="#contact" class="bm-btn bm-btn-white">企業の方のお問い合わせ</a>
+                        <a href="#services" class="bm-btn bm-btn-ghost" style="background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.2);">活動内容を見る</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="bm-footer" id="contact">
+        <div class="bm-container">
+            <div class="bm-footer-grid">
+                <div class="bm-reveal">
+                    <div class="bm-logo">BeMe<small>キャリア</small></div>
+                    <p class="bm-footer-desc">
+                        自分の意思で、未来を選ぶ。学生が納得感を持ってキャリアを選べる機会をつくる、学生主体のキャリア支援コミュニティです。
+                    </p>
+                </div>
+                <div class="bm-reveal" style="--d: 0.1s;">
+                    <h4>SITEMAP</h4>
+                    <ul class="bm-footer-links">
+                        <li><a href="index.html">トップ</a></li>
+                        <li><a href="#about">BeMeキャリアとは</a></li>
+                        <li><a href="#services">活動内容</a></li>
+                        <li><a href="events.html">就活イベント</a></li>
+                        <li><a href="media.html">SNSメディア</a></li>
+                        <li><a href="internship.html">長期インターン</a></li>
                     </ul>
                 </div>
-                <div id="contact-form-area"
-                    style="background: rgba(255, 255, 255, 0.5); padding: 32px; border-radius: 12px; border: 1px solid var(--color-border-light);">
-                    <h4 style="font-size: 1.1rem; color: #111; margin-bottom: 24px; font-family: var(--font-en-serif);">
-                        CONTACT</h4>
-                    <form action="https://formspree.io/f/placeholder" method="POST" id="contact-form"
-                        style="display: flex; flex-direction: column; gap: 16px;">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                            <input type="text" name="name" placeholder="お名前" required
-                                style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem;">
-                            <input type="email" name="_replyto" placeholder="メールアドレス" required
-                                style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem;">
+                <div class="bm-contact-card bm-reveal" style="--d: 0.2s;">
+                    <h4>CONTACT</h4>
+                    <form action="https://formspree.io/f/placeholder" method="POST" id="bm-contact-form"
+                        class="bm-contact-form">
+                        <div class="bm-form-row">
+                            <input type="text" name="name" placeholder="お名前" required aria-label="お名前">
+                            <input type="email" name="_replyto" placeholder="メールアドレス" required aria-label="メールアドレス">
                         </div>
-                        <input type="text" name="subject" placeholder="お問い合わせ件名"
-                            style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem;">
+                        <input type="text" name="subject" placeholder="お問い合わせ件名" aria-label="お問い合わせ件名">
                         <textarea name="message" placeholder="お問い合わせ内容" rows="5" required
-                            style="width: 100%; padding: 12px 16px; border-radius: 6px; border: 1px solid #DDD; font-family: inherit; font-size: 0.9rem; resize: none;"></textarea>
-
-                        <button type="submit" class="btn-minimal"
-                            style="font-size: 0.9rem; width: fit-content; align-self: flex-start; border: none; background: #111; color: #FFF; padding: 12px 32px; cursor: pointer;">送信する</button>
+                            aria-label="お問い合わせ内容"></textarea>
+                        <button type="submit" class="bm-btn bm-btn-primary">送信する</button>
                     </form>
                 </div>
             </div>
-            <div class="text-center gs-fade-up"
-                style="margin-top: var(--space-xxl); border-top: 1px solid var(--color-border-light); padding-top: var(--space-md);">
-                <div style="font-size:0.85rem; color:var(--color-text-tertiary);">&copy; 2026 BeMe. All rights reserved.
-                </div>
+            <div class="bm-footer-bottom">
+                <span>&copy; 2026 BeMe. All rights reserved.</span>
+                <a href="mailto:info@bemecareer.com">info@bemecareer.com</a>
             </div>
-        </footer>
-    </main>
+        </div>
+    </footer>
 
-    <!-- App Script -->
-    <script src="script.js"></script>
+    <script src="home.js?v=1"></script>
 </body>
 
 </html>
